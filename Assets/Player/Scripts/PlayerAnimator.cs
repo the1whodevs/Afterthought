@@ -1,30 +1,30 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// This should only be access through Player.instance.Animator!
 /// </summary>
 public class PlayerAnimator : MonoBehaviour
 {
-    [SerializeField] private Animator cyborgAnimator;
-    [SerializeField] private Animator cyborgAnimatorForShadows;
-    
-    [SerializeField] private Animator humanoidAnimator;
-    [SerializeField] private Animator humanoidAnimatorForShadows;
+    [SerializeField] private Animator animator;
 
-    private Animator playerAnimator;
-    private Animator playerAnimatorForShadows;
+    private int RunAnimHash = Animator.StringToHash("isRunning");
+    private int SprintAnimHash = Animator.StringToHash("isSprinting");
 
-    public void Init(Player.PlayerRace race)
+    public void Run()
     {
-        var playerIsCyborg = race == Player.PlayerRace.Cyborg;
-        
-        playerAnimator = playerIsCyborg ? cyborgAnimator : humanoidAnimator;
-        playerAnimatorForShadows = playerIsCyborg ? cyborgAnimatorForShadows : humanoidAnimatorForShadows;
+       animator.SetBool(RunAnimHash, true);
+       animator.SetBool(SprintAnimHash, false);
     }
 
-    private void OnAnimatorIK(int layerIndex)
+    public void Sprint()
     {
-        throw new NotImplementedException();
+        animator.SetBool(RunAnimHash, false);
+        animator.SetBool(SprintAnimHash, true);
+    }
+
+    public void Idle()
+    {
+        animator.SetBool(RunAnimHash, false);
+        animator.SetBool(SprintAnimHash, false);
     }
 }
