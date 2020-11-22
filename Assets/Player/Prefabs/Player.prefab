@@ -100,9 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerT: {fileID: 305737994843635870}
-  rotationXminMax: {x: -0.55, y: 0.55}
-  verticalSensitivity: 0.7
-  horizontalSensitivity: 25
+  camRotationSpeed: 5
+  cameraMinY: -60
+  cameraMaxY: 67.5
+  rotationSmoothSpeed: 10
 --- !u!1 &305737994843635869
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +228,7 @@ MonoBehaviour:
   runSpeed: 8
   crouchSpeed: 5
   sprintSpeed: 12
-  jumpHeight: 100
+  jumpHeight: 1000
 --- !u!136 &6960369179591665605
 CapsuleCollider:
   m_ObjectHideFlags: 0

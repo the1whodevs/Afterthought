@@ -4,54 +4,42 @@ public class MouseCamera : MonoBehaviour
 {
     [SerializeField] private Transform playerT;
     
-    [SerializeField] private Vector2 rotationXminMax = new Vector2(-90.0f, 67.5f);
-
-    [SerializeField] private float verticalSensitivity = 1.0f; 
-    [SerializeField] private float horizontalSensitivity = 1.0f; 
+    [SerializeField] private float camRotationSpeed = 5f;
+    [SerializeField] private float cameraMinY = -60f;
+    [SerializeField] private float cameraMaxY = 75f;
+    [SerializeField] private float rotationSmoothSpeed = 10f;
     
     private Transform cameraT;
-
-    private Vector3 lastMousePos;
+    
+    private float bodyRotationX = 1f;
+    private float camRotationY;
 
     private void Start()
     {
         cameraT = transform;
-
-        lastMousePos = Input.mousePosition;
-
-        SetCursorVisible(false);
-    }
-
-    private void SetCursorVisible(bool visible)
-    {
-        cameraT.localRotation = Quaternion.identity;
-
-        Cursor.visible = visible;
     }
 
     private void Update()
     {
-        var delta = Time.deltaTime;
+        LookRotation(Time.deltaTime);
+    }
 
-        var currentMousePos = Input.mousePosition;
+    private void LookRotation(float delta)
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
-        // This rotates the entire player transform around Vector3.up.
-        var diffX = currentMousePos.x - lastMousePos.x;
-        
-        // This rotates the camera transform around Vector3.right.
-        var diffY = currentMousePos.y - lastMousePos.y;
-        
-        diffX *= horizontalSensitivity * delta;
-        diffY *= verticalSensitivity * delta;
+        bodyRotationX += Input.GetAxis("Mouse X") * camRotationSpeed;
+        camRotationY += Input.GetAxis("Mouse Y") * camRotationSpeed;
 
-        //cameraT.Rotate(Vector3.right, -diffY);
-        
-        var rot = cameraT.localRotation;
-        rot.x = Mathf.Clamp(rot.x + -diffY, rotationXminMax.x, rotationXminMax.y);
-        cameraT.localRotation = rot;
+        //Stop the camera rotation 360 Degrees
+        camRotationY = Mathf.Clamp(camRotationY, cameraMinY, cameraMaxY);
 
-        playerT.Rotate(Vector3.up, diffX);
-        
-        lastMousePos = currentMousePos;
+        var canTargetRotation = Quaternion.Euler(-camRotationY, 0, 0);
+        var bodyTargetRotation = Quaternion.Euler(0, bodyRotationX, 0);
+
+        playerT.rotation = Quaternion.Lerp(playerT.rotation, bodyTargetRotation, delta * rotationSmoothSpeed);
+
+        cameraT.localRotation = Quaternion.Lerp(cameraT.localRotation, canTargetRotation, delta * rotationSmoothSpeed);
     }
 }
