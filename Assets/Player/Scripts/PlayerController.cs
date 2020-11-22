@@ -23,34 +23,39 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
-        var v = Input.GetAxis("Vertical");
-        var h = Input.GetAxis("Horizontal");
-        var j = Input.GetAxis("Jump") > 0.0f;
-        var s = Input.GetAxis("Sprint") > 0.0f;
-        var c = Input.GetAxis("Crouch") > 0.0f;
+        var v = Input.GetKey(KeyCode.W) ? 1.0f : Input.GetKey(KeyCode.S) ? -1.0f : 0.0f; //Input.GetAxis("Vertical");
+        var h = Input.GetKey(KeyCode.D) ? 1.0f : Input.GetKey(KeyCode.A) ? -1.0f : 0.0f; //Input.GetAxis("Horizontal");
+        var j = Input.GetKey(KeyCode.Space); //Input.GetAxis("Jump") > 0.0f;
+        var s = Input.GetKey(KeyCode.LeftShift); //Input.GetAxis("Sprint") > 0.0f;
+        var c = Input.GetKey(KeyCode.LeftControl); //Input.GetAxis("Crouch") > 0.0f;
 
         var moveDir = Vector3.zero;
 
-        if (v != 0.0f) moveDir += transform.forward;
-        if (h != 0.0f) moveDir += transform.right;
+        if (v > 0.0f) moveDir += transform.forward;
+        else if (v < 0.0f) moveDir += -transform.forward;
+        
+        if (h > 0.0f) moveDir += transform.right;
+        else if (h < 0.0f) moveDir += -transform.right;
 
         moveDir.Normalize();
 
+        var isMoving = !Mathf.Approximately(v, 0.0f) ||
+                       !Mathf.Approximately(h, 0.0f);
+        
         if (j && canJump)
         {
             canJump = false;
             CurrentMoveState = PlayerMoveState.Jumping;
         }
-        else if (c && !s)
+        else if (isMoving)
         {
-            if (v != 0.0f || h != 0.0f) CurrentMoveState = PlayerMoveState.CrouchRun;
-            else CurrentMoveState = PlayerMoveState.CrouchIdle;
+            if (s) CurrentMoveState = PlayerMoveState.Sprint;
+            else CurrentMoveState = c ? PlayerMoveState.CrouchRun : PlayerMoveState.Run;
         }
-        else if (v != 0.0f || h != 0.0f)
+        else
         {
-            CurrentMoveState = s ? PlayerMoveState.Sprint : PlayerMoveState.Run;
+            CurrentMoveState = PlayerMoveState.Idle;
         }
-        else CurrentMoveState = PlayerMoveState.Idle;
 
         switch (CurrentMoveState)
         {
@@ -66,17 +71,17 @@ public class PlayerController : MonoBehaviour
             
             case PlayerMoveState.Run:
                 Player.instance.Animator.Run();
-                rb.velocity = transform.forward * runSpeed;
+                rb.position += moveDir * (runSpeed * Time.deltaTime);
                 return;
             
             case PlayerMoveState.CrouchRun:
                 Player.instance.Animator.Run();
-                rb.velocity = transform.forward * crouchSpeed;
+                rb.position += moveDir * (crouchSpeed * Time.deltaTime);
                 return;
             
             case PlayerMoveState.Sprint:
                 Player.instance.Animator.Sprint();
-                rb.velocity = transform.forward * sprintSpeed;
+                rb.position += moveDir * (sprintSpeed * Time.deltaTime);
                 return;
             
             case PlayerMoveState.Jumping:
