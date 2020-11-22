@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     
     public PlayerAnimator Animator { get; private set; }
     public PlayerEquipment Equipment { get; private set; }
+
+    [SerializeField] private GameObject cyborgPlayer;
+    [SerializeField] private GameObject humanPlayer;
     
     /// <summary>
     /// If the saved value is 0, player is cyborg.
@@ -22,6 +25,11 @@ public class Player : MonoBehaviour
         if (instance) Destroy(this);
 
         Race = (PlayerRace) PlayerPrefs.GetInt(PLAYER_SKIN_KEY, 0);
+
+        var isCyborg = Race == PlayerRace.Cyborg;
+        
+        cyborgPlayer.SetActive(isCyborg);
+        humanPlayer.SetActive(!isCyborg);
 
         instance = this;
     }

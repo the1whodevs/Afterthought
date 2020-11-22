@@ -25,7 +25,7 @@ public class PlayerEquipment : MonoBehaviour
     
     [SerializeField] private LoadoutData loadout;
     
-    [SerializeField] private List<WeaponData> weapons = new List<WeaponData>();
+    [SerializeField] private List<WeaponData> allWeaponData = new List<WeaponData>();
 
     public void Init()
     {
