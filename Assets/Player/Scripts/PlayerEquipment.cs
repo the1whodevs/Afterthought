@@ -36,7 +36,7 @@ public class PlayerEquipment : MonoBehaviour
     
     public void Init()
     {
-        EquipWeapon(WeaponHand.Right, loadout.PrimaryWeapon);
+        EquipWeapon(WeaponHand.Both, loadout.PrimaryWeapon);
     }
 
     private void EquipWeapon(WeaponHand handToEquipTo, WeaponData weaponToEquip)
@@ -78,13 +78,13 @@ public class PlayerEquipment : MonoBehaviour
         
         // ELSE...
         
-        Debug.LogFormat("Player is trying to equip {0} which is a {1} weapon, on his {2} hand. Is this done properly?",
+        Debug.LogFormat("Player is trying to equip {0} which is a {1} weapon, on {2} hand(s). Is this done properly?",
             weaponToEquip.name, weaponToEquip.HandType.ToString(), handToEquipTo.ToString());
         
         // The player will equip the weapon on his right hand.
 
         UnequipFromHand(WeaponHand.Both);
-        EquipOnHand(WeaponHand.Right, weaponToEquip);
+        EquipOnHand(WeaponHand.Both, weaponToEquip);
     }
 
     private void UnequipFromHand(WeaponHand handToUnequipFrom)
@@ -125,14 +125,20 @@ public class PlayerEquipment : MonoBehaviour
         {
             case WeaponHand.Left:
                 CurrentWeaponObjectL = Instantiate(weaponToEquip.prefab, WeaponL.position, WeaponL.rotation, WeaponL);
+                CurrentWeaponObjectL.GetComponent<WeaponHandsHandler>().AdjustHands(handToEquipOn);
                 CurrentWeaponL = weaponToEquip;
                 break;
             case WeaponHand.Right:
                 CurrentWeaponObjectR = Instantiate(weaponToEquip.prefab, WeaponR.position, WeaponR.rotation, WeaponR);
+                CurrentWeaponObjectR.GetComponent<WeaponHandsHandler>().AdjustHands(handToEquipOn);
                 CurrentWeaponR = weaponToEquip;
                 break;
             case WeaponHand.Both:
-                throw new ArgumentOutOfRangeException(nameof(handToEquipOn), handToEquipOn, null);
+                // This means it's a 2 handed weapon, on the right hand.
+                CurrentWeaponObjectR = Instantiate(weaponToEquip.prefab, WeaponR.position, WeaponR.rotation, WeaponR);
+                CurrentWeaponObjectR.GetComponent<WeaponHandsHandler>().AdjustHands(handToEquipOn);
+                CurrentWeaponR = weaponToEquip;
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(handToEquipOn), handToEquipOn, null);
         }
