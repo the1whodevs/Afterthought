@@ -28,8 +28,13 @@ public class PlayerController : MonoBehaviour
 
         var move = transform.forward * v +
                    transform.right * h;
+
+        var m = Mathf.Abs(v) + Mathf.Abs(h);
+        if (m > 1.0f) m = 1.0f;
+
+        move.Normalize();
         
-        rb.position += move * (runSpeed * Time.fixedDeltaTime);
+        rb.position += move * (m * runSpeed * Time.fixedDeltaTime);
     }
 
     // private void Update()
