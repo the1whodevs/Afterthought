@@ -84,7 +84,7 @@ public class PlayerEquipment : MonoBehaviour
         // The player will equip the weapon on his right hand.
 
         UnequipFromHand(WeaponHand.Both);
-        EquipOnHand(WeaponHand.Both, weaponToEquip);
+        EquipOnHand(WeaponHand.Right, weaponToEquip);
     }
 
     private void UnequipFromHand(WeaponHand handToUnequipFrom)
@@ -124,18 +124,18 @@ public class PlayerEquipment : MonoBehaviour
         switch (handToEquipOn)
         {
             case WeaponHand.Left:
-                CurrentWeaponObjectL = Instantiate(weaponToEquip.prefab, WeaponL.position, WeaponL.rotation, WeaponL);
+                CurrentWeaponObjectL = Instantiate(weaponToEquip.leftHandPrefab, WeaponL.position, WeaponL.rotation, WeaponL);
                 CurrentWeaponObjectL.GetComponent<WeaponHandsHandler>().AdjustHands(handToEquipOn);
                 CurrentWeaponL = weaponToEquip;
                 break;
             case WeaponHand.Right:
-                CurrentWeaponObjectR = Instantiate(weaponToEquip.prefab, WeaponR.position, WeaponR.rotation, WeaponR);
+                CurrentWeaponObjectR = Instantiate(weaponToEquip.rightHandPrefab, WeaponR.position, WeaponR.rotation, WeaponR);
                 CurrentWeaponObjectR.GetComponent<WeaponHandsHandler>().AdjustHands(handToEquipOn);
                 CurrentWeaponR = weaponToEquip;
                 break;
             case WeaponHand.Both:
                 // This means it's a 2 handed weapon, on the right hand.
-                CurrentWeaponObjectR = Instantiate(weaponToEquip.prefab, WeaponR.position, WeaponR.rotation, WeaponR);
+                CurrentWeaponObjectR = Instantiate(weaponToEquip.rightHandPrefab, WeaponR.position, WeaponR.rotation, WeaponR);
                 CurrentWeaponObjectR.GetComponent<WeaponHandsHandler>().AdjustHands(handToEquipOn);
                 CurrentWeaponR = weaponToEquip;
                 break;

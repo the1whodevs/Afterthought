@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3fef08fbc7152e42abbab0859810c80, type: 3}
-  m_Name: Silent Death
+  m_Name: LaserRifle
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1365861077717362, guid: 6a714e0cdd80a604c949c1d5c39a58f4, type: 3}
   HandType: 1
   TechType: 0
+  rightHandPrefab: {fileID: 1335341624080874, guid: f2fc5ad4f559fce4cb6c97ffc0494141,
+    type: 3}
+  leftHandPrefab: {fileID: 0}
