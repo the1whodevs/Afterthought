@@ -36,8 +36,7 @@ public class PlayerEquipment : MonoBehaviour
     
     public void Init()
     {
-        EquipWeapon(WeaponHand.Both, loadout.PrimaryWeapon);
-        //EquipWeapon(WeaponHand.Left, loadout.PrimaryWeapon);
+        EquipWeapon(WeaponHand.Right, loadout.PrimaryWeapon);
     }
 
     private void EquipWeapon(WeaponHand handToEquipTo, WeaponData weaponToEquip)

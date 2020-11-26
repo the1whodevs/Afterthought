@@ -21,23 +21,26 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // private void FixedUpdate()
-    // {
-    //     var v = Input.GetAxis("Vertical");
-    //     var h = Input.GetAxis("Horizontal");
-    //
-    //     var move = transform.forward * v +
-    //                transform.right * h;
-    //
-    //     var m = Mathf.Abs(v) + Mathf.Abs(h);
-    //     if (m > 1.0f) m = 1.0f;
-    //
-    //     move.Normalize();
-    //     
-    //     rb.position += move * (m * runSpeed * Time.fixedDeltaTime);
-    // }
+    private void FixedUpdate()
+    {
+        var fixedDelta = Time.fixedDeltaTime;
+        
+        MoveControls(fixedDelta);
+        WeaponControls();
+    }
 
-    private void Update()
+    private void WeaponControls()
+    {
+        var fire = Input.GetAxisRaw("Fire1") > 0.0f;
+        var aim = Input.GetAxisRaw("Fire2") > 0.0f;
+        var tryEquipPrimary = Input.GetAxisRaw("EquipPrimary") < 0.0f;
+        var tryEquipSecondary = Input.GetAxisRaw("EquipSecondary") > 0.0f;
+        var tryEquipBoth = Input.GetAxisRaw("EquipBoth") > 0.0f;
+        
+        Debug.LogFormat("Fire: {0} / Aim: {1} / Primary: {2} / Secondary: {3} / Both: {4}",fire,aim,tryEquipPrimary,tryEquipSecondary,tryEquipBoth);
+    }
+
+    private void MoveControls(float dTime)
     {
         var v = Input.GetAxis("Vertical");
         var h = Input.GetAxis("Horizontal");
@@ -90,20 +93,21 @@ public class PlayerController : MonoBehaviour
             
             case PlayerMoveState.Run:
                 Player.instance.Animator.Run();
-                rb.position += moveDir * (m * runSpeed * Time.deltaTime);
+                rb.position += moveDir * (m * runSpeed * dTime);
                 return;
             
             case PlayerMoveState.CrouchRun:
                 Player.instance.Animator.Run();
-                rb.position += moveDir * (m * crouchSpeed * Time.deltaTime);
+                rb.position += moveDir * (m * crouchSpeed * dTime);
                 return;
             
             case PlayerMoveState.Sprint:
                 Player.instance.Animator.Sprint();
-                rb.position += moveDir * (m * sprintSpeed * Time.deltaTime);
+                rb.position += moveDir * (m * sprintSpeed * dTime);
                 return;
             
             case PlayerMoveState.Jumping:
+                //TODO: Check is grounded.
                 Player.instance.Animator.Idle();
                 rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
                 return;
