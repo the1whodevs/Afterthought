@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerEquipment : MonoBehaviour
 {
     public enum WeaponHand { Left, Right, Both }
-
-    public WeaponHand whichHandsAreUsed = WeaponHand.Right;
     
     /// <summary>
     /// The current weapon equipped.
@@ -24,6 +22,9 @@ public class PlayerEquipment : MonoBehaviour
     /// The player's loadout.
     /// </summary>
     public LoadoutData Loadout => loadout;
+
+    public bool CanDualWield => (loadout.PrimaryWeapon.HandType == WeaponData.WeaponHandType.OneHanded &&
+                                 loadout.SecondaryWeapon.HandType == WeaponData.WeaponHandType.OneHanded);
     
     [SerializeField] private LoadoutData loadout;
     
@@ -36,7 +37,41 @@ public class PlayerEquipment : MonoBehaviour
     
     public void Init()
     {
-        EquipWeapon(WeaponHand.Right, loadout.PrimaryWeapon);
+        EquipPrimaryWeapon();
+    }
+
+    public void EquipPrimaryWeapon()
+    {
+        Debug.Log("Equipping primary weapon...");
+        
+        if (loadout.PrimaryWeapon.HandType == WeaponData.WeaponHandType.OneHanded)
+            EquipWeapon(WeaponHand.Right, loadout.PrimaryWeapon);
+        else
+            EquipWeapon(WeaponHand.Both, loadout.PrimaryWeapon);
+    }
+
+    public void EquipSecondaryWeapon()
+    {
+        Debug.Log("Equipping secondary weapon...");
+        
+        if (loadout.SecondaryWeapon.HandType == WeaponData.WeaponHandType.OneHanded)
+            EquipWeapon(WeaponHand.Right, loadout.SecondaryWeapon);
+        else
+            EquipWeapon(WeaponHand.Both, loadout.SecondaryWeapon);
+    }
+
+    public void EquipBoth()
+    {
+        Debug.Log("Equipping both weapons...");
+        
+        // If both weapons are 1 handed.
+        if (CanDualWield)
+        {
+            EquipWeapon(WeaponHand.Right, loadout.PrimaryWeapon);
+            EquipWeapon(WeaponHand.Left, loadout.SecondaryWeapon);
+        }
+        // Should we equip the primary weapon if dual wield is not possible or do nothing?
+        //else EquipPrimaryWeapon();
     }
 
     private void EquipWeapon(WeaponHand handToEquipTo, WeaponData weaponToEquip)
@@ -50,7 +85,7 @@ public class PlayerEquipment : MonoBehaviour
         weaponToEquip.HandType == WeaponData.WeaponHandType.OneHanded;
 
         // the player will dual wield.
-        if (tryingToDualWield && canDualWield)
+        if (tryingToDualWield && CanDualWield)
         {
             UnequipFromHand(WeaponHand.Left);
             EquipOnHand(WeaponHand.Left, weaponToEquip);
@@ -71,7 +106,7 @@ public class PlayerEquipment : MonoBehaviour
         // the player will dual wield.
         if (tryingToDualWield && canDualWield)
         {
-            UnequipFromHand(WeaponHand.Right);
+            UnequipFromHand(WeaponHand.Both);
             EquipOnHand(WeaponHand.Right, weaponToEquip);
             return;
         }

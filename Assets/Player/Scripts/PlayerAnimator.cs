@@ -9,6 +9,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private int RunAnimHash = Animator.StringToHash("isRunning");
     private int SprintAnimHash = Animator.StringToHash("isSprinting");
+    private int AttackAnimHash = Animator.StringToHash("attack");
 
     public void Run()
     {
@@ -26,5 +27,11 @@ public class PlayerAnimator : MonoBehaviour
     {
         animator.SetBool(RunAnimHash, false);
         animator.SetBool(SprintAnimHash, false);
+    }
+
+    public void Fire()
+    {
+        animator.ResetTrigger(AttackAnimHash);
+        animator.SetTrigger(AttackAnimHash);
     }
 }

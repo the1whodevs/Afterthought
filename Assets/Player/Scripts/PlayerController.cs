@@ -6,12 +6,19 @@ public class PlayerController : MonoBehaviour
     public enum PlayerMoveState { Idle, CrouchIdle, Run, CrouchRun, Sprint, Jumping }
 
     public PlayerMoveState CurrentMoveState = PlayerMoveState.Idle;
-    
+
+    [Header("Move Settings")]
     [SerializeField] private float runSpeed = 10.0f;
     [SerializeField] private float crouchSpeed = 7.0f;
     [SerializeField] private float sprintSpeed = 20.0f;
     [SerializeField] private float jumpHeight = 15.0f;
 
+    [Header("Attack Settings")] 
+    [SerializeField] private float attackInterval = 1.0f;
+
+    private float attackTimer = 0.0f;
+
+    private bool CanAttack => attackTimer >= attackInterval;
     private bool canJump = true;
     
     private Rigidbody rb;
@@ -26,18 +33,35 @@ public class PlayerController : MonoBehaviour
         var fixedDelta = Time.fixedDeltaTime;
         
         MoveControls(fixedDelta);
-        WeaponControls();
+        WeaponControls(fixedDelta);
     }
 
-    private void WeaponControls()
+    private void WeaponControls(float dTime)
     {
+        attackTimer += dTime;
+        
         var fire = Input.GetAxisRaw("Fire1") > 0.0f;
         var aim = Input.GetAxisRaw("Fire2") > 0.0f;
         var tryEquipPrimary = Input.GetAxisRaw("EquipPrimary") < 0.0f;
         var tryEquipSecondary = Input.GetAxisRaw("EquipSecondary") > 0.0f;
         var tryEquipBoth = Input.GetAxisRaw("EquipBoth") > 0.0f;
         
-        Debug.LogFormat("Fire: {0} / Aim: {1} / Primary: {2} / Secondary: {3} / Both: {4}",fire,aim,tryEquipPrimary,tryEquipSecondary,tryEquipBoth);
+        // Debug.LogFormat("Fire: {0} / Aim: {1} / Primary: {2} / Secondary: {3} / Both: {4}",fire,aim,tryEquipPrimary,tryEquipSecondary,tryEquipBoth);
+
+        var pe = Player.instance.Equipment;
+        
+        if (tryEquipBoth && pe.CanDualWield) pe.EquipBoth();
+        else if (tryEquipPrimary) pe.EquipPrimaryWeapon();
+        else if (tryEquipSecondary) pe.EquipSecondaryWeapon();
+        
+        // TODO: Check attack speed.
+        if (fire && CanAttack)
+        {
+            attackTimer = 0.0f;
+            Player.instance.Animator.Fire();
+        }
+        
+        // TODO: ADS/Block on aim.
     }
 
     private void MoveControls(float dTime)
