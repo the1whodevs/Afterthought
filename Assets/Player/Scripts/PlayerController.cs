@@ -16,16 +16,18 @@ public class PlayerController : MonoBehaviour
     [Header("Attack Settings")] 
     [SerializeField] private float attackInterval = 1.0f;
 
+    private Vector3 moveDir;
+    
     private float attackTimer = 0.0f;
 
     private bool CanAttack => attackTimer >= attackInterval;
     private bool canJump = true;
     
-    private Rigidbody rb;
+    private CharacterController cc;
     
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        cc = GetComponent<CharacterController>();
     }
 
     private void FixedUpdate()
@@ -71,9 +73,10 @@ public class PlayerController : MonoBehaviour
         var j = Input.GetAxisRaw("Jump") >= 1.0f;
         var s = Input.GetAxisRaw("Sprint") >= 1.0f;
         var c = Input.GetAxisRaw("Crouch") >= 1.0f;
-    
-        var moveDir = Vector3.zero;
-    
+        var groundedPlayer = cc.isGrounded;
+
+        if (groundedPlayer && moveDir.y < 0.0f) moveDir.y = 0.0f;
+        
         var m = Mathf.Abs(v) + Mathf.Abs(h);
         if (m > 1.0f) m = 1.0f;
         
@@ -88,9 +91,8 @@ public class PlayerController : MonoBehaviour
         var isMoving = !Mathf.Approximately(v, 0.0f) ||
                        !Mathf.Approximately(h, 0.0f);
         
-        if (j && canJump)
+        if (j && groundedPlayer)
         {
-            canJump = false;
             CurrentMoveState = PlayerMoveState.Jumping;
         }
         else if (isMoving)
@@ -102,42 +104,54 @@ public class PlayerController : MonoBehaviour
         {
             CurrentMoveState = PlayerMoveState.Idle;
         }
-    
+
+        var speedToUse = runSpeed;
+        
         switch (CurrentMoveState)
         {
             case PlayerMoveState.Idle:
                 Player.instance.Animator.Idle();
-                //rb.velocity = Vector3.zero;
-                return;
+                speedToUse = 0.0f;
+                break;
             
             case PlayerMoveState.CrouchIdle:
                 Player.instance.Animator.Idle();
-                //rb.velocity = Vector3.zero;
-                return;
+                speedToUse = 0.0f;
+                break;
             
             case PlayerMoveState.Run:
                 Player.instance.Animator.Run();
-                rb.position += moveDir * (m * runSpeed * dTime);
-                return;
+                speedToUse = runSpeed;
+                //cc.SimpleMove(moveDir * (m * runSpeed * dTime));
+                //rb.MovePosition(rb.position + moveDir * (m * runSpeed * dTime));
+                break;
             
             case PlayerMoveState.CrouchRun:
                 Player.instance.Animator.Run();
-                rb.position += moveDir * (m * crouchSpeed * dTime);
-                return;
+                speedToUse = crouchSpeed;
+                //cc.SimpleMove(moveDir * (m * crouchSpeed * dTime));
+                //rb.MovePosition(rb.position + moveDir * (m * crouchSpeed * dTime));
+                break;
             
             case PlayerMoveState.Sprint:
                 Player.instance.Animator.Sprint();
-                rb.position += moveDir * (m * sprintSpeed * dTime);
-                return;
+                speedToUse = sprintSpeed;
+                //cc.SimpleMove(moveDir * (m * sprintSpeed * dTime));
+                //rb.MovePosition(rb.position + moveDir * (m * sprintSpeed * dTime));
+                break;
             
             case PlayerMoveState.Jumping:
-                //TODO: Check is grounded.
                 Player.instance.Animator.Idle();
-                rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-                return;
+                moveDir.y += Mathf.Sqrt(jumpHeight * -3.0f * Physics.gravity.y);
+                //rb.SimpleMove(Vector3.up * jumpHeight);
+                //rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+                break;
             
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
+        moveDir.y += Physics.gravity.y;
+        cc.Move(moveDir * (speedToUse * dTime));
     }
 }

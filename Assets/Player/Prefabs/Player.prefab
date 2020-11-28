@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344274077}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.005, y: 1.8, z: 0.034}
+  m_LocalPosition: {x: 0.005, y: 1.509, z: 0.034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5598451745193294800}
@@ -118,8 +118,7 @@ GameObject:
   - component: {fileID: 1675743892}
   - component: {fileID: 5232873967447831070}
   - component: {fileID: 1675743893}
-  - component: {fileID: 6960369179591665605}
-  - component: {fileID: 1770537450368138180}
+  - component: {fileID: 4836019476473453088}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -166,7 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68898d0c4ded96344b2171b5bbefa03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whichHandsAreUsed: 1
   loadout: {fileID: 11400000, guid: 660b8a370caf7e54f8e25b9043f36247, type: 2}
   allWeaponData:
   - {fileID: 11400000, guid: 16e90ff2d9466364d932001ce404ba98, type: 2}
@@ -225,12 +223,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentMoveState: 0
-  runSpeed: 8
-  crouchSpeed: 5
+  runSpeed: 6
+  crouchSpeed: 3
   sprintSpeed: 12
-  jumpHeight: 1000
---- !u!136 &6960369179591665605
-CapsuleCollider:
+  jumpHeight: 100
+  attackInterval: 1
+--- !u!143 &4836019476473453088
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -239,26 +238,14 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.8815212
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9547267, z: 0}
---- !u!54 &1770537450368138180
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305737994843635869}
   serializedVersion: 2
-  m_Mass: 80
-  m_Drag: 3
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1394235036293432721
 GameObject:
   m_ObjectHideFlags: 0
