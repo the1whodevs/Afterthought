@@ -21,13 +21,18 @@ public class PlayerController : MonoBehaviour
     private float attackTimer = 0.0f;
 
     private bool CanAttack => attackTimer >= attackInterval;
-    private bool canJump = true;
-    
+    private bool aimingDownSights;
+
     private CharacterController cc;
-    
+
+    private PlayerAnimator pa;
+    private PlayerEquipment pe;
+
     private void Start()
     {
         cc = GetComponent<CharacterController>();
+        pa = Player.instance.Animator;
+        pe = Player.instance.Equipment;
     }
 
     private void FixedUpdate()
@@ -46,24 +51,19 @@ public class PlayerController : MonoBehaviour
         var aim = Input.GetAxisRaw("Fire2") > 0.0f;
         var tryEquipPrimary = Input.GetAxisRaw("EquipPrimary") < 0.0f;
         var tryEquipSecondary = Input.GetAxisRaw("EquipSecondary") > 0.0f;
-        var tryEquipBoth = Input.GetAxisRaw("EquipBoth") > 0.0f;
         
-        // Debug.LogFormat("Fire: {0} / Aim: {1} / Primary: {2} / Secondary: {3} / Both: {4}",fire,aim,tryEquipPrimary,tryEquipSecondary,tryEquipBoth);
-
-        var pe = Player.instance.Equipment;
-        
-        if (tryEquipBoth && pe.CanDualWield) pe.EquipBoth();
-        else if (tryEquipPrimary) pe.EquipPrimaryWeapon();
+        if (tryEquipPrimary) pe.EquipPrimaryWeapon();
         else if (tryEquipSecondary) pe.EquipSecondaryWeapon();
         
         // TODO: Check attack speed.
         if (fire && CanAttack)
         {
             attackTimer = 0.0f;
-            Player.instance.Animator.Fire();
+            pa.Fire();
         }
+        else pa.ResetAttack();
         
-        // TODO: ADS/Block on aim.
+        pa.AimDownSights(aim);
     }
 
     private void MoveControls(float dTime)
@@ -110,38 +110,38 @@ public class PlayerController : MonoBehaviour
         switch (CurrentMoveState)
         {
             case PlayerMoveState.Idle:
-                Player.instance.Animator.Idle();
+                pa.Idle();
                 speedToUse = 0.0f;
                 break;
             
             case PlayerMoveState.CrouchIdle:
-                Player.instance.Animator.Idle();
+                pa.Idle();
                 speedToUse = 0.0f;
                 break;
             
             case PlayerMoveState.Run:
-                Player.instance.Animator.Run();
+                pa.Run();
                 speedToUse = runSpeed;
                 //cc.SimpleMove(moveDir * (m * runSpeed * dTime));
                 //rb.MovePosition(rb.position + moveDir * (m * runSpeed * dTime));
                 break;
             
             case PlayerMoveState.CrouchRun:
-                Player.instance.Animator.Run();
+                pa.Run();
                 speedToUse = crouchSpeed;
                 //cc.SimpleMove(moveDir * (m * crouchSpeed * dTime));
                 //rb.MovePosition(rb.position + moveDir * (m * crouchSpeed * dTime));
                 break;
             
             case PlayerMoveState.Sprint:
-                Player.instance.Animator.Sprint();
+                pa.Sprint();
                 speedToUse = sprintSpeed;
                 //cc.SimpleMove(moveDir * (m * sprintSpeed * dTime));
                 //rb.MovePosition(rb.position + moveDir * (m * sprintSpeed * dTime));
                 break;
             
             case PlayerMoveState.Jumping:
-                Player.instance.Animator.Idle();
+                // Player.instance.Animator.Idle();
                 moveDir.y += Mathf.Sqrt(jumpHeight * -3.0f * Physics.gravity.y);
                 //rb.SimpleMove(Vector3.up * jumpHeight);
                 //rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
