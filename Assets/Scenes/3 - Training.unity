@@ -2128,8 +2128,8 @@ MonoBehaviour:
   BackingUpSecondsMax: 2
   RunAttackTimer: 0
   RunAttackSpeed: 0
-  MinimumRunAttackSpeed: 2
-  MaximumRunAttackSpeed: 4
+  MinimumRunAttackSpeed: 1
+  MaximumRunAttackSpeed: 2
   AttackTimer: 0
   GettingHit: 0
   HasTarget: 0
@@ -2445,7 +2445,7 @@ MonoBehaviour:
   CurrentDamageAmount: 5
   DamageAmountRun: 5
   WanderRadius: 25
-  TabNumber: 1
+  TabNumber: 6
   TemperamentTabNumber: 2
   DetectionTagsTabNumber: 0
   AnimationTabNumber: 2
@@ -2486,12 +2486,12 @@ MonoBehaviour:
   AngleNeededToTurn: 10
   AngleNeededToTurnRunning: 30
   StartingTooCloseDistance: 2
-  TooCloseDistance: 1
+  TooCloseDistance: 0.7
   RangedTooCloseDistance: 5
   StartingAttackDistance: 4
   AttackDistance: 1.5
   RangedAttackDistance: 25
-  RunAttackDistance: 3
+  RunAttackDistance: 2
   CautiousSeconds: 8
   DeactivateDelay: 5
   SecondsToDisable: 6
