@@ -9,9 +9,10 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: MI_Rock_01
   m_Shader: {fileID: 4800000, guid: 537cc740f60e70a44b50b2815b2a899b, type: 3}
-  m_ShaderKeywords: _NORMALMAP _SPECGLOSSMAP _USEMOSSSLOPE1_ON _USEMOSSSLOPE2_ON _USEMOSSSLOPE_ON
+  m_ShaderKeywords: _NORMALMAP _SPECGLOSSMAP _USEMOSSSLOPE1_ON _USEMOSSSLOPE2_ON
+    _USEMOSSSLOPE_ON
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
