@@ -689,22 +689,29 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
-        functionName: NewEvent
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.25008905
+      - time: 0.23360553
         functionName: PlayAttackSound
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.2560778
+      - time: 0.25931928
+        functionName: PlayImpactSound
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.26019865
         functionName: EmeraldAttackEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.4198243
+        functionName: PlayAttackSound
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -717,8 +724,8 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.45279133
-        functionName: PlayAttackSound
+      - time: 0.45542952
+        functionName: PlayImpactSound
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
