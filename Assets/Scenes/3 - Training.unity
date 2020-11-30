@@ -1074,17 +1074,47 @@ PrefabInstance:
     - target: {fileID: 533159242014855405, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: IdleSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: FootStepSounds.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: AttackSounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: DeathSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: ImpactSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: InjuredSounds.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
         type: 3}
       propertyPath: TabNumber
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
         type: 3}
       propertyPath: AnimationTabNumber
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
         type: 3}
@@ -1094,7 +1124,7 @@ PrefabInstance:
     - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
         type: 3}
       propertyPath: AnimationListsChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
         type: 3}
@@ -1116,6 +1146,111 @@ PrefabInstance:
       propertyPath: Death1Animation
       value: 
       objectReference: {fileID: 7400000, guid: fcd9c43c3f2a27b41a45795bb721752c, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: Death2Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 1925ddcbcc697b645be6624ba3b4235b, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: IdleSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4594690c3fe256a40b22d786589ad949, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: FootStepSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: a949718d1e7476a42ab35b929bdb7a18, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: FootStepSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 215c79b218587fa409949eceb1957b63, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: FootStepSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 169fe634881d2684ea7fdb7ac3e5d0d8, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: FootStepSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: c271b719379201345a6a44a1b582c527, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: FootStepSounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: d0885593e1f69924bb5673f90877b5f5, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: FootStepSounds.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1c836aca5eaebc54b8112e681bf3a968, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: SoundTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: AttackSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 45e6d2dadb986ec468b8288f67918924, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: AttackSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: b6b09195e06c7124f8d1ba0c1c802be0, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: AttackSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: b6b903198f2d0dd448a82c9e96dbef21, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: AttackSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 01e6add9d756ddf489fa7c2dc9cafa94, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: AttackSounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: DeathSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c8472512992d0743ad27aa6f9d5d7c5, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: InjuredSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: f6ea411a0b8c4164c965535ca5b867b5, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: ImpactSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7f48ddad5252d444f901cdebfae27b03, type: 3}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: AttackVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: InjuredVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: ImpactVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
+        type: 3}
+      propertyPath: IdleVolume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 533159242014952717, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1182,12 +1317,212 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
         type: 3}
-      propertyPath: TabNumber
+      propertyPath: IdleSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: FootStepSounds.Array.size
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
         type: 3}
+      propertyPath: InjuredSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: ImpactSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: DeathSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: AttackSounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: IdleAnimationList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: WarningSounds.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: TabNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
       propertyPath: AnimationTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: FootStepSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: a949718d1e7476a42ab35b929bdb7a18, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: FootStepSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 215c79b218587fa409949eceb1957b63, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: FootStepSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 169fe634881d2684ea7fdb7ac3e5d0d8, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: FootStepSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: c271b719379201345a6a44a1b582c527, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: FootStepSounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: d0885593e1f69924bb5673f90877b5f5, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: FootStepSounds.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1c836aca5eaebc54b8112e681bf3a968, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: IdleSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4594690c3fe256a40b22d786589ad949, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: SoundTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: InjuredSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: f6ea411a0b8c4164c965535ca5b867b5, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: ImpactSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7f48ddad5252d444f901cdebfae27b03, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: DeathSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c8472512992d0743ad27aa6f9d5d7c5, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: AttackSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 45e6d2dadb986ec468b8288f67918924, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: AttackSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: b6b09195e06c7124f8d1ba0c1c802be0, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: AttackSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: b6b903198f2d0dd448a82c9e96dbef21, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: AttackSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 01e6add9d756ddf489fa7c2dc9cafa94, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: AttackSounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: b6b903198f2d0dd448a82c9e96dbef21, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: AttackVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: InjuredVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: ImpactVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: IdleSoundsSecondsMin
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: IdleSoundsSecondsMax
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: IdleAnimationList.Array.data[2].AnimationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: IdleAnimationList.Array.data[2].AnimationClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 09852b6d123e55644834c32e61e2e254, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: AnimationListsChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: TotalIdleAnimations
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: Idle3Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 09852b6d123e55644834c32e61e2e254, type: 3}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: CriticalHitVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: DeathVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: WarningSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: BehaviorRef
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: IdleVolume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
+        type: 3}
+      propertyPath: TemperamentTabNumber
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4190687466968714646, guid: 6ec5f2ab060624841aad5c66861a45a9,
@@ -1198,7 +1533,7 @@ PrefabInstance:
     - target: {fileID: 4190687466968714646, guid: 6ec5f2ab060624841aad5c66861a45a9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4190687466968945078, guid: 6ec5f2ab060624841aad5c66861a45a9,
         type: 3}
@@ -3798,16 +4133,16 @@ MonoBehaviour:
   m_ProjectileCollisionPoint: {x: 0.660516, y: 2.07, z: -0.5808079}
   ObstructionTimer: 0
   ObstructionSeconds: 4
-  IdleVolume: 1
+  IdleVolume: 0.3
   WalkFootstepVolume: 0.1
   RunFootstepVolume: 0.1
   BlockVolume: 0.65
-  ImpactVolume: 1
+  ImpactVolume: 0.5
   CriticalHitVolume: 1
-  InjuredVolume: 1
-  AttackVolume: 1
+  InjuredVolume: 0.5
+  AttackVolume: 0.5
   WarningVolume: 1
-  DeathVolume: 0.7
+  DeathVolume: 0.5
   EquipVolume: 1
   UnequipVolume: 1
   RangedEquipVolume: 1
@@ -4186,15 +4521,15 @@ MonoBehaviour:
   ObstructionDetectionUpdateTimer: 0
   CurrentHealth: 0
   StartingHealth: 15
-  DetectionRadius: 10
+  DetectionRadius: 20
   CurrentDamageAmount: 5
   DamageAmountRun: 5
   WanderRadius: 25
-  TabNumber: 1
+  TabNumber: 4
   TemperamentTabNumber: 2
-  DetectionTagsTabNumber: 1
+  DetectionTagsTabNumber: 0
   AnimationTabNumber: 2
-  SoundTabNumber: 1
+  SoundTabNumber: 0
   MovementTabNumber: 1
   WeaponTypeTabNumber: 0
   WeaponTypeCombatTabNumber: 0
@@ -4202,7 +4537,7 @@ MonoBehaviour:
   AttackAnimationNumber: 1
   RunAttackAnimationNumber: 1
   IdleAnimationNumber: 1
-  CombatTabNumber: 1
+  CombatTabNumber: 0
   FactionsAndTagTabNumber: 1
   EventTabNumber: 0
   MinimumWaitTime: 3
@@ -4213,9 +4548,9 @@ MonoBehaviour:
   DeathDelayActive: 0
   DeathDelayTimer: 0
   DeathDelayMin: 1
-  DeathDelayMax: 3
-  MinimumAttackSpeed: 1
-  MaximumAttackSpeed: 3
+  DeathDelayMax: 2
+  MinimumAttackSpeed: 0
+  MaximumAttackSpeed: 2
   MinimumDamageAmountRun: 2
   MaximumDamageAmountRun: 5
   CritChance: 15
@@ -4227,14 +4562,14 @@ MonoBehaviour:
   ExpandedFieldOfViewAngle: 300
   fieldOfViewAngle: 180
   fieldOfViewAngleRef: 0
-  MaxChaseDistance: 15
+  MaxChaseDistance: 25
   AngleNeededToTurn: 10
   AngleNeededToTurnRunning: 30
   StartingTooCloseDistance: 2
   TooCloseDistance: 1
   RangedTooCloseDistance: 5
   StartingAttackDistance: 4
-  AttackDistance: 15
+  AttackDistance: 25
   RangedAttackDistance: 25
   RunAttackDistance: 3
   CautiousSeconds: 8
@@ -4434,14 +4769,24 @@ MonoBehaviour:
   UnsheatheWeapon: {fileID: 0}
   RangedSheatheWeapon: {fileID: 0}
   RangedUnsheatheWeapon: {fileID: 0}
-  IdleSounds: []
-  AttackSounds: []
-  InjuredSounds: []
+  IdleSounds:
+  - {fileID: 8300000, guid: 4594690c3fe256a40b22d786589ad949, type: 3}
+  AttackSounds:
+  - {fileID: 8300000, guid: 45e6d2dadb986ec468b8288f67918924, type: 3}
+  InjuredSounds:
+  - {fileID: 8300000, guid: f6ea411a0b8c4164c965535ca5b867b5, type: 3}
   WarningSounds: []
-  DeathSounds: []
-  FootStepSounds: []
+  DeathSounds:
+  - {fileID: 8300000, guid: 2c8472512992d0743ad27aa6f9d5d7c5, type: 3}
+  FootStepSounds:
+  - {fileID: 8300000, guid: a949718d1e7476a42ab35b929bdb7a18, type: 3}
+  - {fileID: 8300000, guid: 215c79b218587fa409949eceb1957b63, type: 3}
+  - {fileID: 8300000, guid: 169fe634881d2684ea7fdb7ac3e5d0d8, type: 3}
+  - {fileID: 8300000, guid: c271b719379201345a6a44a1b582c527, type: 3}
+  - {fileID: 8300000, guid: d0885593e1f69924bb5673f90877b5f5, type: 3}
   BlockingSounds: []
-  ImpactSounds: []
+  ImpactSounds:
+  - {fileID: 8300000, guid: 7f48ddad5252d444f901cdebfae27b03, type: 3}
   CriticalHitSounds: []
   AIFactionsList: 
   TargetTagsIndex: 0
