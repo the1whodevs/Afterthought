@@ -6,7 +6,27 @@ ModelImporter:
   - first:
       74: 1827226128182048838
     second: Take 001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body
+    second: {fileID: 2100000, guid: f5f0fc0c5ae50274a9c2eb5c8719b4db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Equipment
+    second: {fileID: 2100000, guid: 620197c07b9d34c449f1bc987e456217, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pistol
+    second: {fileID: 2100000, guid: cff2e08e2ce07364b97a2ddd4a589521, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tommy_gun
+    second: {fileID: 2100000, guid: 201b745bc33807346bd9062e0cf7b014, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
