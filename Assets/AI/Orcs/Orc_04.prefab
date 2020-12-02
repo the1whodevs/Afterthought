@@ -1617,8 +1617,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 6245687095845319655}
   m_AABB:
-    m_Center: {x: -0.00000014901161, y: 0.0394143, z: 0.8948403}
-    m_Extent: {x: 0.3040429, y: 0.21265422, z: 0.49487466}
+    m_Center: {x: -0.00000023841858, y: 0.039414316, z: 0.8948405}
+    m_Extent: {x: 0.30404294, y: 0.21265423, z: 0.49487472}
   m_DirtyAABB: 0
 --- !u!183 &6245687096897537367
 Cloth:
@@ -2924,15 +2924,18 @@ MonoBehaviour:
   OffensiveAbilityIndex: 0
   OffensiveAbilityPickType: 1
   OffensiveAbilities:
-  - OffensiveAbility: {fileID: 11400000, guid: 0d902a1700fabaf4d94b0aabacbbf4bf, type: 2}
+  - OffensiveAbility: {fileID: 11400000, guid: 9823ba283b14ef74dba25ad27698812b, type: 2}
     AbilityAnimaition: 0
     AbilityOdds: 1
   SupportAbilityIndex: 0
   SupportAbilityPickType: 1
   SupportAbilities: []
   SummoningAbilityIndex: 0
-  SummoningAbilityPickType: 1
-  SummoningAbilities: []
+  SummoningAbilityPickType: 2
+  SummoningAbilities:
+  - SummoningAbility: {fileID: 11400000, guid: 401d21282d8b5ed40982f27d5c2cb6ea, type: 2}
+    AbilityAnimaition: 1
+    AbilityOdds: 1
   AttackOnArrival: 0
   CriticalHit: 0
   TargetInAngleLimit: 0
@@ -2940,8 +2943,8 @@ MonoBehaviour:
   CurrentRunAttackAnimationIndex: 0
   ActiveEffects: []
   CurrentlyCreatedAbility: {fileID: 0}
-  SummonsMultipleAI: 1
-  MaxAllowedSummonedAI: 1
+  SummonsMultipleAI: 0
+  MaxAllowedSummonedAI: 2
   TotalSummonedAI: 0
   CurrentSummoner: {fileID: 0}
   HealthPercentageToHeal: 30
@@ -3047,7 +3050,7 @@ MonoBehaviour:
   TotalRangedCombatHitAnimations: 2
   TotalEmoteAnimations: 1
   TotalAttackAnimations: 1
-  TotalRangedAttackAnimations: 1
+  TotalRangedAttackAnimations: 2
   TotalRunAttackAnimations: 1
   TotalRangedRunAttackAnimations: 1
   TotalDeathAnimations: 1
@@ -3072,7 +3075,7 @@ MonoBehaviour:
   MirrorTurnLeft: 0
   MirrorTurnRight: 0
   ReverseWalkAnimation: 1
-  ReverseRangedWalkAnimation: 1
+  ReverseRangedWalkAnimation: 0
   AngleToTurn: 0
   NonCombatAngleToTurn: 25
   CombatAngleToTurn: 10
@@ -3211,6 +3214,8 @@ MonoBehaviour:
   RangedAttackAnimationList:
   - AnimationSpeed: 1
     AnimationClip: {fileID: 7400000, guid: be7fad5aa29c38f47b045674b601010c, type: 3}
+  - AnimationSpeed: 1
+    AnimationClip: {fileID: 7400000, guid: 53c4a0faeee020649bdec8e4c9f6dfc3, type: 3}
   RangedCombatHitAnimationList:
   - AnimationSpeed: 1
     AnimationClip: {fileID: 7400000, guid: bc394ae47c8bfc343bdc5781a05822a0, type: 3}
@@ -3306,7 +3311,7 @@ MonoBehaviour:
     type: 3}
   RangedCombatWalkStraightAnimation: {fileID: 7400000, guid: 7d3f588d22991f94496264c0fb20fb3f,
     type: 3}
-  RangedCombatWalkBackAnimation: {fileID: 7400000, guid: 7d3f588d22991f94496264c0fb20fb3f,
+  RangedCombatWalkBackAnimation: {fileID: 7400000, guid: 0a10f4ebf5751c44baaf7f556a014880,
     type: 3}
   RangedCombatWalkRightAnimation: {fileID: 7400000, guid: 63d07a4e3529a974897cd3cdfccecac1,
     type: 3}
@@ -3321,7 +3326,8 @@ MonoBehaviour:
   RangedPullOutWeaponAnimation: {fileID: 0}
   RangedAttack1Animation: {fileID: 7400000, guid: be7fad5aa29c38f47b045674b601010c,
     type: 3}
-  RangedAttack2Animation: {fileID: 0}
+  RangedAttack2Animation: {fileID: 7400000, guid: 53c4a0faeee020649bdec8e4c9f6dfc3,
+    type: 3}
   RangedAttack3Animation: {fileID: 0}
   RangedAttack4Animation: {fileID: 0}
   RangedAttack5Animation: {fileID: 0}
@@ -3363,11 +3369,11 @@ MonoBehaviour:
   CurrentDamageAmount: 5
   DamageAmountRun: 5
   WanderRadius: 25
-  TabNumber: 4
+  TabNumber: 1
   TemperamentTabNumber: 2
   DetectionTagsTabNumber: 0
-  AnimationTabNumber: 2
-  SoundTabNumber: 0
+  AnimationTabNumber: 1
+  SoundTabNumber: 1
   MovementTabNumber: 1
   WeaponTypeTabNumber: 0
   WeaponTypeCombatTabNumber: 0
@@ -3775,11 +3781,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 0
+  DopplerLevel: 2.5
   MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -3827,7 +3833,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.16916667
       inSlope: 0
       outSlope: 0
       tangentMode: 0

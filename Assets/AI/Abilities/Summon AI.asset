@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc1a975727f99e04bbef5ff4da983d6e, type: 3}
-  m_Name: Summon Guardian
+  m_Name: Summon AI
   m_EditorClassIdentifier: 
-  AbilityName: Summon Guardian
-  AbilityDescription: Summon a Guardian for 30 seconds to assist the caster in battle.
+  AbilityName: Summon AI
+  AbilityDescription: Summon an AI
   AbilityDamage: 5
   AbilityDamagePerIncrement: 5
   CriticalHitOdds: 6.25
@@ -23,8 +23,8 @@ MonoBehaviour:
   AbilitySupportAmount: 5
   AbilityDamageIncrement: 1
   AbilityCooldown: 10
-  AbilityLength: 40
-  SummonRadius: 10
+  AbilityLength: 30
+  SummonRadius: 5
   ProjectileSpeed: 30
   ProjectileTimeoutSeconds: 6
   ColliderRadius: 0.05
@@ -32,22 +32,22 @@ MonoBehaviour:
   CollisionTime: 0
   HeatSeekingSeconds: 1
   CastEffectTimeoutSeconds: 1
-  AbilityEffectTimeoutSeconds: 3
+  AbilityEffectTimeoutSeconds: 6
   SummonEffectTimeoutSeconds: 3
   CollisionTimeout: 3
   DamageOvertimeTimeout: 3
   AbilityIcon: {fileID: 0}
   AbilityEffect: {fileID: 0}
   CastEffect: {fileID: 0}
-  SummonEffect: {fileID: 141900, guid: 994aac8c46b05f849b78294465816eb1, type: 3}
-  SummonObject: {fileID: 6245687095845613531, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
+  SummonEffect: {fileID: 195834, guid: 88dfa986f2cbd1b49be7b927c0f51e08, type: 3}
+  SummonObject: {fileID: 8243789944599071269, guid: ad5d29dbf92aa02468ac73b29b136a79,
     type: 3}
   DamageOverTimeEffect: {fileID: 0}
   DamageOverTimeSound: {fileID: 0}
   CollisionEffect: {fileID: 0}
   ImpactSound: {fileID: 0}
   SummonSound: {fileID: 0}
-  CastSound: {fileID: 8300000, guid: d0fcf3ec109a3c242887c6e1edee8033, type: 3}
+  CastSound: {fileID: 0}
   UseRandomizedTrajectory: 0
   UseGravity: 0
   TrajectoryXOffsetMin: 0
@@ -70,4 +70,4 @@ MonoBehaviour:
   UseCustomAbilityIcon: 0
   UseCastEffect: 0
   ArrowProjectileRef: 0
-  AbilityEditorTabs: 0
+  AbilityEditorTabs: 2
