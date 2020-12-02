@@ -23,7 +23,7 @@ MonoBehaviour:
   AbilitySupportAmount: 5
   AbilityDamageIncrement: 1
   AbilityCooldown: 10
-  AbilityLength: 30
+  AbilityLength: 5
   SummonRadius: 5
   ProjectileSpeed: 30
   ProjectileTimeoutSeconds: 6
@@ -32,15 +32,15 @@ MonoBehaviour:
   CollisionTime: 0
   HeatSeekingSeconds: 1
   CastEffectTimeoutSeconds: 1
-  AbilityEffectTimeoutSeconds: 6
+  AbilityEffectTimeoutSeconds: 7
   SummonEffectTimeoutSeconds: 3
   CollisionTimeout: 3
   DamageOvertimeTimeout: 3
   AbilityIcon: {fileID: 0}
   AbilityEffect: {fileID: 0}
   CastEffect: {fileID: 0}
-  SummonEffect: {fileID: 195834, guid: 88dfa986f2cbd1b49be7b927c0f51e08, type: 3}
-  SummonObject: {fileID: 8243789944599071269, guid: ad5d29dbf92aa02468ac73b29b136a79,
+  SummonEffect: {fileID: 119242, guid: 4bc451a9c5656db4794e16cdecbabbac, type: 3}
+  SummonObject: {fileID: 6245687095845613531, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
     type: 3}
   DamageOverTimeEffect: {fileID: 0}
   DamageOverTimeSound: {fileID: 0}
