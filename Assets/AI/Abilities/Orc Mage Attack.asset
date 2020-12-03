@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc1a975727f99e04bbef5ff4da983d6e, type: 3}
-  m_Name: Summon AI
+  m_Name: Orc Mage Attack
   m_EditorClassIdentifier: 
-  AbilityName: Summon AI
-  AbilityDescription: Summon an AI
-  AbilityDamage: 5
+  AbilityName: Spell 1
+  AbilityDescription: Spell 1
+  AbilityDamage: 10
   AbilityDamagePerIncrement: 5
   CriticalHitOdds: 6.25
   CriticalHitMultiplierMin: 1.1
@@ -23,28 +23,29 @@ MonoBehaviour:
   AbilitySupportAmount: 5
   AbilityDamageIncrement: 1
   AbilityCooldown: 10
-  AbilityLength: 30
-  SummonRadius: 15
-  ProjectileSpeed: 30
+  AbilityLength: 8
+  SummonRadius: 10
+  ProjectileSpeed: 15
   ProjectileTimeoutSeconds: 6
-  ColliderRadius: 0.05
+  ColliderRadius: 0.33
   TimeoutTime: 4.5
   CollisionTime: 0
   HeatSeekingSeconds: 1
   CastEffectTimeoutSeconds: 1
-  AbilityEffectTimeoutSeconds: 7
+  AbilityEffectTimeoutSeconds: 5
   SummonEffectTimeoutSeconds: 3
-  CollisionTimeout: 3
+  CollisionTimeout: 1.5
   DamageOvertimeTimeout: 3
   AbilityIcon: {fileID: 0}
-  AbilityEffect: {fileID: 0}
-  CastEffect: {fileID: 0}
-  SummonEffect: {fileID: 119242, guid: 4bc451a9c5656db4794e16cdecbabbac, type: 3}
-  SummonObject: {fileID: 423880146455042314, guid: 7b5d0d4b97d070a4d9374828112cb0f8,
+  AbilityEffect: {fileID: 1246638314895344, guid: fe91343b9a35bb14794086f1770004a3,
     type: 3}
+  CastEffect: {fileID: 1246638314895344, guid: fe91343b9a35bb14794086f1770004a3, type: 3}
+  SummonEffect: {fileID: 0}
+  SummonObject: {fileID: 0}
   DamageOverTimeEffect: {fileID: 0}
   DamageOverTimeSound: {fileID: 0}
-  CollisionEffect: {fileID: 0}
+  CollisionEffect: {fileID: 1837398281301428, guid: c6bff702ea33dbd43b35ea3d6db5f838,
+    type: 3}
   ImpactSound: {fileID: 0}
   SummonSound: {fileID: 0}
   CastSound: {fileID: 0}
@@ -56,10 +57,10 @@ MonoBehaviour:
   TrajectoryYOffsetMax: 0
   TrajectoryZOffsetMin: 0
   TrajectoryZOffsetMax: 0
-  EffectOnCollisionRef: 0
+  EffectOnCollisionRef: 1
   SoundOnCollisionRef: 0
-  HeatSeekingRef: 0
-  AbilityType: 2
+  HeatSeekingRef: 1
+  AbilityType: 0
   DamageType: 0
   SupportType: 0
   AbilityStacksRef: 0
@@ -68,6 +69,6 @@ MonoBehaviour:
   UseCastSound: 0
   UseCriticalHits: 0
   UseCustomAbilityIcon: 0
-  UseCastEffect: 0
+  UseCastEffect: 1
   ArrowProjectileRef: 0
-  AbilityEditorTabs: 2
+  AbilityEditorTabs: 1
