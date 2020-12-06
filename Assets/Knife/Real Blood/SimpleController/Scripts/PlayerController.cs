@@ -14,50 +14,50 @@ namespace Knife.RealBlood.SimpleController
     {
         public GameObject control;
 
-        public MouseLook Look;
-        public Headbob HeadBob;
+        public MouseLook look;
+        public Headbob headBob;
 
-        public AnimationCurve HeadBobBlendCurve;
-        public AnimationCurve HeadBobPeriodBlendCurve;
+        public AnimationCurve headBobBlendCurve;
+        public AnimationCurve headBobPeriodBlendCurve;
 
-        public string ForwardAxis = "Vertical";
-        public string StrafeAxis = "Horizontal";
-        public Transform DirectionReference;
-        public float CrouchSpeedMultiplier = 0.75f;
-        public float RunSpeedMultiplier = 1.5f;
-        public float RunIncreaseSpeedTime = 1f;
-        public float RunSpeedThreshold = 1f;
-        public AnimationCurve RunIncreaseSpeedCurve;
-        public float CollisionScale = 1f;
+        public string forwardAxis = "Vertical";
+        public string strafeAxis = "Horizontal";
+        public Transform directionReference;
+        public float crouchSpeedMultiplier = 0.75f;
+        public float runSpeedMultiplier = 1.5f;
+        public float runIncreaseSpeedTime = 1f;
+        public float runSpeedThreshold = 1f;
+        public AnimationCurve runIncreaseSpeedCurve;
+        public float collisionScale = 1f;
 
-        public float Speed = 1f;
-        public LayerMask GroundLayer;
-        public float Threshold = 0.1f;
-        public float Gravity = 9.81f;
-        public float StickToGround = 9.81f;
+        public float speed = 1f;
+        public LayerMask groundLayer;
+        public float threshold = 0.1f;
+        public float gravity = 9.81f;
+        public float stickToGround = 9.81f;
 
-        public PlayerStandState StandState;
-        public PlayerStandState CrouchState;
-        public float StateChangeSpeed = 3.666f;
-        public AnimationCurve StateChangeCurve;
-        public float MaxSpeed = 1f;
-        public float WeightSmooth = 3f;
-        public float JumpSpeed = 5f;
-        public Camera PlayerCamera;
-        public Transform ControlCamera;
-        public Transform HandsHeadBobTarget;
-        public float CameraHeadbobWeight = 1f;
-        public float HandsHeadbobWeight = 0.3f;
-        public float HandsHeadbobMultiplier = 1;
+        public PlayerStandState standState;
+        public PlayerStandState crouchState;
+        public float stateChangeSpeed = 3.666f;
+        public AnimationCurve stateChangeCurve;
+        public float maxSpeed = 1f;
+        public float weightSmooth = 3f;
+        public float jumpSpeed = 5f;
+        public Camera playerCamera;
+        public Transform controlCamera;
+        public Transform handsHeadBobTarget;
+        public float cameraHeadbobWeight = 1f;
+        public float handsHeadbobWeight = 0.3f;
+        public float handsHeadbobMultiplier = 1;
 
-        public PlayerFreezeChangedEvent PlayerFreezeChanged = new PlayerFreezeChangedEvent();
+        public PlayerFreezeChangedEvent playerFreezeChanged = new PlayerFreezeChangedEvent();
 
         [System.Serializable]
         public class PlayerStandState
         {
-            public float ControlCameraHeight;
-            public float ColliderHeight;
-            public float ColliderCenterHeight;
+            public float controlCameraHeight;
+            public float colliderHeight;
+            public float colliderCenterHeight;
         }
 
         public Vector3 PlayerVelocity
@@ -68,42 +68,19 @@ namespace Knife.RealBlood.SimpleController
             }
         }
 
-        public bool IsRunning
-        {
-            get
-            {
-                return isRunning;
-            }
-        }
-        public bool IsCrouching
-        {
-            get
-            {
-                return isCrouching;
-            }
-        }
+        public bool IsRunning { get; private set; }
 
-        public bool IsGrounded
-        {
-            get
-            {
-                return controller.isGrounded;
-            }
-        }
-        public float DefaultHandsHeadbobWeight
-        {
-            get
-            {
-                return defaultHandsHeadbobWeight;
-            }
-        }
+        public bool IsCrouching { get; private set; }
 
-        public UnityAction RunStartEvent;
-        public UnityAction JumpStartEvent;
-        public UnityAction JumpFallEvent;
-        public UnityAction JumpEndEvent;
-        public UnityAction CrouchEvent;
-        public UnityAction StandUpEvent;
+        public bool IsGrounded => controller.isGrounded;
+        public float DefaultHandsHeadbobWeight { get; private set; }
+
+        public UnityAction runStartEvent;
+        public UnityAction jumpStartEvent;
+        public UnityAction jumpFallEvent;
+        public UnityAction jumpEndEvent;
+        public UnityAction crouchEvent;
+        public UnityAction standUpEvent;
 
         CapsuleCollider charactarCollider;
         CharacterController controller;
@@ -120,39 +97,29 @@ namespace Knife.RealBlood.SimpleController
         float runTime = 0f;
         float standChangeTime;
 
-        float defaultHandsHeadbobWeight;
-        bool freezeControl = false;
-        bool isRunning;
         bool oldIsGrounded = false;
-        bool isCrouching;
 
         private bool isPaused = false;
 
-        public bool IsFreezed
-        {
-            get
-            {
-                return freezeControl;
-            }
-        }
+        public bool IsFreezed { get; private set; } = false;
 
-        void Start()
+        private void Start()
         {
             charactarCollider = GetComponent<CapsuleCollider>();
             controller = GetComponent<CharacterController>();
 
-            Look.Init(transform, ControlCamera);
+            look.Init(transform, controlCamera);
 
-            defaultHandsHeadbobWeight = HandsHeadbobWeight;
+            DefaultHandsHeadbobWeight = handsHeadbobWeight;
 
-            controlCameraPosition = ControlCamera.localPosition;
+            controlCameraPosition = controlCamera.localPosition;
 
             PausePlayer();
         }
 
         public void UpdateDefaultDeath()
         {
-            Look.RotateCameraSmoothlyTo(0, Time.deltaTime);
+            look.RotateCameraSmoothlyTo(0, Time.deltaTime);
         }
 
         private void PausePlayer()
@@ -173,7 +140,7 @@ namespace Knife.RealBlood.SimpleController
             isPaused = false;
         }
 
-        void Update()
+        private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -182,36 +149,31 @@ namespace Knife.RealBlood.SimpleController
                 else
                     PausePlayer();
             }
+            
             UpdatePlayer();
         }
 
-        void UpdatePlayer()
+        private void UpdatePlayer()
         {
-            Look.LookRotation(Time.deltaTime);
+            look.LookRotation(Time.deltaTime);
 
             if (controller.isGrounded)
             {
-                move();
+                Move();
             }
             else
             {
-                applyGravity();
+                ApplyGravity();
             }
 
             if (oldPlayerVelocity.y > 0 && playerVelocity.y < 0)
             {
-                if (JumpFallEvent != null)
-                {
-                    JumpFallEvent();
-                }
+                jumpFallEvent?.Invoke();
             }
 
             if (controller.isGrounded && !oldIsGrounded)
             {
-                if (JumpEndEvent != null)
-                {
-                    JumpEndEvent();
-                }
+                jumpEndEvent?.Invoke();
             }
 
             oldPlayerVelocity = playerVelocity;
@@ -223,67 +185,69 @@ namespace Knife.RealBlood.SimpleController
             //if (!value) // and is dead
             //    return;
 
-            Look.Enabled = !value;
-            freezeControl = value;
+            look.enabled = !value;
+            IsFreezed = value;
 
-            PlayerFreezeChanged.Invoke(freezeControl);
+            playerFreezeChanged.Invoke(IsFreezed);
         }
 
-        void move()
+        private void Move()
         {
-            float h = Input.GetAxis(StrafeAxis);
-            float v = Input.GetAxis(ForwardAxis);
+            var h = Input.GetAxis(strafeAxis);
+            var v = Input.GetAxis(forwardAxis);
 
-            if (freezeControl)
+            if (IsFreezed)
             {
                 h = 0;
                 v = 0;
             }
 
-            HeadBob.CalcHeadbob(Time.time);
+            headBob.CalcHeadbob(Time.time);
 
-            HandsHeadBobTarget.localPosition -= oldHandHeadBobPos;
+            var localPosition = handsHeadBobTarget.localPosition;
+            localPosition -= oldHandHeadBobPos;
 
             // you can do any HandsHeadBobTarget position set
 
-            HandsHeadBobTarget.localPosition += HeadBob.HeadBobPos * HandsHeadbobWeight * HandsHeadbobMultiplier;
+            localPosition += headBob.HeadBobPos * handsHeadbobWeight * handsHeadbobMultiplier;
+            handsHeadBobTarget.localPosition = localPosition;
 
-            ControlCamera.localPosition -= oldCameraHeadBobPos;
+            var position = controlCamera.localPosition;
+            position -= oldCameraHeadBobPos;
 
-            ControlCamera.localPosition = controlCameraPosition;
+            position = controlCameraPosition;
             // you can do any ControlCamera position set
 
-            ControlCamera.localPosition += HeadBob.HeadBobPos * CameraHeadbobWeight;
+            position += headBob.HeadBobPos * cameraHeadbobWeight;
+            controlCamera.localPosition = position;
 
-            oldHandHeadBobPos = HeadBob.HeadBobPos * HandsHeadbobWeight * HandsHeadbobMultiplier;
-            oldCameraHeadBobPos = HeadBob.HeadBobPos * CameraHeadbobWeight;
+            oldHandHeadBobPos = headBob.HeadBobPos * (handsHeadbobWeight * handsHeadbobMultiplier);
+            oldCameraHeadBobPos = headBob.HeadBobPos * cameraHeadbobWeight;
 
-            Vector3 forward = DirectionReference.forward;
+            var forward = directionReference.forward;
             forward.y = 0;
             forward.Normalize();
-            Vector3 moveVector = forward * v + DirectionReference.right * h;
-            Vector3 playerXZVelocity = Vector3.Scale(playerVelocity, new Vector3(1, 0, 1));
+            var moveVector = forward * v + directionReference.right * h;
+            var playerXZVelocity = Vector3.Scale(playerVelocity, new Vector3(1, 0, 1));
 
-            float speed = Speed;
-            if (Input.GetKey(KeyCode.LeftShift) && !Input.GetMouseButton(1) && !Input.GetMouseButton(0) && playerXZVelocity.magnitude >= RunSpeedThreshold && !isCrouching)
+            var speed = this.speed;
+            if (Input.GetKey(KeyCode.LeftShift) && !Input.GetMouseButton(1) && !Input.GetMouseButton(0) && playerXZVelocity.magnitude >= runSpeedThreshold && !IsCrouching)
             {
                 //speed *= RunSpeedMultiplier;
                 runTime += Time.deltaTime;
-                if (!isRunning)
+                if (!IsRunning)
                 {
-                    isRunning = true;
-                    if (RunStartEvent != null)
-                    {
-                        RunStartEvent();
-                    }
+                    IsRunning = true;
+                    runStartEvent?.Invoke();
                 }
             }
             else
             {
                 runTime -= Time.deltaTime;
                 
-                isRunning = false;
+                IsRunning = false;
             }
+            
             /*
             if(Input.GetKeyDown(KeyCode.LeftControl) && !freezeControl)
             {
@@ -313,82 +277,75 @@ namespace Knife.RealBlood.SimpleController
                 }
 
             }*/
-            if (Input.GetKeyDown(KeyCode.LeftControl) && !freezeControl)
+            
+            if (Input.GetKeyDown(KeyCode.LeftControl) && !IsFreezed)
             {
-                isCrouching = !isCrouching;
+                IsCrouching = !IsCrouching;
 
-                if (isCrouching)
+                if (IsCrouching)
                 {
-                    if (CrouchEvent != null)
-                    {
-                        CrouchEvent();
-                    }
+                    crouchEvent?.Invoke();
                 }
                 else
                 {
-                    if (StandUpEvent != null)
-                    {
-                        StandUpEvent();
-                    }
+                    standUpEvent?.Invoke();
                 }
             }
 
-            standStateChange();
+            StandStateChange();
 
-            runTime = Mathf.Clamp(runTime, 0, RunIncreaseSpeedTime);
+            runTime = Mathf.Clamp(runTime, 0, runIncreaseSpeedTime);
 
-            float runTimeFraction = runTime / RunIncreaseSpeedTime;
-            float runMultiplier = Mathf.Lerp(1, RunSpeedMultiplier, RunIncreaseSpeedCurve.Evaluate(runTimeFraction));
+            var runTimeFraction = runTime / runIncreaseSpeedTime;
+            var runMultiplier = Mathf.Lerp(1, runSpeedMultiplier, runIncreaseSpeedCurve.Evaluate(runTimeFraction));
             speed *= runMultiplier;
-            if (isCrouching)
-                speed *= CrouchSpeedMultiplier;
+            if (IsCrouching)
+                speed *= crouchSpeedMultiplier;
 
-            Ray r = new Ray(transform.position, Vector3.down);
-            RaycastHit hitInfo;
+            var r = new Ray(transform.position, Vector3.down);
 
-            Physics.SphereCast(r, charactarCollider.radius, out hitInfo, charactarCollider.height / 2f, GroundLayer);
+            Physics.SphereCast(r, charactarCollider.radius, out var hitInfo, charactarCollider.height / 2f, groundLayer);
 
-            Vector3 desiredVelocity = Vector3.ProjectOnPlane(moveVector, hitInfo.normal) * speed;
+            var desiredVelocity = Vector3.ProjectOnPlane(moveVector, hitInfo.normal) * speed;
             playerVelocity.x = desiredVelocity.x;
             playerVelocity.z = desiredVelocity.z;
-            playerVelocity.y = -StickToGround;
+            playerVelocity.y = -stickToGround;
 
-            Vector3 calculatedVelocity = playerVelocity;
+            var calculatedVelocity = playerVelocity;
             calculatedVelocity.y = 0;
 
-            float speedFraction = calculatedVelocity.magnitude / MaxSpeed;
-            HeadBob.HeadBobWeight = Mathf.Lerp(HeadBob.HeadBobWeight, HeadBobBlendCurve.Evaluate(speedFraction), WeightSmooth * Time.deltaTime);
-            HeadBob.HeadBobPeriod = HeadBobPeriodBlendCurve.Evaluate(speedFraction);
+            var speedFraction = calculatedVelocity.magnitude / maxSpeed;
+            headBob.headBobWeight = Mathf.Lerp(headBob.headBobWeight, headBobBlendCurve.Evaluate(speedFraction), weightSmooth * Time.deltaTime);
+            headBob.headBobPeriod = headBobPeriodBlendCurve.Evaluate(speedFraction);
 
-            if (controller.isGrounded)
+            if (!controller.isGrounded) return;
+            
+            if (Input.GetKeyDown(KeyCode.Space) && !IsCrouching && !IsFreezed)
             {
-                if (Input.GetKeyDown(KeyCode.Space) && !isCrouching && !freezeControl)
-                {
-                    playerVelocity.y = JumpSpeed;
-                    if (JumpStartEvent != null)
-                        JumpStartEvent();
-                }
-                controller.Move(playerVelocity * Time.deltaTime);
+                playerVelocity.y = jumpSpeed;
+                jumpStartEvent?.Invoke();
             }
+            
+            controller.Move(playerVelocity * Time.deltaTime);
         }
 
-        void standStateChange()
+        private void StandStateChange()
         {
-            standStateBlend = Mathf.MoveTowards(standStateBlend, isCrouching ? 1f : 0f, Time.deltaTime * StateChangeSpeed);
+            standStateBlend = Mathf.MoveTowards(standStateBlend, IsCrouching ? 1f : 0f, Time.deltaTime * stateChangeSpeed);
 
             charactarCollider.height = Mathf.Lerp(
-                StandState.ColliderHeight,
-                CrouchState.ColliderHeight,
-                StateChangeCurve.Evaluate(standStateBlend)
+                standState.colliderHeight,
+                crouchState.colliderHeight,
+                stateChangeCurve.Evaluate(standStateBlend)
                 );
 
 
-            Vector3 colliderCenter = charactarCollider.center;
+            var colliderCenter = charactarCollider.center;
 
             colliderCenter.y = Mathf.Lerp(
-                StandState.ColliderCenterHeight,
-                CrouchState.ColliderCenterHeight,
-                StateChangeCurve.Evaluate(standStateBlend)
+                standState.colliderCenterHeight,
+                crouchState.colliderCenterHeight,
+                stateChangeCurve.Evaluate(standStateBlend)
                 );
             charactarCollider.center = colliderCenter;
 
@@ -396,20 +353,20 @@ namespace Knife.RealBlood.SimpleController
             controller.center = charactarCollider.center;
 
             controlCameraPosition.y = Mathf.Lerp(
-                StandState.ControlCameraHeight,
-                CrouchState.ControlCameraHeight,
-                StateChangeCurve.Evaluate(standStateBlend)
+                standState.controlCameraHeight,
+                crouchState.controlCameraHeight,
+                stateChangeCurve.Evaluate(standStateBlend)
                 );
         }
 
         public void SetSensivityMultiplier(float multiplier)
         {
-            Look.SensivityMultiplier = multiplier;
+            look.sensivityMultiplier = multiplier;
         }
 
-        void applyGravity()
+        private void ApplyGravity()
         {
-            playerVelocity += Vector3.down * Gravity * Time.deltaTime;
+            playerVelocity += Vector3.down * (gravity * Time.deltaTime);
             controller.Move(playerVelocity * Time.deltaTime);
         }
 
@@ -419,7 +376,7 @@ namespace Knife.RealBlood.SimpleController
             {
                 if(c.otherCollider.attachedRigidbody != null)
                 {
-                    c.otherCollider.attachedRigidbody.AddForceAtPosition(PlayerVelocity * Time.fixedDeltaTime * CollisionScale, c.point);
+                    c.otherCollider.attachedRigidbody.AddForceAtPosition(PlayerVelocity * Time.fixedDeltaTime * collisionScale, c.point);
                 }
             }
         }
@@ -427,42 +384,34 @@ namespace Knife.RealBlood.SimpleController
         [System.Serializable]
         public class Headbob
         {
-            public bool Enabled = true;
-            public float HeadBobWeight = 1f;
-            public Vector2 HeadBobAmount = new Vector2(0.11f, 0.08f);
-            public float HeadBobPeriod = 1f;
-            public AnimationCurve HeadBobCurveX;
-            public AnimationCurve HeadBobCurveY;
+            public bool enabled = true;
+            public float headBobWeight = 1f;
+            public Vector2 headBobAmount = new Vector2(0.11f, 0.08f);
+            public float headBobPeriod = 1f;
+            public AnimationCurve headBobCurveX;
+            public AnimationCurve headBobCurveY;
 
-            public Vector3 HeadBobPos
-            {
-                get
-                {
-                    return resultHeadbob;
-                }
-            }
-
-            Vector3 resultHeadbob;
+            public Vector3 HeadBobPos { get; private set; }
 
             public void CalcHeadbob(float currentTime)
             {
-                float headBob = Mathf.PingPong(currentTime, HeadBobPeriod) / HeadBobPeriod;
+                var headBob = Mathf.PingPong(currentTime, headBobPeriod) / headBobPeriod;
 
-                Vector3 headBobVector = new Vector3();
+                var headBobVector = new Vector3();
 
-                headBobVector.x = HeadBobCurveX.Evaluate(headBob) * HeadBobAmount.x;
-                headBobVector.y = HeadBobCurveY.Evaluate(headBob) * HeadBobAmount.y;
+                headBobVector.x = headBobCurveX.Evaluate(headBob) * headBobAmount.x;
+                headBobVector.y = headBobCurveY.Evaluate(headBob) * headBobAmount.y;
 
-                headBobVector = Vector3.LerpUnclamped(Vector3.zero, headBobVector, HeadBobWeight);
+                headBobVector = Vector3.LerpUnclamped(Vector3.zero, headBobVector, headBobWeight);
 
                 if (!Application.isPlaying)
                 {
                     headBobVector = Vector2.zero;
                 }
 
-                if (Enabled)
+                if (enabled)
                 {
-                    resultHeadbob = headBobVector;
+                    HeadBobPos = headBobVector;
                 }
             }
         }
@@ -470,17 +419,17 @@ namespace Knife.RealBlood.SimpleController
         [System.Serializable]
         public class MouseLook
         {
-            public bool Enabled;
-            public float XSensitivity = 2f;
-            public float YSensitivity = 2f;
-            public float SensivityMultiplier = 1f;
-            public float MinimumX = -90F;
-            public float MaximumX = 90F;
-            public float SmoothTime = 15f;
-            public bool ClampVerticalRotation = true;
+            public bool enabled;
+            public float xSensitivity = 2f;
+            public float ySensitivity = 2f;
+            public float sensivityMultiplier = 1f;
+            public float minimumX = -90F;
+            public float maximumX = 90F;
+            public float smoothTime = 15f;
+            public bool clampVerticalRotation = true;
 
-            public string AxisXName = "Mouse X";
-            public string AxisYName = "Mouse Y";
+            public string axisXName = "Mouse X";
+            public string axisYName = "Mouse Y";
 
             private Quaternion characterTargetRot;
             private Quaternion cameraTargetRot;
@@ -499,10 +448,10 @@ namespace Knife.RealBlood.SimpleController
 
             public void LookRotation(float deltaTime)
             {
-                if (!Enabled)
+                if (!enabled)
                     return;
 
-                LookRotation(Input.GetAxis(AxisXName) * XSensitivity * SensivityMultiplier, Input.GetAxis(AxisYName) * YSensitivity * SensivityMultiplier, deltaTime);
+                LookRotation(Input.GetAxis(axisXName) * xSensitivity * sensivityMultiplier, Input.GetAxis(axisYName) * ySensitivity * sensivityMultiplier, deltaTime);
             }
 
             public void LookRotation(float yRot, float xRot, float deltaTime)
@@ -510,33 +459,33 @@ namespace Knife.RealBlood.SimpleController
                 characterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
                 cameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
 
-                if (ClampVerticalRotation)
+                if (clampVerticalRotation)
                     cameraTargetRot = ClampRotationAroundXAxis(cameraTargetRot);
 
-                character.localRotation = Quaternion.Slerp(character.localRotation, characterTargetRot, SmoothTime * deltaTime);
-                camera.localRotation = Quaternion.Slerp(camera.localRotation, cameraTargetRot, SmoothTime * deltaTime);
+                character.localRotation = Quaternion.Slerp(character.localRotation, characterTargetRot, smoothTime * deltaTime);
+                camera.localRotation = Quaternion.Slerp(camera.localRotation, cameraTargetRot, smoothTime * deltaTime);
             }
 
             public void RotateCameraSmoothlyTo(float xRot, float deltaTime)
             {
                 cameraTargetRot = Quaternion.Euler(xRot, 0f, 0f);
 
-                if (ClampVerticalRotation)
+                if (clampVerticalRotation)
                     cameraTargetRot = ClampRotationAroundXAxis(cameraTargetRot);
 
-                camera.localRotation = Quaternion.Slerp(camera.localRotation, cameraTargetRot, SmoothTime * deltaTime);
+                camera.localRotation = Quaternion.Slerp(camera.localRotation, cameraTargetRot, smoothTime * deltaTime);
             }
 
-            Quaternion ClampRotationAroundXAxis(Quaternion q)
+            private Quaternion ClampRotationAroundXAxis(Quaternion q)
             {
                 q.x /= q.w;
                 q.y /= q.w;
                 q.z /= q.w;
                 q.w = 1.0f;
 
-                float angleX = 2.0f * Mathf.Rad2Deg * Mathf.Atan(q.x);
+                var angleX = 2.0f * Mathf.Rad2Deg * Mathf.Atan(q.x);
 
-                angleX = Mathf.Clamp(angleX, MinimumX, MaximumX);
+                angleX = Mathf.Clamp(angleX, minimumX, maximumX);
 
                 q.x = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleX);
 
@@ -548,5 +497,4 @@ namespace Knife.RealBlood.SimpleController
 
     public class PlayerFreezeChangedEvent : UnityEvent<bool>
     { }
-
 }
