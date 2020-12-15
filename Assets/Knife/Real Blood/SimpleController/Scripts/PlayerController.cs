@@ -323,7 +323,7 @@ namespace Knife.RealBlood.SimpleController
             if (Input.GetKeyDown(KeyCode.Space) && !IsCrouching && !IsFreezed)
             {
                 playerVelocity.y = jumpSpeed;
-                jumpStartEvent?.Invoke();
+                //jumpStartEvent?.Invoke();
             }
             
             controller.Move(playerVelocity * Time.deltaTime);

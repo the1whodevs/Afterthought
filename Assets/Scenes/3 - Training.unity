@@ -1555,17 +1555,25 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 3639
       objectReference: {fileID: 0}
+    - target: {fileID: 344274080, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
+      propertyPath: stateChangeCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
       propertyPath: runSpeed
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
       propertyPath: crouchSpeed
-      value: 0.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
       propertyPath: sprintSpeed
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
       propertyPath: groundLayer.m_Bits
@@ -1573,12 +1581,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
       propertyPath: jumpHeight
-      value: 5
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
+      propertyPath: stateChangeCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
+      propertyPath: stateChangeCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
+      propertyPath: standSetting.colliderHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
+      propertyPath: crouchSetting.colliderHeight
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
+      propertyPath: crouchSetting.colliderCenterHeight
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
+      propertyPath: standSetting.controlCameraHeight
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
+      propertyPath: crouchSetting.controlCameraHeight
+      value: -0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
+      propertyPath: stickToGround
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 305737994843635869, guid: db3bebf4467f23e4895faf7ceb571c5f,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 305737994843635869, guid: db3bebf4467f23e4895faf7ceb571c5f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 305737994843635870, guid: db3bebf4467f23e4895faf7ceb571c5f,
         type: 3}
@@ -1634,6 +1679,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572396041265650235, guid: db3bebf4467f23e4895faf7ceb571c5f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836019476473453088, guid: db3bebf4467f23e4895faf7ceb571c5f,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836019476473453088, guid: db3bebf4467f23e4895faf7ceb571c5f,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
