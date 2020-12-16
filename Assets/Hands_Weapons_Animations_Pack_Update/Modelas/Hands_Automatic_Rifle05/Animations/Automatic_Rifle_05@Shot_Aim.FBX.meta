@@ -551,11 +551,17 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.7868421
-        functionName: ResetAttack
+      - time: 0.48363638
+        functionName: Muzzle
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 6ff97f4a7fdd8e347a58f472cd0bacc8,
-          type: 3}
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.65818185
+        functionName: TryDealDamage
+        data: 
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

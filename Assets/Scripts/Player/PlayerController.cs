@@ -21,19 +21,18 @@ public class PlayerController : MonoBehaviour
      [SerializeField] private PlayerStandState crouchSetting;
      [SerializeField] private AnimationCurve stateChangeCurve;
     
-     [Header("Attack Settings")] 
-     [SerializeField] private float attackInterval = 1.0f;
-    
+
+     private float attackInterval => 1.0f / pe.CurrentWeapon.fireRate;
+
      private Vector3 moveDir;
+     
      private Vector3 playerVelocity = Vector3.zero;
-     private Vector3 oldPlayerVelocity = Vector3.zero;
     
      private float attackTimer = 0.0f;
      private float standStateBlend;
     
      private bool CanAttack => attackTimer >= attackInterval;
      private bool aimingDownSights;
-     private bool oldIsGrounded;
 
      private CharacterController cc;
     
@@ -75,9 +74,6 @@ public class PlayerController : MonoBehaviour
          {
              ApplyGravity();
          }
-         
-         oldPlayerVelocity = playerVelocity;
-         oldIsGrounded = cc.isGrounded;
      }
     
      private void WeaponControls(float dTime)
@@ -92,11 +88,26 @@ public class PlayerController : MonoBehaviour
          if (tryEquipPrimary) pe.EquipPrimaryWeapon();
          else if (tryEquipSecondary) pe.EquipSecondaryWeapon();
          
-         // TODO: Check attack speed.
          if (fire && CanAttack)
          {
-             attackTimer = 0.0f;
-             pa.Fire();
+             if (pe.CurrentWeapon.weaponType == WeaponData.WeaponType.Melee)
+             {
+                 attackTimer = 0.0f;
+                 pa.Fire();
+             }
+             else
+             {
+                 if (pe.CurrentWeapon.currentAmmo > 0)
+                 {
+                     pe.CurrentWeapon.currentAmmo--;
+                     attackTimer = 0.0f;
+                     pa.Fire();
+                 }
+                 else
+                 {
+                    pa.Reload();
+                 }
+             }
          }
          else pa.ResetAttack();
          

@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: Crossbow
   m_EditorClassIdentifier: 
   name: Crossbow
-  description: 
+  description: A tactical crossbow.
   image: {fileID: 21300000, guid: 0bd448565af95f64099267dfcc50251e, type: 3}
   wepPrefab: {fileID: 1450960488662198, guid: de6333fe66ab20544851ed2af39b3db1, type: 3}
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 1584770505253748, guid: c38355f05eb9cb249b86c84d11259fe9,
+    type: 3}
   muzzleEffect: {fileID: 0}
-  bulletHole: {fileID: 0}
+  bulletHole: {fileID: 7258679735602562002, guid: 608cb554bb30cb746956424c326042ca,
+    type: 3}
   weaponType: 1
   fireType: 3
+  currentAmmo: 1
   magazineCapacity: 1
+  projectileSpeed: 100
   weaponDamage: 120
   fireRate: 1
   reloadSpeed: 0.5

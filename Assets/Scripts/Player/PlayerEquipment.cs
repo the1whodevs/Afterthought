@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using EmeraldAI;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerEquipment : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class PlayerEquipment : MonoBehaviour
     public LoadoutData Loadout => loadout;
 
     public Animator CurrentAnimator { get; private set; }
+
+    public int ammoAvailable = 270;
     
     [SerializeField] private LoadoutData loadout;
     
@@ -26,7 +30,11 @@ public class PlayerEquipment : MonoBehaviour
     [SerializeField] private List<TalentData> allTalentData = new List<TalentData>();
 
     [SerializeField] private Transform WeaponR;
+
+    [SerializeField] private LayerMask hitScanLayerMask;
     
+    private float maxFireDist = 1000.0f;
+
     public void Init()
     {
         EquipPrimaryWeapon();
@@ -42,6 +50,60 @@ public class PlayerEquipment : MonoBehaviour
         Equip(loadout.SecondaryWeapon);
     }
 
+    public void TryDealDamage()
+    {
+        var firePoint = CurrentWeaponObject.transform.Find("FirePoint");
+
+        const float bulletHoleLifetime = 10.0f;
+        const float projectileLifetime = 60.0f;
+        
+        switch (CurrentWeapon.weaponType)
+        {
+            case WeaponData.WeaponType.Firearm:
+                
+                var ray = new Ray(firePoint.position, firePoint.forward);
+                
+                Debug.DrawLine(firePoint.position, firePoint.forward * 100.0f, Color.green, 10.0f);
+                
+                if (!Physics.Raycast(ray, out var hit, maxFireDist, hitScanLayerMask)) return;
+                
+                var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
+
+                // If we hit an AI, damage it.
+                if (emeraldAIsys)
+                    emeraldAIsys.Damage((int)CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform);
+                // Otherwise just spawn a bullet hole.
+                else
+                    Destroy(Instantiate(CurrentWeapon.bulletHole, hit.point, Quaternion.LookRotation(hit.normal),
+                        null), 
+                        bulletHoleLifetime);
+                break;
+            
+            case WeaponData.WeaponType.Projectile:
+                var lookRot = Quaternion.LookRotation(firePoint.forward);
+                var bullet = Instantiate(CurrentWeapon.projectilePrefab, firePoint.position, lookRot, null);
+                bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * CurrentWeapon.projectileSpeed, ForceMode.Impulse);
+                Destroy(bullet, projectileLifetime);
+                break;
+            
+            case WeaponData.WeaponType.Melee:
+                // TODO: Deal damage through EmeraldAI.
+                Debug.Log("MELEE DAMAGE");
+                CurrentWeaponObject.GetComponentInChildren<Collider>().enabled = true;
+                break;
+            
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    [UsedImplicitly]
+    // Used through an AnimationEvent to disable the melee weapons colliders.
+    public void ResetAttackCollider()
+    {
+        CurrentWeaponObject.GetComponentInChildren<Collider>().enabled = false;
+    }
+    
     private void Equip(WeaponData weaponToEquip)
     {
         if (weaponToEquip == CurrentWeapon) return;

@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: Gallileo
   m_EditorClassIdentifier: 
   name: Gallileo
-  description: 
+  description: Gallilei.
   image: {fileID: 0}
   wepPrefab: {fileID: 1013363612589426, guid: 2ad5c36edd0559141b78e7b2213712e6, type: 3}
   projectilePrefab: {fileID: 0}
-  muzzleEffect: {fileID: 0}
-  bulletHole: {fileID: 0}
+  muzzleEffect: {fileID: 2766519485109825048, guid: aa7bb61bca0e1b44cbd9d04d57daf4aa,
+    type: 3}
+  bulletHole: {fileID: 7258679735602562002, guid: 608cb554bb30cb746956424c326042ca,
+    type: 3}
   weaponType: 0
   fireType: 0
+  currentAmmo: 30
   magazineCapacity: 30
+  projectileSpeed: 100
   weaponDamage: 15
   fireRate: 3
   reloadSpeed: 1

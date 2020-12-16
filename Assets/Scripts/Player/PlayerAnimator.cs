@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using JetBrains.Annotations;
+using UnityEngine;
 
 /// <summary>
 /// This should only be access through Player.instance.Animator!
@@ -51,12 +53,35 @@ public class PlayerAnimator : MonoBehaviour
     {
         pe.CurrentAnimator.SetBool(attackAnimHash, true);
     }
+    
+    [UsedImplicitly]
+    public void Muzzle()
+    {
+        var firePoint = pe.CurrentWeaponObject.transform.Find("FirePoint");
+
+        const float muzzleLifetime = 2.0f;
+        Destroy(Instantiate(pe.CurrentWeapon.muzzleEffect, firePoint.position, firePoint.rotation, null), muzzleLifetime);
+    }
+    
+    [UsedImplicitly]
+    // Called by the animation event within each attack animation.
+    public void TryDealDamage()
+    {
+        pe.TryDealDamage();
+    }
 
     public void Reload()
     {
         pe.CurrentAnimator.ResetTrigger(reloadAnimHash);
         pe.CurrentAnimator.SetTrigger(reloadAnimHash);
         pe.CurrentAnimator.SetBool(aimingAnimHash, false);
+    }
+    
+    [UsedImplicitly]
+    // Called by the animation event within each reload animation.
+    public void ResetMagazine()
+    {
+        pe.CurrentWeapon.ReloadMag(ref pe.ammoAvailable);
     }
 
     public void Unequip()

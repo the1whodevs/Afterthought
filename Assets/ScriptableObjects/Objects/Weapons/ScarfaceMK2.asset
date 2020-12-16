@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: ScarfaceMK2
   m_EditorClassIdentifier: 
   name: Scarface Mk2
-  description: 
+  description: A new Tony Montana.
   image: {fileID: 0}
   wepPrefab: {fileID: 1502871673688920, guid: 007476434ef17624bb736a3cc4b9fc88, type: 3}
   projectilePrefab: {fileID: 0}
-  muzzleEffect: {fileID: 0}
-  bulletHole: {fileID: 0}
+  muzzleEffect: {fileID: 4789563041930775648, guid: 8602b2cbf6169bb42b09465f8b344642,
+    type: 3}
+  bulletHole: {fileID: 7258679735602562002, guid: 608cb554bb30cb746956424c326042ca,
+    type: 3}
   weaponType: 0
   fireType: 1
+  currentAmmo: 30
   magazineCapacity: 30
+  projectileSpeed: 100
   weaponDamage: 25
   fireRate: 2.5
   reloadSpeed: 1.3
