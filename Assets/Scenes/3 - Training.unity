@@ -1551,79 +1551,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 344274079, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 3639
-      objectReference: {fileID: 0}
-    - target: {fileID: 344274080, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: stateChangeCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: runSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: crouchSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: sprintSpeed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 2048
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: jumpHeight
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: stateChangeCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: stateChangeCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: standSetting.colliderHeight
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: crouchSetting.colliderHeight
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: crouchSetting.colliderCenterHeight
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: standSetting.controlCameraHeight
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: crouchSetting.controlCameraHeight
-      value: -0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675743893, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
-      propertyPath: stickToGround
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 305737994843635869, guid: db3bebf4467f23e4895faf7ceb571c5f,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 305737994843635869, guid: db3bebf4467f23e4895faf7ceb571c5f,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 305737994843635870, guid: db3bebf4467f23e4895faf7ceb571c5f,
         type: 3}
@@ -1679,21 +1610,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1572396041265650235, guid: db3bebf4467f23e4895faf7ceb571c5f,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4836019476473453088, guid: db3bebf4467f23e4895faf7ceb571c5f,
-        type: 3}
-      propertyPath: m_Height
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4836019476473453088, guid: db3bebf4467f23e4895faf7ceb571c5f,
-        type: 3}
-      propertyPath: m_Center.y
-      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
@@ -2456,7 +2372,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -46.220642, y: 0.00022771924, z: 0.00009202963}
+  m_ConnectedAnchor: {x: -46.220634, y: 0.00022950736, z: 0.00008773809}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3029,7 +2945,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -42.24832, y: 0.0000066757225, z: -2.7149841e-11}
+  m_ConnectedAnchor: {x: -42.24833, y: 0.0000066757225, z: -2.7149845e-11}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3487,7 +3403,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.440548, y: -1.1243056, z: 11.199619}
+  m_ConnectedAnchor: {x: -2.440548, y: -1.124306, z: 11.199619}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -4021,7 +3937,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.440548, y: -1.1243056, z: -11.199619}
+  m_ConnectedAnchor: {x: -2.440548, y: -1.124306, z: -11.199619}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -5733,7 +5649,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -32.413147, y: -2.2511656, z: -22.326262}
+  m_ConnectedAnchor: {x: -32.41316, y: -2.2511656, z: -22.326262}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -6235,7 +6151,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -46.22064, y: 0.0002000484, z: -0.00015068051}
+  m_ConnectedAnchor: {x: -46.22063, y: 0.00020100207, z: -0.00015020368}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -6709,7 +6625,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -23.89022, y: 0.000013113017, z: -0.000028610197}
+  m_ConnectedAnchor: {x: -23.890224, y: 0.000010251995, z: -0.00003242489}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -7372,7 +7288,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -32.413124, y: -2.2511656, z: 22.326262}
+  m_ConnectedAnchor: {x: -32.413136, y: -2.2511656, z: 22.326262}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -7480,7 +7396,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -23.890205, y: -0.000019550318, z: -0.000022888213}
+  m_ConnectedAnchor: {x: -23.890205, y: -0.000019073483, z: -0.000013351458}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
