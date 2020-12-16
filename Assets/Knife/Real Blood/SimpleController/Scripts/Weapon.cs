@@ -1,26 +1,66 @@
-﻿using System;
+﻿using Knife.Effects;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Knife.RealBlood.SimpleController
+namespace Knife.Effects.SimpleController
 {
     /// <summary>
-    /// Simple weapon behaviour without reloading and recoil
+    /// Simple weapon behaviour without reloading and recoil.
     /// </summary>
     public class Weapon : MonoBehaviour
     {
-        public Camera playerCamera;
-        public LayerMask ShotMask;
-        public float Damage = 10f;
+        /// <summary>
+        /// Shot emitters array.
+        /// </summary>
+        [SerializeField] [Tooltip("Shot emitters array")] private ParticleGroupEmitter[] shotEmitters;
+        /// <summary>
+        /// After fire particle player.
+        /// </summary>
+        [SerializeField] [Tooltip("After fire particle player")] private ParticleGroupPlayer afterFireSmoke;
+        /// <summary>
+        /// Size of bullets.
+        /// </summary>
+        [SerializeField] [Tooltip("Size of bullets")] private float bulletSize = 1f;
+        /// <summary>
+        /// Damage type.
+        /// </summary>
+        [SerializeField] [Tooltip("Damage type")] private DamageTypes damageType = DamageTypes.Bullet;
+        /// <summary>
+        /// Player camera.
+        /// </summary>
+        [Tooltip("Player camera")] public Camera playerCamera;
+        /// <summary>
+        /// Raycast shot mask.
+        /// </summary>
+        [Tooltip("Raycast shot mask")] public LayerMask ShotMask;
+        /// <summary>
+        /// Damage amount.
+        /// </summary>
+        [Tooltip("Damage amount")] public float Damage = 10f;
 
-        public float DefaultFov = 60f;
-        public float AimFov = 35f;
-        public bool AutomaticFire;
-        public float AutomaticFireRate = 10;
+        /// <summary>
+        /// Default fov of player camera.
+        /// </summary>
+        [Tooltip("Default fov of player camera")] public float DefaultFov = 60f;
+        /// <summary>
+        /// Aiming fov of player camera.
+        /// </summary>
+        [Tooltip("Aiming fov of player camera")] public float AimFov = 35f;
+        /// <summary>
+        /// Automatic fire flag.
+        /// </summary>
+        [Tooltip("Automatic fire flag")] public bool AutomaticFire;
+        /// <summary>
+        /// Automatic fire rate in bullets/seconds.
+        /// </summary>
+        [Tooltip("Automatic fire rate in bullets/seconds")] public float AutomaticFireRate = 10;
 
         protected Animator handsAnimator;
 
+        private bool isShooted = false;
+        private bool isFreezed = false;
         bool isAiming = false;
 
         float currentFov;
@@ -34,11 +74,46 @@ namespace Knife.RealBlood.SimpleController
             }
         }
 
+        /// <summary>
+        /// Current fov of camera.
+        /// </summary>
         public float CurrentFov
         {
             get
             {
                 return currentFov;
+            }
+        }
+
+        /// <summary>
+        /// Bullet size.
+        /// </summary>
+        public float BulletSize
+        {
+            get
+            {
+                return bulletSize;
+            }
+
+            set
+            {
+                bulletSize = value;
+            }
+        }
+
+        /// <summary>
+        /// Damage type.
+        /// </summary>
+        public DamageTypes DamageType
+        {
+            get
+            {
+                return damageType;
+            }
+
+            set
+            {
+                damageType = value;
             }
         }
 
@@ -48,54 +123,100 @@ namespace Knife.RealBlood.SimpleController
             lastFireTime = -fireInterval;
         }
 
+        private void OnEnable()
+        {
+            currentFov = playerCamera.fieldOfView;
+            OnEnableHook();
+        }
+
         private void OnDisable()
         {
             currentFov = DefaultFov;
+            OnDisableHook();
+        }
+
+        protected virtual void OnEnableHook()
+        {
+
+        }
+
+        protected virtual void OnDisableHook()
+        {
+
         }
 
         void Update()
         {
-            if (AutomaticFire)
+            if (!isFreezed)
             {
-                if (Input.GetMouseButton(0) && Time.time > lastFireTime + fireInterval)
+                if (AutomaticFire)
                 {
-                    //onAttackEvent.Call(new TargetAttackData(1000, playerCamera.transform.forward));
-                    Shot();
-                    lastFireTime = Time.time;
+                    if (Input.GetMouseButton(0) && Time.time > lastFireTime + fireInterval)
+                    {
+                        //onAttackEvent.Call(new TargetAttackData(1000, playerCamera.transform.forward));
+                        Shot();
+                        isShooted = true;
+                        lastFireTime = Time.time;
+                    }
+                    if (Input.GetMouseButtonUp(0) && isShooted)
+                    {
+                        isShooted = false;
+                        EndFire();
+                    }
                 }
-                if (Input.GetMouseButtonUp(0))
+                else
                 {
-                    EndFire();
+                    if (Input.GetMouseButtonDown(0) && Time.time > lastFireTime + fireInterval)
+                    {
+                        Shot();
+                        EndFire();
+                        lastFireTime = Time.time;
+                    }
                 }
-            }
-            else
-            {
-                if (Input.GetMouseButtonDown(0) && Time.time > lastFireTime + fireInterval)
-                {
-                    Shot();
-                    lastFireTime = Time.time;
-                }
-            }
 
-            if (Input.GetMouseButtonDown(1))
-            {
-                isAiming = true;
+                if (Input.GetMouseButtonDown(1))
+                {
+                    isAiming = true;
+                }
+                if (Input.GetMouseButtonUp(1))
+                {
+                    isAiming = false;
+                }
+                OnUpdate();
             }
-            if (Input.GetMouseButtonUp(1))
-            {
-                isAiming = false;
-            }
-
             currentFov = Mathf.Lerp(currentFov, isAiming ? AimFov : DefaultFov, Time.deltaTime * 12f);
+        }
+
+        protected virtual void OnUpdate()
+        {
+
         }
 
         protected virtual void EndFire()
         {
+            PlayAfterFireFX();
+        }
 
+        protected void PlayAfterFireFX()
+        {
+            if (afterFireSmoke != null)
+                afterFireSmoke.Play();
+        }
+
+        protected void PlayFX()
+        {
+            if (afterFireSmoke != null)
+                afterFireSmoke.Stop();
+            if (shotEmitters != null)
+            {
+                foreach (var e in shotEmitters)
+                    e.Emit(1);
+            }
         }
 
         protected virtual void Shot()
         {
+            PlayFX();
             handsAnimator.Play("Shot", 0, 0);
             Ray r = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
             RaycastHit hitInfo;
@@ -113,7 +234,9 @@ namespace Knife.RealBlood.SimpleController
                         amount = Damage,
                         direction = r.direction,
                         normal = hitInfo.normal,
-                        point = hitInfo.point
+                        point = hitInfo.point,
+                        size = BulletSize,
+                        damageType = DamageType
                     }
                     };
 
@@ -136,9 +259,13 @@ namespace Knife.RealBlood.SimpleController
             }
         }
 
-        public Vector3 GetLookDirection()
+        /// <summary>
+        /// Freeze weapon control.
+        /// </summary>
+        /// <param name="value">is freezed</param>
+        public void Freeze(bool value)
         {
-            return playerCamera.transform.forward;
+            isFreezed = value;
         }
     }
 }

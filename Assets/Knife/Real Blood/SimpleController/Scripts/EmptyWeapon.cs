@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Knife.RealBlood.SimpleController
+namespace Knife.Effects.SimpleController
 {
     /// <summary>
-    /// Empty weapon
+    /// Empty weapon.
     /// </summary>
     public class EmptyWeapon : Weapon
     {

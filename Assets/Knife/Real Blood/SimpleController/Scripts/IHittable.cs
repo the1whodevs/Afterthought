@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Knife.RealBlood
+namespace Knife.Effects
 {
     /// <summary>
     /// Simple Hittable object interface

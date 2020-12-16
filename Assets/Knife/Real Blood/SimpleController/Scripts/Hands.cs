@@ -2,18 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Knife.RealBlood.SimpleController
+namespace Knife.Effects.SimpleController
 {
     /// <summary>
     /// Player Hands behaviour
     /// </summary>
     public class Hands : MonoBehaviour
     {
-        public Weapon[] Weapons;
-        public Camera Cam;
-        public KeyCode[] Keys;
+        /// <summary>
+        /// Hand weapons list.
+        /// </summary>
+        [Tooltip("Hand weapons list")] public Weapon[] Weapons;
+        /// <summary>
+        /// Player camera.
+        /// </summary>
+        [Tooltip("Player camera")] public Camera Cam;
+        /// <summary>
+        /// Index array in circle weapon selector of each weapon.
+        /// </summary>
+        [Tooltip("Index array in circle weapon selector of each weapon")] public int[] Indices;
+        /// <summary>
+        /// Weapon selector.
+        /// </summary>
+        [Tooltip("Weapon selector")] public WeaponSelector weaponSelector;
 
         float startFov;
+
+        private int currentWeaponIndex = -1;
 
         void Start()
         {
@@ -22,26 +37,25 @@ namespace Knife.RealBlood.SimpleController
             {
                 Weapons[i].gameObject.SetActive(false);
             }
+            weaponSelector.OnSelectedEvent += OnWeaponSelected;
+        }
+
+        private void OnWeaponSelected(int index)
+        {
+            for (int i = 0; i < Indices.Length; i++)
+            {
+                if(index == Indices[i])
+                {
+                    index = i;
+                    break;
+                }
+            }
+            Deploy(index);
         }
 
         void Update()
         {
-            for (int i = 0; i < Keys.Length; i++)
-            {
-                if (Input.GetKeyDown(Keys[i]))
-                {
-                    Weapons[i].gameObject.SetActive(!Weapons[i].gameObject.activeSelf);
-                    for (int j = 0; j < Weapons.Length; j++)
-                    {
-                        if (i == j)
-                            continue;
-
-                        Weapons[j].gameObject.SetActive(false);
-                    }
-                    break;
-                }
-            }
-
+            
             foreach (Weapon weapon in Weapons)
             {
                 if (weapon.gameObject.activeSelf)
@@ -51,6 +65,18 @@ namespace Knife.RealBlood.SimpleController
                 }
             }
             Cam.fieldOfView = startFov;
+        }
+
+        private void Deploy(int index)
+        {
+            for (int i = 0; i < Weapons.Length; i++)
+            {
+                if (i == index)
+                    continue;
+
+                Weapons[i].gameObject.SetActive(false);
+            }
+            Weapons[index].gameObject.SetActive(true);
         }
     }
 }

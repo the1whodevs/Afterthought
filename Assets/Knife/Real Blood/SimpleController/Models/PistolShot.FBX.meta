@@ -166,7 +166,27 @@ ModelImporter:
     13700004: hands
     13700006: long sleeves
     13700008: short sleeves
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glock 17 -1-
+    second: {fileID: 2100000, guid: 479de0177f73e3a44b10b01ac677e031, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: clothes
+    second: {fileID: 2100000, guid: 063e3af3e64acff40a74a6c7dbb6abae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gloves
+    second: {fileID: 2100000, guid: 063e3af3e64acff40a74a6c7dbb6abae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hands
+    second: {fileID: 2100000, guid: 063e3af3e64acff40a74a6c7dbb6abae, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
