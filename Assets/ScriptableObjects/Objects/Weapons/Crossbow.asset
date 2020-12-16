@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fef08fbc7152e42abbab0859810c80, type: 3}
+  m_Name: Crossbow
+  m_EditorClassIdentifier: 
+  name: Crossbow
+  description: 
+  image: {fileID: 21300000, guid: 0bd448565af95f64099267dfcc50251e, type: 3}
+  wepPrefab: {fileID: 1450960488662198, guid: de6333fe66ab20544851ed2af39b3db1, type: 3}
+  projectilePrefab: {fileID: 0}
+  muzzleEffect: {fileID: 0}
+  bulletHole: {fileID: 0}
+  weaponType: 1
+  fireType: 3
+  magazineCapacity: 1
+  weaponDamage: 120
+  fireRate: 1
+  reloadSpeed: 0.5
+  mobilityPenalty: 0.3
+  adsMultiplier: 1

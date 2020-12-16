@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fef08fbc7152e42abbab0859810c80, type: 3}
+  m_Name: ScarfaceMK2
+  m_EditorClassIdentifier: 
+  name: Scarface Mk2
+  description: 
+  image: {fileID: 0}
+  wepPrefab: {fileID: 1502871673688920, guid: 007476434ef17624bb736a3cc4b9fc88, type: 3}
+  projectilePrefab: {fileID: 0}
+  muzzleEffect: {fileID: 0}
+  bulletHole: {fileID: 0}
+  weaponType: 0
+  fireType: 1
+  magazineCapacity: 30
+  weaponDamage: 25
+  fireRate: 2.5
+  reloadSpeed: 1.3
+  mobilityPenalty: 0.4
+  adsMultiplier: 1
