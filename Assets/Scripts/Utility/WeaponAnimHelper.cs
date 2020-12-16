@@ -1,0 +1,28 @@
+﻿using System;
+using EmeraldAI;
+using UnityEngine;
+
+public class WeaponAnimHelper : MonoBehaviour
+{
+    private PlayerAnimator pa;
+
+    private void Awake()
+    {
+        pa = Player.instance.Animator;
+    }
+
+    public void Muzzle()
+    {
+        pa.Muzzle();
+    }
+
+    public void TryDealDamage()
+    {
+        pa.TryDealDamage();
+    }
+
+    public void ResetMagazine()
+    {
+        pa.ResetMagazine();
+    }
+}

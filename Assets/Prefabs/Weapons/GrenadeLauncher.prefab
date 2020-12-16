@@ -523,6 +523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4863975661052250}
   - component: {fileID: 95315690333323972}
+  - component: {fileID: 8966591305702679302}
   m_Layer: 0
   m_Name: GrenadeLauncher
   m_TagString: Untagged
@@ -587,6 +588,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8966591305702679302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162446373548900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff97f4a7fdd8e347a58f472cd0bacc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1180989932538806
 GameObject:
   m_ObjectHideFlags: 0

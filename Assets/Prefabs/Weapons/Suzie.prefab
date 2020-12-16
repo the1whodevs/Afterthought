@@ -1206,6 +1206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4667303085788258}
   - component: {fileID: 95992765978289954}
+  - component: {fileID: 3718300218864378193}
   m_Layer: 0
   m_Name: Suzie
   m_TagString: Untagged
@@ -1260,6 +1261,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3718300218864378193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689443325830150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff97f4a7fdd8e347a58f472cd0bacc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1703098427190762
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,6 +37,11 @@ public class PlayerEquipment : MonoBehaviour
 
     public void Init()
     {
+        foreach (var weaponData in allWeaponData)
+        {
+            weaponData.LoadData();
+        }
+        
         EquipPrimaryWeapon();
     }
 
@@ -71,7 +76,7 @@ public class PlayerEquipment : MonoBehaviour
 
                 // If we hit an AI, damage it.
                 if (emeraldAIsys)
-                    emeraldAIsys.Damage((int)CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform);
+                    emeraldAIsys.Damage((int)CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
                 // Otherwise just spawn a bullet hole.
                 else
                     Destroy(Instantiate(CurrentWeapon.bulletHole, hit.point, Quaternion.LookRotation(hit.normal),
@@ -87,8 +92,6 @@ public class PlayerEquipment : MonoBehaviour
                 break;
             
             case WeaponData.WeaponType.Melee:
-                // TODO: Deal damage through EmeraldAI.
-                Debug.Log("MELEE DAMAGE");
                 CurrentWeaponObject.GetComponentInChildren<Collider>().enabled = true;
                 break;
             

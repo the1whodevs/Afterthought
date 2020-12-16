@@ -164,7 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68898d0c4ded96344b2171b5bbefa03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadout: {fileID: 11400000, guid: 660b8a370caf7e54f8e25b9043f36247, type: 2}
+  ammoAvailable: 270
+  loadout: {fileID: 11400000, guid: 52c06934a10e86143af7856c3a2aa276, type: 2}
   allWeaponData:
   - {fileID: 11400000, guid: 63c38115e3bdcba4db1faf51477974c6, type: 2}
   - {fileID: 11400000, guid: 0cc8e643a5196a34eaae8ae80cf11b02, type: 2}
@@ -190,6 +191,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a8520fb38bbf2d4097524e02b9bce5a, type: 2}
   - {fileID: 11400000, guid: c8aadfa9fbdd7ee4a85cb1d883e61109, type: 2}
   WeaponR: {fileID: 5598451745193294800}
+  hitScanLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!95 &1675743892
 Animator:
   serializedVersion: 3
@@ -275,7 +279,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  attackInterval: 0.01
 --- !u!143 &4836019476473453088
 CharacterController:
   m_ObjectHideFlags: 0
