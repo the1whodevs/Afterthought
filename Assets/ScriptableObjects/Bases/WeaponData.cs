@@ -34,9 +34,13 @@ public class WeaponData : ScriptableObject
     
     public void ReloadMag(ref int availableAmmo)
     {
-        if (availableAmmo >= magazineCapacity)
+        var bulletsForMax = magazineCapacity - currentAmmo;
+        
+        if (bulletsForMax == 0) Debug.LogError("Reloading while the mag is full!");
+        
+        if (availableAmmo >= bulletsForMax)
         {
-            availableAmmo -= magazineCapacity;
+            availableAmmo -= bulletsForMax;
             currentAmmo = magazineCapacity;
         }
         else

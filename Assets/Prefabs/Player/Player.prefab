@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 5232873967447831070}
   - component: {fileID: 1675743893}
   - component: {fileID: 4836019476473453088}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoAvailable: 270
-  loadout: {fileID: 11400000, guid: 52c06934a10e86143af7856c3a2aa276, type: 2}
+  loadout: {fileID: 11400000, guid: 45f080791cc13c543ae8afdd71019004, type: 2}
   allWeaponData:
   - {fileID: 11400000, guid: 63c38115e3bdcba4db1faf51477974c6, type: 2}
   - {fileID: 11400000, guid: 0cc8e643a5196a34eaae8ae80cf11b02, type: 2}
@@ -193,7 +193,7 @@ MonoBehaviour:
   WeaponR: {fileID: 5598451745193294800}
   hitScanLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3895
 --- !u!95 &1675743892
 Animator:
   serializedVersion: 3

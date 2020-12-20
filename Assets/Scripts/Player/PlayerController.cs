@@ -20,8 +20,7 @@ public class PlayerController : MonoBehaviour
      [SerializeField] private PlayerStandState standSetting;
      [SerializeField] private PlayerStandState crouchSetting;
      [SerializeField] private AnimationCurve stateChangeCurve;
-    
-
+     
      private float attackInterval => 1.0f / pe.CurrentWeapon.fireRate;
 
      private Vector3 moveDir;
@@ -75,6 +74,7 @@ public class PlayerController : MonoBehaviour
          
          var fire = Input.GetAxisRaw("Fire1") > 0.0f;
          var aim = Input.GetAxisRaw("Fire2") > 0.0f;
+         var reload = Input.GetAxisRaw("Reload") > 0.0f;
          var tryEquipPrimary = Input.GetAxisRaw("EquipPrimary") < 0.0f;
          var tryEquipSecondary = Input.GetAxisRaw("EquipSecondary") > 0.0f;
          
@@ -96,18 +96,19 @@ public class PlayerController : MonoBehaviour
                      attackTimer = 0.0f;
                      pa.Fire();
                  }
-                 else if (pe.ammoAvailable > 0 && !pe.IsReloading)
-                 {
-                     pe.Reload();
-                 }
                  else
                  {
+                     pa.ResetAttack();
+                     
                      // TODO: Play empty weapon sound.
                  }
              }
          }
          else if (!fire) pa.ResetAttack();
 
+         if (!pe.IsReloading && reload && pe.ammoAvailable > 0 && pe.CurrentWeapon.currentAmmo != pe.CurrentWeapon.magazineCapacity)
+             pe.Reload();
+         
          pa.AimDownSights(!pe.IsReloading && aim);
      }
     

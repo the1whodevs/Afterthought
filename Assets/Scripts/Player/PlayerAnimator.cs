@@ -17,11 +17,14 @@ public class PlayerAnimator : MonoBehaviour
 
     private PlayerEquipment pe;
 
+    private UIManager uiManager;
+    
     private float targetLayerWeight = 0.0f;
     private float startingLayerWeight = 0.0f;
     
     private void Start()
     {
+        uiManager = UIManager.Instance;
         pe = Player.instance.Equipment;
         StartCoroutine(AdjustLayerWeight());
     }
@@ -68,6 +71,8 @@ public class PlayerAnimator : MonoBehaviour
 
     public void AimDownSights(bool status)
     {
+        uiManager.ToggleCrosshair(!status);
+        
         if (status)
         {
             startingLayerWeight = pe.CurrentAnimator.GetLayerWeight(1);

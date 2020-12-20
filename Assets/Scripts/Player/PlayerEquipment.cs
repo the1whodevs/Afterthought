@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using EmeraldAI;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerEquipment : MonoBehaviour
 {
@@ -32,17 +31,25 @@ public class PlayerEquipment : MonoBehaviour
     [SerializeField] private List<TalentData> allTalentData = new List<TalentData>();
 
     [SerializeField] private Transform WeaponR;
-
+    
     [SerializeField] private LayerMask hitScanLayerMask;
 
-    private PlayerAnimator pa;
+    private Camera playerCamera;
     
-    private float maxFireDist = 1000.0f;
+    private PlayerAnimator pa;
+
+    private UIManager uiManager;
+
+    private Transform firePoint;
+
+    private const float MAX_FIRE_DIST = 1000.0f;
 
     private bool isReloading;
     
     public void Init()
     {
+        uiManager = UIManager.Instance;
+        playerCamera = Camera.main;
         pa = Player.instance.Animator;
         
         foreach (var weaponData in allWeaponData)
@@ -65,34 +72,28 @@ public class PlayerEquipment : MonoBehaviour
 
     public void TryDealDamage()
     {
-        var firePoint = CurrentWeaponObject.transform.Find("FirePoint");
-
         const float bulletHoleLifetime = 10.0f;
         const float projectileLifetime = 60.0f;
         
         switch (CurrentWeapon.weaponType)
         {
             case WeaponData.WeaponType.Firearm:
+                uiManager.SetAmmoUI(CurrentWeapon.currentAmmo, ammoAvailable);
+                var ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
                 
-                var ray = new Ray(firePoint.position, firePoint.forward);
+                if (!Physics.Raycast(ray, out var hit, MAX_FIRE_DIST, hitScanLayerMask)) return;
                 
-                Debug.DrawLine(firePoint.position, firePoint.forward * 100.0f, Color.green, 10.0f);
-                
-                if (!Physics.Raycast(ray, out var hit, maxFireDist, hitScanLayerMask)) return;
-                
+                //Debug.DrawLine(ray.origin, hit.point, Color.blue, 1.0f, true);
                 var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
 
                 // If we hit an AI, damage it.
-                if (emeraldAIsys)
-                    emeraldAIsys.Damage((int)CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
+                if (emeraldAIsys) emeraldAIsys.Damage((int)CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
                 // Otherwise just spawn a bullet hole.
-                else
-                    Destroy(Instantiate(CurrentWeapon.bulletHole, hit.point, Quaternion.LookRotation(hit.normal),
-                        null), 
-                        bulletHoleLifetime);
+                else Destroy(Instantiate(CurrentWeapon.bulletHole, hit.point, Quaternion.LookRotation(hit.normal), null), bulletHoleLifetime);
                 break;
             
             case WeaponData.WeaponType.Projectile:
+                uiManager.SetAmmoUI(CurrentWeapon.currentAmmo, ammoAvailable);
                 var lookRot = Quaternion.LookRotation(firePoint.forward);
                 var bullet = Instantiate(CurrentWeapon.projectilePrefab, firePoint.position, lookRot, null);
                 bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * CurrentWeapon.projectileSpeed, ForceMode.Impulse);
@@ -118,6 +119,7 @@ public class PlayerEquipment : MonoBehaviour
     {
         CurrentWeapon.ReloadMag(ref ammoAvailable);
         isReloading = false;
+        uiManager.SetAmmoUI(CurrentWeapon.currentAmmo, ammoAvailable);
     }
 
     [UsedImplicitly]
@@ -169,7 +171,9 @@ public class PlayerEquipment : MonoBehaviour
     private void EquipWeapon(WeaponData weaponToEquip)
     {
         CurrentWeaponObject = Instantiate(weaponToEquip.wepPrefab, WeaponR.position, WeaponR.rotation, WeaponR);
+        firePoint = CurrentWeaponObject.transform.Find("FirePoint");
         CurrentWeapon = weaponToEquip;
+        uiManager.SetAmmoUI(CurrentWeapon.currentAmmo, ammoAvailable);
         CurrentAnimator = CurrentWeaponObject.GetComponent<Animator>();
     }
 }
