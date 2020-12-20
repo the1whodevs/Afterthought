@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour
     
      private float attackTimer = 0.0f;
      private float standStateBlend;
-    
+
+     private bool isReloading;
      private bool CanAttack => attackTimer >= attackInterval;
      private bool aimingDownSights;
 
@@ -103,13 +104,17 @@ public class PlayerController : MonoBehaviour
                      attackTimer = 0.0f;
                      pa.Fire();
                  }
+                 else if (pe.ammoAvailable > 0 && !pe.IsReloading)
+                 {
+                     pe.Reload();
+                 }
                  else
                  {
-                    pa.Reload();
+                     // TODO: Play empty weapon sound.
                  }
              }
          }
-         else pa.ResetAttack();
+         else if (!fire) pa.ResetAttack();
          
          pa.AimDownSights(aim);
      }

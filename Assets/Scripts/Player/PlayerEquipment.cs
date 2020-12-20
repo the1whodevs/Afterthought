@@ -21,6 +21,8 @@ public class PlayerEquipment : MonoBehaviour
 
     public Animator CurrentAnimator { get; private set; }
 
+    public bool IsReloading => isReloading;
+
     public int ammoAvailable = 270;
     
     [SerializeField] private LoadoutData loadout;
@@ -32,11 +34,17 @@ public class PlayerEquipment : MonoBehaviour
     [SerializeField] private Transform WeaponR;
 
     [SerializeField] private LayerMask hitScanLayerMask;
+
+    private PlayerAnimator pa;
     
     private float maxFireDist = 1000.0f;
 
+    private bool isReloading;
+    
     public void Init()
     {
+        pa = Player.instance.Animator;
+        
         foreach (var weaponData in allWeaponData)
         {
             weaponData.LoadData();
@@ -98,6 +106,18 @@ public class PlayerEquipment : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+    
+    public void Reload()
+    {
+        isReloading = true;
+        pa.Reload();
+    }
+
+    public void ResetMagazine()
+    {
+        CurrentWeapon.ReloadMag(ref ammoAvailable);
+        isReloading = false;
     }
 
     [UsedImplicitly]

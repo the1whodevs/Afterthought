@@ -81,7 +81,7 @@ public class PlayerAnimator : MonoBehaviour
     // Called by the animation event within each reload animation.
     public void ResetMagazine()
     {
-        pe.CurrentWeapon.ReloadMag(ref pe.ammoAvailable);
+        pe.ResetMagazine();
     }
 
     public void Unequip()
