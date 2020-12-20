@@ -224,6 +224,28 @@ public class PlayerEquipment : MonoBehaviour
     {
         CurrentWeaponObject = Instantiate(weaponToEquip.wepPrefab, WeaponR.position, WeaponR.rotation, WeaponR);
         firePoint = CurrentWeaponObject.transform.Find("FirePoint");
+
+        if (!firePoint)
+        {
+            for (var i = 0; i < CurrentWeaponObject.transform.childCount; i++)
+            {
+                firePoint = CurrentWeaponObject.transform.GetChild(i).Find("FirePoint");
+                if (firePoint) break;
+            }
+
+            if (!firePoint)
+            {
+                for (var i = 0; i < CurrentWeaponObject.transform.childCount; i++)
+                {
+                    for (var j = 0; j < CurrentWeaponObject.transform.GetChild(i).childCount; j++)
+                    {
+                        firePoint = CurrentWeaponObject.transform.GetChild(i).GetChild(j).Find("FirePoint");
+                        if (firePoint) break;
+                    }
+                }
+            }
+        }
+        
         CurrentWeapon = weaponToEquip;
         SetAmmoUI();
         CurrentAnimator = CurrentWeaponObject.GetComponent<Animator>();
