@@ -57,24 +57,16 @@ public class PlayerController : MonoBehaviour
     
      private void Update()
      {
-         var fixedDelta = Time.deltaTime;
+         var d = Time.deltaTime;
          
-         UpdatePlayer();
-         WeaponControls(fixedDelta);
+         UpdatePlayer(d);
+         WeaponControls(d);
      }
 
-     private void UpdatePlayer()
+     private void UpdatePlayer(float delta)
      {
-         var fixedDelta = Time.deltaTime;
-         
-         if (cc.isGrounded)
-         {
-             MoveControls(fixedDelta);
-         }
-         else
-         {
-             ApplyGravity();
-         }
+         if (cc.isGrounded) MoveControls(delta);
+         else ApplyGravity();
      }
     
      private void WeaponControls(float dTime)
@@ -89,7 +81,7 @@ public class PlayerController : MonoBehaviour
          if (tryEquipPrimary) pe.EquipPrimaryWeapon();
          else if (tryEquipSecondary) pe.EquipSecondaryWeapon();
          
-         if (fire && CanAttack)
+         if (fire && CanAttack && CurrentMoveState != PlayerMoveState.Sprint)
          {
              if (pe.CurrentWeapon.weaponType == WeaponData.WeaponType.Melee)
              {
@@ -115,8 +107,8 @@ public class PlayerController : MonoBehaviour
              }
          }
          else if (!fire) pa.ResetAttack();
-         
-         pa.AimDownSights(aim);
+
+         pa.AimDownSights(!pe.IsReloading && aim);
      }
     
      private void MoveControls(float dTime)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -16,9 +17,33 @@ public class PlayerAnimator : MonoBehaviour
 
     private PlayerEquipment pe;
 
+    private float targetLayerWeight = 0.0f;
+    private float startingLayerWeight = 0.0f;
+    
     private void Start()
     {
         pe = Player.instance.Equipment;
+        StartCoroutine(AdjustLayerWeight());
+    }
+
+    private IEnumerator AdjustLayerWeight()
+    {
+        const float speed = 5.0f;
+        const float tolerance = 0.001f;
+        
+        while (!pe.CurrentAnimator) yield return new WaitForEndOfFrame();
+        
+        while (true)
+        {
+            if (Math.Abs(pe.CurrentAnimator.GetLayerWeight(1) - targetLayerWeight) <= tolerance) yield return new WaitForEndOfFrame();
+            else
+            {
+                var weight = Mathf.Lerp(startingLayerWeight, targetLayerWeight, Time.deltaTime * speed);
+                pe.CurrentAnimator.SetLayerWeight(1, weight);
+            }
+            
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     public void Run()
@@ -43,8 +68,16 @@ public class PlayerAnimator : MonoBehaviour
 
     public void AimDownSights(bool status)
     {
-        if (status) pe.CurrentAnimator.SetLayerWeight(1, 1.0f);
-        else pe.CurrentAnimator.SetLayerWeight(1, 0.0f);
+        if (status)
+        {
+            startingLayerWeight = pe.CurrentAnimator.GetLayerWeight(1);
+            targetLayerWeight = 1.0f;
+        }
+        else 
+        {
+            startingLayerWeight = pe.CurrentAnimator.GetLayerWeight(1);
+            targetLayerWeight = 0.0f;
+        }
         
         pe.CurrentAnimator.SetBool(aimingAnimHash, status);
     }
