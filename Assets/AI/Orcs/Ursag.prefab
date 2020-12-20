@@ -511,6 +511,7 @@ GameObject:
   - component: {fileID: 8563798163777141406}
   - component: {fileID: 8563798163777141401}
   - component: {fileID: 8563798163777141400}
+  - component: {fileID: 1060335091}
   m_Layer: 10
   m_Name: Ursag
   m_TagString: Orc
@@ -814,7 +815,7 @@ MonoBehaviour:
   StationaryIdleSeconds: 0
   StationaryIdleSecondsMin: 3
   StationaryIdleSecondsMax: 6
-  BloodEffectTimeoutSeconds: 3
+  BloodEffectTimeoutSeconds: 1
   BloodEffectsList:
   - {fileID: 1055862917370258, guid: a921fa6024a125d45b996937084b35d6, type: 3}
   PlayerYOffset: 0
@@ -1026,7 +1027,7 @@ MonoBehaviour:
   RunAttackAnimationNumber: 1
   IdleAnimationNumber: 1
   CombatTabNumber: 2
-  FactionsAndTagTabNumber: 1
+  FactionsAndTagTabNumber: 0
   EventTabNumber: 0
   MinimumWaitTime: 3
   MaximumWaitTime: 6
@@ -1339,7 +1340,7 @@ MonoBehaviour:
   m_AnimationProfile: {fileID: 0}
   DetectionLayerMask:
     serializedVersion: 2
-    m_Bits: 1792
+    m_Bits: 4096
   ObstructionDetectionLayerMask:
     serializedVersion: 2
     m_Bits: 4
@@ -1564,6 +1565,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1cc46fab57f14419470127d1595e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1060335091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8563798163777141403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9e960b9007bd140b4e89024971a329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEffect: {fileID: 258580847482720398, guid: 907189bb1273a83499f4581146d101a5,
+    type: 3}
+  hitDecal:
+  - {fileID: 2980059464862511782, guid: 0d108913a24953242b9fd2615389b2d2, type: 3}
+  - {fileID: 7451982899520276796, guid: 88410d22c9389074b897fb2ee54c7544, type: 3}
+  - {fileID: 250868956377727726, guid: 2ed92d32608b2224fb205adf5e3ecfa7, type: 3}
+  - {fileID: 2426192354539326223, guid: 254e6f6087e48724eb3b80f881bc48a9, type: 3}
 --- !u!1 &8563804804638064911
 GameObject:
   m_ObjectHideFlags: 0

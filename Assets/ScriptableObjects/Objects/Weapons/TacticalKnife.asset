@@ -18,7 +18,12 @@ MonoBehaviour:
   wepPrefab: {fileID: 1965702313203224, guid: 99516a1148a29804db1f5224a01f835f, type: 3}
   projectilePrefab: {fileID: 0}
   muzzleEffect: {fileID: 0}
-  bulletHole: {fileID: 0}
+  hitImpact: {fileID: 0}
+  hitDecal:
+  - {fileID: 4872030368321478434, guid: 960205a0fb6e3be40a6638fe08d0f3f5, type: 3}
+  - {fileID: 7236115212231471541, guid: cf07e507cad403a478ca42da02f44087, type: 3}
+  - {fileID: 8106189462210167934, guid: f3fc4765e1729e24fada59150233fbeb, type: 3}
+  - {fileID: 8360897983169464813, guid: 54d17ef0927945b4e8a0c8c96761cfe7, type: 3}
   weaponType: 2
   fireType: 0
   currentAmmo: -1

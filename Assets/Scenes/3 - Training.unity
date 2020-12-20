@@ -444,29 +444,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orc_03 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 736898705509230844, guid: 9c1ab207236bbc647ae9e887cedf9c8c,
+    - target: {fileID: 736898705509230729, guid: 9c1ab207236bbc647ae9e887cedf9c8c,
         type: 3}
-      propertyPath: TabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 736898705509230844, guid: 9c1ab207236bbc647ae9e887cedf9c8c,
-        type: 3}
-      propertyPath: DetectionTagsTabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 736898705509230844, guid: 9c1ab207236bbc647ae9e887cedf9c8c,
-        type: 3}
-      propertyPath: FactionsAndTagTabNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 736898705509230844, guid: 9c1ab207236bbc647ae9e887cedf9c8c,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 736898705509230844, guid: 9c1ab207236bbc647ae9e887cedf9c8c,
-        type: 3}
-      propertyPath: BloodEffectTimeoutSeconds
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 736898705509397673, guid: 9c1ab207236bbc647ae9e887cedf9c8c,
@@ -541,31 +521,6 @@ PrefabInstance:
     - target: {fileID: 533159242014855405, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
-        type: 3}
-      propertyPath: TabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
-        type: 3}
-      propertyPath: DetectionTagsTabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
-        type: 3}
-      propertyPath: FactionsAndTagTabNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 533159242014855418, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
-        type: 3}
-      propertyPath: BloodEffectTimeoutSeconds
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 533159242014952717, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab,
@@ -1400,31 +1355,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3387038324839598201, guid: da9a0fac6e5b27942a8465d513b19510,
-        type: 3}
-      propertyPath: TabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3387038324839598201, guid: da9a0fac6e5b27942a8465d513b19510,
-        type: 3}
-      propertyPath: DetectionTagsTabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3387038324839598201, guid: da9a0fac6e5b27942a8465d513b19510,
-        type: 3}
-      propertyPath: FactionsAndTagTabNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3387038324839598201, guid: da9a0fac6e5b27942a8465d513b19510,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 3387038324839598201, guid: da9a0fac6e5b27942a8465d513b19510,
-        type: 3}
-      propertyPath: BloodEffectTimeoutSeconds
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da9a0fac6e5b27942a8465d513b19510, type: 3}
 --- !u!1 &1951902505
@@ -1813,26 +1743,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.289
       objectReference: {fileID: 0}
-    - target: {fileID: 6245687095845613475, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
-        type: 3}
-      propertyPath: TabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6245687095845613475, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
-        type: 3}
-      propertyPath: DetectionTagsTabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6245687095845613475, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
-        type: 3}
-      propertyPath: FactionsAndTagTabNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6245687095845613475, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
     - target: {fileID: 6245687095845613531, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
         type: 3}
       propertyPath: m_Name
@@ -2013,31 +1923,6 @@ PrefabInstance:
     - target: {fileID: 423880146455042314, guid: 7b5d0d4b97d070a4d9374828112cb0f8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 423880146455042354, guid: 7b5d0d4b97d070a4d9374828112cb0f8,
-        type: 3}
-      propertyPath: TabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 423880146455042354, guid: 7b5d0d4b97d070a4d9374828112cb0f8,
-        type: 3}
-      propertyPath: DetectionTagsTabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 423880146455042354, guid: 7b5d0d4b97d070a4d9374828112cb0f8,
-        type: 3}
-      propertyPath: FactionsAndTagTabNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 423880146455042354, guid: 7b5d0d4b97d070a4d9374828112cb0f8,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 423880146455042354, guid: 7b5d0d4b97d070a4d9374828112cb0f8,
-        type: 3}
-      propertyPath: BloodEffectTimeoutSeconds
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 426432784424776464, guid: 7b5d0d4b97d070a4d9374828112cb0f8,
@@ -2281,31 +2166,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3545882219019358135, guid: a4d4c051e8bef0148992abc92ba9b089,
-        type: 3}
-      propertyPath: TabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3545882219019358135, guid: a4d4c051e8bef0148992abc92ba9b089,
-        type: 3}
-      propertyPath: DetectionTagsTabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3545882219019358135, guid: a4d4c051e8bef0148992abc92ba9b089,
-        type: 3}
-      propertyPath: FactionsAndTagTabNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3545882219019358135, guid: a4d4c051e8bef0148992abc92ba9b089,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 3545882219019358135, guid: a4d4c051e8bef0148992abc92ba9b089,
-        type: 3}
-      propertyPath: BloodEffectTimeoutSeconds
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3545882219019358143, guid: a4d4c051e8bef0148992abc92ba9b089,
         type: 3}
@@ -2812,31 +2672,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1815692093228208601, guid: 13b51bd3616e2474c84fc9f427a53c59,
-        type: 3}
-      propertyPath: TabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1815692093228208601, guid: 13b51bd3616e2474c84fc9f427a53c59,
-        type: 3}
-      propertyPath: DetectionTagsTabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1815692093228208601, guid: 13b51bd3616e2474c84fc9f427a53c59,
-        type: 3}
-      propertyPath: FactionsAndTagTabNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1815692093228208601, guid: 13b51bd3616e2474c84fc9f427a53c59,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 1815692093228208601, guid: 13b51bd3616e2474c84fc9f427a53c59,
-        type: 3}
-      propertyPath: BloodEffectTimeoutSeconds
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13b51bd3616e2474c84fc9f427a53c59, type: 3}
 --- !u!4 &1460627233330842836
@@ -2886,31 +2721,6 @@ PrefabInstance:
     - target: {fileID: 7003820357193712263, guid: ba0d7dd1987c1dc4eb6d2e0d139eaf44,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7003820357193712271, guid: ba0d7dd1987c1dc4eb6d2e0d139eaf44,
-        type: 3}
-      propertyPath: TabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7003820357193712271, guid: ba0d7dd1987c1dc4eb6d2e0d139eaf44,
-        type: 3}
-      propertyPath: DetectionTagsTabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7003820357193712271, guid: ba0d7dd1987c1dc4eb6d2e0d139eaf44,
-        type: 3}
-      propertyPath: FactionsAndTagTabNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7003820357193712271, guid: ba0d7dd1987c1dc4eb6d2e0d139eaf44,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 7003820357193712271, guid: ba0d7dd1987c1dc4eb6d2e0d139eaf44,
-        type: 3}
-      propertyPath: BloodEffectTimeoutSeconds
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7006297292476596031, guid: ba0d7dd1987c1dc4eb6d2e0d139eaf44,
@@ -3718,31 +3528,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6811976312163973575, guid: efdf00008e3126a43850bffec66552bf,
-        type: 3}
-      propertyPath: TabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6811976312163973575, guid: efdf00008e3126a43850bffec66552bf,
-        type: 3}
-      propertyPath: DetectionTagsTabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6811976312163973575, guid: efdf00008e3126a43850bffec66552bf,
-        type: 3}
-      propertyPath: FactionsAndTagTabNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6811976312163973575, guid: efdf00008e3126a43850bffec66552bf,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 6811976312163973575, guid: efdf00008e3126a43850bffec66552bf,
-        type: 3}
-      propertyPath: BloodEffectTimeoutSeconds
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6811976312163973631, guid: efdf00008e3126a43850bffec66552bf,
         type: 3}
       propertyPath: m_Name
@@ -3777,31 +3562,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
-        type: 3}
-      propertyPath: TabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
-        type: 3}
-      propertyPath: DetectionTagsTabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
-        type: 3}
-      propertyPath: FactionsAndTagTabNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 4190687466968714631, guid: 6ec5f2ab060624841aad5c66861a45a9,
-        type: 3}
-      propertyPath: BloodEffectTimeoutSeconds
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4190687466968714646, guid: 6ec5f2ab060624841aad5c66861a45a9,
         type: 3}
       propertyPath: m_Name
@@ -5536,31 +5296,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8056953519001605779, guid: dbce0cbe24fdcaa429f7412ee1150cbb,
-        type: 3}
-      propertyPath: TabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8056953519001605779, guid: dbce0cbe24fdcaa429f7412ee1150cbb,
-        type: 3}
-      propertyPath: DetectionTagsTabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8056953519001605779, guid: dbce0cbe24fdcaa429f7412ee1150cbb,
-        type: 3}
-      propertyPath: FactionsAndTagTabNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8056953519001605779, guid: dbce0cbe24fdcaa429f7412ee1150cbb,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 8056953519001605779, guid: dbce0cbe24fdcaa429f7412ee1150cbb,
-        type: 3}
-      propertyPath: BloodEffectTimeoutSeconds
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8056953519001605866, guid: dbce0cbe24fdcaa429f7412ee1150cbb,
         type: 3}
       propertyPath: m_Name
@@ -5762,26 +5497,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8243789944599071277, guid: ad5d29dbf92aa02468ac73b29b136a79,
-        type: 3}
-      propertyPath: TabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8243789944599071277, guid: ad5d29dbf92aa02468ac73b29b136a79,
-        type: 3}
-      propertyPath: DetectionTagsTabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8243789944599071277, guid: ad5d29dbf92aa02468ac73b29b136a79,
-        type: 3}
-      propertyPath: FactionsAndTagTabNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8243789944599071277, guid: ad5d29dbf92aa02468ac73b29b136a79,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 4096
       objectReference: {fileID: 0}
     - target: {fileID: 8245264741298485171, guid: ad5d29dbf92aa02468ac73b29b136a79,
         type: 3}
@@ -6740,31 +6455,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8563798163777141395, guid: ebb63f3ba0dc600438f0a5bca787f67a,
-        type: 3}
-      propertyPath: TabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8563798163777141395, guid: ebb63f3ba0dc600438f0a5bca787f67a,
-        type: 3}
-      propertyPath: DetectionTagsTabNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8563798163777141395, guid: ebb63f3ba0dc600438f0a5bca787f67a,
-        type: 3}
-      propertyPath: FactionsAndTagTabNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8563798163777141395, guid: ebb63f3ba0dc600438f0a5bca787f67a,
-        type: 3}
-      propertyPath: DetectionLayerMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 8563798163777141395, guid: ebb63f3ba0dc600438f0a5bca787f67a,
-        type: 3}
-      propertyPath: BloodEffectTimeoutSeconds
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8563798163777141403, guid: ebb63f3ba0dc600438f0a5bca787f67a,
         type: 3}

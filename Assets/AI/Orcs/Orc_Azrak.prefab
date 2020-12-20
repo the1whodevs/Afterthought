@@ -3038,6 +3038,7 @@ GameObject:
   - component: {fileID: 7003820357193712266}
   - component: {fileID: 7003820357193712261}
   - component: {fileID: 7003820357193712260}
+  - component: {fileID: 1978807288}
   m_Layer: 4
   m_Name: Orc_Azrak
   m_TagString: Orc
@@ -3344,7 +3345,7 @@ MonoBehaviour:
   StationaryIdleSeconds: 0
   StationaryIdleSecondsMin: 3
   StationaryIdleSecondsMax: 6
-  BloodEffectTimeoutSeconds: 3
+  BloodEffectTimeoutSeconds: 1
   BloodEffectsList:
   - {fileID: 1055862917370258, guid: a921fa6024a125d45b996937084b35d6, type: 3}
   PlayerYOffset: 0
@@ -3534,7 +3535,7 @@ MonoBehaviour:
   WanderRadius: 25
   TabNumber: 1
   TemperamentTabNumber: 2
-  DetectionTagsTabNumber: 0
+  DetectionTagsTabNumber: 1
   AnimationTabNumber: 2
   SoundTabNumber: 1
   MovementTabNumber: 1
@@ -3545,7 +3546,7 @@ MonoBehaviour:
   RunAttackAnimationNumber: 1
   IdleAnimationNumber: 1
   CombatTabNumber: 2
-  FactionsAndTagTabNumber: 1
+  FactionsAndTagTabNumber: 0
   EventTabNumber: 0
   MinimumWaitTime: 3
   MaximumWaitTime: 6
@@ -3859,7 +3860,7 @@ MonoBehaviour:
   m_AnimationProfile: {fileID: 0}
   DetectionLayerMask:
     serializedVersion: 2
-    m_Bits: 272
+    m_Bits: 4096
   ObstructionDetectionLayerMask:
     serializedVersion: 2
     m_Bits: 4
@@ -4084,6 +4085,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1cc46fab57f14419470127d1595e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1978807288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003820357193712263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9e960b9007bd140b4e89024971a329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEffect: {fileID: 258580847482720398, guid: 907189bb1273a83499f4581146d101a5,
+    type: 3}
+  hitDecal:
+  - {fileID: 2980059464862511782, guid: 0d108913a24953242b9fd2615389b2d2, type: 3}
+  - {fileID: 7451982899520276796, guid: 88410d22c9389074b897fb2ee54c7544, type: 3}
+  - {fileID: 250868956377727726, guid: 2ed92d32608b2224fb205adf5e3ecfa7, type: 3}
+  - {fileID: 2426192354539326223, guid: 254e6f6087e48724eb3b80f881bc48a9, type: 3}
 --- !u!1 &7003832846604195699
 GameObject:
   m_ObjectHideFlags: 0

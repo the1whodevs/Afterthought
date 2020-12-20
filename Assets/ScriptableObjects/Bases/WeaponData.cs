@@ -7,6 +7,8 @@ public class WeaponData : ScriptableObject
     public enum WeaponType {Firearm, Projectile, Melee}
     public enum FireType { FullAuto, Burst, SemiAuto, BoltAction }
 
+    public GameObject RandomHitDecal => hitDecal[Random.Range(0, hitDecal.Length)];
+    
     [FormerlySerializedAs("rightHandPrefab")] public new string name;
     public string description;
     public Sprite image;
@@ -14,8 +16,9 @@ public class WeaponData : ScriptableObject
     public GameObject wepPrefab;
     public GameObject projectilePrefab;
     public GameObject muzzleEffect;
-    public GameObject bulletHole;
-
+    [FormerlySerializedAs("bulletHole")] public GameObject hitImpact;
+    public GameObject[] hitDecal; 
+    
     public WeaponType weaponType = WeaponType.Firearm;
     
     public FireType fireType = FireType.FullAuto;
@@ -31,7 +34,7 @@ public class WeaponData : ScriptableObject
     public float adsMultiplier = 1.0f;
 
     private string AMMO_IN_MAG => $"{name}_AMMOinMAG";
-    
+
     public void ReloadMag(ref int availableAmmo)
     {
         var bulletsForMax = magazineCapacity - currentAmmo;

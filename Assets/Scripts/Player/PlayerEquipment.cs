@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using EmeraldAI;
 using JetBrains.Annotations;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerEquipment : MonoBehaviour
 {
@@ -85,11 +86,30 @@ public class PlayerEquipment : MonoBehaviour
                 
                 //Debug.DrawLine(ray.origin, hit.point, Color.blue, 1.0f, true);
                 var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
-
+                
                 // If we hit an AI, damage it.
-                if (emeraldAIsys) emeraldAIsys.Damage((int)CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
+                if (emeraldAIsys && emeraldAIsys.enabled) emeraldAIsys.Damage((int)CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
                 // Otherwise just spawn a bullet hole.
-                else Destroy(Instantiate(CurrentWeapon.bulletHole, hit.point, Quaternion.LookRotation(hit.normal), null), bulletHoleLifetime);
+                else
+                {
+                    var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
+
+                    if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
+                    
+                    Destroy(
+                        hitSurfaceInfo
+                            ? Instantiate(hitSurfaceInfo.hitEffect, hit.point, Quaternion.LookRotation(hit.normal),
+                                hit.transform)
+                            : Instantiate(CurrentWeapon.hitImpact, hit.point, Quaternion.LookRotation(hit.normal),
+                                null), bulletHoleLifetime);
+                    
+                    Destroy(
+                        hitSurfaceInfo
+                            ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
+                                hit.transform)
+                            : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
+                                null), bulletHoleLifetime);
+                }
                 break;
             
             case WeaponData.WeaponType.Projectile:
