@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3fef08fbc7152e42abbab0859810c80, type: 3}
-  m_Name: Springfiled M24
+  m_Name: Springfield M24
   m_EditorClassIdentifier: 
   name: Springfield M24
   description: Exactly what you expected from the name.
@@ -19,6 +19,10 @@ MonoBehaviour:
   projectilePrefab: {fileID: 0}
   muzzleEffect: {fileID: 6552543808276292960, guid: bd80e3940d1b5454a80d4769a3be8e8a,
     type: 3}
+  reloadAudioFx: {fileID: 8300000, guid: 49445863fb03df24e81d6b088856f783, type: 3}
+  emptyClipAudioFx: {fileID: 8300000, guid: 7a451d3ef76a4c948b1c97f5441d680e, type: 3}
+  shotAudioFx:
+  - {fileID: 8300000, guid: 9f19899624f198f4faedb12ee851b244, type: 3}
   hitImpact: {fileID: 7258679735602562002, guid: 608cb554bb30cb746956424c326042ca,
     type: 3}
   hitDecal:
@@ -28,11 +32,11 @@ MonoBehaviour:
   - {fileID: 8360897983169464813, guid: 54d17ef0927945b4e8a0c8c96761cfe7, type: 3}
   weaponType: 0
   fireType: 3
-  currentAmmo: 10
+  currentAmmo: 0
   magazineCapacity: 10
   projectileSpeed: 100
   weaponDamage: 80
-  fireRate: 1
+  fireRate: 10
   reloadSpeed: 0.5
   mobilityPenalty: 0.45
   adsMultiplier: 1

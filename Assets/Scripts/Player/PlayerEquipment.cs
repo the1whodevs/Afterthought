@@ -35,6 +35,9 @@ public class PlayerEquipment : MonoBehaviour
     
     [SerializeField] private LayerMask hitScanLayerMask;
 
+    [SerializeField] private AudioSource gunFireAudioSource;
+    [SerializeField] private AudioSource gunEmptyClipAudioSource;
+    
     private Camera playerCamera;
     
     private PlayerAnimator pa;
@@ -73,13 +76,18 @@ public class PlayerEquipment : MonoBehaviour
 
     public void TryDealDamage()
     {
+        Debug.Log("Equipment TryDealDamage");
+        
         const float bulletHoleLifetime = 10.0f;
         const float projectileLifetime = 60.0f;
+
+        gunFireAudioSource.pitch = CurrentWeapon.shootAudioPitch;
+        gunFireAudioSource.PlayOneShot(CurrentWeapon.RandomShotAudioFX);
         
         switch (CurrentWeapon.weaponType)
         {
             case WeaponData.WeaponType.Firearm:
-                uiManager.SetAmmoUI(CurrentWeapon.currentAmmo, ammoAvailable);
+                SetAmmoUI();
                 var ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
                 
                 if (!Physics.Raycast(ray, out var hit, MAX_FIRE_DIST, hitScanLayerMask)) return;
@@ -113,7 +121,7 @@ public class PlayerEquipment : MonoBehaviour
                 break;
             
             case WeaponData.WeaponType.Projectile:
-                uiManager.SetAmmoUI(CurrentWeapon.currentAmmo, ammoAvailable);
+                SetAmmoUI();
                 var lookRot = Quaternion.LookRotation(firePoint.forward);
                 var bullet = Instantiate(CurrentWeapon.projectilePrefab, firePoint.position, lookRot, null);
                 bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * CurrentWeapon.projectileSpeed, ForceMode.Impulse);
@@ -128,9 +136,26 @@ public class PlayerEquipment : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
-    
+
+    public void SetAmmoUI()
+    {
+        uiManager.SetAmmoUI(CurrentWeapon.currentAmmo, ammoAvailable);
+    }
+
+    public void PlayEmptyClipSound()
+    {
+        if (gunEmptyClipAudioSource.isPlaying) return;
+
+        gunEmptyClipAudioSource.clip = CurrentWeapon.emptyClipAudioFx;
+        gunEmptyClipAudioSource.pitch = 1.0f;
+        gunEmptyClipAudioSource.Play();
+    }
+
     public void Reload()
     {
+        gunFireAudioSource.pitch = 1.0f;
+        gunFireAudioSource.PlayOneShot(CurrentWeapon.reloadAudioFx);
+
         isReloading = true;
         pa.Reload();
     }
@@ -139,7 +164,7 @@ public class PlayerEquipment : MonoBehaviour
     {
         CurrentWeapon.ReloadMag(ref ammoAvailable);
         isReloading = false;
-        uiManager.SetAmmoUI(CurrentWeapon.currentAmmo, ammoAvailable);
+        SetAmmoUI();
     }
 
     [UsedImplicitly]
@@ -147,6 +172,13 @@ public class PlayerEquipment : MonoBehaviour
     public void ResetAttackCollider()
     {
         CurrentWeaponObject.GetComponentInChildren<Collider>().enabled = false;
+    }
+
+    public void Muzzle()
+    {
+        Debug.Log("Equipment Muzzle");
+        const float muzzleLifetime = 2.0f;
+        Destroy(Instantiate(CurrentWeapon.muzzleEffect, firePoint.position, firePoint.rotation, null), muzzleLifetime);
     }
     
     private void Equip(WeaponData weaponToEquip)
@@ -193,7 +225,7 @@ public class PlayerEquipment : MonoBehaviour
         CurrentWeaponObject = Instantiate(weaponToEquip.wepPrefab, WeaponR.position, WeaponR.rotation, WeaponR);
         firePoint = CurrentWeaponObject.transform.Find("FirePoint");
         CurrentWeapon = weaponToEquip;
-        uiManager.SetAmmoUI(CurrentWeapon.currentAmmo, ammoAvailable);
+        SetAmmoUI();
         CurrentAnimator = CurrentWeaponObject.GetComponent<Animator>();
     }
 }

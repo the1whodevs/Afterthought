@@ -8,6 +8,7 @@ public class WeaponData : ScriptableObject
     public enum FireType { FullAuto, Burst, SemiAuto, BoltAction }
 
     public GameObject RandomHitDecal => hitDecal[Random.Range(0, hitDecal.Length)];
+    public AudioClip RandomShotAudioFX => shotAudioFx[Random.Range(0, shotAudioFx.Length)];
     
     [FormerlySerializedAs("rightHandPrefab")] public new string name;
     public string description;
@@ -16,6 +17,11 @@ public class WeaponData : ScriptableObject
     public GameObject wepPrefab;
     public GameObject projectilePrefab;
     public GameObject muzzleEffect;
+    
+    public AudioClip reloadAudioFx;
+    public AudioClip emptyClipAudioFx;
+    
+    [FormerlySerializedAs("audioFx")] public AudioClip[] shotAudioFx;
     [FormerlySerializedAs("bulletHole")] public GameObject hitImpact;
     public GameObject[] hitDecal; 
     
@@ -29,6 +35,7 @@ public class WeaponData : ScriptableObject
     public float projectileSpeed = 100.0f;
     public float weaponDamage = 0.0f;
     public float fireRate = 3.0f;
+    public float shootAudioPitch = 2.0f;
     public float reloadSpeed = 1.0f;
     public float mobilityPenalty = 0.2f;
     public float adsMultiplier = 1.0f;

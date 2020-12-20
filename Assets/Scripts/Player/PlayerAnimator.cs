@@ -12,6 +12,7 @@ public class PlayerAnimator : MonoBehaviour
     public readonly  int sprintAnimHash = Animator.StringToHash("isSprinting");
     public readonly  int aimingAnimHash = Animator.StringToHash("isAiming");
     public readonly int attackAnimHash = Animator.StringToHash("attack");
+    public readonly int attackSpeedAnimHash = Animator.StringToHash("attackSpeed");
     public readonly  int reloadAnimHash = Animator.StringToHash("reload");
     public readonly  int unequipAnimHash = Animator.StringToHash("unequip");
 
@@ -89,23 +90,21 @@ public class PlayerAnimator : MonoBehaviour
 
     public void Fire()
     {
+        pe.CurrentAnimator.SetFloat(attackSpeedAnimHash, pe.CurrentWeapon.fireRate * 2.0f);
         pe.CurrentAnimator.SetBool(attackAnimHash, true);
     }
     
     [UsedImplicitly]
     public void Muzzle()
     {
-        var firePoint = pe.CurrentWeaponObject.transform.Find("FirePoint");
-
-        const float muzzleLifetime = 2.0f;
-        Destroy(Instantiate(pe.CurrentWeapon.muzzleEffect, firePoint.position, firePoint.rotation, null), muzzleLifetime);
+        Debug.Log("Animator Muzzle");
     }
     
     [UsedImplicitly]
     // Called by the animation event within each attack animation.
     public void TryDealDamage()
     {
-        pe.TryDealDamage();
+        Debug.LogError("Animator TryDealDamage");
     }
 
     public void Reload()
