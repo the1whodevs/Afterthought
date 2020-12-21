@@ -30,6 +30,11 @@ public class PlayerController : MonoBehaviour
      private float attackTimer = 0.0f;
      private float standStateBlend;
 
+     public int BurstFireCount { get; private set; } = 3;
+     
+     // If this is true, the player needs to let go of the fire button, and press it again to fire.
+     // e.g. Bolt-action, semi-auto, burst
+     private bool fireResetRequired = false;
      private bool isReloading;
      private bool CanAttack => attackTimer >= attackInterval;
      private bool aimingDownSights;
@@ -81,7 +86,7 @@ public class PlayerController : MonoBehaviour
          if (tryEquipPrimary) pe.EquipPrimaryWeapon();
          else if (tryEquipSecondary) pe.EquipSecondaryWeapon();
          
-         if (fire && CanAttack && CurrentMoveState != PlayerMoveState.Sprint)
+         if (fire && !fireResetRequired && CanAttack && CurrentMoveState != PlayerMoveState.Sprint)
          {
              if (pe.CurrentWeapon.weaponType == WeaponData.WeaponType.Melee)
              {
@@ -92,8 +97,15 @@ public class PlayerController : MonoBehaviour
              {
                  if (pe.CurrentWeapon.currentAmmo > 0)
                  {
-                     pe.CurrentWeapon.currentAmmo--;
+                     var fireType = pe.CurrentWeapon.fireType;
+
+                     if (fireType == WeaponData.FireType.Burst) pe.CurrentWeapon.currentAmmo -= BurstFireCount;
+                     else pe.CurrentWeapon.currentAmmo--;
+                     
                      attackTimer = 0.0f;
+
+                     fireResetRequired = fireType != WeaponData.FireType.FullAuto;
+                     
                      pa.Fire();
                  }
                  else
@@ -103,7 +115,11 @@ public class PlayerController : MonoBehaviour
                  }
              }
          }
-         else if (!fire) pa.ResetAttack();
+         else if (!fire)
+         {
+             pa.ResetAttack();
+             fireResetRequired = false;
+         }
 
          if (!pe.IsReloading && reload && pe.ammoAvailable > 0 && pe.CurrentWeapon.currentAmmo != pe.CurrentWeapon.magazineCapacity)
              pe.Reload();

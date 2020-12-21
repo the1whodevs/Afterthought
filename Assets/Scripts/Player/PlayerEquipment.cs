@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using EmeraldAI;
 using JetBrains.Annotations;
 using Knife.RealBlood.Decals;
@@ -50,6 +51,8 @@ public class PlayerEquipment : MonoBehaviour
     private const float MAX_FIRE_DIST = 1000.0f;
 
     private bool isReloading;
+
+    private const int DELAY_BETWEEN_BURSTS = 50;
     
     public void Init()
     {
@@ -75,59 +78,70 @@ public class PlayerEquipment : MonoBehaviour
         Equip(loadout.SecondaryWeapon);
     }
 
-    public void TryDealDamage()
+    public async void TryDealDamage()
     {
         const float bulletHoleLifetime = 10.0f;
         const float projectileLifetime = 60.0f;
 
         gunFireAudioSource.pitch = CurrentWeapon.shootAudioPitch;
         gunFireAudioSource.PlayOneShot(CurrentWeapon.RandomShotAudioFX);
+
+        var fireType = CurrentWeapon.fireType;
         
         switch (CurrentWeapon.weaponType)
         {
             case WeaponData.WeaponType.Firearm:
-                SetAmmoUI();
-                var ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-                
-                if (!Physics.Raycast(ray, out var hit, MAX_FIRE_DIST, hitScanLayerMask)) return;
-                
-                //Debug.DrawLine(ray.origin, hit.point, Color.blue, 1.0f, true);
-                var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
-                
-                // If we hit an AI, damage it.
-                if (emeraldAIsys && emeraldAIsys.enabled) emeraldAIsys.Damage((int)CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
-                // Otherwise just spawn a bullet hole.
-                else
-                {
-                    var cdp = hit.transform.GetComponent<CharacterDamagePainter>();
-                    var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
 
-                    if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
-                    if (!cdp) cdp = hit.transform.GetComponentInParent<CharacterDamagePainter>();
+                var repeat = fireType == WeaponData.FireType.Burst ? Player.instance.Controller.BurstFireCount : 1;
+
+                for (var i = 0; i < repeat; i++)
+                {
+                    SetAmmoUI();
+                    var ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
                     
-                    Destroy(
-                        hitSurfaceInfo
-                            ? Instantiate(hitSurfaceInfo.hitEffect, hit.point, Quaternion.LookRotation(hit.normal),
-                                hit.transform)
-                            : Instantiate(CurrentWeapon.hitImpact, hit.point, Quaternion.LookRotation(hit.normal),
-                                null), bulletHoleLifetime);
+                    if (!Physics.Raycast(ray, out var hit, MAX_FIRE_DIST, hitScanLayerMask)) return;
                     
-                    if (cdp)
-                    {
-                        cdp.Paint(hit.point,hit.normal);
-                    }
+                    //Debug.DrawLine(ray.origin, hit.point, Color.blue, 1.0f, true);
+                    var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
+                    
+                    // If we hit an AI, damage it.
+                    if (emeraldAIsys && emeraldAIsys.enabled) emeraldAIsys.Damage((int)CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
+                    // Otherwise just spawn a bullet hole.
                     else
                     {
+                        var cdp = hit.transform.GetComponent<CharacterDamagePainter>();
+                        var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
+
+                        if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
+                        if (!cdp) cdp = hit.transform.GetComponentInParent<CharacterDamagePainter>();
+                        
                         Destroy(
                             hitSurfaceInfo
-                                ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
+                                ? Instantiate(hitSurfaceInfo.hitEffect, hit.point, Quaternion.LookRotation(hit.normal),
                                     hit.transform)
-                                : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
+                                : Instantiate(CurrentWeapon.hitImpact, hit.point, Quaternion.LookRotation(hit.normal),
                                     null), bulletHoleLifetime);
+                        
+                        if (cdp)
+                        {
+                            cdp.Paint(hit.point,hit.normal);
+                        }
+                        else
+                        {
+                            Destroy(
+                                hitSurfaceInfo
+                                    ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
+                                        hit.transform)
+                                    : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
+                                        null), bulletHoleLifetime);
+                        }
+                        
+                        if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
                     }
-                    
-                    if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
+
+                    await Task.Delay(DELAY_BETWEEN_BURSTS);
                 }
+                
                 break;
             
             case WeaponData.WeaponType.Projectile:
