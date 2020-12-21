@@ -32,6 +32,7 @@ Transform:
   m_Children:
   - {fileID: 5598451745193294800}
   - {fileID: 756492278966336826}
+  - {fileID: 8520627960800967900}
   m_Father: {fileID: 305737994843635870}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 11.365001, z: 0}
@@ -66,7 +67,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3639
+    m_Bits: 7991
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -98,11 +99,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe3b957e9829fe4094aa36a59a9a7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentZoom: 0
   playerT: {fileID: 305737994843635870}
   camRotationSpeed: 5
   cameraMinY: -60
   cameraMaxY: 67.5
   rotationSmoothSpeed: 10
+  zoomSpeed: 2.5
+  zoomCamera: {fileID: 7419696752421820827}
 --- !u!1 &305737994843635869
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,8 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68898d0c4ded96344b2171b5bbefa03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoAvailable: 270
-  loadout: {fileID: 11400000, guid: 52c06934a10e86143af7856c3a2aa276, type: 2}
+  ammoAvailable: 999
+  loadout: {fileID: 11400000, guid: 45f080791cc13c543ae8afdd71019004, type: 2}
   allWeaponData:
   - {fileID: 11400000, guid: 63c38115e3bdcba4db1faf51477974c6, type: 2}
   - {fileID: 11400000, guid: 0cc8e643a5196a34eaae8ae80cf11b02, type: 2}
@@ -376,7 +380,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8192
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -612,3 +616,77 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &5785029003751561294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8520627960800967900}
+  - component: {fileID: 7419696752421820827}
+  m_Layer: 0
+  m_Name: ZoomCamera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8520627960800967900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785029003751561294}
+  m_LocalRotation: {x: -0, y: -0.000000014901161, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 344274080}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 11.365001, z: 0}
+--- !u!20 &7419696752421820827
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785029003751561294}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.06
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 7991
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: 89b9f02b2f5845f4ebfb5c734a08ddab, type: 2}
+  m_TargetDisplay: 0
+  m_TargetEye: 0
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022

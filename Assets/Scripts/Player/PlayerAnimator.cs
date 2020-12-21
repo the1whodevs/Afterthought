@@ -71,8 +71,6 @@ public class PlayerAnimator : MonoBehaviour
 
     public void AimDownSights(bool status)
     {
-        uiManager.ToggleCrosshair(!status);
-        
         if (status)
         {
             startingLayerWeight = pe.CurrentAnimator.GetLayerWeight(1);
@@ -83,6 +81,10 @@ public class PlayerAnimator : MonoBehaviour
             startingLayerWeight = pe.CurrentAnimator.GetLayerWeight(1);
             targetLayerWeight = 0.0f;
         }
+        
+        uiManager.ToggleCrosshair(!status);
+
+        if (pe.CurrentWeapon.hasScope) Player.instance.Camera.ToggleZoom(status);
         
         pe.CurrentAnimator.SetBool(aimingAnimHash, status);
     }

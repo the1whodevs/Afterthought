@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public PlayerController Controller { get; private set; }
     
     public PlayerHealth Health { get; private set; }
+    
+    public MouseCamera Camera { get; private set; }
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
         Animator = GetComponent<PlayerAnimator>();
         Controller = GetComponent<PlayerController>();
         Health = GetComponent<PlayerHealth>();
+        Camera = GetComponentInChildren<MouseCamera>();
         
         instance = this;
     }

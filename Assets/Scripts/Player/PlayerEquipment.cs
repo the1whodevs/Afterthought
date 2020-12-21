@@ -256,7 +256,9 @@ public class PlayerEquipment : MonoBehaviour
         }
         
         CurrentWeapon = weaponToEquip;
+        isReloading = false;
         SetAmmoUI();
         CurrentAnimator = CurrentWeaponObject.GetComponent<Animator>();
+        Player.instance.Camera.currentZoom = CurrentWeapon.scopeZoom;
     }
 }
