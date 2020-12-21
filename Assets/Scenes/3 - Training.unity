@@ -1798,6 +1798,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.289
       objectReference: {fileID: 0}
+    - target: {fileID: 6245687095845613475, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
+        type: 3}
+      propertyPath: CombatTabNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245687095845613475, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
+        type: 3}
+      propertyPath: TemperamentTabNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245687095845613475, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
+        type: 3}
+      propertyPath: TabNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245687095845613475, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
+        type: 3}
+      propertyPath: DetectionTagsTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245687095845613475, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
+        type: 3}
+      propertyPath: MaxChaseDistanceTypeRef
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245687095845613475, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
+        type: 3}
+      propertyPath: PickTargetMethodRef
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245687095845613475, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.x
+      value: 32.316174
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245687095845613475, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.z
+      value: 2.3166714
+      objectReference: {fileID: 0}
     - target: {fileID: 6245687095845613531, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
         type: 3}
       propertyPath: m_Name
@@ -1806,7 +1846,7 @@ PrefabInstance:
     - target: {fileID: 6245687095845613531, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bb1cf378562a6c46a0f661d1c5e57a6, type: 3}
@@ -2236,7 +2276,7 @@ PrefabInstance:
     - target: {fileID: 3545882219019358135, guid: a4d4c051e8bef0148992abc92ba9b089,
         type: 3}
       propertyPath: CombatTabNumber
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3545882219019358135, guid: a4d4c051e8bef0148992abc92ba9b089,
         type: 3}
@@ -2261,7 +2301,7 @@ PrefabInstance:
     - target: {fileID: 3545882219019358143, guid: a4d4c051e8bef0148992abc92ba9b089,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4d4c051e8bef0148992abc92ba9b089, type: 3}

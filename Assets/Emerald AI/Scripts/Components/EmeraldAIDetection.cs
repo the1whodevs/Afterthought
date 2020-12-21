@@ -44,7 +44,10 @@ namespace EmeraldAI.Utility
 
         void Start()
         {
-            EmeraldComponent = GetComponent<EmeraldAISystem>();
+            if (EmeraldComponent is null)
+            {
+                EmeraldComponent = GetComponent<EmeraldAISystem>();
+            }
         }
 
         void Update()
@@ -873,7 +876,12 @@ namespace EmeraldAI.Utility
         //Once found, use Emerald's custom tag system to find matches for potential targets. Once found, apply them to a list for potential targets.
         //Finally, search through each target in the list and set the nearest one as our current target.
         public void SearchForTarget ()
-        {        
+        {
+            if (EmeraldComponent is null)
+            {
+                EmeraldComponent = GetComponent<EmeraldAISystem>();
+            }
+            
             Collider[] Col = Physics.OverlapSphere(transform.position, EmeraldComponent.DetectionRadius, EmeraldComponent.DetectionLayerMask);
             EmeraldComponent.CollidersInArea = Col;
 
