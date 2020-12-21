@@ -486,6 +486,18 @@ PrefabInstance:
       propertyPath: brushes.Array.data[0].size
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1150539345, guid: 9c1ab207236bbc647ae9e887cedf9c8c, type: 3}
+      propertyPath: impactSoundFx.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150539345, guid: 9c1ab207236bbc647ae9e887cedf9c8c, type: 3}
+      propertyPath: impactSoundFx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68755cda7d693714aabb46ea76fe91f6, type: 3}
+    - target: {fileID: 1150539345, guid: 9c1ab207236bbc647ae9e887cedf9c8c, type: 3}
+      propertyPath: impactSoundFx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1315794e8a7e6c14da7c70a8375a8633, type: 3}
     - target: {fileID: 736898705509230729, guid: 9c1ab207236bbc647ae9e887cedf9c8c,
         type: 3}
       propertyPath: m_Name
@@ -560,6 +572,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1324468749, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab, type: 3}
+      propertyPath: impactSoundFx.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324468749, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab, type: 3}
+      propertyPath: impactSoundFx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68755cda7d693714aabb46ea76fe91f6, type: 3}
+    - target: {fileID: 1324468749, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab, type: 3}
+      propertyPath: impactSoundFx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1315794e8a7e6c14da7c70a8375a8633, type: 3}
     - target: {fileID: 1925043126, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab, type: 3}
       propertyPath: brushes.Array.data[0].size
       value: 0.1
@@ -1341,6 +1365,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1103786611, guid: da9a0fac6e5b27942a8465d513b19510, type: 3}
+      propertyPath: impactSoundFx.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1103786611, guid: da9a0fac6e5b27942a8465d513b19510, type: 3}
+      propertyPath: impactSoundFx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68755cda7d693714aabb46ea76fe91f6, type: 3}
+    - target: {fileID: 1103786611, guid: da9a0fac6e5b27942a8465d513b19510, type: 3}
+      propertyPath: impactSoundFx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1315794e8a7e6c14da7c70a8375a8633, type: 3}
     - target: {fileID: 1727124799, guid: da9a0fac6e5b27942a8465d513b19510, type: 3}
       propertyPath: brushes.Array.data[0].size
       value: 0.1
@@ -1749,12 +1785,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2037876478, guid: 8bb1cf378562a6c46a0f661d1c5e57a6, type: 3}
       propertyPath: impactSoundFx.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2037876478, guid: 8bb1cf378562a6c46a0f661d1c5e57a6, type: 3}
       propertyPath: impactSoundFx.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: f6ea411a0b8c4164c965535ca5b867b5, type: 3}
+      objectReference: {fileID: 8300000, guid: 68755cda7d693714aabb46ea76fe91f6, type: 3}
+    - target: {fileID: 2037876478, guid: 8bb1cf378562a6c46a0f661d1c5e57a6, type: 3}
+      propertyPath: impactSoundFx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1315794e8a7e6c14da7c70a8375a8633, type: 3}
     - target: {fileID: 686296176059669484, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -4155,6 +4195,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orc_04
       objectReference: {fileID: 0}
+    - target: {fileID: 6245687095845613531, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6245687095857177247, guid: 8bb1cf378562a6c46a0f661d1c5e57a6,
         type: 3}
       propertyPath: m_AABB.m_Center.x
@@ -4342,7 +4387,7 @@ PrefabInstance:
         type: 3}
       propertyPath: loadout
       value: 
-      objectReference: {fileID: 11400000, guid: 81266827382e34145a8a194e85d70036,
+      objectReference: {fileID: 11400000, guid: 52761ba539549684ba93fac88dcb19f7,
         type: 2}
     - target: {fileID: 5352462671224431783, guid: db3bebf4467f23e4895faf7ceb571c5f,
         type: 3}
@@ -4403,6 +4448,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 551578112, guid: 7b5d0d4b97d070a4d9374828112cb0f8, type: 3}
+      propertyPath: impactSoundFx.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 551578112, guid: 7b5d0d4b97d070a4d9374828112cb0f8, type: 3}
+      propertyPath: impactSoundFx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68755cda7d693714aabb46ea76fe91f6, type: 3}
+    - target: {fileID: 551578112, guid: 7b5d0d4b97d070a4d9374828112cb0f8, type: 3}
+      propertyPath: impactSoundFx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1315794e8a7e6c14da7c70a8375a8633, type: 3}
     - target: {fileID: 753739865, guid: 7b5d0d4b97d070a4d9374828112cb0f8, type: 3}
       propertyPath: brushes.Array.data[0].size
       value: 0.1
@@ -4604,6 +4661,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 128654102, guid: a4d4c051e8bef0148992abc92ba9b089, type: 3}
+      propertyPath: impactSoundFx.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 128654102, guid: a4d4c051e8bef0148992abc92ba9b089, type: 3}
+      propertyPath: impactSoundFx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68755cda7d693714aabb46ea76fe91f6, type: 3}
+    - target: {fileID: 128654102, guid: a4d4c051e8bef0148992abc92ba9b089, type: 3}
+      propertyPath: impactSoundFx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1315794e8a7e6c14da7c70a8375a8633, type: 3}
     - target: {fileID: 2101231912, guid: a4d4c051e8bef0148992abc92ba9b089, type: 3}
       propertyPath: brushes.Array.data[0].size
       value: 0.1
@@ -5103,6 +5172,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 358967788, guid: 13b51bd3616e2474c84fc9f427a53c59, type: 3}
+      propertyPath: impactSoundFx.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 358967788, guid: 13b51bd3616e2474c84fc9f427a53c59, type: 3}
+      propertyPath: impactSoundFx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68755cda7d693714aabb46ea76fe91f6, type: 3}
+    - target: {fileID: 358967788, guid: 13b51bd3616e2474c84fc9f427a53c59, type: 3}
+      propertyPath: impactSoundFx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1315794e8a7e6c14da7c70a8375a8633, type: 3}
     - target: {fileID: 1952741970, guid: 13b51bd3616e2474c84fc9f427a53c59, type: 3}
       propertyPath: brushes.Array.data[0].size
       value: 0.1
@@ -5217,6 +5298,18 @@ PrefabInstance:
       propertyPath: brushes.Array.data[0].size
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1978807288, guid: ba0d7dd1987c1dc4eb6d2e0d139eaf44, type: 3}
+      propertyPath: impactSoundFx.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978807288, guid: ba0d7dd1987c1dc4eb6d2e0d139eaf44, type: 3}
+      propertyPath: impactSoundFx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68755cda7d693714aabb46ea76fe91f6, type: 3}
+    - target: {fileID: 1978807288, guid: ba0d7dd1987c1dc4eb6d2e0d139eaf44, type: 3}
+      propertyPath: impactSoundFx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1315794e8a7e6c14da7c70a8375a8633, type: 3}
     - target: {fileID: 7003820357193712263, guid: ba0d7dd1987c1dc4eb6d2e0d139eaf44,
         type: 3}
       propertyPath: m_Name
@@ -5981,6 +6074,18 @@ PrefabInstance:
       propertyPath: brushes.Array.data[0].size
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 2015024096, guid: efdf00008e3126a43850bffec66552bf, type: 3}
+      propertyPath: impactSoundFx.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015024096, guid: efdf00008e3126a43850bffec66552bf, type: 3}
+      propertyPath: impactSoundFx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68755cda7d693714aabb46ea76fe91f6, type: 3}
+    - target: {fileID: 2015024096, guid: efdf00008e3126a43850bffec66552bf, type: 3}
+      propertyPath: impactSoundFx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1315794e8a7e6c14da7c70a8375a8633, type: 3}
     - target: {fileID: 6810066460756768783, guid: efdf00008e3126a43850bffec66552bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6074,6 +6179,18 @@ PrefabInstance:
       propertyPath: brushes.Array.data[0].size
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1283162486, guid: 6ec5f2ab060624841aad5c66861a45a9, type: 3}
+      propertyPath: impactSoundFx.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283162486, guid: 6ec5f2ab060624841aad5c66861a45a9, type: 3}
+      propertyPath: impactSoundFx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68755cda7d693714aabb46ea76fe91f6, type: 3}
+    - target: {fileID: 1283162486, guid: 6ec5f2ab060624841aad5c66861a45a9, type: 3}
+      propertyPath: impactSoundFx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1315794e8a7e6c14da7c70a8375a8633, type: 3}
     - target: {fileID: 4190687466968714646, guid: 6ec5f2ab060624841aad5c66861a45a9,
         type: 3}
       propertyPath: m_Name
@@ -7757,6 +7874,18 @@ PrefabInstance:
       propertyPath: brushes.Array.data[0].size
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 789261327, guid: dbce0cbe24fdcaa429f7412ee1150cbb, type: 3}
+      propertyPath: impactSoundFx.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 789261327, guid: dbce0cbe24fdcaa429f7412ee1150cbb, type: 3}
+      propertyPath: impactSoundFx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68755cda7d693714aabb46ea76fe91f6, type: 3}
+    - target: {fileID: 789261327, guid: dbce0cbe24fdcaa429f7412ee1150cbb, type: 3}
+      propertyPath: impactSoundFx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1315794e8a7e6c14da7c70a8375a8633, type: 3}
     - target: {fileID: 8056953519001504458, guid: dbce0cbe24fdcaa429f7412ee1150cbb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8004,6 +8133,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 37687196, guid: ad5d29dbf92aa02468ac73b29b136a79, type: 3}
+      propertyPath: impactSoundFx.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 37687196, guid: ad5d29dbf92aa02468ac73b29b136a79, type: 3}
+      propertyPath: impactSoundFx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68755cda7d693714aabb46ea76fe91f6, type: 3}
+    - target: {fileID: 37687196, guid: ad5d29dbf92aa02468ac73b29b136a79, type: 3}
+      propertyPath: impactSoundFx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1315794e8a7e6c14da7c70a8375a8633, type: 3}
     - target: {fileID: 231785172, guid: ad5d29dbf92aa02468ac73b29b136a79, type: 3}
       propertyPath: brushes.Array.data[0].size
       value: 0.1
@@ -8925,6 +9066,18 @@ PrefabInstance:
       propertyPath: brushes.Array.data[0].size
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1060335091, guid: ebb63f3ba0dc600438f0a5bca787f67a, type: 3}
+      propertyPath: impactSoundFx.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1060335091, guid: ebb63f3ba0dc600438f0a5bca787f67a, type: 3}
+      propertyPath: impactSoundFx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 68755cda7d693714aabb46ea76fe91f6, type: 3}
+    - target: {fileID: 1060335091, guid: ebb63f3ba0dc600438f0a5bca787f67a, type: 3}
+      propertyPath: impactSoundFx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1315794e8a7e6c14da7c70a8375a8633, type: 3}
     - target: {fileID: 8561265463939759419, guid: ebb63f3ba0dc600438f0a5bca787f67a,
         type: 3}
       propertyPath: m_LocalPosition.x
