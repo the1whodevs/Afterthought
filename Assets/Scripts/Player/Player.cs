@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     public PlayerEquipment Equipment { get; private set; }
     
     public PlayerController Controller { get; private set; }
+    
+    public PlayerHealth Health { get; private set; }
 
     private void Awake()
     {
@@ -16,6 +18,7 @@ public class Player : MonoBehaviour
         Equipment = GetComponent<PlayerEquipment>();
         Animator = GetComponent<PlayerAnimator>();
         Controller = GetComponent<PlayerController>();
+        Health = GetComponent<PlayerHealth>();
         
         instance = this;
     }
