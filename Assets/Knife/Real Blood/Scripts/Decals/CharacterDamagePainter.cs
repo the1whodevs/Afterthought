@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Knife.RealBlood.Decals
 {
@@ -61,6 +62,14 @@ namespace Knife.RealBlood.Decals
         public void Paint(Vector3 point, Vector3 normal, int brushID)
         {
             var brush = brushes[brushID];
+            for (int i = 0; i < projectingRenderers.Length; i++)
+            {
+                DecalsProjector.Instance.Project(point, normal.normalized, projectingRenderers[i].TargetRenderer, brush.Brush, renderTextures[i], brush.Size, zDepth);
+            }
+        }
+        public void Paint(Vector3 point, Vector3 normal)
+        {
+            var brush = brushes[Random.Range(0,brushes.Length)];
             for (int i = 0; i < projectingRenderers.Length; i++)
             {
                 DecalsProjector.Instance.Project(point, normal.normalized, projectingRenderers[i].TargetRenderer, brush.Brush, renderTextures[i], brush.Size, zDepth);

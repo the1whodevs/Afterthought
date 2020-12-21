@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using EmeraldAI;
 using JetBrains.Annotations;
+using Knife.RealBlood.Decals;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -100,9 +101,11 @@ public class PlayerEquipment : MonoBehaviour
                 // Otherwise just spawn a bullet hole.
                 else
                 {
+                    var cdp = hit.transform.GetComponent<CharacterDamagePainter>();
                     var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
 
                     if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
+                    if (!cdp) cdp = hit.transform.GetComponentInParent<CharacterDamagePainter>();
                     
                     Destroy(
                         hitSurfaceInfo
@@ -111,12 +114,21 @@ public class PlayerEquipment : MonoBehaviour
                             : Instantiate(CurrentWeapon.hitImpact, hit.point, Quaternion.LookRotation(hit.normal),
                                 null), bulletHoleLifetime);
                     
-                    Destroy(
-                        hitSurfaceInfo
-                            ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                                hit.transform)
-                            : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                                null), bulletHoleLifetime);
+                    if (cdp)
+                    {
+                        cdp.Paint(hit.point,hit.normal);
+                    }
+                    else
+                    {
+                        Destroy(
+                            hitSurfaceInfo
+                                ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
+                                    hit.transform)
+                                : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
+                                    null), bulletHoleLifetime);
+                    }
+                    
+
                 }
                 break;
             
