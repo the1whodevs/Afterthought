@@ -126,7 +126,7 @@ public class PlayerEquipment : MonoBehaviour
                                     null), bulletHoleLifetime);
                     }
                     
-
+                    if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
                 }
                 break;
             
