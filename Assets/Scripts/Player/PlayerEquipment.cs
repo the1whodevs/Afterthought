@@ -112,6 +112,10 @@ public class PlayerEquipment : MonoBehaviour
                         var cdp = hit.transform.GetComponent<CharacterDamagePainter>();
                         var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
 
+                        var hitRb = hit.rigidbody;
+
+                        if (hitRb) hitRb.AddForce(-hit.normal * 100.0f, ForceMode.Impulse);
+                        
                         if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
                         if (!cdp) cdp = hit.transform.GetComponentInParent<CharacterDamagePainter>();
                         
