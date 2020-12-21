@@ -19,9 +19,10 @@ MonoBehaviour:
   projectilePrefab: {fileID: 0}
   muzzleEffect: {fileID: 7958611645855860114, guid: 450c45a3a6df0dd4588e00392426c70f,
     type: 3}
-  reloadAudioFx: {fileID: 0}
+  reloadAudioFx: {fileID: 8300000, guid: 6a4096ee8cbe1a441b8a2b114e9e6be9, type: 3}
   emptyClipAudioFx: {fileID: 8300000, guid: 7a451d3ef76a4c948b1c97f5441d680e, type: 3}
-  shotAudioFx: []
+  shotAudioFx:
+  - {fileID: 8300000, guid: ff3632769834f53428158bf43c944da1, type: 3}
   hitImpact: {fileID: 7258679735602562002, guid: 608cb554bb30cb746956424c326042ca,
     type: 3}
   hitDecal:
@@ -36,6 +37,7 @@ MonoBehaviour:
   projectileSpeed: 100
   weaponDamage: 20
   fireRate: 3
+  shootAudioPitch: 2
   reloadSpeed: 1
   mobilityPenalty: 0.4
   adsMultiplier: 1
