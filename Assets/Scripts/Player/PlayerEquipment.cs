@@ -77,8 +77,6 @@ public class PlayerEquipment : MonoBehaviour
 
     public void TryDealDamage()
     {
-        Debug.Log("Equipment TryDealDamage");
-        
         const float bulletHoleLifetime = 10.0f;
         const float projectileLifetime = 60.0f;
 
@@ -188,7 +186,6 @@ public class PlayerEquipment : MonoBehaviour
 
     public void Muzzle()
     {
-        Debug.Log("Equipment Muzzle");
         const float muzzleLifetime = 2.0f;
         Destroy(Instantiate(CurrentWeapon.muzzleEffect, firePoint.position, firePoint.rotation, null), muzzleLifetime);
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -39,9 +38,6 @@ public class PlayerController : MonoBehaviour
     
      private PlayerAnimator pa;
      private PlayerEquipment pe;
-
-     private int timesToFire = 0;
-     private float leftOverTimer = 0.0f;
      
      [System.Serializable]
      public class PlayerStandState
@@ -89,35 +85,22 @@ public class PlayerController : MonoBehaviour
          {
              if (pe.CurrentWeapon.weaponType == WeaponData.WeaponType.Melee)
              {
-                 if (attackInterval >= dTime)
-                 {
-                     timesToFire = 1;
-                     attackTimer = 0.0f;
-                 }
-                 else
-                 {
-                     timesToFire = Mathf.FloorToInt(attackTimer / attackInterval);
-                     attackTimer = (attackTimer / attackInterval) - timesToFire;
-                     Debug.LogError("Attack melee " + (attackTimer / attackInterval));
-                 }
-
-                 StartCoroutine(AttackMelee(timesToFire));
+                 attackTimer = 0.0f;
+                 pa.Fire();
              }
              else
              {
-                 if (attackInterval >= dTime)
+                 if (pe.CurrentWeapon.currentAmmo > 0)
                  {
-                     timesToFire = 1;
+                     pe.CurrentWeapon.currentAmmo--;
                      attackTimer = 0.0f;
+                     pa.Fire();
                  }
                  else
                  {
-                     timesToFire = Mathf.FloorToInt(attackTimer / attackInterval);
-                     attackTimer = (attackTimer / attackInterval) - timesToFire;
-                     Debug.LogError("Attack non melee " + (attackTimer / attackInterval));
+                     pa.ResetAttack();
+                     pe.PlayEmptyClipSound();
                  }
-                 
-                 StartCoroutine(AttackNonMelee(timesToFire));
              }
          }
          else if (!fire) pa.ResetAttack();
@@ -126,47 +109,6 @@ public class PlayerController : MonoBehaviour
              pe.Reload();
          
          pa.AimDownSights(!pe.IsReloading && aim);
-     }
-
-     private IEnumerator AttackNonMelee(int timesToFire)
-     {
-         var fireCount = timesToFire;
-         const float waitTimeBetweenFire = 0.0005f;
-         
-         while (fireCount > 0)
-         {
-             if (pe.CurrentWeapon.currentAmmo > 0)
-             {
-                 pe.SetAmmoUI();
-                 pe.CurrentWeapon.currentAmmo--;
-                     
-                 pe.Muzzle();
-                 pe.TryDealDamage();
-                 pa.Fire();
-             }
-             else
-             {
-                 pa.ResetAttack();
-                 pe.PlayEmptyClipSound();
-             }
-             
-             fireCount--;
-             yield return new WaitForSeconds(waitTimeBetweenFire);
-         }
-     }
-
-     private IEnumerator AttackMelee(int timesToFire)
-     {
-         var fireCount = timesToFire;
-         const float waitTimeBetweenFire = 0.0005f;
-         
-         while (fireCount > 0)
-         {
-             pe.TryDealDamage();
-             pa.Fire();
-             fireCount--;
-             yield return new WaitForSeconds(waitTimeBetweenFire);
-         }
      }
     
      private void MoveControls(float dTime)
