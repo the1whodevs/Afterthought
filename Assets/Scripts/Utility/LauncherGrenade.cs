@@ -1,6 +1,8 @@
-﻿using EmeraldAI;
+﻿using System;
+using EmeraldAI;
 using Knife.RealBlood.Decals;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LauncherGrenade : MonoBehaviour
 {
@@ -13,11 +15,11 @@ public class LauncherGrenade : MonoBehaviour
     {
         launcherData = weaponData;
     }
-
+    
     private void OnCollisionEnter(Collision other)
     {
         var contact = other.GetContact(0);
-        
+
         // Spawn explosion.
         Destroy(Instantiate(launcherData.hitImpact, contact.point, Quaternion.LookRotation(-contact.normal), null), PlayerEquipment.BULLET_HOLE_LIFETIME);
 

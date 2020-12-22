@@ -5,6 +5,8 @@ using Random = UnityEngine.Random;
 
 public class CrossbowBolt : MonoBehaviour
 {
+    [SerializeField] private float hitOffset = 0.1f;
+    
     private WeaponData CurrentWeapon;
     private Vector3 startPos;
     private Rigidbody arrowBody;
@@ -84,6 +86,7 @@ public class CrossbowBolt : MonoBehaviour
         var trail = GetComponentInChildren<TrailRenderer>().gameObject;
         Destroy(trail);
         arrowBody.isKinematic = true;
+        transform.position += transform.forward * hitOffset;
         GetComponent<Collider>().enabled = false;
         Destroy(this);
     }
@@ -109,6 +112,7 @@ public class CrossbowBolt : MonoBehaviour
         }
         
         transform.SetParent(colliderHit.transform,true);
+        transform.position += transform.forward * hitOffset;
         arrowBody.isKinematic = true;
         GetComponent<Collider>().enabled = false;
         Destroy(this);
