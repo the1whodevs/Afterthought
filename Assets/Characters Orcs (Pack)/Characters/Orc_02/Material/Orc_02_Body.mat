@@ -104,6 +104,7 @@ Material:
     - _BlendEnd: 1
     - _BlendStart: 0
     - _BumpScale: 1
+    - _Cull: 0
     - _Cutoff: 0.01
     - _DamageAmbientOcclusionAmount: 1
     - _DamageBorderLength: 1
@@ -119,6 +120,7 @@ Material:
     - _ExplosionBlend: 0
     - _ExplosionSphereRadius: 1.26
     - _ExplosionUniformScale: 0.17
+    - _FresnelPower: 7.02
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -139,8 +141,12 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _Color: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
+    - _BoxDims: {r: 5, g: 5, b: 5, a: 1}
+    - _Color: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
     - _DamageBorderColor: {r: 0.42452827, g: 0.24639964, b: 0, a: 1}
     - _DamageColor: {r: 0.5943396, g: 0.35347563, b: 0, a: 1}
+    - _Emission1: {r: 2.56, g: 0, b: 0, a: 1}
+    - _Emission2: {r: 0, g: 1.95, b: 2.52, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ExplosionCenter: {r: 0, g: 0, b: -1, a: 0}
+    - _ScrollDirection: {r: 0, g: 0, b: 0, a: 0}
