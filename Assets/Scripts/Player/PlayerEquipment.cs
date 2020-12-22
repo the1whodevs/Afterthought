@@ -39,7 +39,7 @@ public class PlayerEquipment : MonoBehaviour
 
     [SerializeField] private AudioSource gunFireAudioSource;
     [SerializeField] private AudioSource gunEmptyClipAudioSource;
-    
+
     private Camera playerCamera;
     
     private PlayerAnimator pa;
@@ -48,9 +48,11 @@ public class PlayerEquipment : MonoBehaviour
 
     private Transform firePoint;
 
-    private const float MAX_FIRE_DIST = 1000.0f;
-    private const float MAX_MELEE_DIST = 1.5f;
-    public const float BULLET_HOLE_LIFETIME = 10.0f;
+    private const int SHOTGUN_PELLETS = 15;
+    
+    private const float SHOTGUN_PELLET_VARIANCE = 5.0f;
+    
+    public const float BulletHoleLifetime = 10.0f;
 
     private bool isReloading;
 
@@ -92,135 +94,236 @@ public class PlayerEquipment : MonoBehaviour
         switch (CurrentWeapon.weaponType)
         {
             case WeaponData.WeaponType.Firearm:
-
+                
                 var repeat = fireType == WeaponData.FireType.Burst ? Player.instance.Controller.BurstFireCount : 1;
-
+                var isShotgun = CurrentWeapon.isShotgun;
+                
                 for (var i = 0; i < repeat; i++)
                 {
-                    SetAmmoUI();
-                    var ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-                    
-                    if (!Physics.Raycast(ray, out var hit, MAX_FIRE_DIST, hitScanLayerMask)) return;
-                    
-                    //Debug.DrawLine(ray.origin, hit.point, Color.blue, 1.0f, true);
-                    var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
-                    
-                    // If we hit an AI, damage it.
-                    if (emeraldAIsys && emeraldAIsys.enabled) emeraldAIsys.Damage((int)CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
-                    // Otherwise just spawn a bullet hole.
+                    if (isShotgun)
+                    {
+                        ShotgunFirearmDamage();
+                    }
                     else
                     {
-                        var cdp = hit.transform.GetComponent<CharacterDamagePainter>();
-                        var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
-
-                        var hitRb = hit.rigidbody;
-
-                        if (hitRb) hitRb.AddForce(-hit.normal * 100.0f, ForceMode.Impulse);
-                        
-                        if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
-                        if (!cdp) cdp = hit.transform.GetComponentInParent<CharacterDamagePainter>();
-                        
-                        Destroy(
-                            hitSurfaceInfo
-                                ? Instantiate(hitSurfaceInfo.hitEffect, hit.point, Quaternion.LookRotation(hit.normal),
-                                    hit.transform)
-                                : Instantiate(CurrentWeapon.hitImpact, hit.point, Quaternion.LookRotation(hit.normal),
-                                    null), BULLET_HOLE_LIFETIME);
-                        
-                        if (cdp)
-                        {
-                            cdp.Paint(hit.point,hit.normal);
-                        }
-                        else
-                        {
-                            Destroy(
-                                hitSurfaceInfo
-                                    ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                                        hit.transform)
-                                    : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                                        null), BULLET_HOLE_LIFETIME);
-                        }
-                        
-                        if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
+                        // This is false when raycast does not hit.
+                        if (!NonShotgunFirearmDamage()) return;
                     }
-
+                    
                     await Task.Delay(DELAY_BETWEEN_BURSTS);
                 }
                 
                 break;
             
             case WeaponData.WeaponType.Projectile:
-                SetAmmoUI();
-                var lookRot = Quaternion.LookRotation(firePoint.forward);
-                var bullet = Instantiate(CurrentWeapon.projectilePrefab, firePoint.position, lookRot, null);
-                bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * CurrentWeapon.projectileSpeed, ForceMode.Impulse);
-                
-                var crossbowBolt = bullet.GetComponent<CrossbowBolt>();
-                if (crossbowBolt) crossbowBolt.Init(CurrentWeapon,transform.position);
-
-                var launcherGrenade = bullet.GetComponent<LauncherGrenade>();
-                if (launcherGrenade) launcherGrenade.Init(CurrentWeapon);
-                
-                Destroy(bullet, projectileLifetime);
+                ProjectileDamage(projectileLifetime);
                 break;
             
             case WeaponData.WeaponType.Melee:
-                 var meleeRay = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-                    
-                    if (!Physics.Raycast(meleeRay, out var meleeHit, MAX_MELEE_DIST, hitScanLayerMask)) return;
-                    
-                    Debug.DrawLine(meleeRay.origin, meleeHit.point, Color.blue, 1.0f, true);
-                    var emeraldAISystem = meleeHit.transform.GetComponent<EmeraldAISystem>();
-                    
-                    // If we hit an AI, damage it.
-                    if (emeraldAISystem && emeraldAISystem.enabled) emeraldAISystem.Damage((int)CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
-                 // Otherwise just spawn a bullet hole.
-                 else
-                 {
-                     var cdp = meleeHit.transform.GetComponent<CharacterDamagePainter>();
-                     var hitSurfaceInfo = meleeHit.transform.GetComponent<HitSurfaceInfo>();
-
-                     var hitRb = meleeHit.rigidbody;
-
-                     if (hitRb) hitRb.AddForce(-meleeHit.normal * 100.0f, ForceMode.Impulse);
-
-                     if (!hitSurfaceInfo) hitSurfaceInfo = meleeHit.transform.GetComponentInParent<HitSurfaceInfo>();
-                     if (!cdp) cdp = meleeHit.transform.GetComponentInParent<CharacterDamagePainter>();
-
-                     Destroy(
-                         hitSurfaceInfo
-                             ? Instantiate(hitSurfaceInfo.hitEffect, meleeHit.point,
-                                 Quaternion.LookRotation(meleeHit.normal),
-                                 meleeHit.transform)
-                             : Instantiate(CurrentWeapon.hitImpact, meleeHit.point,
-                                 Quaternion.LookRotation(meleeHit.normal),
-                                 null), BULLET_HOLE_LIFETIME);
-
-                     if (cdp)
-                     {
-                         cdp.Paint(meleeHit.point, meleeHit.normal);
-                     }
-                     else
-                     {
-                         Destroy(
-                             hitSurfaceInfo
-                                 ? Instantiate(hitSurfaceInfo.RandomHitDecal,
-                                     meleeHit.point + meleeHit.normal * Random.Range(0.001f, 0.002f),
-                                     Quaternion.LookRotation(meleeHit.normal),
-                                     meleeHit.transform)
-                                 : Instantiate(CurrentWeapon.RandomHitDecal,
-                                     meleeHit.point + meleeHit.normal * Random.Range(0.001f, 0.002f),
-                                     Quaternion.LookRotation(meleeHit.normal),
-                                     null), BULLET_HOLE_LIFETIME);
-                     }
-
-                     if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
-                     //CurrentWeaponObject.GetComponentInChildren<Collider>().enabled = true;
-                 }
+                 MeleeDamage();
                  break;
+            
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    private void MeleeDamage()
+    {
+        var meleeRay = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+
+        Debug.DrawLine(meleeRay.origin, meleeRay.direction * CurrentWeapon.maxRange, Color.blue, 1.0f, true);
+
+        if (!Physics.Raycast(meleeRay, out var meleeHit, CurrentWeapon.maxRange, hitScanLayerMask)) return;
+
+        var emeraldAISystem = meleeHit.transform.GetComponent<EmeraldAISystem>();
+
+        // If we hit an AI, damage it.
+        if (emeraldAISystem && emeraldAISystem.enabled)
+            emeraldAISystem.Damage((int) CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
+        // Otherwise just spawn a bullet hole.
+        else
+        {
+            var cdp = meleeHit.transform.GetComponent<CharacterDamagePainter>();
+            var hitSurfaceInfo = meleeHit.transform.GetComponent<HitSurfaceInfo>();
+
+            var hitRb = meleeHit.rigidbody;
+
+            if (hitRb) hitRb.AddForce(-meleeHit.normal * 100.0f, ForceMode.Impulse);
+
+            if (!hitSurfaceInfo) hitSurfaceInfo = meleeHit.transform.GetComponentInParent<HitSurfaceInfo>();
+            if (!cdp) cdp = meleeHit.transform.GetComponentInParent<CharacterDamagePainter>();
+
+            Destroy(
+                hitSurfaceInfo
+                    ? Instantiate(hitSurfaceInfo.hitEffect, meleeHit.point,
+                        Quaternion.LookRotation(meleeHit.normal),
+                        meleeHit.transform)
+                    : Instantiate(CurrentWeapon.hitImpact, meleeHit.point,
+                        Quaternion.LookRotation(meleeHit.normal),
+                        null), BulletHoleLifetime);
+
+            if (cdp)
+            {
+                cdp.Paint(meleeHit.point, meleeHit.normal);
+            }
+            else
+            {
+                Destroy(
+                    hitSurfaceInfo
+                        ? Instantiate(hitSurfaceInfo.RandomHitDecal,
+                            meleeHit.point + meleeHit.normal * Random.Range(0.001f, 0.002f),
+                            Quaternion.LookRotation(meleeHit.normal),
+                            meleeHit.transform)
+                        : Instantiate(CurrentWeapon.RandomHitDecal,
+                            meleeHit.point + meleeHit.normal * Random.Range(0.001f, 0.002f),
+                            Quaternion.LookRotation(meleeHit.normal),
+                            null), BulletHoleLifetime);
+            }
+
+            if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
+        }
+    }
+
+    private void ProjectileDamage(float projectileLifetime)
+    {
+        SetAmmoUI();
+        var lookRot = Quaternion.LookRotation(firePoint.forward);
+        var bullet = Instantiate(CurrentWeapon.projectilePrefab, firePoint.position, lookRot, null);
+        bullet.GetComponent<Rigidbody>()
+            .AddForce(bullet.transform.forward * CurrentWeapon.projectileSpeed, ForceMode.Impulse);
+
+        var crossbowBolt = bullet.GetComponent<CrossbowBolt>();
+        if (crossbowBolt) crossbowBolt.Init(CurrentWeapon, transform.position);
+
+        var launcherGrenade = bullet.GetComponent<LauncherGrenade>();
+        if (launcherGrenade) launcherGrenade.Init(CurrentWeapon);
+
+        Destroy(bullet, projectileLifetime);
+    }
+
+    private void ShotgunFirearmDamage()
+    {
+        SetAmmoUI();
+
+        var distance = CurrentWeapon.minRange;
+
+        var cam = Player.instance.Camera.transform;
+        
+        for (var i = 0; i < SHOTGUN_PELLETS; i++) 
+        {
+            var v3Offset = cam.up * Random.Range(0.0f, SHOTGUN_PELLET_VARIANCE);
+            v3Offset = Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), cam.forward) * v3Offset;
+            
+            // Dir
+            var v3Hit = cam.forward * distance + v3Offset;
+            
+            var ray = new Ray(cam.position, v3Hit);
+            
+            Debug.DrawLine(ray.origin, ray.direction * CurrentWeapon.maxRange, Color.blue, 1.0f, true);
+            
+            if (!Physics.Raycast(ray, out var hit, CurrentWeapon.maxRange, hitScanLayerMask)) continue;
+   
+            var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
+
+            // If we hit an AI, damage it.
+            if (emeraldAIsys && emeraldAIsys.enabled)
+                emeraldAIsys.Damage((int) CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
+            // Otherwise just spawn a bullet hole.
+            else
+            {
+                var cdp = hit.transform.GetComponent<CharacterDamagePainter>();
+                var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
+
+                var hitRb = hit.rigidbody;
+
+                if (hitRb) hitRb.AddForce(-hit.normal * 100.0f, ForceMode.Impulse);
+
+                if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
+                if (!cdp) cdp = hit.transform.GetComponentInParent<CharacterDamagePainter>();
+
+                Destroy(
+                    hitSurfaceInfo
+                        ? Instantiate(hitSurfaceInfo.hitEffect, hit.point, Quaternion.LookRotation(hit.normal),
+                            hit.transform)
+                        : Instantiate(CurrentWeapon.hitImpact, hit.point, Quaternion.LookRotation(hit.normal),
+                            null), BulletHoleLifetime);
+
+                if (cdp)
+                {
+                    cdp.Paint(hit.point, hit.normal);
+                }
+                else
+                {
+                    Destroy(
+                        hitSurfaceInfo
+                            ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
+                                Quaternion.LookRotation(hit.normal),
+                                hit.transform)
+                            : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
+                                Quaternion.LookRotation(hit.normal),
+                                null), BulletHoleLifetime);
+                }
+
+                if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
+            }
+        }
+    }
+    
+    private bool NonShotgunFirearmDamage()
+    {
+        SetAmmoUI();
+        var ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+
+        Debug.DrawLine(ray.origin, ray.direction * CurrentWeapon.maxRange, Color.blue, 1.0f, true);
+
+        if (!Physics.Raycast(ray, out var hit, CurrentWeapon.maxRange, hitScanLayerMask)) return false;
+
+        var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
+
+        // If we hit an AI, damage it.
+        if (emeraldAIsys && emeraldAIsys.enabled)
+            emeraldAIsys.Damage((int) CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
+        // Otherwise just spawn a bullet hole.
+        else
+        {
+            var cdp = hit.transform.GetComponent<CharacterDamagePainter>();
+            var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
+
+            var hitRb = hit.rigidbody;
+
+            if (hitRb) hitRb.AddForce(-hit.normal * 100.0f, ForceMode.Impulse);
+
+            if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
+            if (!cdp) cdp = hit.transform.GetComponentInParent<CharacterDamagePainter>();
+
+            Destroy(
+                hitSurfaceInfo
+                    ? Instantiate(hitSurfaceInfo.hitEffect, hit.point, Quaternion.LookRotation(hit.normal),
+                        hit.transform)
+                    : Instantiate(CurrentWeapon.hitImpact, hit.point, Quaternion.LookRotation(hit.normal),
+                        null), BulletHoleLifetime);
+
+            if (cdp)
+            {
+                cdp.Paint(hit.point, hit.normal);
+            }
+            else
+            {
+                Destroy(
+                    hitSurfaceInfo
+                        ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
+                            Quaternion.LookRotation(hit.normal),
+                            hit.transform)
+                        : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
+                            Quaternion.LookRotation(hit.normal),
+                            null), BulletHoleLifetime);
+            }
+
+            if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
+        }
+
+        return true;
     }
 
     public void SetAmmoUI()

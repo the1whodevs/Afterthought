@@ -59,7 +59,7 @@ public class CrossbowBolt : MonoBehaviour
                     ? Instantiate(hitSurfaceInfo.hitEffect, hit.point, Quaternion.LookRotation(hit.normal),
                         other.transform)
                     : Instantiate(CurrentWeapon.hitImpact, hit.point, Quaternion.LookRotation(hit.normal),
-                        null), PlayerEquipment.BULLET_HOLE_LIFETIME);
+                        null), PlayerEquipment.BulletHoleLifetime);
             
             if (cdp)
             {
@@ -72,7 +72,7 @@ public class CrossbowBolt : MonoBehaviour
                         ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
                             other.transform)
                         : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                            null), PlayerEquipment.BULLET_HOLE_LIFETIME);
+                            null), PlayerEquipment.BulletHoleLifetime);
             }
 
             Stick();
