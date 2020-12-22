@@ -655,6 +655,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab, type: 3}
+--- !u!20 &783756907 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7419696752421820827, guid: db3bebf4467f23e4895faf7ceb571c5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 305737995901622144}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &812627657
 GameObject:
   m_ObjectHideFlags: 0
@@ -4388,6 +4394,11 @@ PrefabInstance:
       propertyPath: zoomSpeed
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 5313642840063794155, guid: db3bebf4467f23e4895faf7ceb571c5f,
+        type: 3}
+      propertyPath: zoomCamera
+      value: 
+      objectReference: {fileID: 783756907}
     - target: {fileID: 5352462671224431783, guid: db3bebf4467f23e4895faf7ceb571c5f,
         type: 3}
       propertyPath: loadout
