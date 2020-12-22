@@ -4,7 +4,8 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(menuName = "Veejay/Weapon", fileName = "Weapon")]
 public class WeaponData : ScriptableObject
 {
-    public enum WeaponType {Firearm, Projectile, Melee}
+    public enum WeaponType { Firearm, Projectile, Melee }
+    
     public enum FireType { FullAuto, Burst, SemiAuto, BoltAction }
 
     public GameObject RandomHitDecal => hitDecal[Random.Range(0, hitDecal.Length)];
@@ -21,6 +22,8 @@ public class WeaponData : ScriptableObject
     public AudioClip reloadAudioFx;
     public AudioClip emptyClipAudioFx;
 
+    public bool isShotgun = false;
+    
     public bool hasScope = false;
     public MouseCamera.ZoomLevels scopeZoom = MouseCamera.ZoomLevels.X4;
     

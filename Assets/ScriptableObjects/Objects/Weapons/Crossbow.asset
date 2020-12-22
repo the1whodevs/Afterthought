@@ -21,6 +21,7 @@ MonoBehaviour:
   muzzleEffect: {fileID: 0}
   reloadAudioFx: {fileID: 8300000, guid: 67c595eb978943144ad06f6707adea58, type: 3}
   emptyClipAudioFx: {fileID: 8300000, guid: 7a451d3ef76a4c948b1c97f5441d680e, type: 3}
+  isShotgun: 0
   hasScope: 0
   scopeZoom: 2
   shotAudioFx:
@@ -36,7 +37,7 @@ MonoBehaviour:
   fireType: 3
   currentAmmo: 1
   magazineCapacity: 1
-  projectileSpeed: 50
+  projectileSpeed: 75
   weaponDamage: 120
   fireRate: 1
   shootAudioPitch: 2
