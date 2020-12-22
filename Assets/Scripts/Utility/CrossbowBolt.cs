@@ -81,7 +81,8 @@ public class CrossbowBolt : MonoBehaviour
 
     private void Stick()
     {
-        //arrowBody.constraints = RigidbodyConstraints.FreezeAll;
+        var trail = GetComponentInChildren<TrailRenderer>().gameObject;
+        Destroy(trail);
         arrowBody.isKinematic = true;
         GetComponent<Collider>().enabled = false;
         Destroy(this);
@@ -89,6 +90,8 @@ public class CrossbowBolt : MonoBehaviour
 
     private void Stick(Collision other)
     {
+        var trail = GetComponentInChildren<TrailRenderer>().gameObject;
+        Destroy(trail);
         var colliders = other.transform.GetComponentsInChildren<Collider>();
         var maxDist = 1000.0f;
         var colliderHit = other.collider;
