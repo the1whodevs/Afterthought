@@ -154,8 +154,13 @@ public class PlayerEquipment : MonoBehaviour
                 var lookRot = Quaternion.LookRotation(firePoint.forward);
                 var bullet = Instantiate(CurrentWeapon.projectilePrefab, firePoint.position, lookRot, null);
                 bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * CurrentWeapon.projectileSpeed, ForceMode.Impulse);
+                
                 var crossbowBolt = bullet.GetComponent<CrossbowBolt>();
                 if (crossbowBolt) crossbowBolt.Init(CurrentWeapon,transform.position);
+
+                var launcherGrenade = bullet.GetComponent<LauncherGrenade>();
+                if (launcherGrenade) launcherGrenade.Init(CurrentWeapon);
+                
                 Destroy(bullet, projectileLifetime);
                 break;
             

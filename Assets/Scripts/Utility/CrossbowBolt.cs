@@ -1,7 +1,6 @@
 ﻿using EmeraldAI;
 using Knife.RealBlood.Decals;
 using UnityEngine;
-using UnityEngine.Analytics;
 using Random = UnityEngine.Random;
 
 public class CrossbowBolt : MonoBehaviour
@@ -17,6 +16,7 @@ public class CrossbowBolt : MonoBehaviour
         CurrentWeapon = weaponData;
         this.startPos = startPosition;
     }
+    
     private void OnCollisionEnter(Collision other)
     {
         var distance = Vector3.Distance(other.transform.position, startPos);
@@ -29,8 +29,8 @@ public class CrossbowBolt : MonoBehaviour
         }
 
         var damage =(int)Mathf.Lerp(CurrentWeapon.weaponDamage, 0.0f, distance / maxRange);
+        
         var emeraldAIsys = other.transform.GetComponent<EmeraldAISystem>();
-
         
         // If we hit an AI, damage it.
         if (emeraldAIsys && emeraldAIsys.enabled)
