@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
      private float attackTimer = 0.0f;
      private float standStateBlend;
 
-     public int BurstFireCount { get; private set; } = 3;
+     public int BurstFireCount { get; } = 3;
      
      // If this is true, the player needs to let go of the fire button, and press it again to fire.
      // e.g. Bolt-action, semi-auto, burst
@@ -144,8 +144,15 @@ public class PlayerController : MonoBehaviour
         }
         else if (isMoving)
         {
-            if (isSprinting && v > 0.0f) CurrentMoveState = PlayerMoveState.Sprint;
-            else CurrentMoveState = isCrouching ? PlayerMoveState.CrouchRun : PlayerMoveState.Run;
+            if (isSprinting && v > 0.0f)
+            {
+                CurrentMoveState = PlayerMoveState.Sprint;
+                isCrouching = false;
+            }
+            else
+            {
+                CurrentMoveState = isCrouching ? PlayerMoveState.CrouchRun : PlayerMoveState.Run;
+            }
         }
         else
         {
