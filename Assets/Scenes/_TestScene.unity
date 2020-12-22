@@ -665,12 +665,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c77d717c81f5fc4ea4c5bb5d7fb9aab, type: 3}
---- !u!20 &783756907 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 7419696752421820827, guid: db3bebf4467f23e4895faf7ceb571c5f,
-    type: 3}
-  m_PrefabInstance: {fileID: 305737995901622144}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &812627657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,10 +1025,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Barrels_02
       objectReference: {fileID: 0}
-    - target: {fileID: 1607394443054077647, guid: 28dac9721771f714b96679113e6c3e2a,
+    - target: {fileID: 2811691713526738102, guid: 28dac9721771f714b96679113e6c3e2a,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_Volume
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811691713526738102, guid: 28dac9721771f714b96679113e6c3e2a,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28dac9721771f714b96679113e6c3e2a, type: 3}
@@ -1367,10 +1366,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Stair_02 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 5860621703064763928, guid: 87daecb988fa0fb4199d5586266d4223,
+    - target: {fileID: 6328449091508702785, guid: 87daecb988fa0fb4199d5586266d4223,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_Volume
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328449091508702785, guid: 87daecb988fa0fb4199d5586266d4223,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87daecb988fa0fb4199d5586266d4223, type: 3}
@@ -1469,6 +1473,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da9a0fac6e5b27942a8465d513b19510, type: 3}
+--- !u!1 &1946535165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1946535166}
+  m_Layer: 0
+  m_Name: CameraHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1946535166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946535165}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 305737996245361440}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1951902505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,10 +1756,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Stair_02
       objectReference: {fileID: 0}
-    - target: {fileID: 5860621703064763928, guid: 87daecb988fa0fb4199d5586266d4223,
+    - target: {fileID: 6328449091508702785, guid: 87daecb988fa0fb4199d5586266d4223,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.957
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328449091508702785, guid: 87daecb988fa0fb4199d5586266d4223,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328449091508702785, guid: 87daecb988fa0fb4199d5586266d4223,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87daecb988fa0fb4199d5586266d4223, type: 3}
@@ -4418,7 +4462,7 @@ PrefabInstance:
         type: 3}
       propertyPath: zoomCamera
       value: 
-      objectReference: {fileID: 783756907}
+      objectReference: {fileID: 7117444383400955419}
     - target: {fileID: 5352462671224431783, guid: db3bebf4467f23e4895faf7ceb571c5f,
         type: 3}
       propertyPath: loadout
@@ -4427,12 +4471,37 @@ PrefabInstance:
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
+--- !u!1 &305737996245361437 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 344274077, guid: db3bebf4467f23e4895faf7ceb571c5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 305737995901622144}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &305737996245361439 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 344274079, guid: db3bebf4467f23e4895faf7ceb571c5f,
     type: 3}
   m_PrefabInstance: {fileID: 305737995901622144}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &305737996245361440 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 344274080, guid: db3bebf4467f23e4895faf7ceb571c5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 305737995901622144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &305737996245361441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305737996245361437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a241cf78bed04481437cd7fb06d0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraTransform: {fileID: 305737996245361440}
 --- !u!4 &325498575366277814
 Transform:
   m_ObjectHideFlags: 0
@@ -8940,6 +9009,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!20 &7117444383400955419 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7419696752421820827, guid: db3bebf4467f23e4895faf7ceb571c5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 305737995901622144}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7160146910376653264
 Transform:
   m_ObjectHideFlags: 0

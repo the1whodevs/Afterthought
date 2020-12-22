@@ -12,12 +12,12 @@ namespace EmeraldAI
     public class EmeraldAIPlayerDamage : MonoBehaviour
     {
         public List<string> ActiveEffects = new List<string>();
-
+        
         public void SendPlayerDamage(int DamageAmount, Transform Target, EmeraldAISystem EmeraldComponent, bool CriticalHit = false)
         {
             //The standard damage function that sends damage to the Emerald AI demo player
             DamagePlayerStandard(DamageAmount);
-
+            
             //Creates damage text on the player's position, if enabled.
             CombatTextSystem.Instance.CreateCombatText(DamageAmount, transform.position, CriticalHit, false, true);
 
@@ -41,6 +41,7 @@ namespace EmeraldAI
                 PlayerHealth.DamagePlayer(DamageAmount);
             }*/
             Player.instance.Health.DamagePlayer(DamageAmount);
+            CameraShake.Instance.ShakeCamera(0.5f,0.5f);
         }
 
         /*
