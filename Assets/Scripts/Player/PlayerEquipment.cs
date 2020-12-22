@@ -50,6 +50,7 @@ public class PlayerEquipment : MonoBehaviour
 
     private const float MAX_FIRE_DIST = 1000.0f;
     private const float MAX_MELEE_DIST = 1.5f;
+    public const float BULLET_HOLE_LIFETIME = 10.0f;
 
     private bool isReloading;
 
@@ -81,7 +82,6 @@ public class PlayerEquipment : MonoBehaviour
 
     public async void TryDealDamage()
     {
-        const float bulletHoleLifetime = 10.0f;
         const float projectileLifetime = 60.0f;
 
         gunFireAudioSource.pitch = CurrentWeapon.shootAudioPitch;
@@ -125,7 +125,7 @@ public class PlayerEquipment : MonoBehaviour
                                 ? Instantiate(hitSurfaceInfo.hitEffect, hit.point, Quaternion.LookRotation(hit.normal),
                                     hit.transform)
                                 : Instantiate(CurrentWeapon.hitImpact, hit.point, Quaternion.LookRotation(hit.normal),
-                                    null), bulletHoleLifetime);
+                                    null), BULLET_HOLE_LIFETIME);
                         
                         if (cdp)
                         {
@@ -138,7 +138,7 @@ public class PlayerEquipment : MonoBehaviour
                                     ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
                                         hit.transform)
                                     : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                                        null), bulletHoleLifetime);
+                                        null), BULLET_HOLE_LIFETIME);
                         }
                         
                         if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
@@ -154,6 +154,8 @@ public class PlayerEquipment : MonoBehaviour
                 var lookRot = Quaternion.LookRotation(firePoint.forward);
                 var bullet = Instantiate(CurrentWeapon.projectilePrefab, firePoint.position, lookRot, null);
                 bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * CurrentWeapon.projectileSpeed, ForceMode.Impulse);
+                var crossbowBolt = bullet.GetComponent<CrossbowBolt>();
+                if (crossbowBolt) crossbowBolt.Init(CurrentWeapon,transform.position);
                 Destroy(bullet, projectileLifetime);
                 break;
             
@@ -187,7 +189,7 @@ public class PlayerEquipment : MonoBehaviour
                                  meleeHit.transform)
                              : Instantiate(CurrentWeapon.hitImpact, meleeHit.point,
                                  Quaternion.LookRotation(meleeHit.normal),
-                                 null), bulletHoleLifetime);
+                                 null), BULLET_HOLE_LIFETIME);
 
                      if (cdp)
                      {
@@ -204,7 +206,7 @@ public class PlayerEquipment : MonoBehaviour
                                  : Instantiate(CurrentWeapon.RandomHitDecal,
                                      meleeHit.point + meleeHit.normal * Random.Range(0.001f, 0.002f),
                                      Quaternion.LookRotation(meleeHit.normal),
-                                     null), bulletHoleLifetime);
+                                     null), BULLET_HOLE_LIFETIME);
                      }
 
                      if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();

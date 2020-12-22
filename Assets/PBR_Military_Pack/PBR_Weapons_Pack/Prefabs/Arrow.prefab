@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23283966957452176}
   - component: {fileID: 8022587326956291403}
   - component: {fileID: 5360731523795550304}
+  - component: {fileID: 5433849901779216738}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -111,3 +112,15 @@ CapsuleCollider:
   m_Height: 0.34745386
   m_Direction: 2
   m_Center: {x: -0.000000018972402, y: 0.0026286037, z: -1.8114154e-17}
+--- !u!114 &5433849901779216738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584770505253748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b78e5ec0c9b75b40a29a8c417b37984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

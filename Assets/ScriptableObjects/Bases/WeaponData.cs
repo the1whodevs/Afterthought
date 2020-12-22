@@ -42,6 +42,8 @@ public class WeaponData : ScriptableObject
     public float reloadSpeed = 1.0f;
     public float mobilityPenalty = 0.2f;
     public float adsMultiplier = 1.0f;
+    public float minRange = 150.0f;
+    public float maxRange = 300.0f;
 
     private string AMMO_IN_MAG => $"{name}_AMMOinMAG";
 
