@@ -49,6 +49,7 @@ public class PlayerEquipment : MonoBehaviour
     private Transform firePoint;
 
     private const float MAX_FIRE_DIST = 1000.0f;
+    private const float MAX_MELEE_DIST = 1.5f;
 
     private bool isReloading;
 
@@ -157,9 +158,59 @@ public class PlayerEquipment : MonoBehaviour
                 break;
             
             case WeaponData.WeaponType.Melee:
-                CurrentWeaponObject.GetComponentInChildren<Collider>().enabled = true;
-                break;
-            
+                 var meleeRay = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+                    
+                    if (!Physics.Raycast(meleeRay, out var meleeHit, MAX_MELEE_DIST, hitScanLayerMask)) return;
+                    
+                    Debug.DrawLine(meleeRay.origin, meleeHit.point, Color.blue, 1.0f, true);
+                    var emeraldAISystem = meleeHit.transform.GetComponent<EmeraldAISystem>();
+                    
+                    // If we hit an AI, damage it.
+                    if (emeraldAISystem && emeraldAISystem.enabled) emeraldAISystem.Damage((int)CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
+                 // Otherwise just spawn a bullet hole.
+                 else
+                 {
+                     var cdp = meleeHit.transform.GetComponent<CharacterDamagePainter>();
+                     var hitSurfaceInfo = meleeHit.transform.GetComponent<HitSurfaceInfo>();
+
+                     var hitRb = meleeHit.rigidbody;
+
+                     if (hitRb) hitRb.AddForce(-meleeHit.normal * 100.0f, ForceMode.Impulse);
+
+                     if (!hitSurfaceInfo) hitSurfaceInfo = meleeHit.transform.GetComponentInParent<HitSurfaceInfo>();
+                     if (!cdp) cdp = meleeHit.transform.GetComponentInParent<CharacterDamagePainter>();
+
+                     Destroy(
+                         hitSurfaceInfo
+                             ? Instantiate(hitSurfaceInfo.hitEffect, meleeHit.point,
+                                 Quaternion.LookRotation(meleeHit.normal),
+                                 meleeHit.transform)
+                             : Instantiate(CurrentWeapon.hitImpact, meleeHit.point,
+                                 Quaternion.LookRotation(meleeHit.normal),
+                                 null), bulletHoleLifetime);
+
+                     if (cdp)
+                     {
+                         cdp.Paint(meleeHit.point, meleeHit.normal);
+                     }
+                     else
+                     {
+                         Destroy(
+                             hitSurfaceInfo
+                                 ? Instantiate(hitSurfaceInfo.RandomHitDecal,
+                                     meleeHit.point + meleeHit.normal * Random.Range(0.001f, 0.002f),
+                                     Quaternion.LookRotation(meleeHit.normal),
+                                     meleeHit.transform)
+                                 : Instantiate(CurrentWeapon.RandomHitDecal,
+                                     meleeHit.point + meleeHit.normal * Random.Range(0.001f, 0.002f),
+                                     Quaternion.LookRotation(meleeHit.normal),
+                                     null), bulletHoleLifetime);
+                     }
+
+                     if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
+                     //CurrentWeaponObject.GetComponentInChildren<Collider>().enabled = true;
+                 }
+                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
