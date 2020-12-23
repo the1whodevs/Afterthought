@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public PlayerHealth Health { get; private set; }
     
     public MouseCamera Camera { get; private set; }
+    
+    public PlayerPostProcessing PostProcessing { get; private set; }
 
     private void Awake()
     {
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour
         Controller = GetComponent<PlayerController>();
         Health = GetComponent<PlayerHealth>();
         Camera = GetComponentInChildren<MouseCamera>();
+        PostProcessing = GetComponent<PlayerPostProcessing>();
         
         instance = this;
     }

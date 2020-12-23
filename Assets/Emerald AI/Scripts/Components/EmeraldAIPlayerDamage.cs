@@ -41,6 +41,7 @@ namespace EmeraldAI
                 PlayerHealth.DamagePlayer(DamageAmount);
             }*/
             Player.instance.Health.DamagePlayer(DamageAmount);
+            Player.instance.PostProcessing.PlayerDamage();
             CameraShake.Instance.ShakeCamera(0.5f,0.5f);
         }
 
