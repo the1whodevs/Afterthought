@@ -5,31 +5,57 @@ using UnityEngine.Serialization;
 public class PlayerPostProcessing : MonoBehaviour
 {
     [SerializeField] private GameObject damageVolumeObject;
+    [SerializeField] private GameObject adsVolumeObject;
     [SerializeField] private float effectDuration;
     [SerializeField] private float waitTime;
+    [SerializeField] private float adsTransitionTime;
 
-    private float timer = 0.0f;
+    private float damageTimer = 0.0f;
+    private float adsTimer = 0.0f;
+    private float targetADSweight;
+    
     private PostProcessVolume damage_ppv;
+    private PostProcessVolume ads_ppv;
+    
     private void Start()
     {
-        timer = effectDuration + waitTime;
+        damageTimer = effectDuration + waitTime;
         damage_ppv = damageVolumeObject.GetComponent<PostProcessVolume>();
+        ads_ppv = adsVolumeObject.GetComponent<PostProcessVolume>();
         damage_ppv.weight = 0.0f;
+        ads_ppv.weight = 0.0f;
     }
 
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer <= waitTime) return;
+        DamageTimer();
+        ADSTransition();
+    }
 
-        var t = Mathf.Clamp01((timer-waitTime) / effectDuration);
+    private void DamageTimer()
+    {
+        damageTimer += Time.deltaTime;
+        if (damageTimer <= waitTime) return;
+
+        var t = Mathf.Clamp01((damageTimer - waitTime) / effectDuration);
         damage_ppv.weight = Mathf.Lerp(1.0f, 0.0f, t);
     }
 
-    public void PlayerDamage()
+    public void Damage()
     {
-        timer = 0.0f;
+        damageTimer = 0.0f;
         damage_ppv.weight = 1.0f;
     }
 
+    public void ADS(bool status)
+    {
+        targetADSweight = status ? 1.0f : 0.0f;
+    }
+
+    private void ADSTransition()
+    {
+        var t = Mathf.Clamp01(Time.deltaTime / adsTransitionTime);
+        
+        ads_ppv.weight = Mathf.Lerp(ads_ppv.weight, targetADSweight, t);
+    }
 }

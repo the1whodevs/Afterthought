@@ -124,7 +124,10 @@ public class PlayerController : MonoBehaviour
          if (!pe.IsReloading && reload && pe.ammoAvailable > 0 && pe.CurrentWeapon.currentAmmo != pe.CurrentWeapon.magazineCapacity)
              pe.Reload();
          
-         pa.AimDownSights(!pe.IsReloading && aim);
+         var ads = !pe.IsReloading && aim;
+         
+         pa.AimDownSights(ads);
+         Player.instance.PostProcessing.ADS(ads);
      }
     
      private void MoveControls(float dTime)
