@@ -2,7 +2,7 @@
 
 public class Player : MonoBehaviour
 {
-    public static Player instance;
+    public static Player Instance;
 
     public PlayerAnimator Animator { get; private set; }
     public PlayerEquipment Equipment { get; private set; }
@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        if (instance) Destroy(this);
+        if (Instance) Destroy(this);
 
         Equipment = GetComponent<PlayerEquipment>();
         Animator = GetComponent<PlayerAnimator>();
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         Camera = GetComponentInChildren<MouseCamera>();
         PostProcessing = GetComponent<PlayerPostProcessing>();
         
-        instance = this;
+        Instance = this;
     }
 
     private void Start()

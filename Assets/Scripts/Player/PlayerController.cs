@@ -55,8 +55,8 @@ public class PlayerController : MonoBehaviour
      private void Start()
      {
          cc = GetComponent<CharacterController>();
-         pa = Player.instance.Animator;
-         pe = Player.instance.Equipment;
+         pa = Player.Instance.Animator;
+         pe = Player.Instance.Equipment;
      }
     
      private void Update()
@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
          var ads = !pe.IsReloading && aim;
          
          pa.AimDownSights(ads);
-         Player.instance.PostProcessing.ADS(ads);
+         Player.Instance.PostProcessing.ADS(ads);
      }
     
      private void MoveControls(float dTime)

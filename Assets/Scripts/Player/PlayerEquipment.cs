@@ -62,7 +62,7 @@ public class PlayerEquipment : MonoBehaviour
     {
         uiManager = UIManager.Instance;
         playerCamera = Camera.main;
-        pa = Player.instance.Animator;
+        pa = Player.Instance.Animator;
         
         foreach (var weaponData in allWeaponData)
         {
@@ -95,7 +95,7 @@ public class PlayerEquipment : MonoBehaviour
         {
             case WeaponData.WeaponType.Firearm:
                 
-                var repeat = fireType == WeaponData.FireType.Burst ? Player.instance.Controller.BurstFireCount : 1;
+                var repeat = fireType == WeaponData.FireType.Burst ? Player.Instance.Controller.BurstFireCount : 1;
                 var isShotgun = CurrentWeapon.isShotgun;
                 
                 for (var i = 0; i < repeat; i++)
@@ -208,7 +208,7 @@ public class PlayerEquipment : MonoBehaviour
 
         var distance = CurrentWeapon.minRange;
 
-        var cam = Player.instance.Camera.transform;
+        var cam = Player.Instance.Camera.transform;
         
         for (var i = 0; i < SHOTGUN_PELLETS; i++) 
         {
@@ -384,7 +384,7 @@ public class PlayerEquipment : MonoBehaviour
     {
         const float delay = 1.0f;
 
-        var hash = Player.instance.Animator.unequipAnimHash;
+        var hash = Player.Instance.Animator.unequipAnimHash;
         
         CurrentAnimator.ResetTrigger(hash);
         CurrentAnimator.SetTrigger(hash);
@@ -438,6 +438,6 @@ public class PlayerEquipment : MonoBehaviour
         isReloading = false;
         SetAmmoUI();
         CurrentAnimator = CurrentWeaponObject.GetComponent<Animator>();
-        Player.instance.Camera.currentZoom = CurrentWeapon.scopeZoom;
+        Player.Instance.Camera.currentZoom = CurrentWeapon.scopeZoom;
     }
 }

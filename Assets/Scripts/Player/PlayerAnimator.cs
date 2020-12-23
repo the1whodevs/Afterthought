@@ -25,7 +25,7 @@ public class PlayerAnimator : MonoBehaviour
     private void Start()
     {
         uiManager = UIManager.Instance;
-        pe = Player.instance.Equipment;
+        pe = Player.Instance.Equipment;
         StartCoroutine(AdjustLayerWeight());
     }
 
@@ -84,7 +84,7 @@ public class PlayerAnimator : MonoBehaviour
         
         uiManager.ToggleCrosshair(!status);
 
-        if (pe.CurrentWeapon.hasScope) Player.instance.Camera.ToggleZoom(status);
+        if (pe.CurrentWeapon.hasScope) Player.Instance.Camera.ToggleZoom(status);
         
         pe.CurrentAnimator.SetBool(aimingAnimHash, status);
     }

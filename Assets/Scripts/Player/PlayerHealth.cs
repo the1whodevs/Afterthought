@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int currentHealth;
     [SerializeField] private int startingHealth;
+    [FormerlySerializedAs("handsDeactivation")] [SerializeField] private GameObject handsObject;
 
     private void Start()
     {
@@ -14,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= DamageAmount;
         
-        if (currentHealth<=0)
+        if (currentHealth <= 0)
         {
             PlayerDeath();
         }
@@ -22,6 +24,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void PlayerDeath()
     {
-        Debug.Log("Player Died");
+        Player.Instance.PostProcessing.Death();
+        handsObject.SetActive(false);
+        CameraAnimation.Instance.DeathAnimation();
+        MouseCamera.Instance.enabled = false;
+        Player.Instance.Controller.enabled = false;
     }
 }

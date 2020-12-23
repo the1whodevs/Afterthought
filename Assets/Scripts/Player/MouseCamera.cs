@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class MouseCamera : MonoBehaviour
 {
+    public static MouseCamera Instance;
+    
     public enum ZoomLevels
     {
         X1,
@@ -32,6 +34,12 @@ public class MouseCamera : MonoBehaviour
 
     private float bodyRotationX = 1f;
     private float camRotationY;
+
+    private void Awake()
+    {
+        if (Instance) Destroy(this);
+        Instance = this;
+    }
 
     private void Start()
     {

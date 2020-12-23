@@ -8,7 +8,7 @@ public class WeaponAnimHelper : MonoBehaviour
 
     private void Awake()
     {
-        pa = Player.instance.Animator;
+        pa = Player.Instance.Animator;
     }
 
     public void Muzzle()
