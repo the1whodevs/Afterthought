@@ -7,6 +7,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int startingHealth;
     [FormerlySerializedAs("handsDeactivation")] [SerializeField] private GameObject handsObject;
 
+    private bool isDead;
+    
     private void Start()
     {
         currentHealth = startingHealth;
@@ -14,10 +16,13 @@ public class PlayerHealth : MonoBehaviour
     
     public void DamagePlayer(int DamageAmount)
     {
+        if (isDead) return;
+        
         currentHealth -= DamageAmount;
         
         if (currentHealth <= 0)
         {
+            isDead = true;
             PlayerDeath();
         }
     }
@@ -26,8 +31,8 @@ public class PlayerHealth : MonoBehaviour
     {
         Player.Instance.PostProcessing.Death();
         handsObject.SetActive(false);
-        CameraAnimation.Instance.DeathAnimation();
         MouseCamera.Instance.enabled = false;
         Player.Instance.Controller.enabled = false;
+        CameraAnimation.Instance.DeathAnimation();
     }
 }

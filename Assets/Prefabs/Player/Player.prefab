@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 344274080}
   - component: {fileID: 344274079}
-  - component: {fileID: 8335123447227658216}
   - component: {fileID: 344274078}
   - component: {fileID: 5313642840063794155}
   - component: {fileID: 305737996245361438}
@@ -86,25 +85,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!95 &8335123447227658216
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344274077}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: edd39fdd710804f44b5e0249aa27b502, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!81 &344274078
 AudioListener:
   m_ObjectHideFlags: 0
@@ -346,7 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 2
   startingHealth: 100
-  handsDeactivation: {fileID: 1572396041265650235}
+  handsObject: {fileID: 1572396041265650235}
 --- !u!114 &5232873967447831070
 MonoBehaviour:
   m_ObjectHideFlags: 0
