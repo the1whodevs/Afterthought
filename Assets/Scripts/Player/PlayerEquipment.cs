@@ -45,6 +45,9 @@ public class PlayerEquipment : MonoBehaviour
     [SerializeField] private AudioSource gunEmptyClipAudioSource;
 
     [SerializeField, TagSelector] private string scopeTag;
+
+    // This is the weapon we are going to equip or eventually have equipped.
+    private WeaponData futureWeapon;
     
     private Camera playerCamera;
     
@@ -377,8 +380,10 @@ public class PlayerEquipment : MonoBehaviour
     
     private void Equip(WeaponData weaponToEquip)
     {
-        if (weaponToEquip == CurrentWeapon) return;
+        if (weaponToEquip == CurrentWeapon || futureWeapon == weaponToEquip) return;
 
+        futureWeapon = weaponToEquip;
+        
         if (CurrentWeaponObject)
         {
             StartCoroutine(SwitchWeapon(weaponToEquip));
@@ -405,8 +410,6 @@ public class PlayerEquipment : MonoBehaviour
     {
         if (CurrentWeapon) CurrentWeapon = null;
         if (CurrentWeaponObject) Destroy(CurrentWeaponObject);
-
-        ScopeGameObject = null;
     }
 
     /// <summary>
@@ -444,7 +447,7 @@ public class PlayerEquipment : MonoBehaviour
         
         CurrentWeapon = weaponToEquip;
 
-        if (HasScope) ScopeGameObject = GameObject.FindGameObjectWithTag(scopeTag);
+        ScopeGameObject = GameObject.FindGameObjectWithTag(scopeTag);
 
         isReloading = false;
         SetAmmoUI();

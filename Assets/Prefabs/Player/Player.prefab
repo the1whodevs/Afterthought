@@ -68,7 +68,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.06
-  far clip plane: 250
+  far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
   orthographic size: 5
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 8520627960800967900}
+  volumeTrigger: {fileID: 0}
   volumeLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 3946167543722696075}
   - component: {fileID: 3812941038291305946}
   - component: {fileID: 172969579571035944}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ScopeCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.06
-  far clip plane: 250
+  far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -583,7 +583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1337518939840865216
 Transform:
   m_ObjectHideFlags: 0
@@ -671,7 +671,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.06
-  far clip plane: 250
+  far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -702,7 +702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 8520627960800967900}
+  volumeTrigger: {fileID: 0}
   volumeLayer:
     serializedVersion: 2
     m_Bits: 16384
@@ -1020,7 +1020,7 @@ MonoBehaviour:
   sharedProfile: {fileID: 11400000, guid: f145d0e392c8dd446b05d0093e796ef9, type: 2}
   isGlobal: 1
   blendDistance: 0
-  weight: 1
+  weight: 0
   priority: 0
 --- !u!1 &5229253741008784368
 GameObject:
@@ -1068,7 +1068,7 @@ MonoBehaviour:
   sharedProfile: {fileID: 11400000, guid: e2e8367e017dedd4f8572eb47b9d2915, type: 2}
   isGlobal: 1
   blendDistance: 0
-  weight: 1
+  weight: 0
   priority: 0
 --- !u!1 &5785029003751561294
 GameObject:
@@ -1126,7 +1126,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.06
-  far clip plane: 250
+  far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 8520627960800967900}
+  volumeTrigger: {fileID: 0}
   volumeLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -1251,5 +1251,5 @@ MonoBehaviour:
   sharedProfile: {fileID: 11400000, guid: 712613a03f18a314e866c0f96e38270a, type: 2}
   isGlobal: 1
   blendDistance: 0
-  weight: 1
+  weight: 0
   priority: 0
