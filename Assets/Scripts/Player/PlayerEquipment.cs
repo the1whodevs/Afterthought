@@ -16,6 +16,10 @@ public class PlayerEquipment : MonoBehaviour
     public WeaponData CurrentWeapon { get; private set; }
     public GameObject CurrentWeaponObject { get; private set; }
 
+    public bool HasScope => CurrentWeapon.hasScope;
+
+    public GameObject ScopeGameObject { get; private set; }
+    
     /// <summary>
     /// The player's loadout.
     /// </summary>
@@ -40,6 +44,8 @@ public class PlayerEquipment : MonoBehaviour
     [SerializeField] private AudioSource gunFireAudioSource;
     [SerializeField] private AudioSource gunEmptyClipAudioSource;
 
+    [SerializeField, TagSelector] private string scopeTag;
+    
     private Camera playerCamera;
     
     private PlayerAnimator pa;
@@ -399,6 +405,8 @@ public class PlayerEquipment : MonoBehaviour
     {
         if (CurrentWeapon) CurrentWeapon = null;
         if (CurrentWeaponObject) Destroy(CurrentWeaponObject);
+
+        ScopeGameObject = null;
     }
 
     /// <summary>
@@ -435,6 +443,9 @@ public class PlayerEquipment : MonoBehaviour
         }
         
         CurrentWeapon = weaponToEquip;
+
+        if (HasScope) ScopeGameObject = GameObject.FindGameObjectWithTag(scopeTag);
+
         isReloading = false;
         SetAmmoUI();
         CurrentAnimator = CurrentWeaponObject.GetComponent<Animator>();

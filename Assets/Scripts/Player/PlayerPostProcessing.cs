@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Serialization;
 
@@ -13,16 +14,20 @@ public class PlayerPostProcessing : MonoBehaviour
     [SerializeField] private float adsTransitionTime;
 
     private float damageTimer = 0.0f;
-    private float adsTimer = 0.0f;
-    private float targetADSweight;
-    private float targetDeathweight;
+    private float adsT = 0.0f;
+    private float targetDeath_weight;
     
+    private int targetADS_weight;
+    private int lastADS_targetWeight;
+
     private PostProcessVolume damage_ppv;
     private PostProcessVolume ads_ppv;
     private PostProcessVolume death_ppv;
     
     private ColorGrading deathColorGrading;
     
+    private const float TOLERANCE = 0.0000001f;
+
     private void Start()
     {
         damageTimer = effectDuration + waitTime;
@@ -59,14 +64,27 @@ public class PlayerPostProcessing : MonoBehaviour
 
     public void ADS(bool status)
     {
-        targetADSweight = status ? 1.0f : 0.0f;
+        targetADS_weight = status ? 1 : 0;
+
+        if (!(Math.Abs(lastADS_targetWeight - targetADS_weight) > TOLERANCE)) return;
+        
+        adsT = 0.0f;
+        lastADS_targetWeight = targetADS_weight;
     }
 
     private void ADSTransition()
     {
-        var t = Mathf.Clamp01(Time.deltaTime / adsTransitionTime);
+        if (adsT > 1.0f) return;
         
-        ads_ppv.weight = Mathf.Lerp(ads_ppv.weight, targetADSweight, t);
+        adsT += Time.deltaTime / adsTransitionTime;
+
+        if (adsT >= 1.0f)
+        {
+            ads_ppv.weight = targetADS_weight;
+            return;
+        }
+        
+        ads_ppv.weight = Mathf.Lerp(ads_ppv.weight, targetADS_weight, adsT);
     }
 
     public void Death()

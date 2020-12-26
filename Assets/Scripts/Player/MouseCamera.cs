@@ -104,7 +104,10 @@ public class MouseCamera : MonoBehaviour
 
     public void ToggleZoom(bool status)
     {
+        if (!Player.Instance.Equipment.HasScope) return;
+        
         zoomCameraGameObject.SetActive(status);
+        Player.Instance.Equipment.ScopeGameObject.SetActive(status);
     }
 
     private void AdjustCameraToCurrentZoom(float delta)
