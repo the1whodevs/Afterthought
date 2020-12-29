@@ -1,31 +1,85 @@
 fileFormatVersion: 2
 guid: 7a3f53522845b864e84255ff91782b35
-timeCreated: 1519982254
-licenseType: Store
 ModelImporter:
-  serializedVersion: 21
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: Overpass_01_A
-    100004: Overpass_01_B
-    100006: Overpass_01_C
-    400000: //RootNode
-    400002: Overpass_01_A
-    400004: Overpass_01_B
-    400006: Overpass_01_C
-    2300000: Overpass_01_A
-    2300002: Overpass_01_B
-    2300004: Overpass_01_C
-    3300000: Overpass_01_A
-    3300002: Overpass_01_B
-    3300004: Overpass_01_C
-    4300000: Overpass_01_C
-    4300002: Overpass_01_B
-    4300004: Overpass_01_A
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Overpass_01_A
+  - first:
+      1: 100004
+    second: Overpass_01_B
+  - first:
+      1: 100006
+    second: Overpass_01_C
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Overpass_01_A
+  - first:
+      4: 400004
+    second: Overpass_01_B
+  - first:
+      4: 400006
+    second: Overpass_01_C
+  - first:
+      23: 2300000
+    second: Overpass_01_A
+  - first:
+      23: 2300002
+    second: Overpass_01_B
+  - first:
+      23: 2300004
+    second: Overpass_01_C
+  - first:
+      33: 3300000
+    second: Overpass_01_A
+  - first:
+      33: 3300002
+    second: Overpass_01_B
+  - first:
+      33: 3300004
+    second: Overpass_01_C
+  - first:
+      43: 4300000
+    second: Overpass_01_C
+  - first:
+      43: 4300002
+    second: Overpass_01_B
+  - first:
+      43: 4300004
+    second: Overpass_01_A
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Concrete1_a
+    second: {fileID: 2100000, guid: c0f737c03f0deda47844621f45334fc4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Concrete_panels1
+    second: {fileID: 2100000, guid: 1ca17fb9984aead49b2f92c79cb53239, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grid1
+    second: {fileID: 2100000, guid: 945c97f818a668e41a0ea65b0b5540a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Overpass
+    second: {fileID: 2100000, guid: 53871730ee4018c4998e6164d8477bd8, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -38,6 +92,8 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -52,16 +108,24 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    fileIdsGeneration: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -72,10 +136,13 @@ ModelImporter:
     normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -85,14 +152,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
