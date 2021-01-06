@@ -201,7 +201,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4558776261564848}
-  - component: {fileID: 8640109816466113032}
   m_Layer: 0
   m_Name: Truck_01(Clone)
   m_TagString: Untagged
@@ -227,19 +226,6 @@ Transform:
   m_Father: {fileID: 4858661737746682}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8640109816466113032
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1146704986837136}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.2408533, y: 2.381333, z: 5.9384413}
-  m_Center: {x: -0.028636772, y: 1.5168893, z: 0.08999522}
 --- !u!1 &1147618777223348
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +474,7 @@ GameObject:
   - component: {fileID: 4690803274099224}
   - component: {fileID: 33476089696943956}
   - component: {fileID: 23122365675755398}
+  - component: {fileID: 8802012874708078158}
   m_Layer: 0
   m_Name: Container
   m_TagString: Untagged
@@ -557,6 +544,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &8802012874708078158
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240823824529746}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: e481f95326f941a44a432c13d5a5eb70, type: 3}
 --- !u!1 &1341889616728956
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +568,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4858661737746682}
   - component: {fileID: 205988767646458506}
+  - component: {fileID: 6551204205550860554}
+  - component: {fileID: 8768257219961548560}
   m_Layer: 0
   m_Name: Truck_05
   m_TagString: Untagged
@@ -643,6 +646,123 @@ LODGroup:
     - renderer: {fileID: 23100728347456216}
     - renderer: {fileID: 23164478870093050}
   m_Enabled: 1
+--- !u!82 &6551204205550860554
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341889616728956}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &8768257219961548560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341889616728956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9e960b9007bd140b4e89024971a329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactSoundFx:
+  - {fileID: 8300000, guid: 37dcaa5db1a666f498d265f76547cf66, type: 3}
+  hitEffect: {fileID: 7077355519987932895, guid: 579357df66620f747a0c8f99cabbd10e,
+    type: 3}
+  hitDecal:
+  - {fileID: 3999907528169576385, guid: 041f64d7bc6e82a4f8aa7f7d91a31438, type: 3}
+  - {fileID: 4458888194215088260, guid: 273c9fdc130436e409c6f9d650bf5a33, type: 3}
+  - {fileID: 4504650418774363838, guid: 27df02a2c6c3a6c4a80f77ab9d2b9003, type: 3}
+  - {fileID: 2632853530951579261, guid: 313762adfca68c543a6695e895601518, type: 3}
 --- !u!1 &1380958422066384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1284,7 @@ GameObject:
   - component: {fileID: 4800522594994108}
   - component: {fileID: 33038609927211178}
   - component: {fileID: 23879630973394942}
+  - component: {fileID: 506632424952362041}
   m_Layer: 0
   m_Name: Truck_Base
   m_TagString: Untagged
@@ -1232,6 +1353,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &506632424952362041
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676569376817222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: e481f95326f941a44a432c13d5a5eb70, type: 3}
 --- !u!1 &1742963373912450
 GameObject:
   m_ObjectHideFlags: 0
