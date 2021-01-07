@@ -216,6 +216,9 @@ GameObject:
   - component: {fileID: 5232873967447831070}
   - component: {fileID: 1675743893}
   - component: {fileID: 6068314797139404672}
+  - component: {fileID: 5030035229722053238}
+  - component: {fileID: 4893384455602460058}
+  - component: {fileID: 3911194192623343177}
   - component: {fileID: 4836019476473453088}
   m_Layer: 12
   m_Name: Player
@@ -414,6 +417,50 @@ MonoBehaviour:
   effectDuration: 3
   waitTime: 2.5
   adsTransitionTime: 0.3
+--- !u!114 &5030035229722053238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305737994843635869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb384d602338ef84fa986b5220f2ccd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCollider: {fileID: 4836019476473453088}
+  isGrounded: 0
+  isOnTerrain: 0
+--- !u!114 &4893384455602460058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305737994843635869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9593879207231c042b371574bd82891f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  t: {fileID: 0}
+  posX: 0
+  posZ: 0
+  textureValues: []
+--- !u!114 &3911194192623343177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305737994843635869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3981ef763769c7b4498c86ec6ebd6d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!143 &4836019476473453088
 CharacterController:
   m_ObjectHideFlags: 0
