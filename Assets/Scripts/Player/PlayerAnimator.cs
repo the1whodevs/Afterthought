@@ -83,6 +83,7 @@ public class PlayerAnimator : MonoBehaviour
         }
         
         uiManager.ToggleCrosshair(!status);
+        uiManager.ToggleHealthBar(!status);
 
         if (pe.CurrentWeapon.hasScope) Player.Instance.Camera.ToggleZoom(status);
         

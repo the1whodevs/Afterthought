@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI ammoUI;
     [SerializeField] private GameObject crosshair;
-    
+    [SerializeField] private GameObject healthBar;
+
     private void Awake()
     {
         if (Instance) Destroy(gameObject);
@@ -18,9 +20,11 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         crosshair.SetActive(true);
+        healthBar.SetActive(true);
     }
 
     public void ToggleCrosshair(bool status) => crosshair.SetActive(status);
+    public void ToggleHealthBar(bool status) => healthBar.SetActive(status);
     
     public void SetAmmoUI(int currentAmmo, int maxAmmo) => ammoUI.text = $"{currentAmmo} / {maxAmmo}";
 }
