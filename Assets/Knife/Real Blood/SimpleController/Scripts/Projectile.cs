@@ -69,6 +69,7 @@ namespace Knife.Effects.SimpleController
         private void OnCollisionEnter(Collision collision)
         {
             projectileCollider.enabled = false;
+
             if (explosionPrefab != null)
             {
                 var instance = Instantiate(explosionPrefab, transform.position, transform.rotation);
@@ -76,11 +77,13 @@ namespace Knife.Effects.SimpleController
 
                 Destroy(instance, 10);
             }
+
             if (detachOnDestroy != null)
             {
                 detachOnDestroy.SetParent(null);
                 Destroy(detachOnDestroy.gameObject, 5);
             }
+
             switch (damageMethod)
             {
                 case DamageMethod.OverlapSphere:

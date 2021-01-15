@@ -17,6 +17,7 @@ public class PlayerEquipment : MonoBehaviour
     public GameObject CurrentWeaponObject { get; private set; }
 
     public bool HasScope => CurrentWeapon.hasScope;
+    public bool UsingEquipment => isUsingEquipment;
 
     public GameObject ScopeGameObject { get; private set; }
     
@@ -46,9 +47,15 @@ public class PlayerEquipment : MonoBehaviour
 
     [SerializeField, TagSelector] private string scopeTag;
 
+    private EquipmentData currentEquipment;
+
+    private GameObject currentEquipmentObject;
+    private GameObject currentEquipmentThrowable;
+
     // This is the weapon we are going to equip or eventually have equipped.
     private WeaponData futureWeapon;
-    
+    private WeaponData lastWeapon;
+
     private Camera playerCamera;
     
     private PlayerAnimator pa;
@@ -64,6 +71,7 @@ public class PlayerEquipment : MonoBehaviour
     public const float BulletHoleLifetime = 10.0f;
 
     private bool isReloading;
+    private bool isUsingEquipment;
 
     private const int DELAY_BETWEEN_BURSTS = 50;
     
@@ -77,8 +85,23 @@ public class PlayerEquipment : MonoBehaviour
         {
             weaponData.LoadData();
         }
-        
+
+        foreach (var equipmentData in allEquipmentData)
+        {
+            equipmentData.LoadData();
+        }
+
         EquipPrimaryWeapon();
+    }
+
+    public bool UseEquipmentA()
+    {
+        return UseEquipment(loadout.Equipment1);
+    }
+    
+    public bool UseEquipmentB()
+    {
+        return UseEquipment(loadout.Equipment2);
     }
 
     public void EquipPrimaryWeapon()
@@ -377,7 +400,125 @@ public class PlayerEquipment : MonoBehaviour
         const float muzzleLifetime = 2.0f;
         Destroy(Instantiate(CurrentWeapon.muzzleEffect, firePoint.position, firePoint.rotation, null), muzzleLifetime);
     }
-    
+
+    public void SpawnEquipmentThrowable()
+    {
+        currentEquipmentThrowable = Instantiate(currentEquipment.prefabToThrow, firePoint.position, firePoint.rotation, firePoint);
+    }
+
+    public void ThrowEquipmentThrowable()
+    {
+        currentEquipmentThrowable.transform.parent = null;
+        var rb = currentEquipmentThrowable.GetComponent<Rigidbody>();
+
+        rb.isKinematic = false;
+        rb.useGravity = true;
+        rb.AddForce(firePoint.forward * currentEquipment.throwForce, ForceMode.Impulse);
+
+        StartCoroutine(ExplodeThrowable(currentEquipment, currentEquipmentThrowable));
+
+        currentEquipment = null;
+        currentEquipmentObject = null;
+        currentEquipmentThrowable = null;
+
+        EquipWeapon(lastWeapon);
+    }
+
+    private IEnumerator ExplodeThrowable(EquipmentData relatedEquipment, GameObject toExplode)
+    {
+        yield return new WaitForSeconds(relatedEquipment.fuseTime);
+
+        var pos = toExplode.transform.position;
+        Destroy(toExplode);
+        Destroy(Instantiate(relatedEquipment.explosionPrefab, pos, Quaternion.identity, null), 3.0f);
+
+        var hits = Physics.SphereCastAll(pos, relatedEquipment.maxRange, Vector3.down, hitScanLayerMask);
+
+        if (hits.Length == 0) yield break;
+
+        foreach (var hit in hits)
+        {
+            var distance = Vector3.Distance(hit.transform.position, pos);
+            distance -= relatedEquipment.minRange;
+
+            if (distance < 0.0f) distance = 0.0f;
+
+            var damage = (int)Mathf.Lerp(relatedEquipment.damage, 0.0f, 1.0f - distance / relatedEquipment.maxRange);
+
+            var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
+
+            // If we hit an AI, damage it.
+            if (emeraldAIsys && emeraldAIsys.enabled)
+            {
+                emeraldAIsys.Damage(damage, EmeraldAISystem.TargetType.Player, transform, (int)relatedEquipment.ragdollForce);
+            }
+            // Otherwise just spawn a bullet hole.
+            else
+            {
+                var cdp = hit.transform.GetComponent<CharacterDamagePainter>();
+                var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
+                var hitRb = hit.rigidbody;
+
+                if (hitRb) hitRb.AddForce(-hit.normal * relatedEquipment.ragdollForce, ForceMode.Impulse);
+
+                if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
+
+                if (!cdp) cdp = hit.transform.GetComponentInParent<CharacterDamagePainter>();
+
+                if (cdp)
+                {
+                    cdp.Paint(hit.point, hit.normal);
+                }
+                //else
+                //{
+                //    Destroy(
+                //        hitSurfaceInfo
+                //            ? Instantiate(hitSurfaceInfo.RandomExplosionDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
+                //                hit.transform)
+                //            : Instantiate(relatedEquipment.explosionDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
+                //                null), BulletHoleLifetime);
+                //}
+
+                if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
+            }
+        } 
+    }
+
+    private bool UseEquipment(EquipmentData toUse)
+    {
+        if (toUse.currentAmmo == 0 || isUsingEquipment) return false;
+
+        toUse.currentAmmo--;
+        isUsingEquipment = true;
+        StartCoroutine(SwitchToEquipment(toUse));
+
+        return true;
+    }
+
+    private IEnumerator SwitchToEquipment(EquipmentData toEquip)
+    {
+        const float delay = 1.0f;
+
+        var hash = Player.Instance.Animator.unequipAnimHash;
+
+        CurrentAnimator.ResetTrigger(hash);
+        CurrentAnimator.SetTrigger(hash);
+
+        yield return new WaitForSeconds(delay);
+
+        Unequip();
+        EquipEquipment(toEquip);
+    }
+
+    private void EquipEquipment(EquipmentData toEquip)
+    {
+        CurrentAnimator = CurrentWeaponObject.GetComponent<Animator>();
+        currentEquipment = toEquip;
+        currentEquipmentObject = Instantiate(currentEquipment.prefab, WeaponR.position, WeaponR.rotation, WeaponR);
+
+        GetFirePoint(currentEquipmentObject);
+    }
+
     private void Equip(WeaponData weaponToEquip)
     {
         if (weaponToEquip == CurrentWeapon || futureWeapon == weaponToEquip) return;
@@ -390,6 +531,7 @@ public class PlayerEquipment : MonoBehaviour
         }
         else EquipWeapon(weaponToEquip);
     }
+
 
     private IEnumerator SwitchWeapon(WeaponData weaponToEquip)
     {
@@ -422,36 +564,43 @@ public class PlayerEquipment : MonoBehaviour
     private void EquipWeapon(WeaponData weaponToEquip)
     {
         CurrentWeaponObject = Instantiate(weaponToEquip.wepPrefab, WeaponR.position, WeaponR.rotation, WeaponR);
-        firePoint = CurrentWeaponObject.transform.Find("FirePoint");
+
+        GetFirePoint(CurrentWeaponObject);
+
+        CurrentWeapon = weaponToEquip;
+        lastWeapon = CurrentWeapon;
+        ScopeGameObject = GameObject.FindGameObjectWithTag(scopeTag);
+
+        isUsingEquipment = false;
+        isReloading = false;
+        SetAmmoUI();
+        CurrentAnimator = CurrentWeaponObject.GetComponent<Animator>();
+        Player.Instance.Camera.currentZoom = CurrentWeapon.scopeZoom;
+    }
+
+    private void GetFirePoint(GameObject objectToLookIn)
+    {
+        firePoint = objectToLookIn.transform.Find("FirePoint");
 
         if (!firePoint)
         {
-            for (var i = 0; i < CurrentWeaponObject.transform.childCount; i++)
+            for (var i = 0; i < objectToLookIn.transform.childCount; i++)
             {
-                firePoint = CurrentWeaponObject.transform.GetChild(i).Find("FirePoint");
+                firePoint = objectToLookIn.transform.GetChild(i).Find("FirePoint");
                 if (firePoint) break;
             }
 
             if (!firePoint)
             {
-                for (var i = 0; i < CurrentWeaponObject.transform.childCount; i++)
+                for (var i = 0; i < objectToLookIn.transform.childCount; i++)
                 {
-                    for (var j = 0; j < CurrentWeaponObject.transform.GetChild(i).childCount; j++)
+                    for (var j = 0; j < objectToLookIn.transform.GetChild(i).childCount; j++)
                     {
-                        firePoint = CurrentWeaponObject.transform.GetChild(i).GetChild(j).Find("FirePoint");
+                        firePoint = objectToLookIn.transform.GetChild(i).GetChild(j).Find("FirePoint");
                         if (firePoint) break;
                     }
                 }
             }
         }
-        
-        CurrentWeapon = weaponToEquip;
-
-        ScopeGameObject = GameObject.FindGameObjectWithTag(scopeTag);
-
-        isReloading = false;
-        SetAmmoUI();
-        CurrentAnimator = CurrentWeaponObject.GetComponent<Animator>();
-        Player.Instance.Camera.currentZoom = CurrentWeapon.scopeZoom;
     }
 }

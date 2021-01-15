@@ -1,18 +1,19 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class FootSteps : MonoBehaviour
 {
-    private CharacterController cc;
     public CheckIfGrounded checkIfGrounded;
     public CheckTerrainTexture checkTerrainTexture;
+
     [SerializeField] private float modifier = 0.5f;
     
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] grassClips;
     [SerializeField] private AudioClip[] mudClips;
     [SerializeField] private AudioClip[] stoneClips;
+
+    private CharacterController cc;
     
     private AudioClip previousClip;
     

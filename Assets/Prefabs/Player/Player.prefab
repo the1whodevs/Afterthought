@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoAvailable: 999
-  loadout: {fileID: 11400000, guid: 52c06934a10e86143af7856c3a2aa276, type: 2}
+  loadout: {fileID: 11400000, guid: 8c6ce8b70016a1f4db15f04eecd68f8e, type: 2}
   allWeaponData:
   - {fileID: 11400000, guid: 63c38115e3bdcba4db1faf51477974c6, type: 2}
   - {fileID: 11400000, guid: 0cc8e643a5196a34eaae8ae80cf11b02, type: 2}
@@ -333,6 +333,7 @@ MonoBehaviour:
   currentHealth: 2
   startingHealth: 100
   handsObject: {fileID: 1572396041265650235}
+  healthBar: {fileID: 0}
 --- !u!114 &5232873967447831070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,8 +431,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCollider: {fileID: 4836019476473453088}
-  isGrounded: 0
-  isOnTerrain: 0
 --- !u!114 &4893384455602460058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,8 +445,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
   t: {fileID: 0}
-  posX: 0
-  posZ: 0
   textureValues: []
 --- !u!114 &3911194192623343177
 MonoBehaviour:
@@ -461,6 +458,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3981ef763769c7b4498c86ec6ebd6d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkIfGrounded: {fileID: 0}
+  checkTerrainTexture: {fileID: 0}
+  modifier: 0.5
+  audioSource: {fileID: 0}
+  grassClips: []
+  mudClips: []
+  stoneClips: []
 --- !u!143 &4836019476473453088
 CharacterController:
   m_ObjectHideFlags: 0

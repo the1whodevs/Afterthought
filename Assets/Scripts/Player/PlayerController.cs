@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,8 +19,6 @@ public class PlayerController : MonoBehaviour
      [SerializeField] private AnimationCurve stateChangeCurve;
      
      private float attackInterval => 1.0f / pe.CurrentWeapon.fireRate;
-
-     private Vector3 moveDir;
      
      private Vector3 playerVelocity = Vector3.zero;
     
@@ -35,9 +30,7 @@ public class PlayerController : MonoBehaviour
      // If this is true, the player needs to let go of the fire button, and press it again to fire.
      // e.g. Bolt-action, semi-auto, burst
      private bool fireResetRequired = false;
-     private bool isReloading;
      private bool CanAttack => attackTimer >= attackInterval;
-     private bool aimingDownSights;
 
      private CharacterController cc;
     
@@ -75,59 +68,75 @@ public class PlayerController : MonoBehaviour
     
      private void WeaponControls(float dTime)
      {
-         attackTimer += dTime;
+        attackTimer += dTime;
+
+        if (pe.UsingEquipment) return;
+
+        var fire = Input.GetAxisRaw("Fire1") > 0.0f;
+        var aim = Input.GetAxisRaw("Fire2") > 0.0f;
+        var reload = Input.GetAxisRaw("Reload") > 0.0f;
+        var tryEquipPrimary = Input.GetAxisRaw("EquipPrimary") < 0.0f;
+        var tryEquipSecondary = Input.GetAxisRaw("EquipSecondary") > 0.0f;
+        var tryThrowEquipment1 = Input.GetAxisRaw("Equipment 1") > 0.0f;
+        var tryThrowEquipment2 = Input.GetAxisRaw("Equipment 2") > 0.0f;
+        if (!tryThrowEquipment2) tryThrowEquipment2 = Input.GetAxisRaw("Equipment 1") < 0.0f;
+
+        if (tryThrowEquipment1) 
+        {
+            pe.UseEquipmentA();
+            return;
+        } 
+        else if (tryThrowEquipment2) 
+        {
+            pe.UseEquipmentB();
+            return;
+        } 
+
+        if (tryEquipPrimary) pe.EquipPrimaryWeapon();
+        else if (tryEquipSecondary) pe.EquipSecondaryWeapon();
          
-         var fire = Input.GetAxisRaw("Fire1") > 0.0f;
-         var aim = Input.GetAxisRaw("Fire2") > 0.0f;
-         var reload = Input.GetAxisRaw("Reload") > 0.0f;
-         var tryEquipPrimary = Input.GetAxisRaw("EquipPrimary") < 0.0f;
-         var tryEquipSecondary = Input.GetAxisRaw("EquipSecondary") > 0.0f;
-         
-         if (tryEquipPrimary) pe.EquipPrimaryWeapon();
-         else if (tryEquipSecondary) pe.EquipSecondaryWeapon();
-         
-         if (fire && !fireResetRequired && CanAttack && CurrentMoveState != PlayerMoveState.Sprint)
-         {
-             if (pe.CurrentWeapon.weaponType == WeaponData.WeaponType.Melee)
-             {
+        if (fire && !fireResetRequired && CanAttack && CurrentMoveState != PlayerMoveState.Sprint)
+        {
+            if (pe.CurrentWeapon.weaponType == WeaponData.WeaponType.Melee)
+            {
                  attackTimer = 0.0f;
                  pa.Fire();
-             }
-             else
-             {
-                 if (pe.CurrentWeapon.currentAmmo > 0)
-                 {
-                     var fireType = pe.CurrentWeapon.fireType;
+            }
+            else
+            {
+                if (pe.CurrentWeapon.currentAmmo > 0)
+                {
+                    var fireType = pe.CurrentWeapon.fireType;
 
-                     if (fireType == WeaponData.FireType.Burst) pe.CurrentWeapon.currentAmmo -= BurstFireCount;
-                     else pe.CurrentWeapon.currentAmmo--;
+                    if (fireType == WeaponData.FireType.Burst) pe.CurrentWeapon.currentAmmo -= BurstFireCount;
+                    else pe.CurrentWeapon.currentAmmo--;
                      
-                     attackTimer = 0.0f;
+                    attackTimer = 0.0f;
 
-                     fireResetRequired = fireType != WeaponData.FireType.FullAuto;
+                    fireResetRequired = fireType != WeaponData.FireType.FullAuto;
                      
-                     pa.Fire();
-                 }
-                 else
-                 {
-                     pa.ResetAttack();
-                     pe.PlayEmptyClipSound();
-                 }
-             }
-         }
-         else if (!fire)
-         {
-             pa.ResetAttack();
-             fireResetRequired = false;
-         }
+                    pa.Fire();
+                }
+                else
+                {
+                    pa.ResetAttack();
+                    pe.PlayEmptyClipSound();
+                }
+            }
+        }
+        else if (!fire)
+        {
+            pa.ResetAttack();
+            fireResetRequired = false;
+        }
 
-         if (!pe.IsReloading && reload && pe.ammoAvailable > 0 && pe.CurrentWeapon.currentAmmo != pe.CurrentWeapon.magazineCapacity)
-             pe.Reload();
+        if (!pe.IsReloading && reload && pe.ammoAvailable > 0 && pe.CurrentWeapon.currentAmmo != pe.CurrentWeapon.magazineCapacity)
+            pe.Reload();
          
-         var ads = !pe.IsReloading && aim;
+        var ads = !pe.IsReloading && aim;
          
-         pa.AimDownSights(ads);
-         Player.Instance.PostProcessing.ADS(ads);
+        pa.AimDownSights(ads);
+        Player.Instance.PostProcessing.ADS(ads);
      }
     
      private void MoveControls(float dTime)
@@ -161,28 +170,31 @@ public class PlayerController : MonoBehaviour
         {
             CurrentMoveState = PlayerMoveState.Idle;
         }
-         
-        switch (CurrentMoveState)
+        
+        if (!pe.UsingEquipment)
         {
-            case PlayerMoveState.Idle:
-                pa.Idle();
-                break;
-             
-            case PlayerMoveState.CrouchIdle:
-                pa.Idle();
-                break;
-             
-            case PlayerMoveState.Run:
-                pa.Run();
-                break;
-             
-            case PlayerMoveState.CrouchRun:
-                pa.Run();
-                break;
-             
-            case PlayerMoveState.Sprint:
-                pa.Sprint();
-                break;
+            switch (CurrentMoveState)
+            {
+                case PlayerMoveState.Idle:
+                    pa.Idle();
+                    break;
+
+                case PlayerMoveState.CrouchIdle:
+                    pa.Idle();
+                    break;
+
+                case PlayerMoveState.Run:
+                    pa.Run();
+                    break;
+
+                case PlayerMoveState.CrouchRun:
+                    pa.Run();
+                    break;
+
+                case PlayerMoveState.Sprint:
+                    pa.Sprint();
+                    break;
+            }
         }
         
         var forward = transform.forward;

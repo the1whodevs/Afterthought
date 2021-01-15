@@ -38,7 +38,9 @@ public class PlayerAnimator : MonoBehaviour
         
         while (true)
         {
-            if (Math.Abs(pe.CurrentAnimator.GetLayerWeight(1) - targetLayerWeight) <= tolerance) yield return new WaitForEndOfFrame();
+            if (pe.UsingEquipment)
+                yield return new WaitForEndOfFrame();
+            else if (Math.Abs(pe.CurrentAnimator.GetLayerWeight(1) - targetLayerWeight) <= tolerance) yield return new WaitForEndOfFrame();
             else
             {
                 var weight = Mathf.Lerp(startingLayerWeight, targetLayerWeight, Time.deltaTime * speed);
