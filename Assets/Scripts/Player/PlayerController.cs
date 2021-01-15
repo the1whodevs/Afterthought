@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     
     public bool IsADS { get; private set; }
     public bool IsMoving { get; private set; }
+    public bool IsCrouching => CurrentMoveState == PlayerMoveState.CrouchIdle || 
+        CurrentMoveState == PlayerMoveState.CrouchRun;
 
     [Header("Move Settings")]
     [SerializeField] private float runSpeed = 10.0f;
@@ -221,7 +223,8 @@ public class PlayerController : MonoBehaviour
         }
         else if (isCrouching)
         {
-            speed = crouchSpeed;
+            var crouchTalent = pe.HasFasterCrouchSpeed();
+            speed = crouchSpeed * (crouchTalent ? crouchTalent.value : 1.0f);
         }
         
         StandStateChange(isCrouching);
@@ -230,7 +233,8 @@ public class PlayerController : MonoBehaviour
 
         Physics.SphereCast(r, cc.radius, out var hitInfo, cc.height / 2f, groundLayer);
 
-        speed = Mathf.Clamp(speed - pe.CurrentWeapon.mobilityPenalty, 0.0f, speed);
+        var talent = pe.HasNoMobilityPenalty();
+        if (!talent) speed = Mathf.Clamp(speed - pe.CurrentWeapon.mobilityPenalty, 0.0f, speed);
 
         var desiredVelocity = Vector3.ProjectOnPlane(moveVector, hitInfo.normal) * speed;
         playerVelocity.x = desiredVelocity.x;

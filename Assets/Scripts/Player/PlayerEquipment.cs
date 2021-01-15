@@ -96,22 +96,133 @@ public class PlayerEquipment : MonoBehaviour
 
     public bool UseEquipmentA()
     {
-        return UseEquipment(loadout.Equipment1);
+        return UseEquipment(loadout.Equipment[0]);
     }
     
     public bool UseEquipmentB()
     {
-        return UseEquipment(loadout.Equipment2);
+        return UseEquipment(loadout.Equipment[1]);
     }
 
     public void EquipPrimaryWeapon()
     {
-        Equip(loadout.PrimaryWeapon);
+        Equip(loadout.Weapons[0]);
     }
 
     public void EquipSecondaryWeapon()
     {
-        Equip(loadout.SecondaryWeapon);
+        Equip(loadout.Weapons[1]);
+    }
+
+    public bool HasTalent(TalentData toCheck)
+    {
+        foreach (var talent in loadout.Talents)
+        {
+            if (talent.Equals(toCheck)) return true;
+        }
+
+        return false;
+    }
+
+    public TalentData HasIncreasedWeaponTypeTalent(WeaponData.WeaponType typeToCheck)
+    {
+        foreach (var talent in loadout.Talents)
+        {
+            if (talent.Talent == TalentData.TalentType.IncreaseWeaponTypeDmg &&
+                talent.WeaponTypeAffected == typeToCheck) return talent;
+        }
+
+        return null;
+    }
+
+    public TalentData HasIncreasedEquipmentDamageTalent()
+    {
+        foreach (var talent in loadout.Talents)
+        {
+            if (talent.Talent == TalentData.TalentType.IncreaseEquipmentDamage) return talent;
+        }
+
+        return null;
+    }
+
+    public TalentData HasIncreasedDamageWhileCrouching()
+    {
+        foreach (var talent in loadout.Talents)
+        {
+            if (talent.Talent == TalentData.TalentType.IncreaseDamageWhileCrouching) return talent;
+        }
+
+        return null;
+    }
+
+    public TalentData HasIncreasedMaxHealth()
+    {
+        foreach (var talent in loadout.Talents)
+        {
+            if (talent.Talent == TalentData.TalentType.IncreaseMaxHealth) return talent;
+        }
+
+        return null;
+    }
+
+    public TalentData HasIncreasedMaxStamina()
+    {
+        foreach (var talent in loadout.Talents)
+        {
+            if (talent.Talent == TalentData.TalentType.IncreaseMaxStamina) return talent;
+        }
+
+        return null;
+    }
+
+    public TalentData HasNoMobilityPenalty()
+    {
+        foreach (var talent in loadout.Talents)
+        {
+            if (talent.Talent == TalentData.TalentType.NoMobilityPenalty) return talent;
+        }
+
+        return null;
+    }
+
+    public TalentData HasMinimalVerticalRecoil()
+    {
+        foreach (var talent in loadout.Talents)
+        {
+            if (talent.Talent == TalentData.TalentType.MinimalVerticalRecoil) return talent;
+        }
+
+        return null;
+    }
+
+    public TalentData HasMinimalHorizontalRecoil()
+    {
+        foreach (var talent in loadout.Talents)
+        {
+            if (talent.Talent == TalentData.TalentType.MinimalHorizontalRecoil) return talent;
+        }
+
+        return null;
+    }
+
+    public TalentData HasFasterReloading()
+    {
+        foreach (var talent in loadout.Talents)
+        {
+            if (talent.Talent == TalentData.TalentType.FasterReloading) return talent;
+        }
+
+        return null;
+    }
+
+    public TalentData HasFasterCrouchSpeed()
+    {
+        foreach (var talent in loadout.Talents)
+        {
+            if (talent.Talent == TalentData.TalentType.FasterCrouchSpeed) return talent;
+        }
+
+        return null;
     }
 
     public async void TryDealDamage()
@@ -175,9 +286,17 @@ public class PlayerEquipment : MonoBehaviour
 
         var emeraldAISystem = meleeHit.transform.GetComponent<EmeraldAISystem>();
 
+        var dmg = CurrentWeapon.weaponDamage;
+        var talent = HasIncreasedWeaponTypeTalent(CurrentWeapon.weaponType);
+
+        if (talent) dmg *= talent.value;
+
+        talent = HasIncreasedDamageWhileCrouching();
+        if (talent && Player.Instance.Controller.IsCrouching) dmg *= talent.value;
+
         // If we hit an AI, damage it.
         if (emeraldAISystem && emeraldAISystem.enabled)
-            emeraldAISystem.Damage((int) CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
+            emeraldAISystem.Damage((int)dmg, EmeraldAISystem.TargetType.Player, transform, 1000);
         // Otherwise just spawn a bullet hole.
         else
         {
@@ -263,9 +382,17 @@ public class PlayerEquipment : MonoBehaviour
    
             var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
 
+            var dmg = CurrentWeapon.weaponDamage;
+            var talent = HasIncreasedWeaponTypeTalent(CurrentWeapon.weaponType);
+
+            if (talent) dmg *= talent.value;
+
+            talent = HasIncreasedDamageWhileCrouching();
+            if (talent && Player.Instance.Controller.IsCrouching) dmg *= talent.value;
+
             // If we hit an AI, damage it.
             if (emeraldAIsys && emeraldAIsys.enabled)
-                emeraldAIsys.Damage((int) CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
+                emeraldAIsys.Damage((int) dmg, EmeraldAISystem.TargetType.Player, transform, 1000);
             // Otherwise just spawn a bullet hole.
             else
             {
@@ -319,9 +446,17 @@ public class PlayerEquipment : MonoBehaviour
 
         var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
 
+        var dmg = CurrentWeapon.weaponDamage;
+        var talent = HasIncreasedWeaponTypeTalent(CurrentWeapon.weaponType);
+
+        if (talent) dmg *= talent.value;
+
+        talent = HasIncreasedDamageWhileCrouching();
+        if (talent && Player.Instance.Controller.IsCrouching) dmg *= talent.value;
+
         // If we hit an AI, damage it.
         if (emeraldAIsys && emeraldAIsys.enabled)
-            emeraldAIsys.Damage((int) CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
+            emeraldAIsys.Damage((int) dmg, EmeraldAISystem.TargetType.Player, transform, 1000);
 
         // Otherwise just spawn a bullet hole.
         else
@@ -450,7 +585,14 @@ public class PlayerEquipment : MonoBehaviour
 
             if (distance < 0.0f) distance = 0.0f;
 
-            var damage = (int)Mathf.Lerp(relatedEquipment.damage, 0.0f, 1.0f - distance / relatedEquipment.maxRange);
+            var dmg = relatedEquipment.damage;
+            var talent = HasIncreasedEquipmentDamageTalent();
+            if (talent) dmg *= talent.value;
+
+            talent = HasIncreasedDamageWhileCrouching();
+            if (talent && Player.Instance.Controller.IsCrouching) dmg *= talent.value;
+
+            var damage = (int)Mathf.Lerp(dmg, 0.0f, distance / relatedEquipment.maxRange);
 
             var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
 

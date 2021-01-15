@@ -38,7 +38,15 @@ public class LauncherGrenade : MonoBehaviour
 
             if (distance < 0.0f) distance = 0.0f;
 
-            var damage = (int) Mathf.Lerp(launcherData.weaponDamage, 0.0f, distance / maxRange);
+            var dmg = launcherData.weaponDamage;
+            var talent = Player.Instance.Equipment.HasIncreasedWeaponTypeTalent(launcherData.weaponType);
+
+            if (talent) dmg *= talent.value;
+
+            talent = Player.Instance.Equipment.HasIncreasedDamageWhileCrouching();
+            if (talent && Player.Instance.Controller.IsCrouching) dmg *= talent.value;
+
+            var damage = (int) Mathf.Lerp(dmg, 0.0f, distance / maxRange);
                 
             var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
         

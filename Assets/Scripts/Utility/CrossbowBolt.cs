@@ -30,7 +30,15 @@ public class CrossbowBolt : MonoBehaviour
             distance = 0.0f;
         }
 
-        var damage =(int)Mathf.Lerp(CurrentWeapon.weaponDamage, 0.0f, distance / maxRange);
+        var dmg = CurrentWeapon.weaponDamage;
+        var talent = Player.Instance.Equipment.HasIncreasedWeaponTypeTalent(CurrentWeapon.weaponType);
+
+        if (talent) dmg *= talent.value;
+
+        talent = Player.Instance.Equipment.HasIncreasedDamageWhileCrouching();
+        if (talent && Player.Instance.Controller.IsCrouching) dmg *= talent.value;
+
+        var damage =(int)Mathf.Lerp(dmg, 0.0f, distance / maxRange);
         
         var emeraldAIsys = other.transform.GetComponent<EmeraldAISystem>();
         

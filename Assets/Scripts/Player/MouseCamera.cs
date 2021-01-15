@@ -113,6 +113,12 @@ public class MouseCamera : MonoBehaviour
     {
         var p = Player.Instance.Controller;
 
+        var talent = Player.Instance.Equipment.HasMinimalHorizontalRecoil();
+        if (talent) horizontalForce = talent.value;
+
+        talent = Player.Instance.Equipment.HasMinimalVerticalRecoil();
+        if (talent) verticalForce = talent.value;
+
         if (p.IsADS)
         {
             horizontalForce /= 2.0f;

@@ -4,14 +4,10 @@
 public class LoadoutData : ScriptableObject
 {
     public string LoadoutName = "Loadout 1";
-    
-    public WeaponData PrimaryWeapon;
-    public WeaponData SecondaryWeapon;
 
-    public EquipmentData Equipment1;
-    public EquipmentData Equipment2;
+    public WeaponData[] Weapons = new WeaponData[2];
 
-    public TalentData TalentA;
-    public TalentData TalentB;
-    public TalentData TalentC;
+    public EquipmentData[] Equipment = new EquipmentData[2];
+
+    public TalentData[] Talents = new TalentData[3];
 }

@@ -16,7 +16,9 @@ public class PlayerHealth : MonoBehaviour
     
     private void Start()
     {
-        currentHealth = startingHealth;
+        var talent = Player.Instance.Equipment.HasIncreasedMaxHealth();
+
+        currentHealth = startingHealth * (int)(talent ? talent.value : 1.0f);
         healthBar.value = currentHealth;
     }
 
