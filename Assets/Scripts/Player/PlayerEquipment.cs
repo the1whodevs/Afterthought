@@ -132,6 +132,8 @@ public class PlayerEquipment : MonoBehaviour
                 
                 for (var i = 0; i < repeat; i++)
                 {
+                    MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
+
                     if (isShotgun)
                     {
                         ShotgunFirearmDamage();
@@ -148,6 +150,9 @@ public class PlayerEquipment : MonoBehaviour
                 break;
             
             case WeaponData.WeaponType.Projectile:
+
+                MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
+
                 ProjectileDamage(projectileLifetime);
                 break;
             

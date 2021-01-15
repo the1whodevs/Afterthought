@@ -48,6 +48,9 @@ public class WeaponData : ScriptableObject
     public float minRange = 150.0f;
     public float maxRange = 300.0f;
 
+    public float recoil_horizontal = 1.5f;
+    public float recoil_vertical = 3.0f;
+
     private string AMMO_IN_MAG => $"{name}_AMMOinMAG";
 
     public void ReloadMag(ref int availableAmmo)

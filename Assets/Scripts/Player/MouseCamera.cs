@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class MouseCamera : MonoBehaviour
 {
     public static MouseCamera Instance;
-    
+
     public enum ZoomLevels
     {
         X1,
@@ -17,7 +17,7 @@ public class MouseCamera : MonoBehaviour
     public ZoomLevels currentZoom = ZoomLevels.X1;
 
     [SerializeField] private Transform playerT;
-    
+
     [SerializeField] private float camRotationSpeed = 5f;
     [SerializeField] private float cameraMinY = -60f;
     [SerializeField] private float cameraMaxY = 75f;
@@ -67,8 +67,15 @@ public class MouseCamera : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        bodyRotationX += Input.GetAxis("Mouse X") * camRotationSpeed;
-        camRotationY += Input.GetAxis("Mouse Y") * camRotationSpeed;
+        var xMove = Input.GetAxis("Mouse X") * camRotationSpeed;
+        var yMove = Input.GetAxis("Mouse Y") * camRotationSpeed;
+        RotatePlayer(xMove, yMove, delta);
+    }
+
+    private void RotatePlayer(float xInput, float yInput, float delta)
+    {
+        bodyRotationX += xInput;
+        camRotationY += yInput;
 
         //Stop the camera rotation 360 Degrees
         camRotationY = Mathf.Clamp(camRotationY, cameraMinY, cameraMaxY);
@@ -100,6 +107,28 @@ public class MouseCamera : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(zoom), zoom, null);
         }
+    }
+
+    public void ApplyRecoil(float horizontalForce, float verticalForce)
+    {
+        var p = Player.Instance.Controller;
+
+        if (p.IsADS)
+        {
+            horizontalForce /= 2.0f;
+            verticalForce /= 2.0f;
+        }
+
+        if (p.IsMoving)
+        {
+            horizontalForce *= 1.25f;
+            verticalForce *= 1.25f;
+        }
+
+        var randX = UnityEngine.Random.Range(-horizontalForce, horizontalForce);
+        var randY = UnityEngine.Random.Range(0.0f, verticalForce);
+
+        RotatePlayer(randX, randY, Time.deltaTime);
     }
 
     public void ToggleZoom(bool status)

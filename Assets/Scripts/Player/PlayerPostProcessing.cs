@@ -64,6 +64,8 @@ public class PlayerPostProcessing : MonoBehaviour
 
     public void ADS(bool status)
     {
+        if (status && !Player.Instance.Equipment.CurrentWeapon.hasScope) status = false;
+
         targetADS_weight = status ? 1 : 0;
 
         if (!(Math.Abs(lastADS_targetWeight - targetADS_weight) > TOLERANCE)) return;

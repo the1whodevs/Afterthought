@@ -2,72 +2,75 @@
 
 public class PlayerController : MonoBehaviour
 {
-     public enum PlayerMoveState { Idle, CrouchIdle, Run, CrouchRun, Sprint, Jumping }
+    public enum PlayerMoveState { Idle, CrouchIdle, Run, CrouchRun, Sprint, Jumping }
     
-     public PlayerMoveState CurrentMoveState = PlayerMoveState.Idle;
+    public PlayerMoveState CurrentMoveState = PlayerMoveState.Idle;
     
-     [Header("Move Settings")]
-     [SerializeField] private float runSpeed = 10.0f;
-     [SerializeField] private float crouchSpeed = 7.0f;
-     [SerializeField] private float sprintSpeed = 20.0f;
-     [SerializeField] private float jumpHeight = 15.0f;
-     [SerializeField] private LayerMask groundLayer;
-     [SerializeField] private float stickToGround = 2.0f;
-     [SerializeField] private float stateChangeSpeed = 1.0f;
-     [SerializeField] private PlayerStandState standSetting;
-     [SerializeField] private PlayerStandState crouchSetting;
-     [SerializeField] private AnimationCurve stateChangeCurve;
-     
-     private float attackInterval => 1.0f / pe.CurrentWeapon.fireRate;
-     
-     private Vector3 playerVelocity = Vector3.zero;
-    
-     private float attackTimer = 0.0f;
-     private float standStateBlend;
+    public bool IsADS { get; private set; }
+    public bool IsMoving { get; private set; }
 
-     public int BurstFireCount { get; } = 3;
+    [Header("Move Settings")]
+    [SerializeField] private float runSpeed = 10.0f;
+    [SerializeField] private float crouchSpeed = 7.0f;
+    [SerializeField] private float sprintSpeed = 20.0f;
+    [SerializeField] private float jumpHeight = 15.0f;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float stickToGround = 2.0f;
+    [SerializeField] private float stateChangeSpeed = 1.0f;
+    [SerializeField] private PlayerStandState standSetting;
+    [SerializeField] private PlayerStandState crouchSetting;
+    [SerializeField] private AnimationCurve stateChangeCurve;
      
-     // If this is true, the player needs to let go of the fire button, and press it again to fire.
-     // e.g. Bolt-action, semi-auto, burst
-     private bool fireResetRequired = false;
-     private bool CanAttack => attackTimer >= attackInterval;
+    private float attackInterval => 1.0f / pe.CurrentWeapon.fireRate;
+     
+    private Vector3 playerVelocity = Vector3.zero;
+    
+    private float attackTimer = 0.0f;
+    private float standStateBlend;
 
-     private CharacterController cc;
-    
-     private PlayerAnimator pa;
-     private PlayerEquipment pe;
+    public int BurstFireCount { get; } = 3;
      
-     [System.Serializable]
-     public class PlayerStandState
-     {
-         public float controlCameraHeight;
-         public float colliderHeight;
-         public float colliderCenterHeight;
-     }
-     
-     private void Start()
-     {
-         cc = GetComponent<CharacterController>();
-         pa = Player.Instance.Animator;
-         pe = Player.Instance.Equipment;
-     }
+    // If this is true, the player needs to let go of the fire button, and press it again to fire.
+    // e.g. Bolt-action, semi-auto, burst
+    private bool fireResetRequired = false;
+    private bool CanAttack => attackTimer >= attackInterval;
+
+    private CharacterController cc;
     
-     private void Update()
-     {
-         var d = Time.deltaTime;
+    private PlayerAnimator pa;
+    private PlayerEquipment pe;
+     
+    [System.Serializable]
+    public class PlayerStandState
+    {
+        public float controlCameraHeight;
+        public float colliderHeight;
+        public float colliderCenterHeight;
+    }
+     
+    private void Start()
+    {
+        cc = GetComponent<CharacterController>();
+        pa = Player.Instance.Animator;
+        pe = Player.Instance.Equipment;
+    }
+    
+    private void Update()
+    {
+        var d = Time.deltaTime;
          
-         UpdatePlayer(d);
-         WeaponControls(d);
-     }
+        UpdatePlayer(d);
+        WeaponControls(d);
+    }
 
-     private void UpdatePlayer(float delta)
-     {
-         if (cc.isGrounded) MoveControls(delta);
-         else ApplyGravity();
-     }
+    private void UpdatePlayer(float delta)
+    {
+        if (cc.isGrounded) MoveControls(delta);
+        else ApplyGravity();
+    }
     
-     private void WeaponControls(float dTime)
-     {
+    private void WeaponControls(float dTime)
+    {
         attackTimer += dTime;
 
         if (pe.UsingEquipment) return;
@@ -79,6 +82,9 @@ public class PlayerController : MonoBehaviour
         var tryEquipSecondary = Input.GetAxisRaw("EquipSecondary") > 0.0f;
         var tryThrowEquipment1 = Input.GetAxisRaw("Equipment 1") > 0.0f;
         var tryThrowEquipment2 = Input.GetAxisRaw("Equipment 2") > 0.0f;
+
+        IsADS = aim;
+
         if (!tryThrowEquipment2) tryThrowEquipment2 = Input.GetAxisRaw("Equipment 1") < 0.0f;
 
         if (tryThrowEquipment1) 
@@ -99,8 +105,8 @@ public class PlayerController : MonoBehaviour
         {
             if (pe.CurrentWeapon.weaponType == WeaponData.WeaponType.Melee)
             {
-                 attackTimer = 0.0f;
-                 pa.Fire();
+                    attackTimer = 0.0f;
+                    pa.Fire();
             }
             else
             {
@@ -137,10 +143,10 @@ public class PlayerController : MonoBehaviour
          
         pa.AimDownSights(ads);
         Player.Instance.PostProcessing.ADS(ads);
-     }
+    }
     
-     private void MoveControls(float dTime)
-     { 
+    private void MoveControls(float dTime)
+    { 
         var v = Input.GetAxis("Vertical");
         var h = Input.GetAxis("Horizontal");
         var isSprinting = Input.GetAxisRaw("Sprint") >= 1.0f;
@@ -148,8 +154,10 @@ public class PlayerController : MonoBehaviour
         var isJumping = Input.GetAxisRaw("Jump") >= 1.0f;
         
         var isMoving = !Mathf.Approximately(v, 0.0f) ||
-                       !Mathf.Approximately(h, 0.0f);
-         
+                        !Mathf.Approximately(h, 0.0f);
+
+        IsMoving = isMoving;
+
         if (isJumping && cc.isGrounded)
         {
             CurrentMoveState = PlayerMoveState.Jumping;
@@ -198,9 +206,13 @@ public class PlayerController : MonoBehaviour
         }
         
         var forward = transform.forward;
+
         forward.y = 0;
         forward.Normalize();
+
         var moveVector = forward * v + transform.right * h;
+
+        moveVector.Normalize();
 
         var speed = runSpeed;
         if (isSprinting && !isCrouching && v > 0.0f)
@@ -218,6 +230,8 @@ public class PlayerController : MonoBehaviour
 
         Physics.SphereCast(r, cc.radius, out var hitInfo, cc.height / 2f, groundLayer);
 
+        speed = Mathf.Clamp(speed - pe.CurrentWeapon.mobilityPenalty, 0.0f, speed);
+
         var desiredVelocity = Vector3.ProjectOnPlane(moveVector, hitInfo.normal) * speed;
         playerVelocity.x = desiredVelocity.x;
         playerVelocity.z = desiredVelocity.z;
@@ -233,7 +247,7 @@ public class PlayerController : MonoBehaviour
         cc.Move(playerVelocity * Time.deltaTime);
     }
      
-     private void StandStateChange(bool isCrouching)
+    private void StandStateChange(bool isCrouching)
     {
         
         standStateBlend = Mathf.MoveTowards(standStateBlend, isCrouching ? 1f : 0f, Time.deltaTime * stateChangeSpeed);
@@ -264,9 +278,10 @@ public class PlayerController : MonoBehaviour
         );
         myCamera.localPosition = cameraPos;
     }
-     private void ApplyGravity()
-     {
-         playerVelocity += Vector3.down * (-Physics.gravity.y * Time.deltaTime);
-         cc.Move(playerVelocity * Time.deltaTime);
-     }
+
+    private void ApplyGravity()
+    {
+        playerVelocity += Vector3.down * (-Physics.gravity.y * Time.deltaTime);
+        cc.Move(playerVelocity * Time.deltaTime);
+    }
 }
