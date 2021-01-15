@@ -234,7 +234,10 @@ public class PlayerController : MonoBehaviour
         Physics.SphereCast(r, cc.radius, out var hitInfo, cc.height / 2f, groundLayer);
 
         var talent = pe.HasNoMobilityPenalty();
-        if (!talent) speed = Mathf.Clamp(speed - pe.CurrentWeapon.mobilityPenalty, 0.0f, speed);
+        if (pe.CurrentWeapon && !talent)
+        {
+            speed = Mathf.Clamp(speed - pe.CurrentWeapon.mobilityPenalty, 0.0f, speed);
+        }
 
         var desiredVelocity = Vector3.ProjectOnPlane(moveVector, hitInfo.normal) * speed;
         playerVelocity.x = desiredVelocity.x;
