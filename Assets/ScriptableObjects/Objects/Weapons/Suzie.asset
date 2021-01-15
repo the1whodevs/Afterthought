@@ -21,6 +21,9 @@ MonoBehaviour:
     type: 3}
   reloadAudioFx: {fileID: 8300000, guid: 6fb1fbb6fb59d3847840212344ba692b, type: 3}
   emptyClipAudioFx: {fileID: 8300000, guid: 7a451d3ef76a4c948b1c97f5441d680e, type: 3}
+  isShotgun: 0
+  hasScope: 0
+  scopeZoom: 2
   shotAudioFx:
   - {fileID: 8300000, guid: 8018acccaecddce498259f8e5a93b440, type: 3}
   - {fileID: 8300000, guid: 9fac002407092764e8936cb3d0387616, type: 3}
@@ -43,3 +46,5 @@ MonoBehaviour:
   reloadSpeed: 1
   mobilityPenalty: 0.1
   adsMultiplier: 1
+  minRange: 150
+  maxRange: 300

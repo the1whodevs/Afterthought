@@ -305,6 +305,7 @@ public class PlayerEquipment : MonoBehaviour
     private bool NonShotgunFirearmDamage()
     {
         SetAmmoUI();
+
         var ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
 
         Debug.DrawLine(ray.origin, ray.direction * CurrentWeapon.maxRange, Color.blue, 1.0f, true);
@@ -316,6 +317,7 @@ public class PlayerEquipment : MonoBehaviour
         // If we hit an AI, damage it.
         if (emeraldAIsys && emeraldAIsys.enabled)
             emeraldAIsys.Damage((int) CurrentWeapon.weaponDamage, EmeraldAISystem.TargetType.Player, transform, 1000);
+
         // Otherwise just spawn a bullet hole.
         else
         {

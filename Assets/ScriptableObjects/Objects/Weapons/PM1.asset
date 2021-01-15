@@ -21,6 +21,9 @@ MonoBehaviour:
     type: 3}
   reloadAudioFx: {fileID: 8300000, guid: a86f8d5a257615341821b91227e93b14, type: 3}
   emptyClipAudioFx: {fileID: 8300000, guid: 7a451d3ef76a4c948b1c97f5441d680e, type: 3}
+  isShotgun: 0
+  hasScope: 0
+  scopeZoom: 2
   shotAudioFx:
   - {fileID: 8300000, guid: 8018acccaecddce498259f8e5a93b440, type: 3}
   - {fileID: 8300000, guid: 9fac002407092764e8936cb3d0387616, type: 3}
@@ -34,12 +37,14 @@ MonoBehaviour:
   - {fileID: 8360897983169464813, guid: 54d17ef0927945b4e8a0c8c96761cfe7, type: 3}
   weaponType: 0
   fireType: 0
-  currentAmmo: 26
+  currentAmmo: 44
   magazineCapacity: 45
   projectileSpeed: 100
   weaponDamage: 7.5
-  fireRate: 4
+  fireRate: 10
   shootAudioPitch: 2
   reloadSpeed: 1.5
   mobilityPenalty: 0.2
   adsMultiplier: 1
+  minRange: 150
+  maxRange: 300
