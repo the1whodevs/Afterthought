@@ -8,7 +8,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int currentHealth;
     [SerializeField] private int startingHealth;
     [FormerlySerializedAs("handsDeactivation")] [SerializeField] private GameObject handsObject;
-    [SerializeField] private Slider healthBar;
+    
+    private Slider healthBar;
 
     private UIManager UiManager;
 
@@ -16,9 +17,13 @@ public class PlayerHealth : MonoBehaviour
     
     private void Start()
     {
-        var talent = Player.Instance.Equipment.HasIncreasedMaxHealth();
+        UiManager = UIManager.Instance;
 
+        var talent = Player.Instance.Equipment.HasIncreasedMaxHealth();
         currentHealth = startingHealth * (int)(talent ? talent.value : 1.0f);
+
+        healthBar = UiManager.HealthBar.GetComponent<Slider>();
+
         healthBar.value = currentHealth;
     }
 

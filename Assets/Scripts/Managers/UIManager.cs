@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
+    public GameObject HealthBar => healthBar;
+
     [SerializeField] private TextMeshProUGUI ammoUI;
     [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject healthBar;

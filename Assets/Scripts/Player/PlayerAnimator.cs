@@ -8,6 +8,8 @@ using UnityEngine;
 /// </summary>
 public class PlayerAnimator : MonoBehaviour
 {
+    [SerializeField] private float adsSpeed = 10.0f;
+
     public readonly  int runAnimHash = Animator.StringToHash("isRunning");
     public readonly  int sprintAnimHash = Animator.StringToHash("isSprinting");
     public readonly  int aimingAnimHash = Animator.StringToHash("isAiming");
@@ -31,7 +33,6 @@ public class PlayerAnimator : MonoBehaviour
 
     private IEnumerator AdjustLayerWeight()
     {
-        const float speed = 5.0f;
         const float tolerance = 0.001f;
         
         while (!pe.CurrentAnimator) yield return new WaitForEndOfFrame();
@@ -43,7 +44,7 @@ public class PlayerAnimator : MonoBehaviour
             else if (Math.Abs(pe.CurrentAnimator.GetLayerWeight(1) - targetLayerWeight) <= tolerance) yield return new WaitForEndOfFrame();
             else
             {
-                var weight = Mathf.Lerp(startingLayerWeight, targetLayerWeight, Time.deltaTime * speed);
+                var weight = Mathf.Lerp(startingLayerWeight, targetLayerWeight, Time.deltaTime * adsSpeed);
                 pe.CurrentAnimator.SetLayerWeight(1, weight);
             }
             
