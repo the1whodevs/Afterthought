@@ -96,7 +96,7 @@ public class PlayerEquipment : MonoBehaviour
 
     public void ChangeActiveLoadout(LoadoutData newLoadout)
     {
-        loadout = newLoadout;
+        newLoadout.CopyTo(loadout);
 
         Unequip();
         UnequipEquipment();

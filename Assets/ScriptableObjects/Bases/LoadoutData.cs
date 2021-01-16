@@ -10,4 +10,11 @@ public class LoadoutData : ScriptableObject
     public EquipmentData[] Equipment = new EquipmentData[2];
 
     public TalentData[] Talents = new TalentData[3];
+
+    public void CopyTo(LoadoutData target)
+    {
+        target.Weapons = Weapons;
+        target.Equipment = Equipment;
+        target.Talents = Talents;
+    }
 }

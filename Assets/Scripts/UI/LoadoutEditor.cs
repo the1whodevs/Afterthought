@@ -59,6 +59,8 @@ public class LoadoutEditor : MonoBehaviour
     public void SelectLoadout()
     {
         Player.Instance.Equipment.ChangeActiveLoadout(displayedLoadout);
+
+        UpdateDisplays();
     }
 
     public void HideWindow()
