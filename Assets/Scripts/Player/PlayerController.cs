@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour
             CurrentMoveState = PlayerMoveState.Idle;
         }
         
-        if (!pe.UsingEquipment)
+        if (!pe.UsingEquipment && pe.CurrentAnimator)
         {
             switch (CurrentMoveState)
             {
