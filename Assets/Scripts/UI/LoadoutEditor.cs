@@ -56,6 +56,11 @@ public class LoadoutEditor : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
+    public void SelectLoadout()
+    {
+        Player.Instance.Equipment.ChangeActiveLoadout(displayedLoadout);
+    }
+
     public void HideWindow()
     {
         Cursor.visible = false;

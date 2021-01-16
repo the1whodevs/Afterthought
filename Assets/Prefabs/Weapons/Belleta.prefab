@@ -610,7 +610,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4585824699358774}
   - component: {fileID: 137705132678387622}
-  - component: {fileID: 95831335701003076}
   m_Layer: 13
   m_Name: Gun02_Magazine_Mesh
   m_TagString: Untagged
@@ -688,25 +687,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.08175948, y: 0.079671495, z: 0.0000920631}
     m_Extent: {x: 0.08719024, y: 0.044384144, z: 0.012610121}
   m_DirtyAABB: 0
---- !u!95 &95831335701003076
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1222774028983432}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e25168248c4452d4fae658b2466357e0, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1222954445381988
 GameObject:
   m_ObjectHideFlags: 0

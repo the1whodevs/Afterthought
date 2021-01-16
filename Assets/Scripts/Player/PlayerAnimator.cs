@@ -38,7 +38,7 @@ public class PlayerAnimator : MonoBehaviour
         
         while (true)
         {
-            if (pe.UsingEquipment)
+            if (pe.UsingEquipment || Player.Instance.Controller.IsInUI)
                 yield return new WaitForEndOfFrame();
             else if (Math.Abs(pe.CurrentAnimator.GetLayerWeight(1) - targetLayerWeight) <= tolerance) yield return new WaitForEndOfFrame();
             else

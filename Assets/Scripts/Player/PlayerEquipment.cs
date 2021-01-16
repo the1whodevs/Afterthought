@@ -94,6 +94,18 @@ public class PlayerEquipment : MonoBehaviour
         EquipPrimaryWeapon();
     }
 
+    public void ChangeActiveLoadout(LoadoutData newLoadout)
+    {
+        loadout = newLoadout;
+
+        Unequip();
+        UnequipEquipment();
+
+        loadout = newLoadout;
+
+        EquipPrimaryWeapon();
+    }
+
     public bool UseEquipmentA()
     {
         return UseEquipment(loadout.Equipment[0]);
@@ -296,7 +308,7 @@ public class PlayerEquipment : MonoBehaviour
 
         // If we hit an AI, damage it.
         if (emeraldAISystem && emeraldAISystem.enabled)
-            emeraldAISystem.Damage((int)dmg, EmeraldAISystem.TargetType.Player, transform, 1000);
+            emeraldAISystem.Damage((int)dmg, EmeraldAISystem.TargetType.Player, transform, 5000);
         // Otherwise just spawn a bullet hole.
         else
         {
@@ -392,7 +404,7 @@ public class PlayerEquipment : MonoBehaviour
 
             // If we hit an AI, damage it.
             if (emeraldAIsys && emeraldAIsys.enabled)
-                emeraldAIsys.Damage((int) dmg, EmeraldAISystem.TargetType.Player, transform, 1000);
+                emeraldAIsys.Damage((int) dmg, EmeraldAISystem.TargetType.Player, transform, 5000);
             // Otherwise just spawn a bullet hole.
             else
             {
@@ -456,7 +468,7 @@ public class PlayerEquipment : MonoBehaviour
 
         // If we hit an AI, damage it.
         if (emeraldAIsys && emeraldAIsys.enabled)
-            emeraldAIsys.Damage((int) dmg, EmeraldAISystem.TargetType.Player, transform, 1000);
+            emeraldAIsys.Damage((int) dmg, EmeraldAISystem.TargetType.Player, transform, 5000);
 
         // Otherwise just spawn a bullet hole.
         else
@@ -659,6 +671,12 @@ public class PlayerEquipment : MonoBehaviour
         EquipEquipment(toEquip);
     }
 
+    private void UnequipEquipment()
+    {
+        currentEquipment = null;
+        if (currentEquipmentObject) Destroy(currentEquipmentObject);
+    }
+
     private void EquipEquipment(EquipmentData toEquip)
     {
         CurrentAnimator = CurrentWeaponObject.GetComponent<Animator>();
@@ -688,10 +706,13 @@ public class PlayerEquipment : MonoBehaviour
 
         var hash = Player.Instance.Animator.unequipAnimHash;
         
-        CurrentAnimator.ResetTrigger(hash);
-        CurrentAnimator.SetTrigger(hash);
-        
-        yield return new WaitForSeconds(delay);
+        if (CurrentAnimator)
+        {
+            CurrentAnimator.ResetTrigger(hash);
+            CurrentAnimator.SetTrigger(hash);
+
+            yield return new WaitForSeconds(delay);
+        }
         
         Unequip();
         EquipWeapon(weaponToEquip);
@@ -701,6 +722,8 @@ public class PlayerEquipment : MonoBehaviour
     {
         if (CurrentWeapon) CurrentWeapon = null;
         if (CurrentWeaponObject) Destroy(CurrentWeaponObject);
+
+        CurrentAnimator = null;
     }
 
     /// <summary>

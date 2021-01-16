@@ -1,6 +1,4 @@
-﻿using System;
-using EmeraldAI;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WeaponAnimHelper : MonoBehaviour
 {
