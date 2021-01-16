@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Scarface
   description: Mess too much with it and you'll be just like Tony Montana.
-  image: {fileID: 0}
+  icon: {fileID: 21300000, guid: c6532b220b75c9447b68dc746cea719c, type: 3}
   wepPrefab: {fileID: 1701325561305732, guid: 80514b72feef0e94fbab24a3b156d451, type: 3}
   projectilePrefab: {fileID: 0}
   muzzleEffect: {fileID: 2766519485109825048, guid: aa7bb61bca0e1b44cbd9d04d57daf4aa,
     type: 3}
   reloadAudioFx: {fileID: 8300000, guid: cc988050393583047ad560d1ce931d72, type: 3}
   emptyClipAudioFx: {fileID: 8300000, guid: 7a451d3ef76a4c948b1c97f5441d680e, type: 3}
+  isShotgun: 0
+  hasScope: 0
+  scopeZoom: 2
   shotAudioFx:
   - {fileID: 8300000, guid: 30739ee4f1717a04bb9dd3aa2a5a4df3, type: 3}
   hitImpact: {fileID: 7258679735602562002, guid: 608cb554bb30cb746956424c326042ca,
@@ -41,3 +44,7 @@ MonoBehaviour:
   reloadSpeed: 1
   mobilityPenalty: 0.3
   adsMultiplier: 1
+  minRange: 150
+  maxRange: 300
+  recoil_horizontal: 1.5
+  recoil_vertical: 3

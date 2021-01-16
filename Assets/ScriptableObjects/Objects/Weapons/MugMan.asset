@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Mugman
   description: Make it snub nosed and you're ready to mug.
-  image: {fileID: 21300000, guid: 5f0e53e4f165adc469a356c65eaade70, type: 3}
+  icon: {fileID: 21300000, guid: 5f0e53e4f165adc469a356c65eaade70, type: 3}
   wepPrefab: {fileID: 1731598803622250, guid: 3dae5c5f864e5ad4998dbcbf8aa60fc3, type: 3}
   projectilePrefab: {fileID: 0}
   muzzleEffect: {fileID: 4803186422290488617, guid: 936da034babea3b47b693484271e151f,
     type: 3}
   reloadAudioFx: {fileID: 8300000, guid: 537040b21c19433409e62f925275f958, type: 3}
   emptyClipAudioFx: {fileID: 8300000, guid: 7a451d3ef76a4c948b1c97f5441d680e, type: 3}
+  isShotgun: 0
+  hasScope: 0
+  scopeZoom: 2
   shotAudioFx:
   - {fileID: 8300000, guid: 0dedc1ced9e67ff42bf408b18ee0f22b, type: 3}
   hitImpact: {fileID: 7258679735602562002, guid: 608cb554bb30cb746956424c326042ca,
@@ -41,3 +44,7 @@ MonoBehaviour:
   reloadSpeed: 0.6
   mobilityPenalty: 0.15
   adsMultiplier: 1
+  minRange: 150
+  maxRange: 300
+  recoil_horizontal: 1.5
+  recoil_vertical: 3

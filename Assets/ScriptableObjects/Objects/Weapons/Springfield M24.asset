@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Springfield M24
   description: Exactly what you expected from the name.
-  image: {fileID: 21300000, guid: b6b03a275ebc81944b82c568ce898892, type: 3}
+  icon: {fileID: 21300000, guid: b6b03a275ebc81944b82c568ce898892, type: 3}
   wepPrefab: {fileID: 1977984898015220, guid: 30e365fcd1d27fe4c94ab350c0484231, type: 3}
   projectilePrefab: {fileID: 0}
   muzzleEffect: {fileID: 6552543808276292960, guid: bd80e3940d1b5454a80d4769a3be8e8a,
     type: 3}
   reloadAudioFx: {fileID: 8300000, guid: 49445863fb03df24e81d6b088856f783, type: 3}
   emptyClipAudioFx: {fileID: 8300000, guid: 7a451d3ef76a4c948b1c97f5441d680e, type: 3}
+  isShotgun: 0
   hasScope: 1
   scopeZoom: 3
   shotAudioFx:
@@ -43,3 +44,7 @@ MonoBehaviour:
   reloadSpeed: 0.5
   mobilityPenalty: 0.45
   adsMultiplier: 1
+  minRange: 150
+  maxRange: 300
+  recoil_horizontal: 1.5
+  recoil_vertical: 3

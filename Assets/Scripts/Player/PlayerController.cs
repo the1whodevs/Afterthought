@@ -5,7 +5,8 @@ public class PlayerController : MonoBehaviour
     public enum PlayerMoveState { Idle, CrouchIdle, Run, CrouchRun, Sprint, Jumping }
     
     public PlayerMoveState CurrentMoveState = PlayerMoveState.Idle;
-    
+
+    public bool IsInUI { get; private set; }
     public bool IsADS { get; private set; }
     public bool IsMoving { get; private set; }
     public bool IsCrouching => CurrentMoveState == PlayerMoveState.CrouchIdle || 
@@ -61,6 +62,24 @@ public class PlayerController : MonoBehaviour
     {
         var d = Time.deltaTime;
          
+        if (Input.GetKeyDown(KeyCode.Period))
+        {
+            var le = LoadoutEditor.Instance;
+
+            if (le.gameObject.activeInHierarchy)
+            {
+                le.HideWindow();
+                IsInUI = false;
+            }
+            else
+            {
+                IsInUI = true;
+                le.ShowWindow();
+            }
+        }
+
+        if (IsInUI) return;
+
         UpdatePlayer(d);
         WeaponControls(d);
     }

@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Fire Axe
   description: A firefighter's axe.
-  image: {fileID: 21300000, guid: d39c371be74d24b459a672995b370eb1, type: 3}
+  icon: {fileID: 21300000, guid: d39c371be74d24b459a672995b370eb1, type: 3}
   wepPrefab: {fileID: 1309338933929924, guid: 84c474049c24851438853d84795bde09, type: 3}
   projectilePrefab: {fileID: 0}
   muzzleEffect: {fileID: 0}
   reloadAudioFx: {fileID: 0}
   emptyClipAudioFx: {fileID: 8300000, guid: 7a451d3ef76a4c948b1c97f5441d680e, type: 3}
+  isShotgun: 0
   hasScope: 0
   scopeZoom: 2
   shotAudioFx:
@@ -42,3 +43,7 @@ MonoBehaviour:
   reloadSpeed: 1
   mobilityPenalty: 0.3
   adsMultiplier: 1
+  minRange: 150
+  maxRange: 300
+  recoil_horizontal: 1.5
+  recoil_vertical: 3

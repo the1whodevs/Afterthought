@@ -56,6 +56,8 @@ public class MouseCamera : MonoBehaviour
 
     private void Update()
     {
+        if (Player.Instance.Controller.IsInUI) return;
+
         var d = Time.deltaTime;
         
         AdjustCameraToCurrentZoom(d);

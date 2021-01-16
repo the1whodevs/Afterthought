@@ -10,7 +10,7 @@ public class ItemDisplay<T> : MonoBehaviour where T : IDisplayableItem
 
     protected T itemToDisplay;
 
-    protected void Start()
+    public void UpdateDisplay()
     {
         itemNameField.text = itemToDisplay.name;
         itemIconImage.sprite = itemToDisplay.icon;

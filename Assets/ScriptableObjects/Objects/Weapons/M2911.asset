@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: M2911
   description: Your standard military pistol.
-  image: {fileID: 21300000, guid: f23230739d04d5a498bc2d0f64b49d8c, type: 3}
+  icon: {fileID: 21300000, guid: f23230739d04d5a498bc2d0f64b49d8c, type: 3}
   wepPrefab: {fileID: 1425756895877542, guid: 9820bbe58bb57204db392c631110251c, type: 3}
   projectilePrefab: {fileID: 0}
   muzzleEffect: {fileID: 6002720521190060909, guid: a082bc92011a84a43801e11d8edfde30,
     type: 3}
   reloadAudioFx: {fileID: 8300000, guid: 5352c7bdf44b11141ba87d35e6e5a45a, type: 3}
   emptyClipAudioFx: {fileID: 8300000, guid: 7a451d3ef76a4c948b1c97f5441d680e, type: 3}
+  isShotgun: 0
+  hasScope: 0
+  scopeZoom: 2
   shotAudioFx:
   - {fileID: 8300000, guid: 00d6c854d736b274692325c410bbdcc7, type: 3}
   hitImpact: {fileID: 7258679735602562002, guid: 608cb554bb30cb746956424c326042ca,
@@ -41,3 +44,7 @@ MonoBehaviour:
   reloadSpeed: 2
   mobilityPenalty: 0.1
   adsMultiplier: 1
+  minRange: 150
+  maxRange: 300
+  recoil_horizontal: 1.5
+  recoil_vertical: 3

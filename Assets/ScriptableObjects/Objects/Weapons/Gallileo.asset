@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Gallileo
   description: Gallilei.
-  image: {fileID: 0}
+  icon: {fileID: 21300000, guid: 6d67879e6dd91cf459bdf4ec21840113, type: 3}
   wepPrefab: {fileID: 1013363612589426, guid: 2ad5c36edd0559141b78e7b2213712e6, type: 3}
   projectilePrefab: {fileID: 0}
   muzzleEffect: {fileID: 2766519485109825048, guid: aa7bb61bca0e1b44cbd9d04d57daf4aa,
     type: 3}
   reloadAudioFx: {fileID: 8300000, guid: a5630171bfb637443acaf533204a2225, type: 3}
   emptyClipAudioFx: {fileID: 8300000, guid: 7a451d3ef76a4c948b1c97f5441d680e, type: 3}
+  isShotgun: 0
+  hasScope: 0
+  scopeZoom: 2
   shotAudioFx:
   - {fileID: 8300000, guid: 30739ee4f1717a04bb9dd3aa2a5a4df3, type: 3}
   hitImpact: {fileID: 7258679735602562002, guid: 608cb554bb30cb746956424c326042ca,
@@ -41,3 +44,7 @@ MonoBehaviour:
   reloadSpeed: 1
   mobilityPenalty: 0.35
   adsMultiplier: 1
+  minRange: 150
+  maxRange: 300
+  recoil_horizontal: 1.5
+  recoil_vertical: 3

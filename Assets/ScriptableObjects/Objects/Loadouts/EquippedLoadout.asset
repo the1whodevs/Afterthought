@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: EquippedLoadout
   m_EditorClassIdentifier: 
   LoadoutName: Equipped
-  PrimaryWeapon: {fileID: 11400000, guid: bf1f25c2f5bea3b469b9a3262041b5a6, type: 2}
-  SecondaryWeapon: {fileID: 11400000, guid: a715ac421d389ee47befc9219ca3942c, type: 2}
-  Equipment1: {fileID: 11400000, guid: 78c568011d91cca4588b7ad573e229ab, type: 2}
-  Equipment2: {fileID: 11400000, guid: 78c568011d91cca4588b7ad573e229ab, type: 2}
-  TalentA: {fileID: 11400000, guid: 5bcc26fd77ef21943b0cfe86f0f99663, type: 2}
-  TalentB: {fileID: 11400000, guid: 0a8520fb38bbf2d4097524e02b9bce5a, type: 2}
-  TalentC: {fileID: 11400000, guid: c8aadfa9fbdd7ee4a85cb1d883e61109, type: 2}
+  Weapons:
+  - {fileID: 11400000, guid: bce3566e26b1230458674d0e6107e12a, type: 2}
+  - {fileID: 11400000, guid: 3e7d1ef436ebea24dbb71d4af97bb105, type: 2}
+  Equipment:
+  - {fileID: 11400000, guid: 78c568011d91cca4588b7ad573e229ab, type: 2}
+  - {fileID: 11400000, guid: 78c568011d91cca4588b7ad573e229ab, type: 2}
+  Talents:
+  - {fileID: 11400000, guid: 319f5125e907ec544832dcd2cdedd38d, type: 2}
+  - {fileID: 11400000, guid: 3ee9b988735eed0488910dc0cada7ea2, type: 2}
+  - {fileID: 11400000, guid: 3a2fcc397177ec047a7642c39ad111ad, type: 2}
