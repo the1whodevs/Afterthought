@@ -219,6 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 305737994843635870}
   - component: {fileID: 8946119321736403913}
+  - component: {fileID: 4351156850076763597}
   - component: {fileID: 5352462671224431783}
   - component: {fileID: 1675743892}
   - component: {fileID: 8596469321991378682}
@@ -268,6 +269,18 @@ MonoBehaviour:
   - {fileID: 5897403455094868051, guid: fcd6ceabb52a5504ab2a0c0e9b2c82e9, type: 3}
   - {fileID: 3770326519118737160, guid: 26564c73c8523e647857bb294a6c909b, type: 3}
   - {fileID: 6504571535279505859, guid: c21578bb7f8a5954cbfe2c8d666c46d9, type: 3}
+--- !u!114 &4351156850076763597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305737994843635869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e63c7023821f4447bcba12795c17779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5352462671224431783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,7 +360,6 @@ MonoBehaviour:
   currentHealth: 2
   startingHealth: 100
   handsObject: {fileID: 1572396041265650235}
-  healthBar: {fileID: 0}
 --- !u!114 &5232873967447831070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,6 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db119b987c125734d8537aefaa4cb741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  adsSpeed: 10
 --- !u!114 &1675743893
 MonoBehaviour:
   m_ObjectHideFlags: 0

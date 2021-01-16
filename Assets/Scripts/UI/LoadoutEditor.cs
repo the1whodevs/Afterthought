@@ -19,6 +19,9 @@ public class LoadoutEditor : MonoBehaviour
     private static LoadoutEditor _instance;
 
     [SerializeField] private LoadoutData[] playerLoadouts;
+    [SerializeField] private WeaponData[] allWeapons;
+    [SerializeField] private EquipmentData[] allEquipment;
+    [SerializeField] private TalentData[] allTalents;
 
     [SerializeField] private WeaponDisplay wepDisplayA;
     [SerializeField] private WeaponDisplay wepDisplayB;
@@ -44,9 +47,80 @@ public class LoadoutEditor : MonoBehaviour
         HideWindow();
     }
 
+    private void InitWeaponsList()
+    {
+        var weaponsFill = wepDisplayA.AllItemDisplay.transform.GetComponentsInChildren<WeaponDisplay>();
+
+        for (var i = 0; i < allWeapons.Length; i++)
+        {
+            weaponsFill[i].RelatedSlot = 0;
+            weaponsFill[i].SetItemToDisplay(allWeapons[i]);
+        }
+
+        weaponsFill = wepDisplayB.AllItemDisplay.transform.GetComponentsInChildren<WeaponDisplay>();
+
+        for (var i = 0; i < allWeapons.Length; i++)
+        {
+            weaponsFill[i].RelatedSlot = 1;
+            weaponsFill[i].SetItemToDisplay(allWeapons[i]);
+        }
+    }
+
+    private void InitEquipmentList()
+    {
+        var equipmentsFill = equipDisplayA.AllItemDisplay.transform.GetComponentsInChildren<EquipmentDisplay>();
+
+        for (var i = 0; i < allEquipment.Length; i++)
+        {
+            equipmentsFill[i].RelatedSlot = 0;
+            equipmentsFill[i].SetItemToDisplay(allEquipment[i]);
+        }
+
+        equipmentsFill = equipDisplayB.AllItemDisplay.transform.GetComponentsInChildren<EquipmentDisplay>();
+
+        for (var i = 0; i < allEquipment.Length; i++)
+        {
+            equipmentsFill[i].RelatedSlot = 1;
+            equipmentsFill[i].SetItemToDisplay(allEquipment[i]);
+        }
+
+    }
+
+    private void InitTalentList()
+    {
+        var talentsFill = talentDisplayA.AllItemDisplay.transform.GetComponentsInChildren<TalentDisplay>();
+
+        for (var i = 0; i < allTalents.Length; i++)
+        {
+            talentsFill[i].RelatedSlot = 0;
+            talentsFill[i].SetItemToDisplay(allTalents[i]);
+        }
+
+        talentsFill = talentDisplayB.AllItemDisplay.transform.GetComponentsInChildren<TalentDisplay>();
+
+        for (var i = 0; i < allTalents.Length; i++)
+        {
+            talentsFill[i].RelatedSlot = 1;
+            talentsFill[i].SetItemToDisplay(allTalents[i]);
+        }
+
+        talentsFill = talentDisplayC.AllItemDisplay.transform.GetComponentsInChildren<TalentDisplay>();
+
+        for (var i = 0; i < allTalents.Length; i++)
+        {
+            talentsFill[i].RelatedSlot = 2;
+            talentsFill[i].SetItemToDisplay(allTalents[i]);
+        }
+    }
+
     public void ShowWindow()
     {
         if (!displayedLoadout) displayedLoadout = playerLoadouts[0];
+
+
+        InitWeaponsList();
+        InitEquipmentList();
+        InitTalentList();
 
         UpdateDisplays();
 
@@ -56,9 +130,52 @@ public class LoadoutEditor : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
+    public void CloseAllItemDisplays()
+    {
+        wepDisplayA.HideAllItemDisplay();
+        wepDisplayB.HideAllItemDisplay();
+
+        equipDisplayA.HideAllItemDisplay();
+        equipDisplayB.HideAllItemDisplay();
+
+        talentDisplayA.HideAllItemDisplay();
+        talentDisplayB.HideAllItemDisplay();
+        talentDisplayC.HideAllItemDisplay();
+    }
+
     public void SelectLoadout()
     {
         Player.Instance.Equipment.ChangeActiveLoadout(displayedLoadout);
+
+        UpdateDisplays();
+    }
+
+    public void SetLoadoutWeapon(WeaponData weapon, int slot)
+    {
+        foreach (var wep in displayedLoadout.Weapons)
+            if (wep == weapon) return;
+        
+        displayedLoadout.Weapons[slot] = weapon;
+
+        UpdateDisplays();
+    }
+
+    public void SetLoadoutEquipment(EquipmentData equipment, int slot)
+    {
+        foreach (var eq in displayedLoadout.Equipment)
+            if (equipment == eq) return;
+        
+        displayedLoadout.Equipment[slot] = equipment;
+
+        UpdateDisplays();
+    }
+
+    public void SetLoadoutTalent(TalentData talent, int slot)
+    {
+        foreach (var tal in displayedLoadout.Talents)
+            if (tal == talent) return;
+
+        displayedLoadout.Talents[slot] = talent;
 
         UpdateDisplays();
     }

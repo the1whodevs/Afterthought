@@ -67,13 +67,15 @@ public class WeaponData : IDisplayableItem
         }
     }
 
-    public void SaveData()
+    public override void SaveData()
     {
+        base.SaveData();
         PlayerPrefs.SetInt(AMMO_IN_MAG, currentAmmo);
     }
 
-    public void LoadData()
+    public override void LoadData()
     {
+        base.LoadData();
         currentAmmo = PlayerPrefs.GetInt(AMMO_IN_MAG, magazineCapacity);
     }
 }

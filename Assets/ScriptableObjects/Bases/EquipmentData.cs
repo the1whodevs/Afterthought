@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Veejay/Equipment", fileName = "Equipment")]
 public class EquipmentData : IDisplayableItem
@@ -22,13 +21,15 @@ public class EquipmentData : IDisplayableItem
 
     private string AMMO_IN_MAG => $"{name}_AMMOinMAG";
 
-    public void SaveData()
+    public override void SaveData()
     {
+        base.SaveData();
         PlayerPrefs.SetInt(AMMO_IN_MAG, currentAmmo);
     }
 
-    public void LoadData()
+    public override void LoadData()
     {
+        base.LoadData();
         currentAmmo = PlayerPrefs.GetInt(AMMO_IN_MAG, magazineCapacity);
     }
 }
