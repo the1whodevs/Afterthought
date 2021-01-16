@@ -1,16 +1,30 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class ItemDisplay : MonoBehaviour
+public class ItemDisplay<T> : MonoBehaviour where T : IDisplayableItem
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] protected TextMeshProUGUI itemNameField;
+
+    [SerializeField] protected Image itemIconImage;
+
+    protected T itemToDisplay;
+
+    protected void Start()
     {
-        
+        itemNameField.text = itemToDisplay.name;
+        itemIconImage.sprite = itemToDisplay.icon;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetItemToDisplay(T itemToSet)
     {
-        
+        itemToDisplay = itemToSet;
     }
+}
+
+public class IDisplayableItem : ScriptableObject
+{
+    public new string name;
+    public string description;
+    public Sprite icon;
 }

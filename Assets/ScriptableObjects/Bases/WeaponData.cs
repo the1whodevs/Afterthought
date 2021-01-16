@@ -2,7 +2,7 @@
 using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Veejay/Weapon", fileName = "Weapon")]
-public class WeaponData : ScriptableObject
+public class WeaponData : IDisplayableItem
 {
     public enum WeaponType { Firearm, Projectile, Melee }
     
@@ -10,11 +10,7 @@ public class WeaponData : ScriptableObject
 
     public GameObject RandomHitDecal => hitDecal[Random.Range(0, hitDecal.Length)];
     public AudioClip RandomShotAudioFX => shotAudioFx[Random.Range(0, shotAudioFx.Length)];
-    
-    [FormerlySerializedAs("rightHandPrefab")] public new string name;
-    public string description;
-    public Sprite image;
-    
+        
     public GameObject wepPrefab;
     public GameObject projectilePrefab;
     public GameObject muzzleEffect;
