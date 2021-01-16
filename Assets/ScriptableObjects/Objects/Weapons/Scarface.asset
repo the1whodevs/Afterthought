@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Scarface
   description: Mess too much with it and you'll be just like Tony Montana.
-  icon: {fileID: 21300000, guid: c6532b220b75c9447b68dc746cea719c, type: 3}
+  icon: {fileID: 21300000, guid: 901807c7ffe66474081b01a09fdcf91e, type: 3}
+  unlockType: 2
+  levelRequired: 1
+  isLooted: 0
   wepPrefab: {fileID: 1701325561305732, guid: 80514b72feef0e94fbab24a3b156d451, type: 3}
   projectilePrefab: {fileID: 0}
   muzzleEffect: {fileID: 2766519485109825048, guid: aa7bb61bca0e1b44cbd9d04d57daf4aa,
@@ -35,7 +38,7 @@ MonoBehaviour:
   - {fileID: 8360897983169464813, guid: 54d17ef0927945b4e8a0c8c96761cfe7, type: 3}
   weaponType: 0
   fireType: 0
-  currentAmmo: 3
+  currentAmmo: 20
   magazineCapacity: 20
   projectileSpeed: 100
   weaponDamage: 20

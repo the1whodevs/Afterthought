@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Grenade Launcher
   description: Just another noobtube.
-  icon: {fileID: 21300000, guid: dc8b4198b22fac24e9c8c60280d3a9e0, type: 3}
+  icon: {fileID: 21300000, guid: 2ce8d73f3c7939542abf257bf0af7414, type: 3}
+  unlockType: 2
+  levelRequired: 1
+  isLooted: 0
   wepPrefab: {fileID: 1162446373548900, guid: de3ce606167c3e14698b0790ea606d60, type: 3}
   projectilePrefab: {fileID: 3015798782867532452, guid: 31f1f74e508898b45b2df01f9e0d945b,
     type: 3}
@@ -36,7 +39,7 @@ MonoBehaviour:
   - {fileID: 8360897983169464813, guid: 54d17ef0927945b4e8a0c8c96761cfe7, type: 3}
   weaponType: 1
   fireType: 2
-  currentAmmo: 0
+  currentAmmo: 6
   magazineCapacity: 6
   projectileSpeed: 30
   weaponDamage: 100

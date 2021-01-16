@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Gallileo
   description: Gallilei.
-  icon: {fileID: 21300000, guid: 6d67879e6dd91cf459bdf4ec21840113, type: 3}
+  icon: {fileID: 21300000, guid: 02ef725d0b1a07744a51272ff246e81a, type: 3}
+  unlockType: 2
+  levelRequired: 1
+  isLooted: 0
   wepPrefab: {fileID: 1013363612589426, guid: 2ad5c36edd0559141b78e7b2213712e6, type: 3}
   projectilePrefab: {fileID: 0}
   muzzleEffect: {fileID: 2766519485109825048, guid: aa7bb61bca0e1b44cbd9d04d57daf4aa,
@@ -35,7 +38,7 @@ MonoBehaviour:
   - {fileID: 8360897983169464813, guid: 54d17ef0927945b4e8a0c8c96761cfe7, type: 3}
   weaponType: 0
   fireType: 0
-  currentAmmo: 26
+  currentAmmo: 30
   magazineCapacity: 30
   projectileSpeed: 100
   weaponDamage: 15
