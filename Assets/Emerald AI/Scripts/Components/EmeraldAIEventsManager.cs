@@ -10,6 +10,8 @@ namespace EmeraldAI
         EmeraldAISystem EmeraldComponent;
         Coroutine m_RotateTowards;
 
+        private bool hasAlerted = false;
+
         void Awake()
         {
             EmeraldComponent = GetComponent<EmeraldAISystem>();
@@ -833,6 +835,53 @@ namespace EmeraldAI
             EmeraldComponent.CombatStateRef = EmeraldAISystem.CombatState.NotActive;
         }
 
+        public void AlertNearbyEnemies()
+        {
+            if (hasAlerted) return;
+
+            hasAlerted = true;
+
+            var range = 30.0f;
+
+            var hits = Physics.SphereCastAll(transform.position, range, Vector3.down);
+
+            if (hits.Length == 0) return;
+
+            foreach (var hit in hits)
+            {
+                var eAIsys = hit.transform.GetComponent<EmeraldAISystem>();
+
+                if (!eAIsys) continue;
+
+                eAIsys.GetComponent<EmeraldAIEventsManager>().SetCombatTargetPlayer();
+            }
+        }
+
+        /// <summary>
+        /// Assigns a new combat target for your AI to attack. Using this setting will override your AI's chase limit and will ignore an AI's faction.
+        /// </summary>
+        public void SetCombatTargetPlayer()
+        {
+            var Target = Player.Instance.transform;
+
+            if (EmeraldComponent.ConfidenceRef != EmeraldAISystem.ConfidenceType.Coward && Target != null)
+            {
+                EmeraldComponent.CurrentTarget = Target;
+                EmeraldComponent.EmeraldDetectionComponent.DetectTargetType(EmeraldComponent.CurrentTarget, true);
+                EmeraldComponent.m_NavMeshAgent.ResetPath();
+                EmeraldComponent.m_NavMeshAgent.stoppingDistance = EmeraldComponent.AttackDistance;
+                EmeraldComponent.m_NavMeshAgent.destination = Target.position;
+                EmeraldComponent.EmeraldDetectionComponent.PreviousTarget = Target;
+                EmeraldComponent.MaxChaseDistance = 2000;
+                EmeraldComponent.EmeraldBehaviorsComponent.ActivateCombatState();
+            }
+            else if (Target == null)
+            {
+                Debug.Log("The SetCombatTarget paramter is null. Ensure that the target exists before calling this function.");
+            }
+        }
+
+
         /// <summary>
         /// Assigns a new combat target for your AI to attack. Using this setting will override your AI's chase limit and will ignore an AI's faction.
         /// </summary>
@@ -1055,6 +1104,7 @@ namespace EmeraldAI
         /// </summary>
         public void ResumeMovement()
         {
+            hasAlerted = false;
             EmeraldComponent.m_NavMeshAgent.isStopped = false;
         }
 
