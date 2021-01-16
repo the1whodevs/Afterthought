@@ -9,6 +9,7 @@ public class FootSteps : MonoBehaviour
     [SerializeField] private float modifier = 0.5f;
     
     [SerializeField] private AudioSource audioSource;
+
     [SerializeField] private AudioClip[] grassClips;
     [SerializeField] private AudioClip[] mudClips;
     [SerializeField] private AudioClip[] stoneClips;
