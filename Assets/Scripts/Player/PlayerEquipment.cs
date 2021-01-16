@@ -101,8 +101,6 @@ public class PlayerEquipment : MonoBehaviour
         Unequip();
         UnequipEquipment();
 
-        loadout = newLoadout;
-
         EquipPrimaryWeapon();
     }
 

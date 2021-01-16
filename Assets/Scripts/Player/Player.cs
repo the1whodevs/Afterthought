@@ -15,9 +15,16 @@ public class Player : MonoBehaviour
     
     public PlayerPostProcessing PostProcessing { get; private set; }
 
+    [SerializeField] private GameObject[] objectsToSpawnOnSpawn;
+
     private void Awake()
     {
         if (Instance) Destroy(this);
+
+        foreach (var toSpawn in objectsToSpawnOnSpawn)
+        {
+            Instantiate(toSpawn);
+        }
 
         Equipment = GetComponent<PlayerEquipment>();
         Animator = GetComponent<PlayerAnimator>();
