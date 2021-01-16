@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public bool IsCrouching => CurrentMoveState == PlayerMoveState.CrouchIdle || 
         CurrentMoveState == PlayerMoveState.CrouchRun;
 
+    [SerializeField, TagSelector] private string loadoutChangerTag;
+
     [Header("Move Settings")]
     [SerializeField] private float runSpeed = 10.0f;
     [SerializeField] private float crouchSpeed = 7.0f;
@@ -61,22 +63,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         var d = Time.deltaTime;
-         
-        if (Input.GetKeyDown(KeyCode.Period))
-        {
-            var le = LoadoutEditor.Instance;
-
-            if (le.gameObject.activeInHierarchy)
-            {
-                le.HideWindow();
-                IsInUI = false;
-            }
-            else
-            {
-                IsInUI = true;
-                le.ShowWindow();
-            }
-        }
 
         if (IsInUI) return;
 
@@ -309,5 +295,34 @@ public class PlayerController : MonoBehaviour
     {
         playerVelocity += Vector3.down * (-Physics.gravity.y * Time.deltaTime);
         cc.Move(playerVelocity * Time.deltaTime);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag(loadoutChangerTag))
+        {
+            UIManager.Instance.ShowInteractPrompt(KeyCode.F);
+
+            var interact = Input.GetAxisRaw("Interact");
+            var backUi = Input.GetAxisRaw("BackUI");
+
+            Debug.LogFormat("I: {0} __ BACK: {1}", interact.ToString("F1"), backUi.ToString("F1"));
+
+            if (!IsInUI && interact > 0.0f)
+            {
+                IsInUI = true;
+                LoadoutEditor.Instance.ShowWindow();
+            }
+            else if (IsInUI && backUi > 0.0f)
+            {
+                IsInUI = false;
+                LoadoutEditor.Instance.HideWindow();
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(loadoutChangerTag)) UIManager.Instance.HideInteractPrompt();
     }
 }

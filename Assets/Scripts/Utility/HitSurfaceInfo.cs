@@ -21,5 +21,11 @@ public class HitSurfaceInfo : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlayImpactSound() => audioSource.PlayOneShot(impactSoundFx[Random.Range(0, impactSoundFx.Length)]);
+    public void PlayImpactSound()
+    {
+        if (!audioSource) return;
+        if (impactSoundFx.Length == 0) return;
+
+        audioSource.PlayOneShot(impactSoundFx[Random.Range(0, impactSoundFx.Length)]);
+    }
 }

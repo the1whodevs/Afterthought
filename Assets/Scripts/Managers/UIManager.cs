@@ -1,6 +1,5 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -8,6 +7,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject HealthBar => healthBar;
 
+    [SerializeField] private TextMeshProUGUI interactPrompt;
     [SerializeField] private TextMeshProUGUI ammoUI;
     [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject healthBar;
@@ -23,6 +23,17 @@ public class UIManager : MonoBehaviour
     {
         crosshair.SetActive(true);
         healthBar.SetActive(true);
+    }
+
+    public void ShowInteractPrompt(KeyCode keyPrompt)
+    {
+        interactPrompt.text = $"Press {keyPrompt} to interact";
+        interactPrompt.gameObject.SetActive(true);
+    }
+
+    public void HideInteractPrompt()
+    {
+        interactPrompt.gameObject.SetActive(false);
     }
 
     public void ToggleCrosshair(bool status) => crosshair.SetActive(status);

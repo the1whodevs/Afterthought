@@ -281,6 +281,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e63c7023821f4447bcba12795c17779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentXP: 0
+  xpRequired:
+    equationType: 0
+    valueAtLevelA: 1
+    valueAtLevelB: 199
+    levelA: 0
+    levelB: 199
+    maxAtLevelB: 0
 --- !u!114 &5352462671224431783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentMoveState: 0
+  loadoutChangerTag: LoadoutSelection
   runSpeed: 5
   crouchSpeed: 5
   sprintSpeed: 7

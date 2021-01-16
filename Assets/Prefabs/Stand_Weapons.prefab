@@ -88,9 +88,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7851517075096024475}
-  m_Layer: 0
+  - component: {fileID: 6663787106524298561}
+  - component: {fileID: 1713689197806690000}
+  m_Layer: 12
   m_Name: Stand_Weapons
-  m_TagString: Untagged
+  m_TagString: LoadoutSelection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -127,6 +129,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -87.51401, z: 0}
+--- !u!65 &6663787106524298561
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846210657550851555}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7220705, y: 2.797095, z: 0.8651667}
+  m_Center: {x: 0.012297749, y: 1.3941106, z: 0.52466506}
+--- !u!54 &1713689197806690000
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846210657550851555}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7846813656290342089
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +371,7 @@ MonoBehaviour:
   - {fileID: 8397900530049635054, guid: 280dd7b1dbbe3bb4b8a414d1e9093edf, type: 3}
   - {fileID: 5748433917242350924, guid: f0b7c28863c7f554d9f8d4a150de9110, type: 3}
   - {fileID: 815203494311570969, guid: ae44d0f0c6e79354795b8fd1fc7dbe25, type: 3}
+  explosionDecal: []
 --- !u!1 &7847171999636282251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,7 +1594,6 @@ GameObject:
   - component: {fileID: 4049395718186026208}
   - component: {fileID: 7775843107249417907}
   - component: {fileID: 2307022199759132458}
-  - component: {fileID: 8180348193356299757}
   m_Layer: 0
   m_Name: Light_low
   m_TagString: Untagged
@@ -1631,16 +1662,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8180348193356299757
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8627505375647660273}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.0984807, y: 3.8314695, z: 0.12960424}
-  m_Center: {x: -0.001132492, y: 1.9015965, z: -0.00088331476}
