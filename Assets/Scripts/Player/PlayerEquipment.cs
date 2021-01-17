@@ -512,7 +512,8 @@ public class PlayerEquipment : MonoBehaviour
 
     public void SetAmmoUI()
     {
-        uiManager.SetAmmoUI(CurrentWeapon.currentAmmo, ammoAvailable);
+        // TODO: Use ammo types!
+        uiManager.UpdateWeaponAmmoCount(CurrentWeapon, ammoAvailable);
     }
 
     public void PlayEmptyClipSound()
@@ -535,8 +536,8 @@ public class PlayerEquipment : MonoBehaviour
 
     public void ResetMagazine()
     {
-        CurrentWeapon.ReloadMag(ref ammoAvailable);
         isReloading = false;
+        CurrentWeapon.ReloadMag(ref ammoAvailable);
         SetAmmoUI();
     }
 
@@ -648,6 +649,10 @@ public class PlayerEquipment : MonoBehaviour
         if (toUse.currentAmmo == 0 || isUsingEquipment) return false;
 
         toUse.currentAmmo--;
+        
+        if (toUse == loadout.Equipment[0]) uiManager.UpdateEquipmentAmmoCountEquipmentA(toUse);
+        else uiManager.UpdateEquipmentAmmoCountEquipmentb(toUse);
+
         isUsingEquipment = true;
         StartCoroutine(SwitchToEquipment(toUse));
 

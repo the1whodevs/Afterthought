@@ -407,7 +407,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.00012207031}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 243.01855}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &2054741318900943393
 CanvasRenderer:
@@ -487,14 +487,15 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1321431385996856322}
   m_Father: {fileID: 2322076980448315478}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -18.994}
-  m_SizeDelta: {x: 0, y: 117.35695}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000012219, y: -18.7}
+  m_SizeDelta: {x: 102.04907, y: 101.71414}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2322076978978070094
 CanvasRenderer:
@@ -523,7 +524,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 02ef725d0b1a07744a51272ff246e81a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa6f9fd075f85ea44aa590d461eb170b, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -597,7 +598,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GALILEO
+  m_text: M2911
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 157bb6e27670fe640af13350c896bcb4, type: 2}
   m_sharedMaterial: {fileID: 2567390577810654265, guid: 157bb6e27670fe640af13350c896bcb4,
@@ -731,7 +732,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: WEAPON A
+  m_text: Weapon B
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 157bb6e27670fe640af13350c896bcb4, type: 2}
   m_sharedMaterial: {fileID: 2567390577810654265, guid: 157bb6e27670fe640af13350c896bcb4,
@@ -928,14 +929,13 @@ RectTransform:
   m_Children:
   - {fileID: 2322076979290934420}
   - {fileID: 2322076978978070092}
-  - {fileID: 1321431385996856322}
   m_Father: {fileID: 2322076980327193394}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.89941406}
-  m_SizeDelta: {x: 0, y: 197.039}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 159.039}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &2322076980448315473
 CanvasRenderer:
@@ -1112,7 +1112,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6304926716534347886}
   - component: {fileID: 8234386483442537704}
-  - component: {fileID: 2540435443771472317}
   - component: {fileID: 5268959946444701560}
   m_Layer: 0
   m_Name: All Weapons Display
@@ -1138,8 +1137,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -109.8999}
-  m_SizeDelta: {x: 0, y: 468.32288}
+  m_AnchoredPosition: {x: 0, y: -181}
+  m_SizeDelta: {x: 0, y: 469.69043}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8234386483442537704
 CanvasRenderer:
@@ -1149,35 +1148,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2511076034170247811}
   m_CullTransparentMesh: 0
---- !u!114 &2540435443771472317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2511076034170247811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c241e847af767d148b898393a975bb22, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &5268959946444701560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1366,6 +1336,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6641865506377052779}
   - component: {fileID: 7497460933043581115}
+  - component: {fileID: 3801959205050034405}
+  - component: {fileID: 5617610671858976791}
   m_Layer: 0
   m_Name: Content
   m_TagString: Untagged
@@ -1406,8 +1378,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1761.8}
-  m_SizeDelta: {x: 0, y: 3523.942}
+  m_AnchoredPosition: {x: 0, y: -1728}
+  m_SizeDelta: {x: 0, y: 3456.1006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7497460933043581115
 MonoBehaviour:
@@ -1422,18 +1394,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
+    m_Left: 25
+    m_Right: 25
+    m_Top: 25
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 0.1
+  m_Spacing: 7.27
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!222 &3801959205050034405
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424964348284288056}
+  m_CullTransparentMesh: 0
+--- !u!114 &5617610671858976791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424964348284288056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: c241e847af767d148b898393a975bb22, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 5
 --- !u!1 &5884696573108021121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,14 +1694,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2322076980448315478}
-  m_RootOrder: 2
+  m_Father: {fileID: 2322076978978070092}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -18.994}
-  m_SizeDelta: {x: 0, y: 117.35695}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0.2999878, y: 0.021568298}
+  m_SizeDelta: {x: -0.5999756, y: 117.35695}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &5395942931471011280
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2283,6 +2292,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay
       objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
       propertyPath: m_Sprite
@@ -2599,6 +2613,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
@@ -2917,6 +2936,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
       propertyPath: m_Sprite
@@ -3233,6 +3257,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
@@ -3551,6 +3580,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
       propertyPath: m_Sprite
@@ -3747,15 +3781,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 113178eab0b59ec4fa8ac0e3435de368, type: 3}
---- !u!224 &475003135017531636 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5402847365563490331, guid: 113178eab0b59ec4fa8ac0e3435de368,
-    type: 3}
-  m_PrefabInstance: {fileID: 5507139111841667311}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &475003134864976784 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5402847365716079487, guid: 113178eab0b59ec4fa8ac0e3435de368,
+    type: 3}
+  m_PrefabInstance: {fileID: 5507139111841667311}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &475003135017531636 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5402847365563490331, guid: 113178eab0b59ec4fa8ac0e3435de368,
     type: 3}
   m_PrefabInstance: {fileID: 5507139111841667311}
   m_PrefabAsset: {fileID: 0}
@@ -3867,6 +3901,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
@@ -4064,15 +4103,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 113178eab0b59ec4fa8ac0e3435de368, type: 3}
---- !u!224 &531526315440807660 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5402847365716079487, guid: 113178eab0b59ec4fa8ac0e3435de368,
-    type: 3}
-  m_PrefabInstance: {fileID: 5591950471741205907}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &531526315592338824 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5402847365563490331, guid: 113178eab0b59ec4fa8ac0e3435de368,
+    type: 3}
+  m_PrefabInstance: {fileID: 5591950471741205907}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &531526315440807660 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5402847365716079487, guid: 113178eab0b59ec4fa8ac0e3435de368,
     type: 3}
   m_PrefabInstance: {fileID: 5591950471741205907}
   m_PrefabAsset: {fileID: 0}
@@ -4184,6 +4223,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
@@ -4502,6 +4546,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
       propertyPath: m_Sprite
@@ -4819,6 +4868,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
       propertyPath: m_Sprite
@@ -5015,15 +5069,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 113178eab0b59ec4fa8ac0e3435de368, type: 3}
---- !u!224 &1495669215313858234 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5402847365563490331, guid: 113178eab0b59ec4fa8ac0e3435de368,
-    type: 3}
-  m_PrefabInstance: {fileID: 6790137650470989473}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1495669215200107998 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5402847365716079487, guid: 113178eab0b59ec4fa8ac0e3435de368,
+    type: 3}
+  m_PrefabInstance: {fileID: 6790137650470989473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1495669215313858234 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5402847365563490331, guid: 113178eab0b59ec4fa8ac0e3435de368,
     type: 3}
   m_PrefabInstance: {fileID: 6790137650470989473}
   m_PrefabAsset: {fileID: 0}
@@ -5135,6 +5189,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
@@ -5453,6 +5512,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
       propertyPath: m_Sprite
@@ -5770,6 +5834,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
       propertyPath: m_Sprite
@@ -5966,15 +6035,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 113178eab0b59ec4fa8ac0e3435de368, type: 3}
---- !u!224 &3305038014053083292 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5402847365563490331, guid: 113178eab0b59ec4fa8ac0e3435de368,
-    type: 3}
-  m_PrefabInstance: {fileID: 7432944472068638855}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3305038013938252792 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5402847365716079487, guid: 113178eab0b59ec4fa8ac0e3435de368,
+    type: 3}
+  m_PrefabInstance: {fileID: 7432944472068638855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &3305038014053083292 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5402847365563490331, guid: 113178eab0b59ec4fa8ac0e3435de368,
     type: 3}
   m_PrefabInstance: {fileID: 7432944472068638855}
   m_PrefabAsset: {fileID: 0}
@@ -6086,6 +6155,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
@@ -6283,15 +6357,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 113178eab0b59ec4fa8ac0e3435de368, type: 3}
---- !u!224 &2452767057573762748 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5402847365716079487, guid: 113178eab0b59ec4fa8ac0e3435de368,
-    type: 3}
-  m_PrefabInstance: {fileID: 7562458194474149315}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2452767057420125656 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5402847365563490331, guid: 113178eab0b59ec4fa8ac0e3435de368,
+    type: 3}
+  m_PrefabInstance: {fileID: 7562458194474149315}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &2452767057573762748 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5402847365716079487, guid: 113178eab0b59ec4fa8ac0e3435de368,
     type: 3}
   m_PrefabInstance: {fileID: 7562458194474149315}
   m_PrefabAsset: {fileID: 0}
@@ -6403,6 +6477,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
@@ -6721,6 +6800,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
       propertyPath: m_Sprite
@@ -7038,6 +7122,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
       propertyPath: m_Sprite
@@ -7354,6 +7443,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dropdown Weapon DIsplay (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402847365716079484, guid: 113178eab0b59ec4fa8ac0e3435de368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5402847365716079486, guid: 113178eab0b59ec4fa8ac0e3435de368,
         type: 3}
