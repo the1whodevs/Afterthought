@@ -18,7 +18,8 @@ public class MouseCamera : MonoBehaviour
 
     [SerializeField] private Transform playerT;
 
-    [SerializeField] private float camRotationSpeed = 5f;
+    [SerializeField] private float mouseSensitivity_X = 1.0f;
+    [SerializeField] private float mouseSensitivity_Y = 1.0f;
     [SerializeField] private float cameraMinY = -60f;
     [SerializeField] private float cameraMaxY = 75f;
     [SerializeField] private float rotationSmoothSpeed = 10f;
@@ -52,6 +53,9 @@ public class MouseCamera : MonoBehaviour
         zoomCameraGameObject.SetActive(false);
         
         cameraT = transform;
+
+        mouseSensitivity_X = PlayerPrefs.GetFloat(MainMenu.HORIZONTAL_SENS_KEY, 1.5f);
+        mouseSensitivity_Y = PlayerPrefs.GetFloat(MainMenu.VERTICAL_SENS_KEY, 1.5f);
     }
 
     private void Update()
@@ -69,8 +73,8 @@ public class MouseCamera : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        var xMove = Input.GetAxis("Mouse X") * camRotationSpeed;
-        var yMove = Input.GetAxis("Mouse Y") * camRotationSpeed;
+        var xMove = Input.GetAxis("Mouse X") * mouseSensitivity_X;
+        var yMove = Input.GetAxis("Mouse Y") * mouseSensitivity_Y;
 
         RotatePlayer(xMove, yMove, delta);
     }
