@@ -71,6 +71,7 @@ public class MouseCamera : MonoBehaviour
 
         var xMove = Input.GetAxis("Mouse X") * camRotationSpeed;
         var yMove = Input.GetAxis("Mouse Y") * camRotationSpeed;
+
         RotatePlayer(xMove, yMove, delta);
     }
 
@@ -82,12 +83,12 @@ public class MouseCamera : MonoBehaviour
         //Stop the camera rotation 360 Degrees
         camRotationY = Mathf.Clamp(camRotationY, cameraMinY, cameraMaxY);
 
-        var canTargetRotation = Quaternion.Euler(-camRotationY, 0, 0);
+        var camTargetRotation = Quaternion.Euler(-camRotationY, 0, 0);
         var bodyTargetRotation = Quaternion.Euler(0, bodyRotationX, 0);
 
-        playerT.rotation = Quaternion.Lerp(playerT.rotation, bodyTargetRotation, delta * rotationSmoothSpeed);
+        playerT.rotation = bodyTargetRotation; //Quaternion.Lerp(playerT.rotation, bodyTargetRotation, delta * rotationSmoothSpeed);
 
-        cameraT.localRotation = Quaternion.Lerp(cameraT.localRotation, canTargetRotation, delta * rotationSmoothSpeed);
+        cameraT.localRotation = camTargetRotation; // Quaternion.Lerp(cameraT.localRotation, camTargetRotation, delta * rotationSmoothSpeed);
     }
     
     private string ZoomEnumToString(ZoomLevels zoom)
