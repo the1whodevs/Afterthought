@@ -1,5 +1,7 @@
-﻿using TMPro;
+﻿using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
@@ -11,6 +13,11 @@ public class MainMenu : MonoBehaviour
 
     // The settings window.
     [SerializeField] private GameObject settingsPanel;
+
+    [Header("Loading Screen")]
+    [SerializeField] private GameObject loadingPanel;
+    [SerializeField] private Image loadingImage;
+    [SerializeField] private TextMeshProUGUI loadingProgress;
 
     // The panels within the settings window.
     [Header("Controls Panel")]
@@ -32,6 +39,7 @@ public class MainMenu : MonoBehaviour
         continueButton.SetActive(PlayerPrefs.HasKey($"{SAVE_FILE_PREFIX}0"));
         mainPanel.SetActive(true);
         settingsPanel.SetActive(false);
+        loadingPanel.SetActive(false);
 
         controlsPanel.SetActive(true);
         audioPanel.SetActive(false);
@@ -50,12 +58,26 @@ public class MainMenu : MonoBehaviour
 
     public void ContinueButton()
     {
-
+        // TODO: Load last save file...
     }
 
-    public void NewGameButton()
+    public async void NewGameButton()
     {
+        if (!mainPanel.activeInHierarchy) return;
 
+        loadingPanel.SetActive(true);
+        mainPanel.SetActive(false);
+
+        // TODO: Load cinematic scene...
+        var asyncOp = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+        asyncOp.allowSceneActivation = true;
+
+        while (!asyncOp.isDone)
+        {
+            loadingImage.fillAmount = 0.1f + asyncOp.progress;
+            loadingProgress.text = (100.0f *(0.1f + asyncOp.progress)).ToString("F1") + "%";
+            await Task.Delay(1);
+        }
     }
 
     public void LoadGameButton()
@@ -146,5 +168,10 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.SetFloat(VERTICAL_SENS_KEY, sens);
             verticalSensitivitySlider.SetValueWithoutNotify(intVal);
         }
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
