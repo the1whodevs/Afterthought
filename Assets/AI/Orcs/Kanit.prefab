@@ -1534,8 +1534,8 @@ MonoBehaviour:
   MeleeAttackPickType: 1
   MeleeAttacks:
   - AttackAnimaition: 0
-    MinDamage: 1
-    MaxDamage: 5
+    MinDamage: 10
+    MaxDamage: 15
     AttackOdds: 1
     AttackImpactEffect: {fileID: 1055862917370258, guid: a921fa6024a125d45b996937084b35d6,
       type: 3}
@@ -1544,8 +1544,8 @@ MonoBehaviour:
   MeleeRunAttackPickType: 1
   MeleeRunAttacks:
   - AttackAnimaition: 0
-    MinDamage: 1
-    MaxDamage: 5
+    MinDamage: 15
+    MaxDamage: 20
     AttackOdds: 1
     AttackImpactEffect: {fileID: 0}
   MeleeRunAttacksListIndex: 0
@@ -1737,7 +1737,29 @@ MonoBehaviour:
       m_Calls: []
   DamageEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 423880146455042315}
+        m_MethodName: AlertNearbyEnemies
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 423880146455042315}
+        m_MethodName: SetCombatTargetPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDoDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1764,7 +1786,18 @@ MonoBehaviour:
       m_Calls: []
   OnKillTargetEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 423880146455042315}
+        m_MethodName: ResumeMovement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHealEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1985,13 +2018,13 @@ MonoBehaviour:
   ObstructionDetectionUpdateTimer: 0
   CurrentHealth: 0
   StartingHealth: 15
-  DetectionRadius: 10
+  DetectionRadius: 30
   CurrentDamageAmount: 5
   DamageAmountRun: 5
   WanderRadius: 25
   TabNumber: 1
-  TemperamentTabNumber: 2
-  DetectionTagsTabNumber: 1
+  TemperamentTabNumber: 5
+  DetectionTagsTabNumber: 0
   AnimationTabNumber: 2
   SoundTabNumber: 1
   MovementTabNumber: 1
@@ -2001,9 +2034,9 @@ MonoBehaviour:
   AttackAnimationNumber: 1
   RunAttackAnimationNumber: 1
   IdleAnimationNumber: 1
-  CombatTabNumber: 2
+  CombatTabNumber: 0
   FactionsAndTagTabNumber: 0
-  EventTabNumber: 0
+  EventTabNumber: 1
   MinimumWaitTime: 3
   MaximumWaitTime: 6
   MinimumFollowWaitTime: 1
@@ -2026,7 +2059,7 @@ MonoBehaviour:
   ExpandedFieldOfViewAngle: 300
   fieldOfViewAngle: 180
   fieldOfViewAngleRef: 0
-  MaxChaseDistance: 15
+  MaxChaseDistance: 40
   AngleNeededToTurn: 10
   AngleNeededToTurnRunning: 30
   StartingTooCloseDistance: 2
@@ -2148,7 +2181,7 @@ MonoBehaviour:
   Renderer4: {fileID: 0}
   DeathTypeRef: 1
   BehaviorRef: 3
-  DetectionTypeRef: 0
+  DetectionTypeRef: 1
   MaxChaseDistanceTypeRef: 0
   ConfidenceRef: 2
   OptimizedStateRef: 1
@@ -2554,6 +2587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9e960b9007bd140b4e89024971a329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  impactSoundFx: []
   hitEffect: {fileID: 258580847482720398, guid: 907189bb1273a83499f4581146d101a5,
     type: 3}
   hitDecal:
@@ -2561,6 +2595,7 @@ MonoBehaviour:
   - {fileID: 7451982899520276796, guid: 88410d22c9389074b897fb2ee54c7544, type: 3}
   - {fileID: 250868956377727726, guid: 2ed92d32608b2224fb205adf5e3ecfa7, type: 3}
   - {fileID: 2426192354539326223, guid: 254e6f6087e48724eb3b80f881bc48a9, type: 3}
+  explosionDecal: []
 --- !u!114 &753739865
 MonoBehaviour:
   m_ObjectHideFlags: 0

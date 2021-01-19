@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AbilityName: Spell 1
   AbilityDescription: Spell 1
-  AbilityDamage: 10
+  AbilityDamage: 20
   AbilityDamagePerIncrement: 5
   CriticalHitOdds: 6.25
   CriticalHitMultiplierMin: 1.1
@@ -34,12 +34,12 @@ MonoBehaviour:
   CastEffectTimeoutSeconds: 1
   AbilityEffectTimeoutSeconds: 5
   SummonEffectTimeoutSeconds: 3
-  CollisionTimeout: 1.5
+  CollisionTimeout: 1
   DamageOvertimeTimeout: 3
   AbilityIcon: {fileID: 0}
-  AbilityEffect: {fileID: 1246638314895344, guid: fe91343b9a35bb14794086f1770004a3,
+  AbilityEffect: {fileID: 1246638314895344, guid: e24958377e52be3469ef9fd8b698a485,
     type: 3}
-  CastEffect: {fileID: 1246638314895344, guid: fe91343b9a35bb14794086f1770004a3, type: 3}
+  CastEffect: {fileID: 1246638314895344, guid: e24958377e52be3469ef9fd8b698a485, type: 3}
   SummonEffect: {fileID: 0}
   SummonObject: {fileID: 0}
   DamageOverTimeEffect: {fileID: 0}
