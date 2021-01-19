@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -61,7 +62,7 @@ public class MainMenu : MonoBehaviour
         // TODO: Load last save file...
     }
 
-    public async void NewGameButton()
+    public void NewGameButton()
     {
         if (!mainPanel.activeInHierarchy) return;
 
@@ -69,15 +70,8 @@ public class MainMenu : MonoBehaviour
         mainPanel.SetActive(false);
 
         // TODO: Load cinematic scene...
-        var asyncOp = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
-        asyncOp.allowSceneActivation = true;
 
-        while (!asyncOp.isDone)
-        {
-            loadingImage.fillAmount = 0.1f + asyncOp.progress;
-            loadingProgress.text = (100.0f *(0.1f + asyncOp.progress)).ToString("F1") + "%";
-            await Task.Delay(1);
-        }
+        StartCoroutine(LoadScene(2));
     }
 
     public void LoadGameButton()
@@ -173,5 +167,18 @@ public class MainMenu : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    private IEnumerator LoadScene(int buildIndex)
+    {
+        var asyncOp = SceneManager.LoadSceneAsync(buildIndex, LoadSceneMode.Single);
+        asyncOp.allowSceneActivation = true;
+
+        while (!asyncOp.isDone)
+        {
+            loadingImage.fillAmount = 0.1f + asyncOp.progress;
+            loadingProgress.text = (100.0f * (0.1f + asyncOp.progress)).ToString("F1") + "%";
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

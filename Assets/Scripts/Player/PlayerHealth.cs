@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -30,9 +31,8 @@ public class PlayerHealth : MonoBehaviour
         var talent = Player.Instance.Equipment.HasIncreasedMaxHealth();
         maxHealth = startingHealth * (int)(talent ? talent.value : 1.0f);
         currentHealth = maxHealth;
-        Debug.LogFormat("Starting: {0} Current: {1} Max: {2}", startingHealth, currentHealth, maxHealth);
 
-        healthBar = UiManager.HealthBar.GetComponentInChildren<Image>();
+        healthBar = UiManager.HealthBar.transform.Find("Fill").GetComponent<Image>();
 
         UpdateHealthUI();
     }
@@ -49,7 +49,6 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isDead) return;
 
-        Debug.LogFormat("DamageReceived! {0}", DamageAmount);
         currentHealth -= DamageAmount;
         UpdateHealthUI();
 
@@ -64,8 +63,6 @@ public class PlayerHealth : MonoBehaviour
     public void UpdateHealthUI()
     {
         targetFill = (float)currentHealth / maxHealth;
-        //Debug.LogFormat("Current: {0} Max: {1} Div: {2}", currentHealth, maxHealth, ((float)currentHealth/maxHealth));
-        //healthBar.fillAmount = ((float)currentHealth / maxHealth); ;
     }
 
     private void PlayerDeath()
@@ -75,5 +72,12 @@ public class PlayerHealth : MonoBehaviour
         MouseCamera.Instance.enabled = false;
         Player.Instance.Controller.enabled = false;
         CameraAnimation.Instance.DeathAnimation();
+        StartCoroutine(ShowDeathMenuDelay());
+    }
+
+    private IEnumerator ShowDeathMenuDelay()
+    {
+        yield return new WaitForSeconds(1.0f);
+        DeathMenu.Instance.ShowDeathMenu();
     }
 }

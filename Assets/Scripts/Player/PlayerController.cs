@@ -66,6 +66,13 @@ public class PlayerController : MonoBehaviour
 
         if (IsInUI) return;
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            IsInUI = true;
+            Time.timeScale = 0.0f;
+            PauseMenu.Instance.ShowPauseMenu();
+        }
+
         UpdatePlayer(d);
         WeaponControls(d);
     }
@@ -304,19 +311,15 @@ public class PlayerController : MonoBehaviour
             UIManager.Instance.ShowInteractPrompt(KeyCode.F);
 
             var interact = Input.GetAxisRaw("Interact");
-            var backUi = Input.GetAxisRaw("BackUI");
+            //var backUi = Input.GetAxisRaw("BackUI");
 
-            Debug.LogFormat("I: {0} __ BACK: {1}", interact.ToString("F1"), backUi.ToString("F1"));
+            //Debug.LogFormat("I: {0} __ BACK: {1}", interact.ToString("F1"), backUi.ToString("F1"));
 
             if (!IsInUI && interact > 0.0f)
             {
                 IsInUI = true;
+                Time.timeScale = 0.0f;
                 LoadoutEditor.Instance.ShowWindow();
-            }
-            else if (IsInUI && backUi > 0.0f)
-            {
-                IsInUI = false;
-                LoadoutEditor.Instance.HideWindow();
             }
         }
     }
@@ -324,5 +327,10 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(loadoutChangerTag)) UIManager.Instance.HideInteractPrompt();
+    }
+
+    public void ExitUI()
+    {
+        IsInUI = false;
     }
 }
