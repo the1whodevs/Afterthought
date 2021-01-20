@@ -1703,7 +1703,7 @@ MonoBehaviour:
     MinDamage: 10
     MaxDamage: 15
     AttackOdds: 1
-    AttackImpactEffect: {fileID: 1303674608091680, guid: 383e7d46bdb1daa4391f5ef6704a7bd4,
+    AttackImpactEffect: {fileID: 1055862917370258, guid: a921fa6024a125d45b996937084b35d6,
       type: 3}
   MeleeAttacksListIndex: 0
   MeleeRunAttackIndex: 0
@@ -2181,13 +2181,13 @@ MonoBehaviour:
   ObstructionDetectionUpdateSeconds: 0.1
   ObstructionDetectionUpdateTimer: 0
   CurrentHealth: 0
-  StartingHealth: 15
+  StartingHealth: 90
   DetectionRadius: 30
   CurrentDamageAmount: 5
   DamageAmountRun: 5
   WanderRadius: 25
   TabNumber: 1
-  TemperamentTabNumber: 5
+  TemperamentTabNumber: 0
   DetectionTagsTabNumber: 0
   AnimationTabNumber: 2
   SoundTabNumber: 0
@@ -2360,7 +2360,7 @@ MonoBehaviour:
   DisplayAINameRef: 0
   DisplayAITitleRef: 0
   DisplayAILevelRef: 0
-  RefillHealthType: 2
+  RefillHealthType: 0
   WanderTypeRef: 0
   WaypointTypeRef: 0
   AlignAIWithGroundRef: 0
