@@ -648,7 +648,7 @@ MonoBehaviour:
   MitigationAmount: 50
   MaxBlockAngle: 75
   MaxDamageAngle: 75
-  MaxFiringAngle: 51
+  MaxFiringAngle: 120
   SurfaceNormal: {x: 0, y: 0, z: 0}
   MaxNormalAngle: 0
   MaxNormalAngleEditor: 25
@@ -1035,7 +1035,7 @@ MonoBehaviour:
   EmeraldTag: Orc
   UITag: Player
   RagdollTag: Untagged
-  AnimationsUpdated: 0
+  AnimationsUpdated: 1
   RayCastUpdateSeconds: 0.1
   ObstructionDetectionUpdateSeconds: 0.1
   ObstructionDetectionUpdateTimer: 0
@@ -1046,7 +1046,7 @@ MonoBehaviour:
   DamageAmountRun: 5
   WanderRadius: 25
   TabNumber: 1
-  TemperamentTabNumber: 0
+  TemperamentTabNumber: 1
   DetectionTagsTabNumber: 0
   AnimationTabNumber: 2
   SoundTabNumber: 1
@@ -1078,7 +1078,7 @@ MonoBehaviour:
   UseCriticalHits: 0
   WalkBackwardsSpeed: 1
   WalkSpeed: 2
-  RunSpeed: 5
+  RunSpeed: 6
   ExpandedFieldOfViewAngle: 300
   fieldOfViewAngle: 180
   fieldOfViewAngleRef: 0

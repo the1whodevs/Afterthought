@@ -2400,7 +2400,7 @@ MonoBehaviour:
   CameraTag: MainCamera
   m_HealthBarComponent: {fileID: 0}
   DebugLogMissingAnimations: 0
-  AttackHeight: 1.5
+  AttackHeight: 8
   CurrentMeleeAttackType: 0
   m_EmeraldAIAbility: {fileID: 0}
   RotateTowardsTarget: 0
@@ -2449,7 +2449,7 @@ MonoBehaviour:
   MitigationAmount: 50
   MaxBlockAngle: 75
   MaxDamageAngle: 73
-  MaxFiringAngle: 45
+  MaxFiringAngle: 120
   SurfaceNormal: {x: 0, y: 0, z: 0}
   MaxNormalAngle: 0
   MaxNormalAngleEditor: 25
@@ -2815,7 +2815,7 @@ MonoBehaviour:
   EmeraldTag: Respawn
   UITag: Player
   RagdollTag: Untagged
-  AnimationsUpdated: 0
+  AnimationsUpdated: 1
   RayCastUpdateSeconds: 0.1
   ObstructionDetectionUpdateSeconds: 0.1
   ObstructionDetectionUpdateTimer: 0
@@ -2826,7 +2826,7 @@ MonoBehaviour:
   DamageAmountRun: 5
   WanderRadius: 25
   TabNumber: 1
-  TemperamentTabNumber: 0
+  TemperamentTabNumber: 1
   DetectionTagsTabNumber: 0
   AnimationTabNumber: 2
   SoundTabNumber: 0
@@ -2858,7 +2858,7 @@ MonoBehaviour:
   UseCriticalHits: 0
   WalkBackwardsSpeed: 1.5
   WalkSpeed: 2
-  RunSpeed: 5
+  RunSpeed: 6
   ExpandedFieldOfViewAngle: 300
   fieldOfViewAngle: 180
   fieldOfViewAngleRef: 0
