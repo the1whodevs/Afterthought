@@ -154,7 +154,7 @@ public class LoadoutEditor : MonoBehaviour
     {
         foreach (var wep in displayedLoadout.Weapons)
             if (wep == weapon) return;
-        
+
         displayedLoadout.Weapons[slot] = weapon;
 
         UpdateDisplays();
@@ -164,7 +164,7 @@ public class LoadoutEditor : MonoBehaviour
     {
         foreach (var eq in displayedLoadout.Equipment)
             if (equipment == eq) return;
-        
+
         displayedLoadout.Equipment[slot] = equipment;
 
         UpdateDisplays();
@@ -186,7 +186,7 @@ public class LoadoutEditor : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         Time.timeScale = 1.0f;
-        
+
         if (Player.Instance) Player.Instance.Controller.ExitUI();
 
         gameObject.SetActive(false);

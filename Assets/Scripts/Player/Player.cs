@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
         Camera = GetComponentInChildren<MouseCamera>();
         PostProcessing = GetComponent<PlayerPostProcessing>();
         Experience = GetComponent<PlayerExperience>();
-        
+
         Instance = this;
     }
 
