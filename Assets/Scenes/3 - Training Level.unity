@@ -33158,6 +33158,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 305737994843635869, guid: db3bebf4467f23e4895faf7ceb571c5f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 305737994843635870, guid: db3bebf4467f23e4895faf7ceb571c5f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33253,7 +33258,8 @@ PrefabInstance:
       propertyPath: startingHealth
       value: 10000
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1675743892, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: db3bebf4467f23e4895faf7ceb571c5f, type: 3}
 --- !u!1001 &914217285
 PrefabInstance:
@@ -63519,6 +63525,198 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Soldier_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: RangedCombatHitAnimationList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: RangedAttackAnimationList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: OffensiveAbilities.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.x
+      value: -73.392
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.y
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.z
+      value: 4.4132338
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: TabNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: AnimationTabNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: RangedAttackAnimationList.Array.data[0].AnimationClip
+      value: 
+      objectReference: {fileID: -203655887218126122, guid: c49053ef36a90e844aca68b6377ec01d,
+        type: 3}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: AnimationListsChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: RangedAttack1Animation
+      value: 
+      objectReference: {fileID: -203655887218126122, guid: c49053ef36a90e844aca68b6377ec01d,
+        type: 3}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: RangedCombatHitAnimationList.Array.data[0].AnimationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: RangedCombatHitAnimationList.Array.data[0].AnimationClip
+      value: 
+      objectReference: {fileID: -203655887218126122, guid: e448a4e7ee1abea49afead3a08265242,
+        type: 3}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: RangedAttackAnimationList.Array.data[1].AnimationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: RangedAttackAnimationList.Array.data[1].AnimationClip
+      value: 
+      objectReference: {fileID: -203655887218126122, guid: 09f5a5170aff6794a808b63b1a0a9c44,
+        type: 3}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: RangedCombatHit1Animation
+      value: 
+      objectReference: {fileID: -203655887218126122, guid: e448a4e7ee1abea49afead3a08265242,
+        type: 3}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: TotalRangedAttackAnimations
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: RangedAttack2Animation
+      value: 
+      objectReference: {fileID: -203655887218126122, guid: 09f5a5170aff6794a808b63b1a0a9c44,
+        type: 3}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: TemperamentTabNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: CombatTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: OffensiveAbilities.Array.data[1].OffensiveAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: 762229b6fd7dcc04da6c893242c84d84,
+        type: 2}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: OffensiveAbilities.Array.data[1].AbilityOdds
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: OffensiveAbilities.Array.data[1].AbilityAnimaition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247007542248911675, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: OffensiveAbilityPickType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573610172936187340, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.66093504
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573610172936187340, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.50418097
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573610172936187340, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.39087427
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573610172936187340, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.3952009
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573610172936187340, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.166
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573610172936187340, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.027
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573610172936187340, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.124
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573610172936187340, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573610172936187340, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573610172936187340, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573610172936187340, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 7.3690004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573610172936187340, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 112.659004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573610172936187340, guid: 4c925014a1ffc5b4f83290041a9a3fd1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 100.412
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c925014a1ffc5b4f83290041a9a3fd1, type: 3}
