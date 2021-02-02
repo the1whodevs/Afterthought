@@ -124,12 +124,12 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if (pe.CurrentWeapon.currentAmmo > 0)
+                if (pe.CurrentWeapon.ammoInMagazine > 0)
                 {
                     var fireType = pe.CurrentWeapon.fireType;
 
-                    if (fireType == WeaponData.FireType.Burst) pe.CurrentWeapon.currentAmmo -= BurstFireCount;
-                    else pe.CurrentWeapon.currentAmmo--;
+                    if (fireType == WeaponData.FireType.Burst) pe.CurrentWeapon.ammoInMagazine -= BurstFireCount;
+                    else pe.CurrentWeapon.ammoInMagazine--;
                      
                     attackTimer = 0.0f;
 
@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
             fireResetRequired = false;
         }
 
-        if (!pe.IsReloading && reload && pe.ammoAvailable > 0 && pe.CurrentWeapon.currentAmmo != pe.CurrentWeapon.magazineCapacity)
+        if (!pe.IsReloading && reload && pe.CurrentWeapon.ammoType.currentAmmo > 0 && pe.CurrentWeapon.ammoInMagazine < pe.CurrentWeapon.magazineCapacity)
             pe.Reload();
          
         var ads = !pe.IsReloading && aim;

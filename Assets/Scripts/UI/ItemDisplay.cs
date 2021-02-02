@@ -40,7 +40,7 @@ public class ItemDisplay<T> : MonoBehaviour where T : IDisplayableItem
     }
 }
 
-public enum UnlockType { Level, Loot, Both }
+public enum UnlockType { Level, Loot, Both, AlwaysUnlocked }
 
 public class IDisplayableItem : ScriptableObject
 {
@@ -50,6 +50,8 @@ public class IDisplayableItem : ScriptableObject
         {
             switch (unlockType)
             {
+                case UnlockType.AlwaysUnlocked:
+                    return true;
                 case UnlockType.Both:
                     return Player.Instance.Experience.Level >= levelRequired && isLooted;
                 case UnlockType.Level:

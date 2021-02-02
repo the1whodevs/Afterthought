@@ -55,12 +55,13 @@ public class UIManager : MonoBehaviour
         equipmentA_AmmoIcon.sprite = equippedLoadout.Equipment[0].icon;
         equipmentB_AmmoIcon.sprite = equippedLoadout.Equipment[1].icon;
 
-        Debug.Log("TODO: AmmoType count & icon update!");
+        UpdateWeaponAmmoUI(currentWeapon);
     }
 
-    public void UpdateWeaponAmmoCount(WeaponData weaponEquipped, int maxAmmo)
+    public void UpdateWeaponAmmoUI(WeaponData weaponEquipped)
     {
-        weaponAmmoCount.text = $"{weaponEquipped.currentAmmo} / {maxAmmo}";
+        weapon_AmmoIcon.sprite = weaponEquipped.ammoType.icon;
+        weaponAmmoCount.text = $"{weaponEquipped.ammoInMagazine} / {weaponEquipped.ammoType.currentAmmo}";
     }
 
     public void UpdateEquipmentAmmoCountEquipmentA(EquipmentData eqEquipped)

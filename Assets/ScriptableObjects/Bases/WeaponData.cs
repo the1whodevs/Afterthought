@@ -31,7 +31,9 @@ public class WeaponData : IDisplayableItem
     
     public FireType fireType = FireType.FullAuto;
 
-    public int currentAmmo = 30;
+    public AmmoData ammoType;
+
+    public int ammoInMagazine = 30;
     public int magazineCapacity = 30;
 
     public float projectileSpeed = 100.0f;
@@ -51,18 +53,18 @@ public class WeaponData : IDisplayableItem
 
     public void ReloadMag(ref int availableAmmo)
     {
-        var bulletsForMax = magazineCapacity - currentAmmo;
+        var bulletsForMax = magazineCapacity - ammoInMagazine;
         
         if (bulletsForMax == 0) Debug.LogError("Reloading while the mag is full!");
         
         if (availableAmmo >= bulletsForMax)
         {
             availableAmmo -= bulletsForMax;
-            currentAmmo = magazineCapacity;
+            ammoInMagazine = magazineCapacity;
         }
         else
         {
-            currentAmmo = availableAmmo;
+            ammoInMagazine = availableAmmo;
             availableAmmo = 0;
         }
     }
@@ -70,12 +72,12 @@ public class WeaponData : IDisplayableItem
     public override void SaveData()
     {
         base.SaveData();
-        PlayerPrefs.SetInt(AMMO_IN_MAG, currentAmmo);
+        PlayerPrefs.SetInt(AMMO_IN_MAG, ammoInMagazine);
     }
 
     public override void LoadData()
     {
         base.LoadData();
-        currentAmmo = PlayerPrefs.GetInt(AMMO_IN_MAG, magazineCapacity);
+        ammoInMagazine = PlayerPrefs.GetInt(AMMO_IN_MAG, magazineCapacity);
     }
 }

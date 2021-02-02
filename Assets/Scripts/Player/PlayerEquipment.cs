@@ -29,14 +29,12 @@ public class PlayerEquipment : MonoBehaviour
     public Animator CurrentAnimator { get; private set; }
 
     public bool IsReloading => isReloading;
-
-    public int ammoAvailable = 270;
     
     [SerializeField] private LoadoutData loadout;
     
     [SerializeField] private List<WeaponData> allWeaponData = new List<WeaponData>();
     [SerializeField] private List<EquipmentData> allEquipmentData = new List<EquipmentData>();
-    [SerializeField] private List<TalentData> allTalentData = new List<TalentData>();
+    [SerializeField] private List<AmmoData> allAmmoData = new List<AmmoData>();
 
     [SerializeField] private Transform WeaponR;
     
@@ -89,6 +87,11 @@ public class PlayerEquipment : MonoBehaviour
         foreach (var equipmentData in allEquipmentData)
         {
             equipmentData.LoadData();
+        }
+
+        foreach (var ammoData in allAmmoData)
+        {
+            ammoData.LoadData();
         }
 
         EquipPrimaryWeapon();
@@ -273,7 +276,6 @@ public class PlayerEquipment : MonoBehaviour
             case WeaponData.WeaponType.Projectile:
 
                 MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
-
                 ProjectileDamage(projectileLifetime);
                 break;
             
@@ -512,8 +514,7 @@ public class PlayerEquipment : MonoBehaviour
 
     public void SetAmmoUI()
     {
-        // TODO: Use ammo types!
-        uiManager.UpdateWeaponAmmoCount(CurrentWeapon, ammoAvailable);
+        uiManager.UpdateWeaponAmmoUI(CurrentWeapon);
     }
 
     public void PlayEmptyClipSound()
@@ -537,7 +538,7 @@ public class PlayerEquipment : MonoBehaviour
     public void ResetMagazine()
     {
         isReloading = false;
-        CurrentWeapon.ReloadMag(ref ammoAvailable);
+        CurrentWeapon.ReloadMag(ref CurrentWeapon.ammoType.currentAmmo);
         SetAmmoUI();
     }
 
