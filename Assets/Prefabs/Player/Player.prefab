@@ -76,7 +76,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 7991
+    m_Bits: 73527
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -110,7 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentZoom: 0
   playerT: {fileID: 305737994843635870}
-  camRotationSpeed: 5
+  mouseSensitivity_X: 1
+  mouseSensitivity_Y: 1
   cameraMinY: -60
   cameraMaxY: 67.5
   rotationSmoothSpeed: 10
@@ -367,6 +368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 2
   startingHealth: 100
+  fillSpeed: 2
   handsObject: {fileID: 1572396041265650235}
 --- !u!114 &5232873967447831070
 MonoBehaviour:
@@ -888,7 +890,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 24576
+    m_Bits: 90112
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1343,7 +1345,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 7991
+    m_Bits: 73527
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 89b9f02b2f5845f4ebfb5c734a08ddab, type: 2}
   m_TargetDisplay: 0
