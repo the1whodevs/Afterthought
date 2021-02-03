@@ -25,9 +25,9 @@ MonoBehaviour:
   AbilityCooldown: 10
   AbilityLength: 8
   SummonRadius: 10
-  ProjectileSpeed: 15
+  ProjectileSpeed: 20
   ProjectileTimeoutSeconds: 6
-  ColliderRadius: 0.33
+  ColliderRadius: 0.5
   TimeoutTime: 4.5
   CollisionTime: 0
   HeatSeekingSeconds: 1
@@ -37,9 +37,10 @@ MonoBehaviour:
   CollisionTimeout: 1
   DamageOvertimeTimeout: 3
   AbilityIcon: {fileID: 0}
-  AbilityEffect: {fileID: 1246638314895344, guid: e24958377e52be3469ef9fd8b698a485,
+  AbilityEffect: {fileID: 6620335400419130109, guid: dfed01b0012d4cc4e855d85de743e63d,
     type: 3}
-  CastEffect: {fileID: 1246638314895344, guid: e24958377e52be3469ef9fd8b698a485, type: 3}
+  CastEffect: {fileID: 6620335400419130109, guid: dfed01b0012d4cc4e855d85de743e63d,
+    type: 3}
   SummonEffect: {fileID: 0}
   SummonObject: {fileID: 0}
   DamageOverTimeEffect: {fileID: 0}
@@ -71,4 +72,4 @@ MonoBehaviour:
   UseCustomAbilityIcon: 0
   UseCastEffect: 1
   ArrowProjectileRef: 0
-  AbilityEditorTabs: 1
+  AbilityEditorTabs: 2
