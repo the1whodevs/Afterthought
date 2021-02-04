@@ -62,7 +62,8 @@ public class MouseCamera : MonoBehaviour
 
     private void Update()
     {
-        if (Player.Instance.Controller.IsInUI) return;
+        Debug.Log("REMOVE TEMP CHANGES");
+        //if (Player.Instance.Controller.IsInUI) return;
 
         var d = Time.deltaTime;
 
