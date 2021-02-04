@@ -38,7 +38,7 @@ MonoBehaviour:
   weaponType: 2
   fireType: 0
   ammoType: {fileID: 11400000, guid: 83d3a027827459040ab207a95722cc3a, type: 2}
-  ammoInMagazine: 30
+  ammoInMagazine: -1
   magazineCapacity: -1
   projectileSpeed: 100
   weaponDamage: 45
@@ -47,7 +47,7 @@ MonoBehaviour:
   reloadSpeed: 1
   mobilityPenalty: 0.3
   adsMultiplier: 1
-  minRange: 150
-  maxRange: 300
+  minRange: 1.5
+  maxRange: 1.5
   recoil_horizontal: 1.5
   recoil_vertical: 3
