@@ -56,6 +56,8 @@ public class MouseCamera : MonoBehaviour
 
         mouseSensitivity_X = PlayerPrefs.GetFloat(MainMenu.HORIZONTAL_SENS_KEY, 1.5f);
         mouseSensitivity_Y = PlayerPrefs.GetFloat(MainMenu.VERTICAL_SENS_KEY, 1.5f);
+
+        RotatePlayer(playerT.rotation.eulerAngles.y, cameraT.localRotation.x, Time.deltaTime);
     }
 
     private void Update()
@@ -63,7 +65,7 @@ public class MouseCamera : MonoBehaviour
         if (Player.Instance.Controller.IsInUI) return;
 
         var d = Time.deltaTime;
-        
+
         AdjustCameraToCurrentZoom(d);
         LookRotation(d);
     }
@@ -90,9 +92,9 @@ public class MouseCamera : MonoBehaviour
         var camTargetRotation = Quaternion.Euler(-camRotationY, 0, 0);
         var bodyTargetRotation = Quaternion.Euler(0, bodyRotationX, 0);
 
-        playerT.rotation = bodyTargetRotation; //Quaternion.Lerp(playerT.rotation, bodyTargetRotation, delta * rotationSmoothSpeed);
+        playerT.rotation = bodyTargetRotation;
 
-        cameraT.localRotation = camTargetRotation; // Quaternion.Lerp(cameraT.localRotation, camTargetRotation, delta * rotationSmoothSpeed);
+        cameraT.localRotation = camTargetRotation;
     }
     
     private string ZoomEnumToString(ZoomLevels zoom)
