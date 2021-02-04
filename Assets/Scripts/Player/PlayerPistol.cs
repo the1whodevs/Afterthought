@@ -4,22 +4,24 @@ using UnityEngine;
 public class PlayerPistol : MonoBehaviour
 {
     // FOR TESTING ONLY!
-    private float attackSpeed = 2.0f;
+    [SerializeField] private float attackSpeed = 0.5f;
     private float adsSpeed = 5.0f;
     private float weaponSwitchSpeed = 1.0f;
 
     private Animator anim;
 
     private readonly int attack = Animator.StringToHash("attack");
-    private readonly int ads = Animator.StringToHash("ads");
     private readonly int isSprinting = Animator.StringToHash("isSprinting");
     private readonly int isMoving = Animator.StringToHash("isMoving");
     private readonly int switch_weapon = Animator.StringToHash("switch_weapon");
     private readonly int switch_speed = Animator.StringToHash("switch_speed");
     private readonly int attack_speed = Animator.StringToHash("attack_speed");
+    private readonly int reload = Animator.StringToHash("reload");
 
     private float targetLayerWeight = 0;
     private float startingLayerWeight = 0;
+
+    private bool isAds;
 
     private void Start()
     {
@@ -39,9 +41,9 @@ public class PlayerPistol : MonoBehaviour
         anim.SetBool(isSprinting, Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W));
         anim.SetBool(isMoving, !Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W));
 
-        anim.SetBool(ads, Input.GetMouseButton(1));
+        isAds = Input.GetMouseButton(1);
 
-        if (anim.GetBool(ads) && !anim.GetBool(isSprinting))
+        if (isAds && !anim.GetBool(isSprinting))
         {
             startingLayerWeight = anim.GetLayerWeight(1);
             targetLayerWeight = 1;
@@ -52,7 +54,13 @@ public class PlayerPistol : MonoBehaviour
             targetLayerWeight = 0; 
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            anim.ResetTrigger(reload);
+            anim.SetTrigger(reload);
+        }
+
+        if (Input.GetMouseButton(0))
         {
             anim.ResetTrigger(attack);
             anim.SetTrigger(attack);
