@@ -302,7 +302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68898d0c4ded96344b2171b5bbefa03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoAvailable: 999
   loadout: {fileID: 11400000, guid: 8c6ce8b70016a1f4db15f04eecd68f8e, type: 2}
   allWeaponData:
   - {fileID: 11400000, guid: 63c38115e3bdcba4db1faf51477974c6, type: 2}
@@ -324,14 +323,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 912257851c082a44bb9336c3183d8025, type: 2}
   allEquipmentData:
   - {fileID: 11400000, guid: 78c568011d91cca4588b7ad573e229ab, type: 2}
-  allTalentData:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  allAmmoData: []
   WeaponR: {fileID: 5598451745193294800}
   hitScanLayerMask:
     serializedVersion: 2
-    m_Bits: 3895
+    m_Bits: 69431
   gunFireAudioSource: {fileID: 190250481595520504}
   gunEmptyClipAudioSource: {fileID: 3675393518633724907}
   scopeTag: Scope
