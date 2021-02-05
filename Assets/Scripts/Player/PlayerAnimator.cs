@@ -17,7 +17,7 @@ public class PlayerAnimator : MonoBehaviour
     public readonly  int reloadAnimHash = Animator.StringToHash("reload");
     public readonly  int unequipAnimHash = Animator.StringToHash("unequip");
 
-    private PlayerEquipment pe;
+    private PlayerLoadout pe;
 
     private UIManager uiManager;
     

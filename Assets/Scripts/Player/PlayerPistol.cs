@@ -28,6 +28,7 @@ public class PlayerPistol : MonoBehaviour
 
     private void Start()
     {
+
         anim = GetComponent<Animator>();
         SetAnimParameters();
 
@@ -70,8 +71,7 @@ public class PlayerPistol : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            anim.ResetTrigger(attack);
-            anim.SetTrigger(attack);
+            Fire();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -79,6 +79,12 @@ public class PlayerPistol : MonoBehaviour
             anim.ResetTrigger(switch_weapon);
             anim.SetTrigger(switch_weapon);
         }
+    }
+
+    private void Fire()
+    {
+        anim.ResetTrigger(attack);
+        anim.SetTrigger(attack);
     }
 
     private IEnumerator AdjustLayerWeight()

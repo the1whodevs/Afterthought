@@ -21,7 +21,7 @@ public class LauncherGrenade : MonoBehaviour
         var contact = other.GetContact(0);
 
         // Spawn explosion.
-        Destroy(Instantiate(launcherData.hitImpact, contact.point, Quaternion.LookRotation(-contact.normal), null), PlayerEquipment.BulletHoleLifetime);
+        Destroy(Instantiate(launcherData.hitImpact, contact.point, Quaternion.LookRotation(-contact.normal), null), PlayerLoadout.BulletHoleLifetime);
 
         var hits = Physics.SphereCastAll(contact.point, explosionRadius, -contact.normal, explosionRadius);
 
@@ -79,7 +79,7 @@ public class LauncherGrenade : MonoBehaviour
                             ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
                                 hit.transform)
                             : Instantiate(launcherData.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                                null), PlayerEquipment.BulletHoleLifetime);
+                                null), PlayerLoadout.BulletHoleLifetime);
                 }
                     
                 if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound(); 

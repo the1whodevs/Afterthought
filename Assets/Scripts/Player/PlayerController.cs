@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController cc;
     
     private PlayerAnimator pa;
-    private PlayerEquipment pe;
+    private PlayerLoadout pe;
      
     [System.Serializable]
     public class PlayerStandState

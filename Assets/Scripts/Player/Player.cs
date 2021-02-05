@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
     public static Player Instance;
 
     public PlayerAnimator Animator { get; private set; }
-    public PlayerEquipment Equipment { get; private set; }
+    public PlayerLoadout Equipment { get; private set; }
     public PlayerController Controller { get; private set; }
     public PlayerHealth Health { get; private set; }
     public PlayerExperience Experience { get; private set; }
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
             Instantiate(toSpawn);
         }
 
-        Equipment = GetComponent<PlayerEquipment>();
+        Equipment = GetComponent<PlayerLoadout>();
         Animator = GetComponent<PlayerAnimator>();
         Controller = GetComponent<PlayerController>();
         Health = GetComponent<PlayerHealth>();

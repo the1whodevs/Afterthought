@@ -66,13 +66,10 @@ public class PlayerShotgun : MonoBehaviour
     public void UseBullet()
     {
         // Debug.Log("Use Bullet: " + Time.time);
-
     }
 
     private void UseAmmo()
     {
-        Debug.Log("Use Ammo: " + Time.time);
-
         if (currentBullets <= 0)
         {
             Debug.LogError("UseBullet called but currentBullets <= 0!");
@@ -112,7 +109,6 @@ public class PlayerShotgun : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            Debug.Log("Fire: " + Time.time);
             anim.ResetTrigger(attack);
             anim.SetTrigger(attack);
             UseAmmo();
