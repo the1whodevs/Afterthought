@@ -1,35 +1,77 @@
 fileFormatVersion: 2
 guid: 4a90d74930d8ec647b754a589e2bb262
-timeCreated: 1560628062
-licenseType: Store
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: Plane003
-    100002: //RootNode
-    100004: Sight_03_Mesh
-    100006: Sight_Emessesive_03_Mesh
-    100008: Sight_Glasses_03_Mesh
-    400000: Plane003
-    400002: //RootNode
-    400004: Sight_03_Mesh
-    400006: Sight_Emessesive_03_Mesh
-    400008: Sight_Glasses_03_Mesh
-    2100000: 13 - Default
-    2100002: 07 - Default
-    2100004: _optical_sight01___Default
-    2300000: Sight_03_Mesh
-    2300002: Sight_Emessesive_03_Mesh
-    2300004: Sight_Glasses_03_Mesh
-    3300000: Sight_03_Mesh
-    3300002: Sight_Emessesive_03_Mesh
-    3300004: Sight_Glasses_03_Mesh
-    4300000: Sight_Emessesive_03_Mesh
-    4300002: Sight_Glasses_03_Mesh
-    4300004: Sight_03_Mesh
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Plane003
+  - first:
+      1: 100002
+    second: //RootNode
+  - first:
+      1: 100004
+    second: Sight_03_Mesh
+  - first:
+      1: 100006
+    second: Sight_Emessesive_03_Mesh
+  - first:
+      1: 100008
+    second: Sight_Glasses_03_Mesh
+  - first:
+      4: 400000
+    second: Plane003
+  - first:
+      4: 400002
+    second: //RootNode
+  - first:
+      4: 400004
+    second: Sight_03_Mesh
+  - first:
+      4: 400006
+    second: Sight_Emessesive_03_Mesh
+  - first:
+      4: 400008
+    second: Sight_Glasses_03_Mesh
+  - first:
+      21: 2100000
+    second: 13 - Default
+  - first:
+      21: 2100002
+    second: 07 - Default
+  - first:
+      21: 2100004
+    second: _optical_sight01___Default
+  - first:
+      23: 2300000
+    second: Sight_03_Mesh
+  - first:
+      23: 2300002
+    second: Sight_Emessesive_03_Mesh
+  - first:
+      23: 2300004
+    second: Sight_Glasses_03_Mesh
+  - first:
+      33: 3300000
+    second: Sight_03_Mesh
+  - first:
+      33: 3300002
+    second: Sight_Emessesive_03_Mesh
+  - first:
+      33: 3300004
+    second: Sight_Glasses_03_Mesh
+  - first:
+      43: 4300000
+    second: Sight_Emessesive_03_Mesh
+  - first:
+      43: 4300002
+    second: Sight_Glasses_03_Mesh
+  - first:
+      43: 4300004
+    second: Sight_03_Mesh
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -46,7 +88,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    importConstraints: 0
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -60,17 +103,23 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
@@ -82,10 +131,13 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -95,14 +147,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
