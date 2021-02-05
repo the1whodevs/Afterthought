@@ -32,20 +32,20 @@ public class PlayerMelee : MonoBehaviour
         anim.SetBool(isSprinting, Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W));
         anim.SetBool(isMoving, !Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W));
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             anim.SetInteger(attackNum, 0);
             anim.ResetTrigger(attack);
             anim.SetTrigger(attack);
         }
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButton(1))
         { 
             anim.SetInteger(attackNum, 1);
             anim.ResetTrigger(attack);
             anim.SetTrigger(attack);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKey(KeyCode.Alpha2))
         {
             anim.ResetTrigger(switch_weapon);
             anim.SetTrigger(switch_weapon);
