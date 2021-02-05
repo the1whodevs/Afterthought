@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class PlayerPistol : MonoBehaviour
+public class PlayerShotgun : MonoBehaviour
 {
     // FOR TESTING ONLY!
     [SerializeField] private float attackSpeed = 0.5f;
     [SerializeField] private float reloadSpeed = 1.0f;
+
+    [SerializeField] private int startingBullets = 8;
+
+    private int currentBullets; 
 
     private float adsSpeed = 5.0f;
     private float weaponSwitchSpeed = 1.0f;
@@ -19,7 +23,8 @@ public class PlayerPistol : MonoBehaviour
     private readonly int switch_speed = Animator.StringToHash("switch_speed");
     private readonly int attack_speed = Animator.StringToHash("attack_speed");
     private readonly int reload_speed = Animator.StringToHash("reload_speed");
-    private readonly int reload = Animator.StringToHash("reload");
+    private readonly int isReloading = Animator.StringToHash("isReloading");
+    private readonly int lastReload = Animator.StringToHash("last_reload");
 
     private float targetLayerWeight = 0;
     private float startingLayerWeight = 0;
@@ -31,6 +36,8 @@ public class PlayerPistol : MonoBehaviour
         anim = GetComponent<Animator>();
         SetAnimParameters();
 
+        currentBullets = startingBullets;
+
         StartCoroutine(AdjustLayerWeight());
     }
 
@@ -39,6 +46,40 @@ public class PlayerPistol : MonoBehaviour
         anim.SetFloat(switch_speed, weaponSwitchSpeed);
         anim.SetFloat(attack_speed, attackSpeed);
         anim.SetFloat(reload_speed, reloadSpeed);
+    }
+
+    // Called through animation event. TODO: Move to a proper place.
+    public void ReloadBullet()
+    {
+        currentBullets++;
+
+        if (currentBullets == startingBullets - 1)
+        {
+            anim.SetBool(isReloading, false);
+
+            anim.ResetTrigger(lastReload);
+            anim.SetTrigger(lastReload);
+        }
+    }
+
+    // Called through animation event. TODO: Do this properly and move to a proper place.
+    public void UseBullet()
+    {
+        // Debug.Log("Use Bullet: " + Time.time);
+
+    }
+
+    private void UseAmmo()
+    {
+        Debug.Log("Use Ammo: " + Time.time);
+
+        if (currentBullets <= 0)
+        {
+            Debug.LogError("UseBullet called but currentBullets <= 0!");
+            return;
+        }
+
+        currentBullets--;
     }
 
     // Update is called once per frame
@@ -56,22 +97,25 @@ public class PlayerPistol : MonoBehaviour
             startingLayerWeight = anim.GetLayerWeight(1);
             targetLayerWeight = 1;
         }
-        else 
+        else
         {
             startingLayerWeight = anim.GetLayerWeight(1);
-            targetLayerWeight = 0; 
+            targetLayerWeight = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        var currentlyReloading = anim.GetBool(isReloading);
+
+        if (Input.GetKeyDown(KeyCode.R) && !currentlyReloading)
         {
-            anim.ResetTrigger(reload);
-            anim.SetTrigger(reload);
+            anim.SetBool(isReloading, true);
         }
 
         if (Input.GetMouseButton(0))
         {
+            Debug.Log("Fire: " + Time.time);
             anim.ResetTrigger(attack);
             anim.SetTrigger(attack);
+            UseAmmo();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
