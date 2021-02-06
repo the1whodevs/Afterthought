@@ -25,6 +25,9 @@
 
     protected override void SetAnimParameters()
     {
+        if (!pa) pa = Player.Active.Animator;
+        if (!pl) pl = Player.Active.Loadout;
+
         anim.SetFloat(switch_speed, pa.WeaponSwitch_Speed);
         anim.SetFloat(attack_speed, pl.CurrentWeapon.fireRate);
         anim.SetFloat(reload_speed, pl.CurrentWeapon.reloadSpeed);
