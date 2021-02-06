@@ -31,8 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerStandState crouchSetting;
     [SerializeField] private AnimationCurve stateChangeCurve;
 
-    [Header("Terrain Move Settings")]
-    [SerializeField] private float[] textureValues;
+    private float[] textureValues = new float[4];
 
     private Terrain currentTerrain;
 
@@ -332,15 +331,15 @@ public class PlayerController : MonoBehaviour
         (terrainPosition.x / currentTerrain.terrainData.size.x, 0,
             terrainPosition.z / currentTerrain.terrainData.size.z);
 
-        float xCoord = mapPosition.x * currentTerrain.terrainData.alphamapWidth;
-        float zCoord = mapPosition.z * currentTerrain.terrainData.alphamapHeight;
+        var xCoord = mapPosition.x * currentTerrain.terrainData.alphamapWidth;
+        var zCoord = mapPosition.z * currentTerrain.terrainData.alphamapHeight;
 
         return new Vector2Int((int)xCoord, (int)zCoord);
     }
 
     private float[] CheckTexture(int posX, int posZ)
     {
-        float[,,] aMap = currentTerrain.terrainData.GetAlphamaps(posX, posZ, 1, 1);
+        var aMap = currentTerrain.terrainData.GetAlphamaps(posX, posZ, 1, 1);
 
         textureValues[0] = aMap[0, 0, 0];
         textureValues[1] = aMap[0, 0, 1];

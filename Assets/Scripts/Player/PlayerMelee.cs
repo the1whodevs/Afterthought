@@ -42,17 +42,4 @@
         anim.ResetTrigger(attack);
         anim.SetTrigger(attack);
     }
-
-    //// Update is called once per frame
-    //private void Update()
-    //{
-    //    if (Input.GetMouseButton(0))
-    //    {
-    //        Fire();
-    //    }
-    //    else if (Input.GetMouseButton(1))
-    //    {
-    //        AltFire();
-    //    }
-    //}
 }
