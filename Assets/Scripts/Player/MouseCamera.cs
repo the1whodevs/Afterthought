@@ -62,8 +62,7 @@ public class MouseCamera : MonoBehaviour
 
     private void Update()
     {
-        Debug.LogError("REMOVE TEMP CHANGES");
-        //if (Player.Instance.Controller.IsInUI) return;
+        if (Player.Active.Controller.IsInUI) return;
 
         var d = Time.deltaTime;
 
@@ -121,12 +120,12 @@ public class MouseCamera : MonoBehaviour
 
     public void ApplyRecoil(float horizontalForce, float verticalForce)
     {
-        var p = Player.Instance.Controller;
+        var p = Player.Active.Controller;
 
-        var talent = Player.Instance.Equipment.HasMinimalHorizontalRecoil();
+        var talent = Player.Active.Loadout.HasMinimalHorizontalRecoil();
         if (talent) horizontalForce = talent.value;
 
-        talent = Player.Instance.Equipment.HasMinimalVerticalRecoil();
+        talent = Player.Active.Loadout.HasMinimalVerticalRecoil();
         if (talent) verticalForce = talent.value;
 
         if (p.IsADS)
@@ -149,11 +148,11 @@ public class MouseCamera : MonoBehaviour
 
     public void ToggleZoom(bool status)
     {
-        if (!Player.Instance.Equipment.HasScope) return;
+        if (!Player.Active.Loadout.HasScope) return;
         
         zoomCameraGameObject.SetActive(status);
 
-        var scope = Player.Instance.Equipment.ScopeGameObject;
+        var scope = Player.Active.Loadout.ScopeGameObject;
         
         if (scope) scope.SetActive(status);
     }

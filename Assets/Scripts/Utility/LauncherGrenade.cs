@@ -21,7 +21,7 @@ public class LauncherGrenade : MonoBehaviour
         var contact = other.GetContact(0);
 
         // Spawn explosion.
-        Destroy(Instantiate(launcherData.hitImpact, contact.point, Quaternion.LookRotation(-contact.normal), null), PlayerLoadout.BulletHoleLifetime);
+        Destroy(Instantiate(launcherData.hitImpact, contact.point, Quaternion.LookRotation(-contact.normal), null), PlayerDamage.BULLET_HOLE_LIFETIME);
 
         var hits = Physics.SphereCastAll(contact.point, explosionRadius, -contact.normal, explosionRadius);
 
@@ -39,12 +39,12 @@ public class LauncherGrenade : MonoBehaviour
             if (distance < 0.0f) distance = 0.0f;
 
             var dmg = launcherData.weaponDamage;
-            var talent = Player.Instance.Equipment.HasIncreasedWeaponTypeTalent(launcherData.weaponType);
+            var talent = Player.Active.Loadout.HasIncreasedWeaponTypeTalent(launcherData.weaponType);
 
             if (talent) dmg *= talent.value;
 
-            talent = Player.Instance.Equipment.HasIncreasedDamageWhileCrouching();
-            if (talent && Player.Instance.Controller.IsCrouching) dmg *= talent.value;
+            talent = Player.Active.Loadout.HasIncreasedDamageWhileCrouching();
+            if (talent && Player.Active.Controller.IsCrouching) dmg *= talent.value;
 
             var damage = (int) Mathf.Lerp(dmg, 0.0f, distance / maxRange);
                 
@@ -79,7 +79,7 @@ public class LauncherGrenade : MonoBehaviour
                             ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
                                 hit.transform)
                             : Instantiate(launcherData.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                                null), PlayerLoadout.BulletHoleLifetime);
+                                null), PlayerDamage.BULLET_HOLE_LIFETIME);
                 }
                     
                 if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound(); 

@@ -53,9 +53,9 @@ public class IDisplayableItem : ScriptableObject
                 case UnlockType.AlwaysUnlocked:
                     return true;
                 case UnlockType.Both:
-                    return Player.Instance.Experience.Level >= levelRequired && isLooted;
+                    return Player.Active.Experience.Level >= levelRequired && isLooted;
                 case UnlockType.Level:
-                    return Player.Instance.Experience.Level >= levelRequired;
+                    return Player.Active.Experience.Level >= levelRequired;
                 case UnlockType.Loot:
                     return isLooted;
                 default:

@@ -1,54 +1,55 @@
-﻿using UnityEngine;
-
-public class PlayerMelee : MonoBehaviour
+﻿public class PlayerMelee : PlayerWeaponAnimator
 {
-    // FOR TESTING ONLY!
-    private float attackSpeed = 1.0f;
-    private float weaponSwitchSpeed = 1.0f;
-    
-    private Animator anim;
-
-    private readonly int attack = Animator.StringToHash("attack");
-    private readonly int attackNum = Animator.StringToHash("attackNum");
-    private readonly int isSprinting = Animator.StringToHash("isSprinting");
-    private readonly int isMoving = Animator.StringToHash("isMoving");
-    private readonly int switch_weapon = Animator.StringToHash("switch_weapon");
-    private readonly int switch_speed = Animator.StringToHash("switch_speed");
-    private readonly int attack_speed = Animator.StringToHash("attack_speed");
-
-    private void Start()
+    protected override void Start()
     {
-        anim = GetComponent<Animator>();
-        anim.SetFloat(switch_speed, weaponSwitchSpeed);
-        anim.SetFloat(attack_speed, attackSpeed);
+        pl = Player.Active.Loadout;
+        pc = Player.Active.Controller;
     }
 
-    // Update is called once per frame
-    private void Update()
+    public override void Animate()
     {
-        anim.SetFloat(switch_speed, weaponSwitchSpeed);
-        anim.SetFloat(attack_speed, attackSpeed);
+        SetAnimParameters();
 
-        anim.SetBool(isSprinting, Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W));
-        anim.SetBool(isMoving, !Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W));
+        var currentState = pc.CurrentMoveState;
 
-        if (Input.GetMouseButton(0))
-        {
-            anim.SetInteger(attackNum, 0);
-            anim.ResetTrigger(attack);
-            anim.SetTrigger(attack);
-        }
-        else if (Input.GetMouseButton(1))
-        { 
-            anim.SetInteger(attackNum, 1);
-            anim.ResetTrigger(attack);
-            anim.SetTrigger(attack);
-        }
+        var sprinting = currentState == PlayerController.PlayerMoveState.Sprint;
+        var moving = currentState == PlayerController.PlayerMoveState.CrouchRun ||
+            currentState == PlayerController.PlayerMoveState.Run;
 
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            anim.ResetTrigger(switch_weapon);
-            anim.SetTrigger(switch_weapon);
-        }
+        anim.SetBool(isSprinting, sprinting);
+        anim.SetBool(isMoving, moving);
     }
+
+    protected override void SetAnimParameters()
+    {
+        anim.SetFloat(switch_speed, pa.WeaponSwitch_Speed);
+        anim.SetFloat(attack_speed, pl.CurrentWeapon.fireRate);
+    }
+
+    public override void Fire()
+    {
+        anim.SetInteger(attackNum, 0);
+        anim.ResetTrigger(attack);
+        anim.SetTrigger(attack);
+    }
+
+    public void AltFire()
+    {
+        anim.SetInteger(attackNum, 1);
+        anim.ResetTrigger(attack);
+        anim.SetTrigger(attack);
+    }
+
+    //// Update is called once per frame
+    //private void Update()
+    //{
+    //    if (Input.GetMouseButton(0))
+    //    {
+    //        Fire();
+    //    }
+    //    else if (Input.GetMouseButton(1))
+    //    {
+    //        AltFire();
+    //    }
+    //}
 }

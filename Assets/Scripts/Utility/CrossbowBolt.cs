@@ -31,12 +31,12 @@ public class CrossbowBolt : MonoBehaviour
         }
 
         var dmg = CurrentWeapon.weaponDamage;
-        var talent = Player.Instance.Equipment.HasIncreasedWeaponTypeTalent(CurrentWeapon.weaponType);
+        var talent = Player.Active.Loadout.HasIncreasedWeaponTypeTalent(CurrentWeapon.weaponType);
 
         if (talent) dmg *= talent.value;
 
-        talent = Player.Instance.Equipment.HasIncreasedDamageWhileCrouching();
-        if (talent && Player.Instance.Controller.IsCrouching) dmg *= talent.value;
+        talent = Player.Active.Loadout.HasIncreasedDamageWhileCrouching();
+        if (talent && Player.Active.Controller.IsCrouching) dmg *= talent.value;
 
         var damage =(int)Mathf.Lerp(dmg, 0.0f, distance / maxRange);
         
@@ -67,7 +67,7 @@ public class CrossbowBolt : MonoBehaviour
                     ? Instantiate(hitSurfaceInfo.hitEffect, hit.point, Quaternion.LookRotation(hit.normal),
                         other.transform)
                     : Instantiate(CurrentWeapon.hitImpact, hit.point, Quaternion.LookRotation(hit.normal),
-                        null), PlayerLoadout.BulletHoleLifetime);
+                        null), PlayerDamage.BULLET_HOLE_LIFETIME);
             
             if (cdp)
             {
@@ -80,7 +80,7 @@ public class CrossbowBolt : MonoBehaviour
                         ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
                             other.transform)
                         : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                            null), PlayerLoadout.BulletHoleLifetime);
+                            null), PlayerDamage.BULLET_HOLE_LIFETIME);
             }
 
             Stick();

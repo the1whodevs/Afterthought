@@ -26,9 +26,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        UiManager = UIManager.Instance;
+        UiManager = UIManager.Active;
 
-        var talent = Player.Instance.Equipment.HasIncreasedMaxHealth();
+        var talent = Player.Active.Loadout.HasIncreasedMaxHealth();
         maxHealth = startingHealth * (int)(talent ? talent.value : 1.0f);
         currentHealth = maxHealth;
 
@@ -67,10 +67,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void PlayerDeath()
     {
-        Player.Instance.PostProcessing.Death();
+        Player.Active.PostProcessing.Death();
         handsObject.SetActive(false);
         MouseCamera.Instance.enabled = false;
-        Player.Instance.Controller.enabled = false;
+        Player.Active.Controller.enabled = false;
         CameraAnimation.Instance.DeathAnimation();
         StartCoroutine(ShowDeathMenuDelay());
     }

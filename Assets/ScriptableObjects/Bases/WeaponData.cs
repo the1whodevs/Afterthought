@@ -28,7 +28,9 @@ public class WeaponData : IDisplayableItem
     public GameObject[] hitDecal; 
     
     public WeaponType weaponType = WeaponType.Firearm;
-    
+
+    public PlayerWeaponAnimator.WeaponAnimatorType weaponAnimType = PlayerWeaponAnimator.WeaponAnimatorType.Pistol;
+
     public FireType fireType = FireType.FullAuto;
 
     public AmmoData ammoType;

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using EmeraldAI;
 using JetBrains.Annotations;
 using Knife.RealBlood.Decals;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class PlayerLoadout : MonoBehaviour
 {
@@ -15,6 +13,8 @@ public class PlayerLoadout : MonoBehaviour
     /// </summary>
     public WeaponData CurrentWeapon { get; private set; }
     public GameObject CurrentWeaponObject { get; private set; }
+
+    public Transform FirePoint => firePoint;
 
     public bool HasScope => CurrentWeapon.hasScope;
     public bool UsingEquipment => isUsingEquipment;
@@ -29,7 +29,9 @@ public class PlayerLoadout : MonoBehaviour
     public Animator CurrentAnimator { get; private set; }
 
     public bool IsReloading => isReloading;
-    
+
+    public Action<WeaponData> OnWeaponEquipped;
+
     [SerializeField] private LoadoutData loadout;
     
     [SerializeField] private List<WeaponData> allWeaponData = new List<WeaponData>();
@@ -38,11 +40,6 @@ public class PlayerLoadout : MonoBehaviour
 
     [SerializeField] private Transform WeaponR;
     
-    [SerializeField] private LayerMask hitScanLayerMask;
-
-    [SerializeField] private AudioSource gunFireAudioSource;
-    [SerializeField] private AudioSource gunEmptyClipAudioSource;
-
     [SerializeField, TagSelector] private string scopeTag;
 
     private EquipmentData currentEquipment;
@@ -54,30 +51,20 @@ public class PlayerLoadout : MonoBehaviour
     private WeaponData futureWeapon;
     private WeaponData lastWeapon;
 
-    private Camera playerCamera;
-    
     private PlayerAnimator pa;
 
     private UIManager uiManager;
 
     private Transform firePoint;
 
-    private const int SHOTGUN_PELLETS = 15;
-    
-    private const float SHOTGUN_PELLET_VARIANCE = 5.0f;
-    
-    public const float BulletHoleLifetime = 10.0f;
-
     private bool isReloading;
     private bool isUsingEquipment;
 
-    private const int DELAY_BETWEEN_BURSTS = 50;
-    
     public void Init()
     {
-        uiManager = UIManager.Instance;
-        playerCamera = Camera.main;
-        pa = Player.Instance.Animator;
+        uiManager = UIManager.Active;
+        
+        pa = Player.Active.Animator;
         
         foreach (var weaponData in allWeaponData)
         {
@@ -238,300 +225,17 @@ public class PlayerLoadout : MonoBehaviour
         return null;
     }
 
-    public async void TryDealDamage()
-    {
-        const float projectileLifetime = 60.0f;
-
-        gunFireAudioSource.pitch = CurrentWeapon.shootAudioPitch;
-        gunFireAudioSource.PlayOneShot(CurrentWeapon.RandomShotAudioFX);
-
-        var fireType = CurrentWeapon.fireType;
-        
-        switch (CurrentWeapon.weaponType)
-        {
-            case WeaponData.WeaponType.Firearm:
-                
-                var repeat = fireType == WeaponData.FireType.Burst ? Player.Instance.Controller.BurstFireCount : 1;
-                var isShotgun = CurrentWeapon.isShotgun;
-                
-                for (var i = 0; i < repeat; i++)
-                {
-                    MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
-
-                    if (isShotgun)
-                    {
-                        ShotgunFirearmDamage();
-                    }
-                    else
-                    {
-                        // This is false when raycast does not hit.
-                        if (!NonShotgunFirearmDamage()) return;
-                    }
-                    
-                    await Task.Delay(DELAY_BETWEEN_BURSTS);
-                }
-                
-                break;
-            
-            case WeaponData.WeaponType.Projectile:
-
-                MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
-                ProjectileDamage(projectileLifetime);
-                break;
-            
-            case WeaponData.WeaponType.Melee:
-                 MeleeDamage();
-                 break;
-            
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-    }
-
-    private void MeleeDamage()
-    {
-        var meleeRay = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-
-        Debug.DrawLine(meleeRay.origin, meleeRay.direction * CurrentWeapon.maxRange, Color.blue, 1.0f, true);
-
-        if (!Physics.Raycast(meleeRay, out var meleeHit, CurrentWeapon.maxRange, hitScanLayerMask)) return;
-
-        var emeraldAISystem = meleeHit.transform.GetComponent<EmeraldAISystem>();
-
-        var dmg = CurrentWeapon.weaponDamage;
-        var talent = HasIncreasedWeaponTypeTalent(CurrentWeapon.weaponType);
-
-        if (talent) dmg *= talent.value;
-
-        talent = HasIncreasedDamageWhileCrouching();
-        if (talent && Player.Instance.Controller.IsCrouching) dmg *= talent.value;
-
-        // If we hit an AI, damage it.
-        if (emeraldAISystem && emeraldAISystem.enabled)
-            emeraldAISystem.Damage((int)dmg, EmeraldAISystem.TargetType.Player, transform, 5000);
-        // Otherwise just spawn a bullet hole.
-        else
-        {
-            var cdp = meleeHit.transform.GetComponent<CharacterDamagePainter>();
-            var hitSurfaceInfo = meleeHit.transform.GetComponent<HitSurfaceInfo>();
-
-            var hitRb = meleeHit.rigidbody;
-
-            if (hitRb) hitRb.AddForce(-meleeHit.normal * 100.0f, ForceMode.Impulse);
-
-            if (!hitSurfaceInfo) hitSurfaceInfo = meleeHit.transform.GetComponentInParent<HitSurfaceInfo>();
-            if (!cdp) cdp = meleeHit.transform.GetComponentInParent<CharacterDamagePainter>();
-
-            Destroy(
-                hitSurfaceInfo
-                    ? Instantiate(hitSurfaceInfo.hitEffect, meleeHit.point,
-                        Quaternion.LookRotation(meleeHit.normal),
-                        meleeHit.transform)
-                    : Instantiate(CurrentWeapon.hitImpact, meleeHit.point,
-                        Quaternion.LookRotation(meleeHit.normal),
-                        null), BulletHoleLifetime);
-
-            if (cdp)
-            {
-                cdp.Paint(meleeHit.point, meleeHit.normal);
-            }
-            else
-            {
-                Destroy(
-                    hitSurfaceInfo
-                        ? Instantiate(hitSurfaceInfo.RandomHitDecal,
-                            meleeHit.point + meleeHit.normal * Random.Range(0.001f, 0.002f),
-                            Quaternion.LookRotation(meleeHit.normal),
-                            meleeHit.transform)
-                        : Instantiate(CurrentWeapon.RandomHitDecal,
-                            meleeHit.point + meleeHit.normal * Random.Range(0.001f, 0.002f),
-                            Quaternion.LookRotation(meleeHit.normal),
-                            null), BulletHoleLifetime);
-            }
-
-            if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
-        }
-    }
-
-    private void ProjectileDamage(float projectileLifetime)
-    {
-        SetAmmoUI();
-        var lookRot = Quaternion.LookRotation(firePoint.forward);
-        var bullet = Instantiate(CurrentWeapon.projectilePrefab, firePoint.position, lookRot, null);
-        bullet.GetComponent<Rigidbody>()
-            .AddForce(bullet.transform.forward * CurrentWeapon.projectileSpeed, ForceMode.Impulse);
-
-        var crossbowBolt = bullet.GetComponent<CrossbowBolt>();
-        if (crossbowBolt) crossbowBolt.Init(CurrentWeapon, transform.position);
-
-        var launcherGrenade = bullet.GetComponent<LauncherGrenade>();
-        if (launcherGrenade) launcherGrenade.Init(CurrentWeapon);
-
-        Destroy(bullet, projectileLifetime);
-    }
-
-    private void ShotgunFirearmDamage()
-    {
-        SetAmmoUI();
-
-        var distance = CurrentWeapon.minRange;
-
-        var cam = Player.Instance.Camera.transform;
-        
-        for (var i = 0; i < SHOTGUN_PELLETS; i++) 
-        {
-            var v3Offset = cam.up * Random.Range(0.0f, SHOTGUN_PELLET_VARIANCE);
-            v3Offset = Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), cam.forward) * v3Offset;
-            
-            // Dir
-            var v3Hit = cam.forward * distance + v3Offset;
-            
-            var ray = new Ray(cam.position, v3Hit);
-            
-            Debug.DrawLine(ray.origin, ray.direction * CurrentWeapon.maxRange, Color.blue, 1.0f, true);
-            
-            if (!Physics.Raycast(ray, out var hit, CurrentWeapon.maxRange, hitScanLayerMask)) continue;
-   
-            var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
-
-            var dmg = CurrentWeapon.weaponDamage;
-            var talent = HasIncreasedWeaponTypeTalent(CurrentWeapon.weaponType);
-
-            if (talent) dmg *= talent.value;
-
-            talent = HasIncreasedDamageWhileCrouching();
-            if (talent && Player.Instance.Controller.IsCrouching) dmg *= talent.value;
-
-            // If we hit an AI, damage it.
-            if (emeraldAIsys && emeraldAIsys.enabled)
-                emeraldAIsys.Damage((int) dmg, EmeraldAISystem.TargetType.Player, transform, 5000);
-            // Otherwise just spawn a bullet hole.
-            else
-            {
-                var cdp = hit.transform.GetComponent<CharacterDamagePainter>();
-                var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
-
-                var hitRb = hit.rigidbody;
-
-                if (hitRb) hitRb.AddForce(-hit.normal * 100.0f, ForceMode.Impulse);
-
-                if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
-                if (!cdp) cdp = hit.transform.GetComponentInParent<CharacterDamagePainter>();
-
-                Destroy(
-                    hitSurfaceInfo
-                        ? Instantiate(hitSurfaceInfo.hitEffect, hit.point, Quaternion.LookRotation(hit.normal),
-                            hit.transform)
-                        : Instantiate(CurrentWeapon.hitImpact, hit.point, Quaternion.LookRotation(hit.normal),
-                            null), BulletHoleLifetime);
-
-                if (cdp)
-                {
-                    cdp.Paint(hit.point, hit.normal);
-                }
-                else
-                {
-                    Destroy(
-                        hitSurfaceInfo
-                            ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
-                                Quaternion.LookRotation(hit.normal),
-                                hit.transform)
-                            : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
-                                Quaternion.LookRotation(hit.normal),
-                                null), BulletHoleLifetime);
-                }
-
-                if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
-            }
-        }
-    }
-    
-    private bool NonShotgunFirearmDamage()
-    {
-        SetAmmoUI();
-
-        var ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-
-        Debug.DrawLine(ray.origin, ray.direction * CurrentWeapon.maxRange, Color.blue, 1.0f, true);
-
-        if (!Physics.Raycast(ray, out var hit, CurrentWeapon.maxRange, hitScanLayerMask)) return false;
-
-        var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
-
-        var dmg = CurrentWeapon.weaponDamage;
-        var talent = HasIncreasedWeaponTypeTalent(CurrentWeapon.weaponType);
-
-        if (talent) dmg *= talent.value;
-
-        talent = HasIncreasedDamageWhileCrouching();
-        if (talent && Player.Instance.Controller.IsCrouching) dmg *= talent.value;
-
-        // If we hit an AI, damage it.
-        if (emeraldAIsys && emeraldAIsys.enabled)
-            emeraldAIsys.Damage((int) dmg, EmeraldAISystem.TargetType.Player, transform, 5000);
-
-        // Otherwise just spawn a bullet hole.
-        else
-        {
-            var cdp = hit.transform.GetComponent<CharacterDamagePainter>();
-            var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
-
-            var hitRb = hit.rigidbody;
-
-            if (hitRb) hitRb.AddForce(-hit.normal * 100.0f, ForceMode.Impulse);
-
-            if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
-            if (!cdp) cdp = hit.transform.GetComponentInParent<CharacterDamagePainter>();
-
-            Destroy(
-                hitSurfaceInfo
-                    ? Instantiate(hitSurfaceInfo.hitEffect, hit.point, Quaternion.LookRotation(hit.normal),
-                        hit.transform)
-                    : Instantiate(CurrentWeapon.hitImpact, hit.point, Quaternion.LookRotation(hit.normal),
-                        null), BulletHoleLifetime);
-
-            if (cdp)
-            {
-                cdp.Paint(hit.point, hit.normal);
-            }
-            else
-            {
-                Destroy(
-                    hitSurfaceInfo
-                        ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
-                            Quaternion.LookRotation(hit.normal),
-                            hit.transform)
-                        : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
-                            Quaternion.LookRotation(hit.normal),
-                            null), BulletHoleLifetime);
-            }
-
-            if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
-        }
-
-        return true;
-    }
-
     public void SetAmmoUI()
     {
         uiManager.UpdateWeaponAmmoUI(CurrentWeapon);
     }
 
-    public void PlayEmptyClipSound()
-    {
-        if (gunEmptyClipAudioSource.isPlaying) return;
-
-        gunEmptyClipAudioSource.clip = CurrentWeapon.emptyClipAudioFx;
-        gunEmptyClipAudioSource.pitch = 1.0f;
-        gunEmptyClipAudioSource.Play();
-    }
-
     public void Reload()
     {
-        gunFireAudioSource.pitch = 1.0f;
-        gunFireAudioSource.PlayOneShot(CurrentWeapon.reloadAudioFx);
+        Player.Active.Audio.PlayReload(CurrentWeapon);
 
         isReloading = true;
+
         pa.Reload();
     }
 
@@ -540,19 +244,6 @@ public class PlayerLoadout : MonoBehaviour
         isReloading = false;
         CurrentWeapon.ReloadMag(ref CurrentWeapon.ammoType.currentAmmo);
         SetAmmoUI();
-    }
-
-    [UsedImplicitly]
-    // Used through an AnimationEvent to disable the melee weapons colliders.
-    public void ResetAttackCollider()
-    {
-        CurrentWeaponObject.GetComponentInChildren<Collider>().enabled = false;
-    }
-
-    public void Muzzle()
-    {
-        const float muzzleLifetime = 2.0f;
-        Destroy(Instantiate(CurrentWeapon.muzzleEffect, firePoint.position, firePoint.rotation, null), muzzleLifetime);
     }
 
     public void SpawnEquipmentThrowable()
@@ -569,80 +260,13 @@ public class PlayerLoadout : MonoBehaviour
         rb.useGravity = true;
         rb.AddForce(firePoint.forward * currentEquipment.throwForce, ForceMode.Impulse);
 
-        StartCoroutine(ExplodeThrowable(currentEquipment, currentEquipmentThrowable));
+        Player.Active.Damage.ExplodeThrownEquipment(currentEquipment, currentEquipmentThrowable);
 
         currentEquipment = null;
         currentEquipmentObject = null;
         currentEquipmentThrowable = null;
 
         EquipWeapon(lastWeapon);
-    }
-
-    private IEnumerator ExplodeThrowable(EquipmentData relatedEquipment, GameObject toExplode)
-    {
-        yield return new WaitForSeconds(relatedEquipment.fuseTime);
-
-        var pos = toExplode.transform.position;
-        Destroy(toExplode);
-        Destroy(Instantiate(relatedEquipment.explosionPrefab, pos, Quaternion.identity, null), 3.0f);
-
-        var hits = Physics.SphereCastAll(pos, relatedEquipment.maxRange, Vector3.down, hitScanLayerMask);
-
-        if (hits.Length == 0) yield break;
-
-        foreach (var hit in hits)
-        {
-            var distance = Vector3.Distance(hit.transform.position, pos);
-            distance -= relatedEquipment.minRange;
-
-            if (distance < 0.0f) distance = 0.0f;
-
-            var dmg = relatedEquipment.damage;
-            var talent = HasIncreasedEquipmentDamageTalent();
-            if (talent) dmg *= talent.value;
-
-            talent = HasIncreasedDamageWhileCrouching();
-            if (talent && Player.Instance.Controller.IsCrouching) dmg *= talent.value;
-
-            var damage = (int)Mathf.Lerp(dmg, 0.0f, distance / relatedEquipment.maxRange);
-
-            var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
-
-            // If we hit an AI, damage it.
-            if (emeraldAIsys && emeraldAIsys.enabled)
-            {
-                emeraldAIsys.Damage(damage, EmeraldAISystem.TargetType.Player, transform, (int)relatedEquipment.ragdollForce);
-            }
-            // Otherwise just spawn a bullet hole.
-            else
-            {
-                var cdp = hit.transform.GetComponent<CharacterDamagePainter>();
-                var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
-                var hitRb = hit.rigidbody;
-
-                if (hitRb) hitRb.AddForce(-hit.normal * relatedEquipment.ragdollForce, ForceMode.Impulse);
-
-                if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
-
-                if (!cdp) cdp = hit.transform.GetComponentInParent<CharacterDamagePainter>();
-
-                if (cdp)
-                {
-                    cdp.Paint(hit.point, hit.normal);
-                }
-                //else
-                //{
-                //    Destroy(
-                //        hitSurfaceInfo
-                //            ? Instantiate(hitSurfaceInfo.RandomExplosionDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                //                hit.transform)
-                //            : Instantiate(relatedEquipment.explosionDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                //                null), BulletHoleLifetime);
-                //}
-
-                if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
-            }
-        } 
     }
 
     private bool UseEquipment(EquipmentData toUse)
@@ -664,10 +288,7 @@ public class PlayerLoadout : MonoBehaviour
     {
         const float delay = 1.0f;
 
-        var hash = Player.Instance.Animator.unequipAnimHash;
-
-        CurrentAnimator.ResetTrigger(hash);
-        CurrentAnimator.SetTrigger(hash);
+        pa.Unequip();
 
         yield return new WaitForSeconds(delay);
 
@@ -707,13 +328,10 @@ public class PlayerLoadout : MonoBehaviour
     private IEnumerator SwitchWeapon(WeaponData weaponToEquip)
     {
         const float delay = 1.0f;
-
-        var hash = Player.Instance.Animator.unequipAnimHash;
         
         if (CurrentAnimator)
         {
-            CurrentAnimator.ResetTrigger(hash);
-            CurrentAnimator.SetTrigger(hash);
+            pa.Unequip();
 
             yield return new WaitForSeconds(delay);
         }
@@ -751,7 +369,9 @@ public class PlayerLoadout : MonoBehaviour
         isReloading = false;
         SetAmmoUI();
         CurrentAnimator = CurrentWeaponObject.GetComponent<Animator>();
-        Player.Instance.Camera.currentZoom = CurrentWeapon.scopeZoom;
+        Player.Active.Camera.currentZoom = CurrentWeapon.scopeZoom;
+
+        OnWeaponEquipped?.Invoke(CurrentWeapon);
     }
 
     private void GetFirePoint(GameObject objectToLookIn)

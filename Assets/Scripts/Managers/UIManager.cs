@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance;
+    public static UIManager Active;
 
     public GameObject HealthBar => healthBar;
 
@@ -23,9 +23,9 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance) Destroy(gameObject);
+        if (Active) Destroy(gameObject);
 
-        Instance = this;
+        Active = this;
     }
 
     private void Start()
@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
         crosshair.SetActive(true);
         healthBar.SetActive(true);
 
-        UpdateAmmoIcons(Player.Instance.Equipment.Loadout, Player.Instance.Equipment.CurrentWeapon);
+        UpdateAmmoIcons(Player.Active.Loadout.Loadout, Player.Active.Loadout.CurrentWeapon);
     }
 
     public void ShowInteractPrompt(KeyCode keyPrompt)

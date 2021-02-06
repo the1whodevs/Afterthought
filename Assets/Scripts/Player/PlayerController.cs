@@ -12,6 +12,11 @@ public class PlayerController : MonoBehaviour
     public bool IsCrouching => CurrentMoveState == PlayerMoveState.CrouchIdle || 
         CurrentMoveState == PlayerMoveState.CrouchRun;
 
+    public bool IsOnTerrain => (groundedCheckHit.collider != null && groundedCheckHit.collider.tag == "Terrain");
+    public bool IsGrounded => Physics.Raycast(transform.position, Vector3.down, out groundedCheckHit, cc.bounds.extents.y + 0.5f);
+
+    public float MoveSpeed => cc.velocity.magnitude;
+
     [SerializeField, TagSelector] private string loadoutChangerTag;
 
     [Header("Move Settings")]
@@ -25,15 +30,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerStandState standSetting;
     [SerializeField] private PlayerStandState crouchSetting;
     [SerializeField] private AnimationCurve stateChangeCurve;
-     
-    private float attackInterval => 1.0f / pe.CurrentWeapon.fireRate;
-     
+
+    [Header("Terrain Move Settings")]
+    [SerializeField] private float[] textureValues;
+
+    private Terrain currentTerrain;
+
+    private float attackInterval => 1.0f / pl.CurrentWeapon.fireRate;
+
+    private RaycastHit groundedCheckHit;
+
     private Vector3 playerVelocity = Vector3.zero;
     
     private float attackTimer = 0.0f;
     private float standStateBlend;
-
-    public int BurstFireCount { get; } = 3;
      
     // If this is true, the player needs to let go of the fire button, and press it again to fire.
     // e.g. Bolt-action, semi-auto, burst
@@ -42,8 +52,9 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController cc;
     
+    private PlayerAudio pad;
     private PlayerAnimator pa;
-    private PlayerLoadout pe;
+    private PlayerLoadout pl;
      
     [System.Serializable]
     public class PlayerStandState
@@ -56,8 +67,11 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         cc = GetComponent<CharacterController>();
-        pa = Player.Instance.Animator;
-        pe = Player.Instance.Equipment;
+        pad = Player.Active.Audio;
+        pa = Player.Active.Animator;
+        pl = Player.Active.Loadout;
+
+        currentTerrain = Terrain.activeTerrain;
     }
     
     private void Update()
@@ -73,13 +87,13 @@ public class PlayerController : MonoBehaviour
             PauseMenu.Instance.ShowPauseMenu();
         }
 
-        UpdatePlayer(d);
+        UpdatePlayer();
         WeaponControls(d);
     }
 
-    private void UpdatePlayer(float delta)
+    private void UpdatePlayer()
     {
-        if (cc.isGrounded) MoveControls(delta);
+        if (cc.isGrounded) MoveControls();
         else ApplyGravity();
     }
     
@@ -87,7 +101,7 @@ public class PlayerController : MonoBehaviour
     {
         attackTimer += dTime;
 
-        if (pe.UsingEquipment) return;
+        if (pl.UsingEquipment) return;
 
         var fire = Input.GetAxisRaw("Fire1") > 0.0f;
         var aim = Input.GetAxisRaw("Fire2") > 0.0f;
@@ -103,33 +117,40 @@ public class PlayerController : MonoBehaviour
 
         if (tryThrowEquipment1) 
         {
-            pe.UseEquipmentA();
+            pl.UseEquipmentA();
             return;
         } 
         else if (tryThrowEquipment2) 
         {
-            pe.UseEquipmentB();
+            pl.UseEquipmentB();
             return;
         } 
 
-        if (tryEquipPrimary) pe.EquipPrimaryWeapon();
-        else if (tryEquipSecondary) pe.EquipSecondaryWeapon();
+        if (tryEquipPrimary) pl.EquipPrimaryWeapon();
+        else if (tryEquipSecondary) pl.EquipSecondaryWeapon();
          
+        if (pl.CurrentWeapon.weaponAnimType.Equals(PlayerWeaponAnimator.WeaponAnimatorType.Melee) && !fire && aim)
+        {
+            fire = aim;
+        }
+
         if (fire && !fireResetRequired && CanAttack && CurrentMoveState != PlayerMoveState.Sprint)
         {
-            if (pe.CurrentWeapon.weaponType == WeaponData.WeaponType.Melee)
+            if (pl.CurrentWeapon.weaponType == WeaponData.WeaponType.Melee)
             {
-                    attackTimer = 0.0f;
-                    pa.Fire();
+                attackTimer = 0.0f;
+
+                if (aim) pa.AltFire();
+                else pa.Fire();
             }
             else
             {
-                if (pe.CurrentWeapon.ammoInMagazine > 0)
+                if (pl.CurrentWeapon.ammoInMagazine > 0)
                 {
-                    var fireType = pe.CurrentWeapon.fireType;
+                    var fireType = pl.CurrentWeapon.fireType;
 
-                    if (fireType == WeaponData.FireType.Burst) pe.CurrentWeapon.ammoInMagazine -= BurstFireCount;
-                    else pe.CurrentWeapon.ammoInMagazine--;
+                    if (fireType == WeaponData.FireType.Burst) pl.CurrentWeapon.ammoInMagazine -= PlayerDamage.BURST_FIRE_COUNT;
+                    else pl.CurrentWeapon.ammoInMagazine--;
                      
                     attackTimer = 0.0f;
 
@@ -139,27 +160,27 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    pa.ResetAttack();
-                    pe.PlayEmptyClipSound();
+                    //pa.ResetAttack();
+                    pad.PlayEmptyClip(pl.CurrentWeapon);
                 }
             }
         }
         else if (!fire)
         {
-            pa.ResetAttack();
+            //pa.ResetAttack();
             fireResetRequired = false;
         }
 
-        if (!pe.IsReloading && reload && pe.CurrentWeapon.ammoType.currentAmmo > 0 && pe.CurrentWeapon.ammoInMagazine < pe.CurrentWeapon.magazineCapacity)
-            pe.Reload();
+        if (!pl.IsReloading && reload && pl.CurrentWeapon.ammoType.currentAmmo > 0 && pl.CurrentWeapon.ammoInMagazine < pl.CurrentWeapon.magazineCapacity)
+            pl.Reload();
          
-        var ads = !pe.IsReloading && aim;
+        var ads = !pl.IsReloading && aim;
          
         pa.AimDownSights(ads);
-        Player.Instance.PostProcessing.ADS(ads);
+        Player.Active.PostProcessing.ADS(ads);
     }
     
-    private void MoveControls(float dTime)
+    private void MoveControls()
     { 
         var v = Input.GetAxis("Vertical");
         var h = Input.GetAxis("Horizontal");
@@ -193,32 +214,6 @@ public class PlayerController : MonoBehaviour
             CurrentMoveState = PlayerMoveState.Idle;
         }
         
-        if (!pe.UsingEquipment && pe.CurrentAnimator)
-        {
-            switch (CurrentMoveState)
-            {
-                case PlayerMoveState.Idle:
-                    pa.Idle();
-                    break;
-
-                case PlayerMoveState.CrouchIdle:
-                    pa.Idle();
-                    break;
-
-                case PlayerMoveState.Run:
-                    pa.Run();
-                    break;
-
-                case PlayerMoveState.CrouchRun:
-                    pa.Run();
-                    break;
-
-                case PlayerMoveState.Sprint:
-                    pa.Sprint();
-                    break;
-            }
-        }
-        
         var forward = transform.forward;
 
         forward.y = 0;
@@ -235,7 +230,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (isCrouching)
         {
-            var crouchTalent = pe.HasFasterCrouchSpeed();
+            var crouchTalent = pl.HasFasterCrouchSpeed();
             speed = crouchSpeed * (crouchTalent ? crouchTalent.value : 1.0f);
         }
         
@@ -245,10 +240,10 @@ public class PlayerController : MonoBehaviour
 
         Physics.SphereCast(r, cc.radius, out var hitInfo, cc.height / 2f, groundLayer);
 
-        var talent = pe.HasNoMobilityPenalty();
-        if (pe.CurrentWeapon && !talent)
+        var talent = pl.HasNoMobilityPenalty();
+        if (pl.CurrentWeapon && !talent)
         {
-            speed = Mathf.Clamp(speed - pe.CurrentWeapon.mobilityPenalty, 0.0f, speed);
+            speed = Mathf.Clamp(speed - pl.CurrentWeapon.mobilityPenalty, 0.0f, speed);
         }
 
         var desiredVelocity = Vector3.ProjectOnPlane(moveVector, hitInfo.normal) * speed;
@@ -308,7 +303,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag(loadoutChangerTag))
         {
-            UIManager.Instance.ShowInteractPrompt(KeyCode.F);
+            UIManager.Active.ShowInteractPrompt(KeyCode.F);
 
             var interact = Input.GetAxisRaw("Interact");
             //var backUi = Input.GetAxisRaw("BackUI");
@@ -326,11 +321,43 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(loadoutChangerTag)) UIManager.Instance.HideInteractPrompt();
+        if (other.CompareTag(loadoutChangerTag)) UIManager.Active.HideInteractPrompt();
+    }
+
+    private Vector2Int ConvertPosition()
+    {
+        Vector3 terrainPosition = transform.position - currentTerrain.transform.position;
+
+        Vector3 mapPosition = new Vector3
+        (terrainPosition.x / currentTerrain.terrainData.size.x, 0,
+            terrainPosition.z / currentTerrain.terrainData.size.z);
+
+        float xCoord = mapPosition.x * currentTerrain.terrainData.alphamapWidth;
+        float zCoord = mapPosition.z * currentTerrain.terrainData.alphamapHeight;
+
+        return new Vector2Int((int)xCoord, (int)zCoord);
+    }
+
+    private float[] CheckTexture(int posX, int posZ)
+    {
+        float[,,] aMap = currentTerrain.terrainData.GetAlphamaps(posX, posZ, 1, 1);
+
+        textureValues[0] = aMap[0, 0, 0];
+        textureValues[1] = aMap[0, 0, 1];
+        textureValues[2] = aMap[0, 0, 2];
+        textureValues[3] = aMap[0, 0, 3];
+
+        return textureValues;
     }
 
     public void ExitUI()
     {
         IsInUI = false;
+    }
+
+    public float[] GetTerrainTexture()
+    {
+        var pos = ConvertPosition();
+        return CheckTexture(pos.x, pos.y);
     }
 }

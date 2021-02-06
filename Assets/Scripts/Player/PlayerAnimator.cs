@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using JetBrains.Annotations;
 using UnityEngine;
 
 /// <summary>
@@ -8,133 +7,120 @@ using UnityEngine;
 /// </summary>
 public class PlayerAnimator : MonoBehaviour
 {
+    public float ADS_Speed => adsSpeed;
+    public float WeaponSwitch_Speed => weaponSwitchSpeed;
+    public float Reload_Speed => reloadSpeed;
+
     [SerializeField] private float adsSpeed = 10.0f;
+    [SerializeField] private float weaponSwitchSpeed = 1.0f;
+    [SerializeField] private float reloadSpeed = 1.0f;
 
-    public readonly  int runAnimHash = Animator.StringToHash("isRunning");
-    public readonly  int sprintAnimHash = Animator.StringToHash("isSprinting");
-    public readonly  int aimingAnimHash = Animator.StringToHash("isAiming");
-    public readonly int attackAnimHash = Animator.StringToHash("attack");
-    public readonly  int reloadAnimHash = Animator.StringToHash("reload");
-    public readonly  int unequipAnimHash = Animator.StringToHash("unequip");
+    private PlayerMelee meleeAnims;
+    private PlayerPistol pistolAnims;
+    private PlayerShotgun shotgunAnims;
+    private PlayerEquipment equipmentAnims;
 
-    private PlayerLoadout pe;
+    private PlayerWeaponAnimator activeAnim;
+    private PlayerDamage pd;
+    private PlayerController pc;
+    private PlayerLoadout pl;
 
     private UIManager uiManager;
-    
-    private float targetLayerWeight = 0.0f;
-    private float startingLayerWeight = 0.0f;
-    
+  
     private void Start()
     {
-        uiManager = UIManager.Instance;
-        pe = Player.Instance.Equipment;
-        StartCoroutine(AdjustLayerWeight());
+        uiManager = UIManager.Active;
+        pl = Player.Active.Loadout;
+        pc = Player.Active.Controller;
+        pl.OnWeaponEquipped += OnWeaponEquipped;
+        pd = Player.Active.Damage;
     }
 
-    private IEnumerator AdjustLayerWeight()
+    private void Update()
     {
-        const float tolerance = 0.001f;
-        
-        while (!pe.CurrentAnimator) yield return new WaitForEndOfFrame();
-        
-        while (true)
-        {
-            if (pe.UsingEquipment || Player.Instance.Controller.IsInUI || !pe.CurrentAnimator)
-                yield return new WaitForEndOfFrame();
-            else if (Math.Abs(pe.CurrentAnimator.GetLayerWeight(1) - targetLayerWeight) <= tolerance) yield return new WaitForEndOfFrame();
-            else
-            {
-                var weight = Mathf.Lerp(startingLayerWeight, targetLayerWeight, Time.deltaTime * adsSpeed);
-                pe.CurrentAnimator.SetLayerWeight(1, weight);
-            }
-            
-            yield return new WaitForEndOfFrame();
-        }
-    }
+        if (pc.IsInUI || !activeAnim) return;
 
-    public void Run()
-    {
-        pe.CurrentAnimator.SetBool(runAnimHash, true);
-        pe.CurrentAnimator.SetBool(sprintAnimHash, false);
-    }
-
-    public void Sprint()
-    {
-        pe.CurrentAnimator.SetBool(runAnimHash, true);
-        pe.CurrentAnimator.SetBool(sprintAnimHash, true);
-        pe.CurrentAnimator.SetBool(aimingAnimHash, false);
-        pe.CurrentAnimator.SetBool(attackAnimHash, false);
-    }
-
-    public void Idle()
-    {
-        pe.CurrentAnimator.SetBool(runAnimHash, false);
-        pe.CurrentAnimator.SetBool(sprintAnimHash, false);
+        activeAnim.Animate();
     }
 
     public void AimDownSights(bool status)
-    {
-        if (status)
-        {
-            startingLayerWeight = pe.CurrentAnimator.GetLayerWeight(1);
-            targetLayerWeight = 1.0f;
-        }
-        else 
-        {
-            startingLayerWeight = pe.CurrentAnimator.GetLayerWeight(1);
-            targetLayerWeight = 0.0f;
-        }
-        
+    {       
         uiManager.ToggleCrosshair(!status);
         uiManager.ToggleHealthBar(!status);
 
-        if (pe.CurrentWeapon.hasScope) Player.Instance.Camera.ToggleZoom(status);
-        
-        pe.CurrentAnimator.SetBool(aimingAnimHash, status);
+        if (pl.CurrentWeapon.hasScope) Player.Active.Camera.ToggleZoom(status);
+
+        if (!activeAnim.Equals(meleeAnims)) activeAnim.ADSCheck(status);
+        // pl.CurrentAnimator.SetBool(aimingAnimHash, status);
     }
 
     public void Fire()
     {
-        pe.CurrentAnimator.ResetTrigger(attackAnimHash);
-        pe.CurrentAnimator.SetTrigger(attackAnimHash);
-    }
-    
-    [UsedImplicitly]
-    public void Muzzle()
-    {
-        pe.Muzzle();
-    }
-    
-    [UsedImplicitly]
-    // Called by the animation event within each attack animation.
-    public void TryDealDamage()
-    {
-        pe.TryDealDamage();
+        activeAnim.Fire();
     }
 
-    public void Reload()
+    public void AltFire()
     {
-        pe.CurrentAnimator.ResetTrigger(reloadAnimHash);
-        pe.CurrentAnimator.SetTrigger(reloadAnimHash);
-        pe.CurrentAnimator.SetBool(aimingAnimHash, false);
-    }
-    
-    [UsedImplicitly]
-    // Called by the animation event within each reload animation.
-    public void ResetMagazine()
-    {
-        pe.ResetMagazine();
+        var currentWeapon = pl.CurrentWeapon;
+
+        switch (currentWeapon.weaponAnimType)
+        {
+            case PlayerWeaponAnimator.WeaponAnimatorType.Melee:
+                meleeAnims.AltFire();
+                break;
+        }
     }
 
     public void Unequip()
     {
-        pe.CurrentAnimator.ResetTrigger(unequipAnimHash);
-        pe.CurrentAnimator.SetTrigger(unequipAnimHash);
-        pe.CurrentAnimator.SetBool(aimingAnimHash, false);
+        activeAnim.SwitchWeapon();
     }
 
-    public void ResetAttack()
+    public void Reload()
     {
-        pe.CurrentAnimator.SetBool(attackAnimHash, false);
+        if (!activeAnim.Equals(meleeAnims)) activeAnim.Reload();
+    }
+
+    public void Muzzle()
+    {
+        pd.Muzzle();
+    }
+    
+    // Called by the animation event within each attack animation.
+    public void TryDealDamage()
+    {
+        pd.TryDealDamage();
+    }
+    
+    // Called by the animation event within each reload animation.
+    public void ResetMagazine()
+    {
+        pl.ResetMagazine();
+    }
+
+    private void OnWeaponEquipped(WeaponData weapon)
+    {
+        if (activeAnim) activeAnim.DeactivateAnim();
+
+        switch (weapon.weaponAnimType)
+        {
+            case PlayerWeaponAnimator.WeaponAnimatorType.Melee:
+                activeAnim = meleeAnims;
+                break;
+
+            case PlayerWeaponAnimator.WeaponAnimatorType.Pistol:
+                activeAnim = pistolAnims;
+                break;
+
+            case PlayerWeaponAnimator.WeaponAnimatorType.Shotgun:
+                activeAnim = shotgunAnims;
+                break;
+
+            case PlayerWeaponAnimator.WeaponAnimatorType.Equipment:
+                activeAnim = equipmentAnims;
+                break;
+        }
+
+        activeAnim.ActivateAnim();
     }
 }

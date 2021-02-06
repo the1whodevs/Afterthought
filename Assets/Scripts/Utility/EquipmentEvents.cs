@@ -4,11 +4,11 @@ public class EquipmentEvents : MonoBehaviour
 {
     public void SpawnThrowPrefab()
     {
-        Player.Instance.Equipment.SpawnEquipmentThrowable();
+        Player.Active.Loadout.SpawnEquipmentThrowable();
     }
 
     public void ThrowSpawnedPrefab()
     {
-        Player.Instance.Equipment.ThrowEquipmentThrowable();
+        Player.Active.Loadout.ThrowEquipmentThrowable();
     }
 }

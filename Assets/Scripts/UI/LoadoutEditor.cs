@@ -145,7 +145,7 @@ public class LoadoutEditor : MonoBehaviour
 
     public void SelectLoadout()
     {
-        Player.Instance.Equipment.ChangeActiveLoadout(displayedLoadout);
+        Player.Active.Loadout.ChangeActiveLoadout(displayedLoadout);
 
         UpdateDisplays();
     }
@@ -187,7 +187,7 @@ public class LoadoutEditor : MonoBehaviour
 
         Time.timeScale = 1.0f;
 
-        if (Player.Instance) Player.Instance.Controller.ExitUI();
+        if (Player.Active) Player.Active.Controller.ExitUI();
 
         gameObject.SetActive(false);
     }

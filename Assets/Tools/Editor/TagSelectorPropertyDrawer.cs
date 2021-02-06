@@ -24,7 +24,7 @@ public class TagSelectorPropertyDrawer : PropertyDrawer
             {
                 //generate the taglist + custom tags
                 List<string> tagList = new List<string>();
-                tagList.Add("<NoTag>");
+                tagList.Add("[EMPTY]");
                 tagList.AddRange(UnityEditorInternal.InternalEditorUtility.tags);
                 string propertyString = property.stringValue;
                 int index = -1;

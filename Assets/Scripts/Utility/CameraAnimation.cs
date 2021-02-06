@@ -117,7 +117,7 @@ public class CameraAnimation : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         
-        Destroy(Player.Instance.gameObject);
+        Destroy(Player.Active.gameObject);
         yield return null;
     }
 }
