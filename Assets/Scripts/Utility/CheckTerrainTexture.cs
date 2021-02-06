@@ -41,7 +41,7 @@ public class CheckTerrainTexture : MonoBehaviour
 
     void CheckTexture()
     {
-        float[,,] aMap = t.terrainData.GetAlphamaps (posX, posZ, 1, 1);
+        float[,,] aMap = t.terrainData.GetAlphamaps(posX, posZ, 1, 1);
         textureValues[0] = aMap[0,0,0];
         textureValues[1] = aMap[0,0,1];
         textureValues[2] = aMap[0,0,2];

@@ -1,110 +1,32 @@
-﻿using System.Collections;
-using UnityEngine;
-
-public class PlayerPistol : MonoBehaviour
+﻿public class PlayerPistol : PlayerWeaponAnimator
 {
-    // FOR TESTING ONLY!
-    [SerializeField] private float attackSpeed = 0.5f;
-    [SerializeField] private float reloadSpeed = 1.0f;
-
-    private float adsSpeed = 5.0f;
-    private float weaponSwitchSpeed = 1.0f;
-
-    private Animator anim;
-
-    private readonly int attack = Animator.StringToHash("attack");
-    private readonly int isSprinting = Animator.StringToHash("isSprinting");
-    private readonly int isMoving = Animator.StringToHash("isMoving");
-    private readonly int switch_weapon = Animator.StringToHash("switch_weapon");
-    private readonly int switch_speed = Animator.StringToHash("switch_speed");
-    private readonly int attack_speed = Animator.StringToHash("attack_speed");
-    private readonly int reload_speed = Animator.StringToHash("reload_speed");
-    private readonly int reload = Animator.StringToHash("reload");
-
-    private float targetLayerWeight = 0;
-    private float startingLayerWeight = 0;
-
-    private bool isAds;
-
-    private void Start()
-    {
-
-        anim = GetComponent<Animator>();
-        SetAnimParameters();
-
-        StartCoroutine(AdjustLayerWeight());
-    }
-
-    private void SetAnimParameters()
-    {
-        anim.SetFloat(switch_speed, weaponSwitchSpeed);
-        anim.SetFloat(attack_speed, attackSpeed);
-        anim.SetFloat(reload_speed, reloadSpeed);
-    }
-
-    // Update is called once per frame
-    private void Update()
+    public override void Animate()
     {
         SetAnimParameters();
 
-        anim.SetBool(isSprinting, Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W));
-        anim.SetBool(isMoving, !Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W));
+        var currentState = pc.CurrentMoveState;
+        
+        var sprinting = currentState == PlayerController.PlayerMoveState.Sprint;
+        var moving = currentState == PlayerController.PlayerMoveState.CrouchRun ||
+            currentState == PlayerController.PlayerMoveState.Run;
 
-        isAds = Input.GetMouseButton(1);
+        anim.SetBool(isSprinting, sprinting);
+        anim.SetBool(isMoving, moving);
 
-        if (isAds && !anim.GetBool(isSprinting))
-        {
-            startingLayerWeight = anim.GetLayerWeight(1);
-            targetLayerWeight = 1;
-        }
-        else 
-        {
-            startingLayerWeight = anim.GetLayerWeight(1);
-            targetLayerWeight = 0; 
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            anim.ResetTrigger(reload);
-            anim.SetTrigger(reload);
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            Fire();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            anim.ResetTrigger(switch_weapon);
-            anim.SetTrigger(switch_weapon);
-        }
+        startingLayerWeight = anim.GetLayerWeight(1);
     }
 
-    private void Fire()
+    public override void ADSCheck(bool status)
     {
-        anim.ResetTrigger(attack);
-        anim.SetTrigger(attack);
+        var sprinting = pc.CurrentMoveState == PlayerController.PlayerMoveState.Sprint;
+
+        targetLayerWeight = (status && !sprinting) ? 1 : 0;
     }
 
-    private IEnumerator AdjustLayerWeight()
+    protected override void SetAnimParameters() 
     {
-        const float tolerance = 0.001f;
-
-        //while (!pe.CurrentAnimator) yield return new WaitForEndOfFrame();
-
-        while (true)
-        {
-            //if (pe.UsingEquipment || Player.Instance.Controller.IsInUI || !pe.CurrentAnimator)
-            //    yield return new WaitForEndOfFrame();
-            if (Mathf.Abs(anim.GetLayerWeight(1) - targetLayerWeight) <= tolerance) yield return new WaitForEndOfFrame();
-            else
-            {
-                var weight = Mathf.Lerp(startingLayerWeight, targetLayerWeight, Time.deltaTime * adsSpeed);
-                anim.SetLayerWeight(1, weight);
-            }
-
-            yield return new WaitForEndOfFrame();
-        }
+        anim.SetFloat(switch_speed, pa.WeaponSwitch_Speed);
+        anim.SetFloat(attack_speed, pl.CurrentWeapon.fireRate);
+        anim.SetFloat(reload_speed, pl.CurrentWeapon.reloadSpeed);
     }
 }

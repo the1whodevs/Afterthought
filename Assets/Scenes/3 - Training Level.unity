@@ -7647,8 +7647,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f399ccee5c18b34fbec558e9e1f045b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 0.5
-  reloadSpeed: 1
 --- !u!4 &205784625 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 414590, guid: 8118c9a8cb3ef1e4ab3efb33c9b10a79,
@@ -9032,8 +9030,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f399ccee5c18b34fbec558e9e1f045b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 1
-  reloadSpeed: 1
 --- !u!4 &256413763 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 414590, guid: 8118c9a8cb3ef1e4ab3efb33c9b10a79,
@@ -21743,8 +21739,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f399ccee5c18b34fbec558e9e1f045b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 1
-  reloadSpeed: 1
 --- !u!1001 &495696573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36303,7 +36297,7 @@ PrefabInstance:
     - target: {fileID: 305737994843635869, guid: db3bebf4467f23e4895faf7ceb571c5f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 305737994843635870, guid: db3bebf4467f23e4895faf7ceb571c5f,
         type: 3}
@@ -44130,7 +44124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1766957826402700, guid: b7b5e0f1cb12a2d4a879f401a4992cd9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4278347062721522, guid: b7b5e0f1cb12a2d4a879f401a4992cd9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -44203,7 +44197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68898d0c4ded96344b2171b5bbefa03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchSpeed: 1.5
 --- !u!1001 &1104616874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56304,8 +56297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f399ccee5c18b34fbec558e9e1f045b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 1
-  reloadSpeed: 1
 --- !u!4 &1314380314 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 417300, guid: 8df9aa4ecfa6a644a87c4e042bb1f320,
@@ -59071,8 +59062,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f399ccee5c18b34fbec558e9e1f045b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 0.5
-  reloadSpeed: 1
 --- !u!1001 &1389929283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59583,8 +59572,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f399ccee5c18b34fbec558e9e1f045b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 1
-  reloadSpeed: 1
 --- !u!1001 &1405843937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60152,9 +60139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651d6f97831cd9145a10c2df6e39bffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 1
-  reloadSpeed: 2
-  startingBullets: 8
 --- !u!4 &1428548143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 497560, guid: 6d33d6d2b9ca9004fbf48d0c39d70743,
@@ -85339,8 +85323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f399ccee5c18b34fbec558e9e1f045b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 1
-  reloadSpeed: 1
 --- !u!4 &2029573237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 417300, guid: 8df9aa4ecfa6a644a87c4e042bb1f320,
@@ -91210,8 +91192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f399ccee5c18b34fbec558e9e1f045b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 1
-  reloadSpeed: 1
 --- !u!4 &2145136818 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 495824, guid: c36d367450be1374ba50996a307b80ec,

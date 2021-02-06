@@ -862,7 +862,7 @@ namespace EmeraldAI
         /// </summary>
         public void SetCombatTargetPlayer()
         {
-            var Target = Player.Instance.transform;
+            var Target = Player.Active.transform;
 
             if (EmeraldComponent.ConfidenceRef != EmeraldAISystem.ConfidenceType.Coward && Target != null)
             {

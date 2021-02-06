@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class TagSelectorAttribute : PropertyAttribute
+public class LayerNameSelectorAttribute : PropertyAttribute
 {
     public bool UseDefaultTagFieldDrawer = false;
 }

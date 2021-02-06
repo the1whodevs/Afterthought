@@ -40,8 +40,8 @@ namespace EmeraldAI
                 EmeraldAIPlayerHealth PlayerHealth = GetComponent<EmeraldAIPlayerHealth>();
                 PlayerHealth.DamagePlayer(DamageAmount);
             }*/
-            Player.Instance.Health.DamagePlayer(DamageAmount);
-            Player.Instance.PostProcessing.Damage();
+            Player.Active.Health.DamagePlayer(DamageAmount);
+            Player.Active.PostProcessing.Damage();
             CameraShake.Instance.ShakeCamera(0.5f,0.5f);
         }
 

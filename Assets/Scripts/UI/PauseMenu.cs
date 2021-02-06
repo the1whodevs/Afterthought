@@ -76,7 +76,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1.0f;
         gameObject.SetActive(false);
 
-        if (Player.Instance) Player.Instance.Controller.ExitUI();
+        if (Player.Active) Player.Active.Controller.ExitUI();
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

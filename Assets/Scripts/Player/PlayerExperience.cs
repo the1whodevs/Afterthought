@@ -1,14 +1,14 @@
-﻿using FiveGames.Tools.MoreMaths;
+﻿using Five.MoreMaths;
 using UnityEngine;
 
 public class PlayerExperience : MonoBehaviour
 {
     public int Level { get; private set; }
 
-    public float XPRequired => xpRequired.GetFloatValueAtLevel(Level);
+    public float XPRequired => xpRequired.GetFloatValue(Level);
     public float CurrentXP = 0.0f;
 
-    [SerializeField] private MoreMaths.IncrementalEquation xpRequired;
+    [SerializeField] private IncrementalEquation xpRequired;
 
     private const string PLAYER_LEVEL_KEY = "PLAYER_LEVEL";
     private const string PLAYER_XP_KEY = "PLAYER_CURRENT_XP";

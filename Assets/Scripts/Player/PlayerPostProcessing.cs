@@ -64,7 +64,7 @@ public class PlayerPostProcessing : MonoBehaviour
 
     public void ADS(bool status)
     {
-        if (status && !Player.Instance.Equipment.CurrentWeapon.hasScope) status = false;
+        if (status && !Player.Active.Loadout.CurrentWeapon.hasScope) status = false;
 
         targetADS_weight = status ? 1 : 0;
 
