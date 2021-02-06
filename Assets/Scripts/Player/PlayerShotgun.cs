@@ -1,4 +1,6 @@
-﻿public class PlayerShotgun : PlayerWeaponAnimator
+﻿using UnityEngine;
+
+public class PlayerShotgun : PlayerWeaponAnimator
 {
     public override void Animate()
     {
@@ -37,6 +39,21 @@
     public override void Reload()
     {
         anim.SetBool(isReloading, true);
+
+        var lastAmmo = (pl.CurrentWeapon.ammoType.currentAmmo == 1);
+        var lastForMag = (pl.CurrentWeapon.ammoInMagazine == pl.CurrentWeapon.magazineCapacity - 1);
+
+        Debug.LogFormat("LastForMag: {0} // LastAmmo: {1} // CurrentAmmo: {2} // AmmoInMag: {3} // MagCapacity: {4}",
+            lastForMag, lastAmmo, pl.CurrentWeapon.ammoType.currentAmmo, pl.CurrentWeapon.ammoInMagazine, pl.CurrentWeapon.magazineCapacity);
+
+
+        if (lastForMag || lastAmmo)
+        {
+            anim.SetBool(isReloading, false);
+
+            anim.ResetTrigger(lastReload);
+            anim.SetTrigger(lastReload);
+        }
     }
 
     // Called through animation event.
@@ -45,8 +62,13 @@
         pl.CurrentWeapon.ammoInMagazine++;
         pl.CurrentWeapon.ammoType.currentAmmo--;
 
-        if ((pl.CurrentWeapon.ammoInMagazine == pl.CurrentWeapon.magazineCapacity - 1) ||
-            (pl.CurrentWeapon.ammoType.currentAmmo == 1))
+        var lastAmmo = (pl.CurrentWeapon.ammoType.currentAmmo == 1);
+        var lastForMag = (pl.CurrentWeapon.ammoInMagazine == pl.CurrentWeapon.magazineCapacity - 1);
+
+        Debug.LogFormat("LastForMag: {0} // LastAmmo: {1} // CurrentAmmo: {2} // AmmoInMag: {3} // MagCapacity: {4}",
+            lastForMag, lastAmmo, pl.CurrentWeapon.ammoType.currentAmmo, pl.CurrentWeapon.ammoInMagazine, pl.CurrentWeapon.magazineCapacity);
+
+        if (lastForMag || lastAmmo)
         {
             anim.SetBool(isReloading, false);
 

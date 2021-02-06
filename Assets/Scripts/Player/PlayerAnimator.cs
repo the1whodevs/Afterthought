@@ -94,6 +94,11 @@ public class PlayerAnimator : MonoBehaviour
         if (!activeAnim.Equals(meleeAnims)) activeAnim.Reload();
     }
 
+    public void ReloadBullet()
+    {
+        if (activeAnim.Equals(shotgunAnims)) shotgunAnims.ReloadBullet();
+    }
+
     public void Muzzle()
     {
         pd.Muzzle();

@@ -23,4 +23,9 @@ public class WeaponAnimHelper : MonoBehaviour
     {
         pa.ResetMagazine();
     }
+
+    public void ReloadBullet()
+    {
+        pa.ReloadBullet();
+    }
 }
