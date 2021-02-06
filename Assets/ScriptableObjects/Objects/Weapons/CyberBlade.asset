@@ -35,6 +35,7 @@ MonoBehaviour:
   - {fileID: 8106189462210167934, guid: f3fc4765e1729e24fada59150233fbeb, type: 3}
   - {fileID: 8360897983169464813, guid: 54d17ef0927945b4e8a0c8c96761cfe7, type: 3}
   weaponType: 2
+  weaponAnimType: 0
   fireType: 0
   ammoType: {fileID: 11400000, guid: 83d3a027827459040ab207a95722cc3a, type: 2}
   ammoInMagazine: -1
@@ -46,7 +47,7 @@ MonoBehaviour:
   reloadSpeed: 1
   mobilityPenalty: 0
   adsMultiplier: 1
-  minRange: 1
-  maxRange: 1
+  minRange: 1.25
+  maxRange: 1.25
   recoil_horizontal: 1.5
   recoil_vertical: 3

@@ -27,12 +27,19 @@ public class PlayerAnimator : MonoBehaviour
 
     private UIManager uiManager;
   
-    private void Start()
+    public void Init()
     {
         meleeAnims = GetComponent<PlayerMelee>();
+        meleeAnims.Init();
+
         pistolAnims = GetComponent<PlayerPistol>();
+        pistolAnims.Init();
+
         shotgunAnims = GetComponent<PlayerShotgun>();
+        shotgunAnims.Init();
+
         equipmentAnims = GetComponent<PlayerEquipment>();
+        equipmentAnims.Init();
 
         uiManager = UIManager.Active;
         pl = Player.Active.Loadout;
@@ -55,8 +62,9 @@ public class PlayerAnimator : MonoBehaviour
 
         if (pl.CurrentWeapon.hasScope) Player.Active.Camera.ToggleZoom(status);
 
+        if (!activeAnim) return;
+
         if (!activeAnim.Equals(meleeAnims)) activeAnim.ADSCheck(status);
-        // pl.CurrentAnimator.SetBool(aimingAnimHash, status);
     }
 
     public void Fire()

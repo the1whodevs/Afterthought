@@ -30,7 +30,7 @@ public class PlayerWeaponAnimator : MonoBehaviour
     protected readonly int attackNum = Animator.StringToHash("attackNum");
     protected readonly int throwHash = Animator.StringToHash("throw");
 
-    protected virtual void Start()
+    public virtual void Init()
     {
         pl = Player.Active.Loadout;
         pc = Player.Active.Controller;

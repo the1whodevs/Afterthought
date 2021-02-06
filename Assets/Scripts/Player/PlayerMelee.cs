@@ -1,6 +1,6 @@
 ﻿public class PlayerMelee : PlayerWeaponAnimator
 {
-    protected override void Start()
+    public override void Init()
     {
         pl = Player.Active.Loadout;
         pc = Player.Active.Controller;
@@ -22,6 +22,9 @@
 
     protected override void SetAnimParameters()
     {
+        if (!pa) pa = Player.Active.Animator;
+        if (!pl) pl = Player.Active.Loadout;
+
         anim.SetFloat(switch_speed, pa.WeaponSwitch_Speed);
         anim.SetFloat(attack_speed, pl.CurrentWeapon.fireRate);
     }

@@ -44,11 +44,9 @@ public class Player : MonoBehaviour
         Experience = GetComponent<PlayerExperience>();
 
         Active = this;
-    }
 
-    private void Start()
-    {
         Audio.Init();
+        Animator.Init();
         Loadout.Init();
         Damage.Init();
     }
