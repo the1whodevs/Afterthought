@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        Audio.Init();
         Loadout.Init();
         Damage.Init();
     }
