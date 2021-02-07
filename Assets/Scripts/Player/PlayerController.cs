@@ -170,8 +170,17 @@ public class PlayerController : MonoBehaviour
             fireResetRequired = false;
         }
 
+        if (reload)
+        {
+            Debug.LogFormat("IsReloading: {0} // AmmoTypeLeft: {1} // AmmoInMag: {2} // MagCapacity: {3}",
+                pl.IsReloading, pl.CurrentWeapon.ammoType.currentAmmo, pl.CurrentWeapon.ammoInMagazine, pl.CurrentWeapon.magazineCapacity);
+        }
+
+
         if (!pl.IsReloading && reload && pl.CurrentWeapon.ammoType.currentAmmo > 0 && pl.CurrentWeapon.ammoInMagazine < pl.CurrentWeapon.magazineCapacity)
-            pl.Reload();
+        {
+            Debug.Log("1> pl.Reload()...");
+            pl.Reload(); }
          
         var ads = !pl.IsReloading && aim;
          

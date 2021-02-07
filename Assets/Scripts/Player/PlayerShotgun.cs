@@ -38,18 +38,19 @@ public class PlayerShotgun : PlayerWeaponAnimator
     // For shotgun, this starts the reload animation...
     public override void Reload()
     {
+        Debug.Log("4> PlayerShotgun reload...");
+
         anim.SetBool(isReloading, true);
+        Debug.LogError("PAUSE");
 
         var lastAmmo = (pl.CurrentWeapon.ammoType.currentAmmo == 1);
         var lastForMag = (pl.CurrentWeapon.ammoInMagazine == pl.CurrentWeapon.magazineCapacity - 1);
 
-        Debug.LogFormat("LastForMag: {0} // LastAmmo: {1} // CurrentAmmo: {2} // AmmoInMag: {3} // MagCapacity: {4}",
-            lastForMag, lastAmmo, pl.CurrentWeapon.ammoType.currentAmmo, pl.CurrentWeapon.ammoInMagazine, pl.CurrentWeapon.magazineCapacity);
-
-
         if (lastForMag || lastAmmo)
         {
-            anim.SetBool(isReloading, false);
+            Debug.LogFormat("4a> lastForMag({0}) OR lastAmmo({1})",
+                lastForMag,
+                lastAmmo);
 
             anim.ResetTrigger(lastReload);
             anim.SetTrigger(lastReload);
@@ -59,21 +60,37 @@ public class PlayerShotgun : PlayerWeaponAnimator
     // Called through animation event.
     public void ReloadBullet()
     {
+        Debug.Log("5> ReloadBullet");
+
         pl.CurrentWeapon.ammoInMagazine++;
         pl.CurrentWeapon.ammoType.currentAmmo--;
 
         var lastAmmo = (pl.CurrentWeapon.ammoType.currentAmmo == 1);
         var lastForMag = (pl.CurrentWeapon.ammoInMagazine == pl.CurrentWeapon.magazineCapacity - 1);
 
-        Debug.LogFormat("LastForMag: {0} // LastAmmo: {1} // CurrentAmmo: {2} // AmmoInMag: {3} // MagCapacity: {4}",
-            lastForMag, lastAmmo, pl.CurrentWeapon.ammoType.currentAmmo, pl.CurrentWeapon.ammoInMagazine, pl.CurrentWeapon.magazineCapacity);
-
         if (lastForMag || lastAmmo)
         {
+            Debug.LogFormat("5a> lastForMag({0}) OR lastAmmo({1})",
+                lastForMag,
+                lastAmmo);
+
             anim.SetBool(isReloading, false);
 
             anim.ResetTrigger(lastReload);
             anim.SetTrigger(lastReload);
+        }
+        // Check if the lastReload animation called this.
+        else if (pl.CurrentWeapon.ammoInMagazine == pl.CurrentWeapon.magazineCapacity ||
+            pl.CurrentWeapon.ammoType.currentAmmo == 0)
+        {
+            Debug.LogFormat("5b> magFull({0}) OR noAmmoLeft({1})",
+                pl.CurrentWeapon.ammoInMagazine == pl.CurrentWeapon.magazineCapacity,
+                pl.CurrentWeapon.ammoType.currentAmmo == 0);
+
+            // Setting this false in case only 1 bullet is reloaded.
+            anim.SetBool(isReloading, false);
+
+            pl.ResetMagazine();
         }
     }
 }

@@ -70,6 +70,7 @@ public class PlayerWeaponAnimator : MonoBehaviour
 
     public virtual void Reload()
     {
+        Debug.Log("Base.Reload()");
         anim.ResetTrigger(reload);
         anim.SetTrigger(reload);
     }

@@ -232,6 +232,8 @@ public class PlayerLoadout : MonoBehaviour
 
     public void Reload()
     {
+        Debug.Log("2> pa.Reload()...");
+
         Player.Active.Audio.PlayReload(CurrentWeapon);
 
         isReloading = true;
@@ -239,10 +241,13 @@ public class PlayerLoadout : MonoBehaviour
         pa.Reload();
     }
 
+    // This is currently called on weapons that have 1 reload animation (i.e. everything except shotgun).
     public void ResetMagazine()
     {
         isReloading = false;
-        CurrentWeapon.ReloadMag(ref CurrentWeapon.ammoType.currentAmmo);
+
+        if (!CurrentWeapon.isShotgun) CurrentWeapon.ReloadMag(ref CurrentWeapon.ammoType.currentAmmo);
+
         SetAmmoUI();
     }
 

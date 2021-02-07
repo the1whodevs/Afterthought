@@ -91,12 +91,18 @@ public class PlayerAnimator : MonoBehaviour
 
     public void Reload()
     {
+        Debug.Log("3> activeAnim.Reload()...");
+
         if (!activeAnim.Equals(meleeAnims)) activeAnim.Reload();
     }
 
     public void ReloadBullet()
     {
-        if (activeAnim.Equals(shotgunAnims)) shotgunAnims.ReloadBullet();
+        if (activeAnim.Equals(shotgunAnims))
+        {
+            shotgunAnims.ReloadBullet();
+            pl.SetAmmoUI();
+        }
     }
 
     public void Muzzle()
