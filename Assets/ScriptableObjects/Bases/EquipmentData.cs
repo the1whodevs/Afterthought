@@ -20,8 +20,20 @@ public class EquipmentData : IDisplayableItem
     public float throwSpeed = 50.0f;
     public float throwYoffset = 10.0f;
 
+    public float explosionLifetime = 7.5f; // How long the explosion prefab remains in scene.
     public float fuseTime = 3.0f;
     public float ragdollForce = 150.0f;
+
+    public enum EquipmentType 
+    { 
+        // Frags etc
+        DmgExplosion,
+        // Flashbangs etc
+        OccludeExplosion,
+        // Smokes etc
+        BlockExplosion }
+
+    public EquipmentType Type = EquipmentType.DmgExplosion;
 
     private string AMMO_IN_MAG => $"{name}_AMMOinMAG";
 

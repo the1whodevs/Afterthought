@@ -39,6 +39,8 @@ namespace Knife.Effects
         /// </summary>
         [SerializeField] [Tooltip("Duration of animation")] private float duration = 5f;
 
+        private SphereCollider coll;
+
         private ParticleSystem particles;
         private float elapsedTime = 0;
 
@@ -46,6 +48,7 @@ namespace Knife.Effects
         {
             elapsedTime = 0;
             particles = GetComponent<ParticleSystem>();
+            coll = GetComponent<SphereCollider>();
         }
 
         private void Update()
@@ -64,6 +67,7 @@ namespace Knife.Effects
             main.startColor = particlesStartColor;
             emission.rateOverTimeMultiplier = Mathf.Lerp(startEmission, endEmission, fraction);
             shape.radius = Mathf.Lerp(shapeRadiusStart, shapeRadiusEnd, fraction);
+            coll.radius = shape.radius;
         }
     }
 }

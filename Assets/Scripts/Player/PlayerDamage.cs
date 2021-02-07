@@ -128,11 +128,30 @@ public class PlayerDamage : MonoBehaviour
         var pos = toExplode.transform.position;
 
         Destroy(toExplode);
-        Destroy(Instantiate(relatedEquipment.explosionPrefab, pos, Quaternion.identity, null), 3.0f);
+        Destroy(Instantiate(relatedEquipment.explosionPrefab, pos, Quaternion.identity, null), relatedEquipment.explosionLifetime);
 
+        switch (relatedEquipment.Type)
+        {
+            case EquipmentData.EquipmentType.DmgExplosion:
+                DmgExplosion(pos, relatedEquipment);
+                break;
+
+            case EquipmentData.EquipmentType.OccludeExplosion:
+                // TODO: Blind all AI & Player for explosionLifetime.
+                break;
+
+            case EquipmentData.EquipmentType.BlockExplosion:
+                // TODO: Smoke logic?
+                break;
+
+        }
+    }
+
+    private void DmgExplosion(Vector3 pos, EquipmentData relatedEquipment)
+    {
         var hits = Physics.SphereCastAll(pos, relatedEquipment.maxRange, Vector3.down, hitScanLayerMask);
 
-        if (hits.Length == 0) yield break;
+        if (hits.Length == 0) return;
 
         foreach (var hit in hits)
         {
