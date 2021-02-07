@@ -664,6 +664,9 @@ namespace EmeraldAI.Utility
             {
                 foreach (Transform T in EmeraldComponent.LineOfSightTargets.ToArray())
                 {
+                    if (!T) continue;
+                    if (!EmeraldComponent.HeadTransform) continue;
+
                     Vector3 direction = (new Vector3(T.position.x, T.position.y + T.localScale.y / 2, T.position.z)) - EmeraldComponent.HeadTransform.position;
                     float angle = Vector3.Angle(new Vector3(direction.x, 0, direction.z), transform.forward);
 
