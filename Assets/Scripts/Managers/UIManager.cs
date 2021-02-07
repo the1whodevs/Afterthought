@@ -61,7 +61,9 @@ public class UIManager : MonoBehaviour
     public void UpdateWeaponAmmoUI(WeaponData weaponEquipped)
     {
         weapon_AmmoIcon.sprite = weaponEquipped.ammoType.icon;
-        weaponAmmoCount.text = $"{weaponEquipped.ammoInMagazine} / {weaponEquipped.ammoType.currentAmmo}";
+
+        if (weaponEquipped.weaponType == WeaponData.WeaponType.Melee) weaponAmmoCount.text = "";
+        else weaponAmmoCount.text = $"{weaponEquipped.ammoInMagazine} / {weaponEquipped.ammoType.currentAmmo}";
     }
 
     public void UpdateEquipmentAmmoCountEquipmentA(EquipmentData eqEquipped)

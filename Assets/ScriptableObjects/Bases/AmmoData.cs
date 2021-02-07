@@ -16,5 +16,6 @@ public class AmmoData : IDisplayableItem
     public override void LoadData()
     {
         currentAmmo = PlayerPrefs.GetInt(AVAILABLE_AMMO, currentAmmo);
+        if (currentAmmo < 0 && maxAmmo >= 0) currentAmmo = 0;
     }
 }

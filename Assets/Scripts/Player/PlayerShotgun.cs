@@ -72,7 +72,8 @@ public class PlayerShotgun : PlayerWeaponAnimator
     public void ReloadBullet()
     {
         // Needed for fast reload speeds to work properly.
-        if (pl.CurrentWeapon.ammoInMagazine == pl.CurrentWeapon.magazineCapacity) return;
+        if (pl.CurrentWeapon.ammoInMagazine == pl.CurrentWeapon.magazineCapacity || 
+            pl.CurrentWeapon.ammoType.currentAmmo == 0) return;
 
         pl.CurrentWeapon.ammoInMagazine++;
         pl.CurrentWeapon.ammoType.currentAmmo--;
