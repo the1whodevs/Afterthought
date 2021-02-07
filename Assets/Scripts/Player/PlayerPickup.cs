@@ -2,6 +2,9 @@
 
 public class PlayerPickup : MonoBehaviour
 {
+    [Header("Trigger Interact")]
+    [SerializeField, TagSelector] private string loadoutChangerTag;
+
     [Header("Pickup Settings")]
     [SerializeField] private float pickupLength = 2.0f;
     [SerializeField] private LayerMask pickupLayers;
@@ -9,9 +12,6 @@ public class PlayerPickup : MonoBehaviour
     private PlayerController pc;
 
     private Transform playerCam;
-
-    private GameObject lastHitObject;
-    private PickableObj lastHitPickable;
 
     public void Init()
     {
@@ -26,19 +26,49 @@ public class PlayerPickup : MonoBehaviour
 
         Debug.DrawRay(playerCam.position, playerCam.forward * pickupLength, Color.blue);
 
-        var itemHit = Physics.Raycast(playerCam.position, playerCam.forward, out var hit, pickupLength, pickupLayers);
+        var itemHit = Physics.Raycast(playerCam.position, playerCam.forward, out var hit, pickupLength, pickupLayers, QueryTriggerInteraction.Collide);
 
         if (!itemHit)
         {
-            lastHitObject = null;
-            lastHitPickable = null;
+            UIManager.Active.HideInteractPrompt();
         }
         else
         {
-            lastHitPickable = hit.transform.GetComponent<PickableObj>();
+            var interact = Input.GetAxisRaw("Interact") > 0.0f;
 
-            if (lastHitPickable) lastHitObject = hit.rigidbody.gameObject;
+            // Prioritize loadout selector over other interactables.
+            if (hit.transform.CompareTag(loadoutChangerTag))
+            {
+                UIManager.Active.ShowInteractPrompt(KeyCode.F, "open loadout editor");
+
+                if (interact)
+                {
+                    pc.GetInUI();
+                    Time.timeScale = 0.0f;
+                    LoadoutEditor.Instance.ShowWindow();
+                }
+
+                return;
+            }
+
+            var pickableHit = hit.transform.GetComponent<PickableObj>();
+
+            if (!pickableHit) return;
+
+            UIManager.Active.ShowInteractPrompt(KeyCode.F, $"pickup {pickableHit.name}");
+
+            if (interact) pickableHit.Pickup();
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag(loadoutChangerTag))
+        {
+            if (!pc.IsInUI)
+            {
+                
+            }
+        }
+    }
 }

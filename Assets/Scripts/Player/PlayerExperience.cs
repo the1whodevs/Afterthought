@@ -5,8 +5,8 @@ public class PlayerExperience : MonoBehaviour
 {
     public int Level { get; private set; }
 
-    public float XPRequired => xpRequired.GetFloatValue(Level);
-    public float CurrentXP = 0.0f;
+    public int XPRequired => xpRequired.GetIntValue(Level);
+    public int CurrentXP = 0;
 
     [SerializeField] private IncrementalEquation xpRequired;
 
@@ -16,22 +16,26 @@ public class PlayerExperience : MonoBehaviour
     private void Start()
     {
         Level = PlayerPrefs.GetInt(PLAYER_LEVEL_KEY, 1);
-        CurrentXP = PlayerPrefs.GetFloat(PLAYER_XP_KEY, 0.0f);
+        CurrentXP = PlayerPrefs.GetInt(PLAYER_XP_KEY, 0);
     }
 
-    public void GetXP(float value)
+    public void GetXP(int value)
     {
         var requiredXP = XPRequired;
 
         CurrentXP += value;
+
+        Debug.LogFormat("XP Received! New XP: {0} // Required: {1}", CurrentXP, XPRequired);
 
         if (CurrentXP >= requiredXP)
         {
             CurrentXP -= requiredXP;
             Level++;
 
-            //PlayerPrefs.SetInt(PLAYER_LEVEL_KEY, Level);
-            //PlayerPrefs.SetFloat(PLAYER_XP_KEY, CurrentXP);
+            Debug.LogFormat("Level Up! New Level: {0} // CurrentXP: {1} // XPRequired: {1}", Level, CurrentXP, XPRequired);
+
+            PlayerPrefs.SetInt(PLAYER_LEVEL_KEY, Level);
+            PlayerPrefs.SetInt(PLAYER_XP_KEY, CurrentXP);
         }
     }
 }

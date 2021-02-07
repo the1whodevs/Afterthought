@@ -395,7 +395,7 @@ MonoBehaviour:
   ragdollForce_Melee: 250
   hitScanLayerMask:
     serializedVersion: 2
-    m_Bits: 85815
+    m_Bits: 69431
 --- !u!114 &5484020199204426816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,7 +533,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentMoveState: 0
-  loadoutChangerTag: LoadoutSelection
   runSpeed: 5
   crouchSpeed: 5
   sprintSpeed: 7
@@ -587,6 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725a64524b3f2f94a9ec4d1b415f0e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadoutChangerTag: LoadoutSelection
   pickupLength: 2.65
   pickupLayers:
     serializedVersion: 2

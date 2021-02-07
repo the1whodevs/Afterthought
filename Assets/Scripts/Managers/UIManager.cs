@@ -36,9 +36,9 @@ public class UIManager : MonoBehaviour
         UpdateAmmoIcons(Player.Active.Loadout.Loadout, Player.Active.Loadout.CurrentWeapon);
     }
 
-    public void ShowInteractPrompt(KeyCode keyPrompt)
+    public void ShowInteractPrompt(KeyCode keyPrompt, string actionName)
     {
-        interactPrompt.text = $"Press {keyPrompt} to interact";
+        interactPrompt.text = $"Press {keyPrompt} to {actionName}.";
         interactPrompt.gameObject.SetActive(true);
     }
 

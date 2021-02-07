@@ -20,8 +20,6 @@ public class PlayerController : MonoBehaviour
 
     public float MoveSpeed => cc.velocity.magnitude;
 
-    [SerializeField, TagSelector] private string loadoutChangerTag;
-
     [Header("Move Settings")]
     [SerializeField] private float runSpeed = 10.0f;
     [SerializeField] private float crouchSpeed = 7.0f;
@@ -332,31 +330,6 @@ public class PlayerController : MonoBehaviour
         cc.Move(playerVelocity * Time.deltaTime);
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag(loadoutChangerTag))
-        {
-            UIManager.Active.ShowInteractPrompt(KeyCode.F);
-
-            var interact = Input.GetAxisRaw("Interact");
-            //var backUi = Input.GetAxisRaw("BackUI");
-
-            //Debug.LogFormat("I: {0} __ BACK: {1}", interact.ToString("F1"), backUi.ToString("F1"));
-
-            if (!IsInUI && interact > 0.0f)
-            {
-                IsInUI = true;
-                Time.timeScale = 0.0f;
-                LoadoutEditor.Instance.ShowWindow();
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag(loadoutChangerTag)) UIManager.Active.HideInteractPrompt();
-    }
-
     private Vector2Int ConvertPosition()
     {
         Vector3 terrainPosition = transform.position - currentTerrain.transform.position;
@@ -381,6 +354,11 @@ public class PlayerController : MonoBehaviour
         textureValues[3] = aMap[0, 0, 3];
 
         return textureValues;
+    }
+
+    public void GetInUI()
+    {
+        IsInUI = true;
     }
 
     public void ExitUI()

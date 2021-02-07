@@ -366,6 +366,17 @@ public class PlayerLoadout : MonoBehaviour
         else EquipWeapon(weaponToEquip);
     }
 
+    public void ReplaceCurrentWeapon(WeaponData newWeapon)
+    {
+        if (CurrentWeapon.Equals(loadout.Weapons[0]) && !newWeapon.Equals(loadout.Weapons[0]))
+            loadout.Weapons[0] = newWeapon;
+        else if (!newWeapon.Equals(loadout.Weapons[1]))
+            loadout.Weapons[1] = newWeapon;
+        else return;
+
+        StartCoroutine(SwitchWeapon(newWeapon));
+    }
+
     private IEnumerator SwitchWeapon(WeaponData weaponToEquip)
     {
         const float delay = 1.0f;
