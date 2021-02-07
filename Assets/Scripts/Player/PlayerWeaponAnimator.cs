@@ -20,6 +20,7 @@ public class PlayerWeaponAnimator : MonoBehaviour
     protected readonly int attack = Animator.StringToHash("attack");
     protected readonly int isSprinting = Animator.StringToHash("isSprinting");
     protected readonly int isMoving = Animator.StringToHash("isMoving");
+    protected readonly int isADS = Animator.StringToHash("isADS");
     protected readonly int switch_weapon = Animator.StringToHash("switch_weapon");
     protected readonly int switch_speed = Animator.StringToHash("switch_speed");
     protected readonly int attack_speed = Animator.StringToHash("attack_speed");
@@ -48,9 +49,14 @@ public class PlayerWeaponAnimator : MonoBehaviour
         {
             if (isAnimating)
             {
-                if (pl.UsingEquipment || Player.Active.Controller.IsInUI || !anim)
-                    yield return new WaitForEndOfFrame();
-                else if (Mathf.Abs(anim.GetLayerWeight(1) - targetLayerWeight) <= tolerance) yield return new WaitForEndOfFrame();
+                if (pl.UsingEquipment || Player.Active.Controller.IsInUI || !anim) yield return new WaitForEndOfFrame();
+                else if (Mathf.Abs(anim.GetLayerWeight(1) - targetLayerWeight) <= tolerance) 
+                {
+                    var roundedInt = Mathf.RoundToInt(targetLayerWeight);
+                    Debug.LogFormat("RoundedInt: {0} / Target: {1}", roundedInt, targetLayerWeight);
+                    pl.CurrentAnimator.SetLayerWeight(1, roundedInt);
+                    yield return new WaitForEndOfFrame(); 
+                }
                 else
                 {
                     var weight = Mathf.Lerp(startingLayerWeight, targetLayerWeight, Time.deltaTime * pa.ADS_Speed);

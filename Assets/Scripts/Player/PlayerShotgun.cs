@@ -22,7 +22,18 @@ public class PlayerShotgun : PlayerWeaponAnimator
     {
         var sprinting = pc.CurrentMoveState == PlayerController.PlayerMoveState.Sprint;
 
-        targetLayerWeight = (status && !sprinting) ? 1 : 0;
+        var shouldGetInADS = (status && !sprinting);
+
+        if (shouldGetInADS)
+        {
+            targetLayerWeight = 1;
+            anim.SetBool(isADS, true);
+        }
+        else
+        {
+            targetLayerWeight = 0;
+            anim.SetBool(isADS, false);
+        }
     }
 
     protected override void SetAnimParameters()

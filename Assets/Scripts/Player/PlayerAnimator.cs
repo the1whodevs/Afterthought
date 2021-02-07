@@ -56,9 +56,12 @@ public class PlayerAnimator : MonoBehaviour
     }
 
     public void AimDownSights(bool status)
-    {       
-        uiManager.ToggleCrosshair(!status);
-        uiManager.ToggleHealthBar(!status);
+    {
+        if (pl.CurrentWeapon.weaponType != WeaponData.WeaponType.Melee)
+        {
+            uiManager.ToggleCrosshair(!status);
+            uiManager.ToggleHealthBar(!status);
+        }
 
         if (pl.CurrentWeapon.hasScope) Player.Active.Camera.ToggleZoom(status);
 
