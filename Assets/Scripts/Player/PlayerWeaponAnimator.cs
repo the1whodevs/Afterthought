@@ -22,6 +22,7 @@ public class PlayerWeaponAnimator : MonoBehaviour
     protected readonly int isMoving = Animator.StringToHash("isMoving");
     protected readonly int isReloading = Animator.StringToHash("isReloading");
     protected readonly int isFiring = Animator.StringToHash("isFiring");
+    protected readonly int isCooking = Animator.StringToHash("isCooking");
     protected readonly int isADS = Animator.StringToHash("isADS");
     protected readonly int switch_weapon = Animator.StringToHash("switch_weapon");
     protected readonly int switch_speed = Animator.StringToHash("switch_speed");
@@ -30,7 +31,6 @@ public class PlayerWeaponAnimator : MonoBehaviour
     protected readonly int reload = Animator.StringToHash("reload");
     protected readonly int lastReload = Animator.StringToHash("last_reload");
     protected readonly int attackNum = Animator.StringToHash("attackNum");
-    protected readonly int throwHash = Animator.StringToHash("throw");
 
     public virtual void Init()
     {

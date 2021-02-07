@@ -50,8 +50,6 @@ public class PlayerDamage : MonoBehaviour
     {
         SetAmmoUI();
 
-        MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
-
         var distance = CurrentWeapon.minRange;
 
         var cam = Player.Active.Camera.transform;
@@ -66,15 +64,17 @@ public class PlayerDamage : MonoBehaviour
 
             HitscanDamage(v3Hit, ragdollForce_Shotgun);
         }
+
+        MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
     }
 
     private void NonShotgunFirearmDamage()
     {
         SetAmmoUI();
 
-        MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
-
         HitscanDamage(playerCamera.transform.forward, ragdollForce_NonShotgun);
+
+        MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
 
         return;
     }
@@ -93,6 +93,8 @@ public class PlayerDamage : MonoBehaviour
 
         var launcherGrenade = bullet.GetComponent<LauncherGrenade>();
         if (launcherGrenade) launcherGrenade.Init(CurrentWeapon);
+
+        MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
 
         Destroy(bullet, PROJECTILE_LIFETIME);
     }

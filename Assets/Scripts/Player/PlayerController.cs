@@ -52,6 +52,9 @@ public class PlayerController : MonoBehaviour
     private bool fireResetRequired = false;
     private bool CanAttack => attackTimer >= attackInterval;
 
+    // Used to determine if the player has been cooking a grenade!
+    private bool lastFireState = false;
+
     private CharacterController cc;
     
     private PlayerAudio pad;
@@ -116,14 +119,20 @@ public class PlayerController : MonoBehaviour
         TryingToFire = fire;
         IsADS = aim;
 
+        if (pl.UsingEquipment)
+        {
+            EquipmentFireLogic(fire);
+            return;
+        }
+
         if (!tryThrowEquipment2) tryThrowEquipment2 = Input.GetAxisRaw("Equipment 1") < 0.0f;
 
-        if (tryThrowEquipment1) 
+        if (tryThrowEquipment1 && pl.Loadout.Equipment[0].currentAmmo > 0) 
         {
             pl.UseEquipmentA();
             return;
         } 
-        else if (tryThrowEquipment2) 
+        else if (tryThrowEquipment2 && pl.Loadout.Equipment[1].currentAmmo > 0) 
         {
             pl.UseEquipmentB();
             return;
@@ -131,7 +140,34 @@ public class PlayerController : MonoBehaviour
 
         if (tryEquipPrimary) pl.EquipPrimaryWeapon();
         else if (tryEquipSecondary) pl.EquipSecondaryWeapon();
+
+        WeaponFireLogic(fire, aim);
+
+        if (!pl.IsReloading && reload && pl.CurrentWeapon.ammoType.currentAmmo > 0 && pl.CurrentWeapon.ammoInMagazine < pl.CurrentWeapon.magazineCapacity) pl.Reload();
          
+        var ads = !pl.IsReloading && aim;
+         
+        pa.AimDownSights(ads);
+        Player.Active.PostProcessing.ADS(ads);
+    }
+
+    private void EquipmentFireLogic(bool fire)
+    {
+        if (fire && CanAttack && CurrentMoveState != PlayerMoveState.Sprint)
+        {
+            pa.Cook();
+        }
+        // The player was cooking the grenade, and should now throw it!
+        else if (!fire && lastFireState)
+        {
+            pa.Fire();
+        }
+
+        lastFireState = fire;
+    }
+
+    private void WeaponFireLogic(bool fire, bool aim)
+    {
         if (pl.CurrentWeapon.weaponAnimType.Equals(PlayerWeaponAnimator.WeaponAnimatorType.Melee) && !fire && aim)
         {
             fire = aim;
@@ -153,7 +189,7 @@ public class PlayerController : MonoBehaviour
                     attackTimer = 0.0f;
 
                     fireResetRequired = pl.CurrentWeapon.fireType != WeaponData.FireType.FullAuto;
-                     
+
                     pa.Fire();
                 }
                 else
@@ -166,13 +202,6 @@ public class PlayerController : MonoBehaviour
         {
             fireResetRequired = false;
         }
-
-        if (!pl.IsReloading && reload && pl.CurrentWeapon.ammoType.currentAmmo > 0 && pl.CurrentWeapon.ammoInMagazine < pl.CurrentWeapon.magazineCapacity) pl.Reload();
-         
-        var ads = !pl.IsReloading && aim;
-         
-        pa.AimDownSights(ads);
-        Player.Active.PostProcessing.ADS(ads);
     }
     
     private void MoveControls()

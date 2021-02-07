@@ -77,6 +77,11 @@ public class PlayerAnimator : MonoBehaviour
         activeAnim.Fire();
     }
 
+    public void Cook()
+    {
+        if (activeAnim.Equals(equipmentAnims)) equipmentAnims.Cook();
+    }
+
     public void AltFire()
     {
         var currentWeapon = pl.CurrentWeapon;

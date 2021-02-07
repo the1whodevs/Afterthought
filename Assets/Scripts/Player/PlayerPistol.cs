@@ -1,7 +1,10 @@
 ﻿public class PlayerPistol : PlayerWeaponAnimator
 {
     public override void Animate()
-    {
+    {        
+        // This usually happens when changing weapons or using equipment.
+        if (!anim) return;
+
         SetAnimParameters();
 
         var currentState = pc.CurrentMoveState;

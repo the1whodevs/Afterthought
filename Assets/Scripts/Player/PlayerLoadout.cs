@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using EmeraldAI;
 using JetBrains.Annotations;
-using Knife.RealBlood.Decals;
 using UnityEngine;
 
 public class PlayerLoadout : MonoBehaviour
@@ -12,6 +11,9 @@ public class PlayerLoadout : MonoBehaviour
     /// The current weapon equipped.
     /// </summary>
     public WeaponData CurrentWeapon { get; private set; }
+
+    public EquipmentData CurrentEquipment => currentEquipment;
+
     public GameObject CurrentWeaponObject { get; private set; }
 
     public Transform FirePoint => firePoint;
@@ -94,14 +96,14 @@ public class PlayerLoadout : MonoBehaviour
         EquipPrimaryWeapon();
     }
 
-    public bool UseEquipmentA()
+    public void UseEquipmentA()
     {
-        return UseEquipment(loadout.Equipment[0]);
+        UseEquipment(loadout.Equipment[0]);
     }
     
-    public bool UseEquipmentB()
+    public void UseEquipmentB()
     {
-        return UseEquipment(loadout.Equipment[1]);
+        UseEquipment(loadout.Equipment[1]);
     }
 
     public void EquipPrimaryWeapon()
@@ -280,9 +282,9 @@ public class PlayerLoadout : MonoBehaviour
         EquipWeapon(lastWeapon);
     }
 
-    private bool UseEquipment(EquipmentData toUse)
+    private void UseEquipment(EquipmentData toUse)
     {
-        if (toUse.currentAmmo == 0 || isUsingEquipment) return false;
+        if (toUse.currentAmmo == 0 || isUsingEquipment) return;
 
         toUse.currentAmmo--;
         
@@ -291,19 +293,22 @@ public class PlayerLoadout : MonoBehaviour
 
         isUsingEquipment = true;
         StartCoroutine(SwitchToEquipment(toUse));
-
-        return true;
     }
 
     private IEnumerator SwitchToEquipment(EquipmentData toEquip)
     {
         const float delay = 1.0f;
 
+        // Player unequip animation...
         pa.Unequip();
 
+        // Wait for it to play...
         yield return new WaitForSeconds(delay);
 
+        // Do Unequip weapon logic.
         Unequip();
+
+        // Equip respective equipment.
         EquipEquipment(toEquip);
     }
 
@@ -315,9 +320,9 @@ public class PlayerLoadout : MonoBehaviour
 
     private void EquipEquipment(EquipmentData toEquip)
     {
-        CurrentAnimator = CurrentWeaponObject.GetComponent<Animator>();
         currentEquipment = toEquip;
         currentEquipmentObject = Instantiate(currentEquipment.prefab, WeaponR.position, WeaponR.rotation, WeaponR);
+        CurrentAnimator = currentEquipmentObject.GetComponent<Animator>();
 
         GetFirePoint(currentEquipmentObject);
     }
