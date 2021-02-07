@@ -270,11 +270,17 @@ public class PlayerLoadout : MonoBehaviour
     public void ThrowEquipmentThrowable()
     {
         currentEquipmentThrowable.transform.parent = null;
-        var rb = currentEquipmentThrowable.GetComponent<Rigidbody>();
 
+        var rb = currentEquipmentThrowable.GetComponent<Rigidbody>();
         rb.isKinematic = false;
         rb.useGravity = true;
-        rb.AddForce(firePoint.forward * currentEquipment.throwForce, ForceMode.Impulse);
+
+        var camFwd = Player.Active.Camera.transform.forward;
+        var targetPos = transform.position + (camFwd * currentEquipment.throwDistance);
+        targetPos.y += currentEquipment.throwYoffset;
+        var throwDir = (targetPos - currentEquipmentThrowable.transform.position).normalized;
+
+        rb.AddForce(throwDir * currentEquipment.throwSpeed, ForceMode.Impulse);
 
         ReturnFromEquipmentToLastWeapon();
     }

@@ -25,12 +25,14 @@ MonoBehaviour:
     type: 3}
   explosionDecal: {fileID: 5267333992959871389, guid: 1df4dc2465560804f9503d51bbefcc01,
     type: 3}
-  currentAmmo: 3
+  currentAmmo: 2
   magazineCapacity: 3
   damage: 100
   minRange: 2.5
   maxRange: 7.5
   mobilityPenalty: 0
-  throwForce: 30
+  throwDistance: 30
+  throwSpeed: 25
+  throwYoffset: 8
   fuseTime: 5
-  ragdollForce: 5000
+  ragdollForce: 1000

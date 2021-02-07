@@ -15,7 +15,11 @@ public class EquipmentData : IDisplayableItem
     public float minRange = 2.5f;
     public float maxRange = 7.5f;
     public float mobilityPenalty = 0.0f;
-    public float throwForce = 50.0f;
+
+    public float throwDistance = 50.0f;
+    public float throwSpeed = 50.0f;
+    public float throwYoffset = 10.0f;
+
     public float fuseTime = 3.0f;
     public float ragdollForce = 150.0f;
 
