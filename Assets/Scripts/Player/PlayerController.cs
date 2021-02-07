@@ -115,8 +115,6 @@ public class PlayerController : MonoBehaviour
     {
         attackTimer += dTime;
 
-        if (pl.UsingEquipment) return;
-
         var fire = Input.GetAxisRaw("Fire1") > 0.0f;
         var aim = Input.GetAxisRaw("Fire2") > 0.0f;
         var reload = Input.GetAxisRaw("Reload") > 0.0f;
@@ -131,6 +129,9 @@ public class PlayerController : MonoBehaviour
 
         if (pl.UsingEquipment)
         {
+            // This is true while switching to the equipment to be used!
+            if (!pl.CurrentEquipment) return;
+
             if (pl.CurrentEquipment.Equals(pl.Loadout.Equipment[0])) EquipmentFireLogic(tryThrowEquipment1, ref lastEquipmentAUseState);
             else EquipmentFireLogic(tryThrowEquipment2, ref lastEquipmentBUseState);
             return;
@@ -162,12 +163,12 @@ public class PlayerController : MonoBehaviour
 
     private void EquipmentFireLogic(bool equipmentUse, ref bool lastEquipState)
     {
-        if (equipmentUse && CanAttack && CurrentMoveState != PlayerMoveState.Sprint)
+        if (equipmentUse)
         {
             pa.Cook();
         }
         // The player was cooking the grenade, and should now throw it!
-        else if (!equipmentUse && lastEquipState)
+        else if (!equipmentUse)
         {
             pa.Fire();
         }
