@@ -73,6 +73,9 @@ public class PlayerShotgun : PlayerWeaponAnimator
     {
         Debug.Log("5> ReloadBullet");
 
+        // Needed for fast reload speeds to work properly.
+        if (pl.CurrentWeapon.ammoInMagazine == pl.CurrentWeapon.magazineCapacity) return;
+
         pl.CurrentWeapon.ammoInMagazine++;
         pl.CurrentWeapon.ammoType.currentAmmo--;
 

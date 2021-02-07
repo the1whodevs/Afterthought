@@ -57,7 +57,8 @@ public class WeaponData : IDisplayableItem
     {
         var bulletsForMax = magazineCapacity - ammoInMagazine;
         
-        if (bulletsForMax == 0) Debug.LogError("Reloading while the mag is full!");
+        //  Removed warning as it will most likely hit on high reload speeds.
+        // if (bulletsForMax == 0) Debug.LogError("Reloading while the mag is full!");
         
         if (availableAmmo >= bulletsForMax)
         {
