@@ -71,7 +71,7 @@ public class UIManager : MonoBehaviour
         equipmentAammoCount.text = $"{eqEquipped.currentAmmo}";
     }
 
-    public void UpdateEquipmentAmmoCountEquipmentb(EquipmentData eqEquipped)
+    public void UpdateEquipmentAmmoCountEquipmentB(EquipmentData eqEquipped)
     {
         equipmentBammoCount.text = $"{eqEquipped.currentAmmo}";
     }

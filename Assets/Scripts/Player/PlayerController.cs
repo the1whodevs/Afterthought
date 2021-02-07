@@ -53,7 +53,8 @@ public class PlayerController : MonoBehaviour
     private bool CanAttack => attackTimer >= attackInterval;
 
     // Used to determine if the player has been cooking a grenade!
-    private bool lastFireState = false;
+    private bool lastEquipmentAUseState = false;
+    private bool lastEquipmentBUseState = false;
 
     private Transform myCamera;
 
@@ -123,24 +124,24 @@ public class PlayerController : MonoBehaviour
         var tryEquipSecondary = Input.GetAxisRaw("EquipSecondary") > 0.0f;
         var tryThrowEquipment1 = Input.GetAxisRaw("Equipment 1") > 0.0f;
         var tryThrowEquipment2 = Input.GetAxisRaw("Equipment 2") > 0.0f;
+        if (!tryThrowEquipment2) tryThrowEquipment2 = Input.GetAxisRaw("Equipment 1") < 0.0f;
 
         TryingToFire = fire;
         IsADS = aim;
 
         if (pl.UsingEquipment)
         {
-            EquipmentFireLogic(fire);
+            if (pl.CurrentEquipment.Equals(pl.Loadout.Equipment[0])) EquipmentFireLogic(tryThrowEquipment1, ref lastEquipmentAUseState);
+            else EquipmentFireLogic(tryThrowEquipment2, ref lastEquipmentBUseState);
             return;
         }
 
-        if (!tryThrowEquipment2) tryThrowEquipment2 = Input.GetAxisRaw("Equipment 1") < 0.0f;
-
-        if (tryThrowEquipment1 && pl.Loadout.Equipment[0].currentAmmo > 0) 
+        if (tryThrowEquipment1 && pl.Loadout.Equipment[0].currentAmmo > 0 && !pl.UsingEquipment) 
         {
             pl.UseEquipmentA();
             return;
         } 
-        else if (tryThrowEquipment2 && pl.Loadout.Equipment[1].currentAmmo > 0) 
+        else if (tryThrowEquipment2 && pl.Loadout.Equipment[1].currentAmmo > 0 && !pl.UsingEquipment) 
         {
             pl.UseEquipmentB();
             return;
@@ -159,19 +160,19 @@ public class PlayerController : MonoBehaviour
         Player.Active.PostProcessing.ADS(ads);
     }
 
-    private void EquipmentFireLogic(bool fire)
+    private void EquipmentFireLogic(bool equipmentUse, ref bool lastEquipState)
     {
-        if (fire && CanAttack && CurrentMoveState != PlayerMoveState.Sprint)
+        if (equipmentUse && CanAttack && CurrentMoveState != PlayerMoveState.Sprint)
         {
             pa.Cook();
         }
         // The player was cooking the grenade, and should now throw it!
-        else if (!fire && lastFireState)
+        else if (!equipmentUse && lastEquipState)
         {
             pa.Fire();
         }
 
-        lastFireState = fire;
+        lastEquipState = equipmentUse;
     }
 
     private void WeaponFireLogic(bool fire, bool aim)

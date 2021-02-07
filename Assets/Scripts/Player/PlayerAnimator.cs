@@ -47,6 +47,7 @@ public class PlayerAnimator : MonoBehaviour
         pd = Player.Active.Damage;
 
         pl.OnWeaponEquipped += OnWeaponEquipped;
+        pl.OnEquipmentEquipped += OnEquipEquipment;
         pc.OnReloadCancel += OnReloadCancel;
     }
 
@@ -140,6 +141,17 @@ public class PlayerAnimator : MonoBehaviour
         pl.ReloadCancel();
     }
 
+    private void OnEquipEquipment(EquipmentData equippedEquipment)
+    {
+        if (!activeAnim) return;
+
+        activeAnim.DeactivateAnim();
+
+        activeAnim = equipmentAnims;
+
+        activeAnim.ActivateAnim();
+    }
+
     private void OnWeaponEquipped(WeaponData weapon)
     {
         if (activeAnim) activeAnim.DeactivateAnim();
@@ -156,10 +168,6 @@ public class PlayerAnimator : MonoBehaviour
 
             case PlayerWeaponAnimator.WeaponAnimatorType.Shotgun:
                 activeAnim = shotgunAnims;
-                break;
-
-            case PlayerWeaponAnimator.WeaponAnimatorType.Equipment:
-                activeAnim = equipmentAnims;
                 break;
         }
 

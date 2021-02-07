@@ -33,6 +33,7 @@ public class PlayerLoadout : MonoBehaviour
     public bool IsReloading => isReloading;
 
     public Action<WeaponData> OnWeaponEquipped;
+    public Action<EquipmentData> OnEquipmentEquipped;
 
     [SerializeField] private LoadoutData loadout;
     
@@ -289,9 +290,10 @@ public class PlayerLoadout : MonoBehaviour
         toUse.currentAmmo--;
         
         if (toUse == loadout.Equipment[0]) uiManager.UpdateEquipmentAmmoCountEquipmentA(toUse);
-        else uiManager.UpdateEquipmentAmmoCountEquipmentb(toUse);
+        else uiManager.UpdateEquipmentAmmoCountEquipmentB(toUse);
 
         isUsingEquipment = true;
+
         StartCoroutine(SwitchToEquipment(toUse));
     }
 
@@ -325,6 +327,8 @@ public class PlayerLoadout : MonoBehaviour
         CurrentAnimator = currentEquipmentObject.GetComponent<Animator>();
 
         GetFirePoint(currentEquipmentObject);
+
+        OnEquipmentEquipped?.Invoke(toEquip);
     }
 
     private void Equip(WeaponData weaponToEquip)
