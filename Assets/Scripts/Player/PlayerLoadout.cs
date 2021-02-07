@@ -263,6 +263,8 @@ public class PlayerLoadout : MonoBehaviour
     public void SpawnEquipmentThrowable()
     {
         currentEquipmentThrowable = Instantiate(currentEquipment.prefabToThrow, firePoint.position, firePoint.rotation, firePoint);
+
+        Player.Active.Damage.StartThrowableFuse(currentEquipment, currentEquipmentThrowable);
     }
 
     public void ThrowEquipmentThrowable()
@@ -274,13 +276,27 @@ public class PlayerLoadout : MonoBehaviour
         rb.useGravity = true;
         rb.AddForce(firePoint.forward * currentEquipment.throwForce, ForceMode.Impulse);
 
-        Player.Active.Damage.ExplodeThrownEquipment(currentEquipment, currentEquipmentThrowable);
+        ReturnFromEquipmentToLastWeapon();
+    }
 
+    private void ReturnFromEquipmentToLastWeapon()
+    {
         currentEquipment = null;
         currentEquipmentObject = null;
         currentEquipmentThrowable = null;
 
+        isUsingEquipment = false;
+
         EquipWeapon(lastWeapon);
+    }
+
+    public void ThrowableExploded(GameObject explodedThrowable)
+    {
+        if (!currentEquipmentThrowable) return;
+
+        // This means that the equipment exploded in the player's hand!
+        if (currentEquipmentThrowable.Equals(explodedThrowable))
+            ReturnFromEquipmentToLastWeapon();
     }
 
     private void UseEquipment(EquipmentData toUse)

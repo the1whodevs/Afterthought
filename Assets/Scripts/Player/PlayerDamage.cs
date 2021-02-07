@@ -123,7 +123,10 @@ public class PlayerDamage : MonoBehaviour
     {
         yield return new WaitForSeconds(relatedEquipment.fuseTime);
 
+        Player.Active.Loadout.ThrowableExploded(toExplode);
+
         var pos = toExplode.transform.position;
+
         Destroy(toExplode);
         Destroy(Instantiate(relatedEquipment.explosionPrefab, pos, Quaternion.identity, null), 3.0f);
 
@@ -148,11 +151,16 @@ public class PlayerDamage : MonoBehaviour
             var damage = (int)Mathf.Lerp(dmg, 0.0f, distance / relatedEquipment.maxRange);
 
             var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
+            var playerHealth = hit.transform.GetComponent<PlayerHealth>();
 
             // If we hit an AI, damage it.
             if (emeraldAIsys && emeraldAIsys.enabled)
             {
                 emeraldAIsys.Damage(damage, EmeraldAISystem.TargetType.Player, transform, (int)relatedEquipment.ragdollForce);
+            }
+            else if (playerHealth)
+            {
+                playerHealth.DamagePlayer(damage);
             }
             // Otherwise just spawn a bullet hole.
             else
@@ -288,7 +296,7 @@ public class PlayerDamage : MonoBehaviour
         }
     }
 
-    public void ExplodeThrownEquipment(EquipmentData equipment, GameObject thrownPrefab)
+    public void StartThrowableFuse(EquipmentData equipment, GameObject thrownPrefab)
     {
         StartCoroutine(ExplodeThrowable(equipment, thrownPrefab));
     }

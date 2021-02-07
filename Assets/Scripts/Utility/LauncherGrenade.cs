@@ -49,11 +49,16 @@ public class LauncherGrenade : MonoBehaviour
             var damage = (int) Mathf.Lerp(dmg, 0.0f, distance / maxRange);
                 
             var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
-        
+            var playerHealth = hit.transform.GetComponent<PlayerHealth>();
+
             // If we hit an AI, damage it.
             if (emeraldAIsys && emeraldAIsys.enabled)
             {
                 emeraldAIsys.Damage(damage, EmeraldAISystem.TargetType.Player, transform, (int)ragdollForce);
+            }
+            else if (playerHealth)
+            {
+                playerHealth.DamagePlayer(damage);
             }
             // Otherwise just spawn a bullet hole.
             else

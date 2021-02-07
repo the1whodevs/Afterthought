@@ -148,6 +148,7 @@ public class PlayerAnimator : MonoBehaviour
         activeAnim.DeactivateAnim();
 
         activeAnim = equipmentAnims;
+        equipmentAnims.ResetThrow();
 
         activeAnim.ActivateAnim();
     }

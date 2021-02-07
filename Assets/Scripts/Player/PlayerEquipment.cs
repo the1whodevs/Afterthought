@@ -2,6 +2,11 @@
 {
     private bool thrown = false;
 
+    public void ResetThrow()
+    {
+        thrown = false;
+    }
+
     // This will only be called if the player was cooking the grenade!
     public override void Fire()
     {
