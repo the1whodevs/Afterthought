@@ -65,7 +65,7 @@ public class PlayerDamage : MonoBehaviour
             HitscanDamage(v3Hit, ragdollForce_Shotgun);
         }
 
-        MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
+        Player.Active.Camera.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
     }
 
     private void NonShotgunFirearmDamage()
@@ -74,7 +74,7 @@ public class PlayerDamage : MonoBehaviour
 
         HitscanDamage(playerCamera.transform.forward, ragdollForce_NonShotgun);
 
-        MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
+        Player.Active.Camera.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
 
         return;
     }
@@ -94,7 +94,7 @@ public class PlayerDamage : MonoBehaviour
         var launcherGrenade = bullet.GetComponent<LauncherGrenade>();
         if (launcherGrenade) launcherGrenade.Init(CurrentWeapon);
 
-        MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
+        Player.Active.Camera.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
 
         Destroy(bullet, PROJECTILE_LIFETIME);
     }
@@ -275,15 +275,12 @@ public class PlayerDamage : MonoBehaviour
                 if (fireType == WeaponData.FireType.Burst) StartCoroutine(BurstFire(CurrentWeapon, BURST_FIRE_COUNT));
                 else
                 {
-                    MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
-
                     if (CurrentWeapon.isShotgun) ShotgunFirearmDamage();
                     else NonShotgunFirearmDamage();
                 }
                 break;
 
             case WeaponData.WeaponType.Projectile:
-                MouseCamera.Instance.ApplyRecoil(CurrentWeapon.recoil_horizontal, CurrentWeapon.recoil_vertical);
                 FireProjectile();
                 break;
 

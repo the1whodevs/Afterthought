@@ -2,9 +2,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class MouseCamera : MonoBehaviour
+public class PlayerCamera : MonoBehaviour
 {
-    public static MouseCamera Instance;
+    public static PlayerCamera Active;
 
     public enum ZoomLevels
     {
@@ -38,8 +38,8 @@ public class MouseCamera : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance) Destroy(this);
-        Instance = this;
+        if (Active) Destroy(this);
+        Active = this;
     }
 
     private void Start()

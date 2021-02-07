@@ -21,7 +21,7 @@ public class WeaponData : IDisplayableItem
     public bool isShotgun = false;
     
     public bool hasScope = false;
-    public MouseCamera.ZoomLevels scopeZoom = MouseCamera.ZoomLevels.X4;
+    public PlayerCamera.ZoomLevels scopeZoom = PlayerCamera.ZoomLevels.X4;
     
     [FormerlySerializedAs("audioFx")] public AudioClip[] shotAudioFx;
     [FormerlySerializedAs("bulletHole")] public GameObject hitImpact;

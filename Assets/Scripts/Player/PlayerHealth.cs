@@ -69,7 +69,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Player.Active.PostProcessing.Death();
         handsObject.SetActive(false);
-        MouseCamera.Instance.enabled = false;
+        PlayerCamera.Active.enabled = false;
         Player.Active.Controller.enabled = false;
         CameraAnimation.Instance.DeathAnimation();
         StartCoroutine(ShowDeathMenuDelay());

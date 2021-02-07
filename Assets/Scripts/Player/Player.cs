@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     public PlayerPistol Pistol { get; private set; }
     public PlayerMelee Melee { get; private set; }
     public PlayerEquipment Equipment { get; private set; }
-    public MouseCamera Camera { get; private set; }
+    public PlayerCamera Camera { get; private set; }
 
     [SerializeField] private GameObject[] objectsToSpawnOnSpawn;
 
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         Animator = GetComponent<PlayerAnimator>();
         Controller = GetComponent<PlayerController>();
         Health = GetComponent<PlayerHealth>();
-        Camera = GetComponentInChildren<MouseCamera>();
+        Camera = GetComponentInChildren<PlayerCamera>();
         PostProcessing = GetComponent<PlayerPostProcessing>();
         Shotgun = GetComponent<PlayerShotgun>();
         Pistol = GetComponent<PlayerPistol>();
