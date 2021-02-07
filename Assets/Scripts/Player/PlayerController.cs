@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
     // Used to determine if the player has been cooking a grenade!
     private bool lastFireState = false;
 
+    private Transform myCamera;
+
     private CharacterController cc;
     
     private PlayerAudio pad;
@@ -75,6 +77,8 @@ public class PlayerController : MonoBehaviour
         pad = Player.Active.Audio;
         pa = Player.Active.Animator;
         pl = Player.Active.Loadout;
+
+        myCamera = Camera.main.transform;
 
         currentTerrain = Terrain.activeTerrain;
     }
@@ -98,8 +102,12 @@ public class PlayerController : MonoBehaviour
 
     private void UpdatePlayer()
     {
-        if (cc.isGrounded) MoveControls();
-        else ApplyGravity();
+        MoveControls(out var isCrouching);
+
+        // Moved here so we can jump & be crouched!
+        StanceStateChange(isCrouching);
+
+        if (!cc.isGrounded) ApplyGravity();
     }
     
     private void WeaponControls(float dTime)
@@ -204,25 +212,24 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    private void MoveControls()
+    private void MoveControls(out bool isCrouching)
     { 
         var v = Input.GetAxis("Vertical");
         var h = Input.GetAxis("Horizontal");
         var isSprinting = Input.GetAxisRaw("Sprint") >= 1.0f;
-        var isCrouching = Input.GetAxisRaw("Crouch") >= 1.0f;
+        isCrouching = Input.GetAxisRaw("Crouch") >= 1.0f;
         var isJumping = Input.GetAxisRaw("Jump") >= 1.0f;
         
         var isMoving = !Mathf.Approximately(v, 0.0f) ||
                         !Mathf.Approximately(h, 0.0f);
 
+        if (!cc.isGrounded) return;
+
         if (isSprinting && pl.IsReloading) OnReloadCancel?.Invoke();
 
         IsMoving = isMoving;
 
-        if (isJumping && cc.isGrounded)
-        {
-            CurrentMoveState = PlayerMoveState.Jumping;
-        }
+        if (isJumping) CurrentMoveState = PlayerMoveState.Jumping;
         else if (isMoving)
         {
             if (isSprinting && v > 0.0f)
@@ -260,8 +267,6 @@ public class PlayerController : MonoBehaviour
             speed = crouchSpeed * (crouchTalent ? crouchTalent.value : 1.0f);
         }
         
-        StandStateChange(isCrouching);
-        
         var r = new Ray(transform.position, Vector3.down);
 
         Physics.SphereCast(r, cc.radius, out var hitInfo, cc.height / 2f, groundLayer);
@@ -287,9 +292,8 @@ public class PlayerController : MonoBehaviour
         cc.Move(playerVelocity * Time.deltaTime);
     }
      
-    private void StandStateChange(bool isCrouching)
+    private void StanceStateChange(bool isCrouching)
     {
-        
         standStateBlend = Mathf.MoveTowards(standStateBlend, isCrouching ? 1f : 0f, Time.deltaTime * stateChangeSpeed);
 
         cc.height = Mathf.Lerp(
@@ -306,9 +310,9 @@ public class PlayerController : MonoBehaviour
             crouchSetting.colliderCenterHeight,
             stateChangeCurve.Evaluate(standStateBlend)
         );
+
         cc.center = colliderCenter;
 
-        var myCamera = Camera.main.transform;
         var cameraPos = myCamera.localPosition;
         
         cameraPos.y = Mathf.Lerp(
@@ -316,6 +320,7 @@ public class PlayerController : MonoBehaviour
             crouchSetting.controlCameraHeight,
             stateChangeCurve.Evaluate(standStateBlend)
         );
+
         myCamera.localPosition = cameraPos;
     }
 
