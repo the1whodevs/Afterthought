@@ -573,7 +573,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  textureValues: []
 --- !u!114 &6068314797139404672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -944,7 +943,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.06
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -952,7 +951,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 90112
+    m_Bits: 24576
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

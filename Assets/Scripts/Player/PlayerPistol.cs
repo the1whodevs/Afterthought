@@ -10,6 +10,7 @@
         var moving = currentState == PlayerController.PlayerMoveState.CrouchRun ||
             currentState == PlayerController.PlayerMoveState.Run;
 
+        anim.SetBool(isFiring, pc.TryingToFire);
         anim.SetBool(isSprinting, sprinting);
         anim.SetBool(isMoving, moving);
 

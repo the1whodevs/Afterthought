@@ -20,13 +20,14 @@ public class PlayerWeaponAnimator : MonoBehaviour
     protected readonly int attack = Animator.StringToHash("attack");
     protected readonly int isSprinting = Animator.StringToHash("isSprinting");
     protected readonly int isMoving = Animator.StringToHash("isMoving");
+    protected readonly int isReloading = Animator.StringToHash("isReloading");
+    protected readonly int isFiring = Animator.StringToHash("isFiring");
     protected readonly int isADS = Animator.StringToHash("isADS");
     protected readonly int switch_weapon = Animator.StringToHash("switch_weapon");
     protected readonly int switch_speed = Animator.StringToHash("switch_speed");
     protected readonly int attack_speed = Animator.StringToHash("attack_speed");
     protected readonly int reload_speed = Animator.StringToHash("reload_speed");
     protected readonly int reload = Animator.StringToHash("reload");
-    protected readonly int isReloading = Animator.StringToHash("isReloading");
     protected readonly int lastReload = Animator.StringToHash("last_reload");
     protected readonly int attackNum = Animator.StringToHash("attackNum");
     protected readonly int throwHash = Animator.StringToHash("throw");
@@ -53,7 +54,6 @@ public class PlayerWeaponAnimator : MonoBehaviour
                 else if (Mathf.Abs(anim.GetLayerWeight(1) - targetLayerWeight) <= tolerance) 
                 {
                     var roundedInt = Mathf.RoundToInt(targetLayerWeight);
-                    Debug.LogFormat("RoundedInt: {0} / Target: {1}", roundedInt, targetLayerWeight);
                     pl.CurrentAnimator.SetLayerWeight(1, roundedInt);
                     yield return new WaitForEndOfFrame(); 
                 }
@@ -76,9 +76,13 @@ public class PlayerWeaponAnimator : MonoBehaviour
 
     public virtual void Reload()
     {
-        Debug.Log("Base.Reload()");
         anim.ResetTrigger(reload);
         anim.SetTrigger(reload);
+    }
+
+    public virtual void CancelReload()
+    {
+        anim.ResetTrigger(reload);
     }
 
     public virtual void SwitchWeapon()

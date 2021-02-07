@@ -232,13 +232,19 @@ public class PlayerLoadout : MonoBehaviour
 
     public void Reload()
     {
-        Debug.Log("2> pa.Reload()...");
-
         Player.Active.Audio.PlayReload(CurrentWeapon);
 
         isReloading = true;
 
         pa.Reload();
+    }
+
+    /// <summary>
+    /// This should be called by PlayerAnimator through OnReloadCancel only!
+    /// </summary>
+    public void ReloadCancel()
+    {
+        isReloading = false;
     }
 
     // This is currently called on weapons that have 1 reload animation (i.e. everything except shotgun).

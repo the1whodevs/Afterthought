@@ -68,6 +68,13 @@ public class PlayerShotgun : PlayerWeaponAnimator
         }
     }
 
+    public override void CancelReload()
+    {
+        base.CancelReload();
+
+        anim.SetBool(isReloading, false);
+    }
+
     // Called through animation event.
     public void ReloadBullet()
     {

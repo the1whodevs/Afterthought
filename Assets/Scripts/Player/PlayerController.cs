@@ -3,7 +3,9 @@
 public class PlayerController : MonoBehaviour
 {
     public enum PlayerMoveState { Idle, CrouchIdle, Run, CrouchRun, Sprint, Jumping }
-    
+
+    public System.Action OnReloadCancel;
+
     public PlayerMoveState CurrentMoveState = PlayerMoveState.Idle;
 
     public bool IsInUI { get; private set; }
@@ -11,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public bool IsMoving { get; private set; }
     public bool IsCrouching => CurrentMoveState == PlayerMoveState.CrouchIdle || 
         CurrentMoveState == PlayerMoveState.CrouchRun;
+    public bool TryingToFire { get; private set; }
 
     public bool IsOnTerrain => (groundedCheckHit.collider != null && groundedCheckHit.collider.tag == "Terrain");
     public bool IsGrounded => Physics.Raycast(transform.position, Vector3.down, out groundedCheckHit, cc.bounds.extents.y + 0.5f);
@@ -110,6 +113,7 @@ public class PlayerController : MonoBehaviour
         var tryThrowEquipment1 = Input.GetAxisRaw("Equipment 1") > 0.0f;
         var tryThrowEquipment2 = Input.GetAxisRaw("Equipment 2") > 0.0f;
 
+        TryingToFire = fire;
         IsADS = aim;
 
         if (!tryThrowEquipment2) tryThrowEquipment2 = Input.GetAxisRaw("Equipment 1") < 0.0f;
@@ -170,17 +174,7 @@ public class PlayerController : MonoBehaviour
             fireResetRequired = false;
         }
 
-        if (reload)
-        {
-            Debug.LogFormat("IsReloading: {0} // AmmoTypeLeft: {1} // AmmoInMag: {2} // MagCapacity: {3}",
-                pl.IsReloading, pl.CurrentWeapon.ammoType.currentAmmo, pl.CurrentWeapon.ammoInMagazine, pl.CurrentWeapon.magazineCapacity);
-        }
-
-
-        if (!pl.IsReloading && reload && pl.CurrentWeapon.ammoType.currentAmmo > 0 && pl.CurrentWeapon.ammoInMagazine < pl.CurrentWeapon.magazineCapacity)
-        {
-            Debug.Log("1> pl.Reload()...");
-            pl.Reload(); }
+        if (!pl.IsReloading && reload && pl.CurrentWeapon.ammoType.currentAmmo > 0 && pl.CurrentWeapon.ammoInMagazine < pl.CurrentWeapon.magazineCapacity) pl.Reload();
          
         var ads = !pl.IsReloading && aim;
          
@@ -198,6 +192,8 @@ public class PlayerController : MonoBehaviour
         
         var isMoving = !Mathf.Approximately(v, 0.0f) ||
                         !Mathf.Approximately(h, 0.0f);
+
+        if (isSprinting && pl.IsReloading) OnReloadCancel?.Invoke();
 
         IsMoving = isMoving;
 

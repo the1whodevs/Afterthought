@@ -44,8 +44,10 @@ public class PlayerAnimator : MonoBehaviour
         uiManager = UIManager.Active;
         pl = Player.Active.Loadout;
         pc = Player.Active.Controller;
-        pl.OnWeaponEquipped += OnWeaponEquipped;
         pd = Player.Active.Damage;
+
+        pl.OnWeaponEquipped += OnWeaponEquipped;
+        pc.OnReloadCancel += OnReloadCancel;
     }
 
     private void Update()
@@ -94,8 +96,6 @@ public class PlayerAnimator : MonoBehaviour
 
     public void Reload()
     {
-        Debug.Log("3> activeAnim.Reload()...");
-
         if (!activeAnim.Equals(meleeAnims)) activeAnim.Reload();
     }
 
@@ -123,6 +123,16 @@ public class PlayerAnimator : MonoBehaviour
     public void ResetMagazine()
     {
         pl.ResetMagazine();
+    }
+
+    private void OnReloadCancel()
+    {
+        if (!activeAnim) return;
+
+        if (activeAnim.Equals(meleeAnims)) return;
+
+        activeAnim.CancelReload();
+        pl.ReloadCancel();
     }
 
     private void OnWeaponEquipped(WeaponData weapon)

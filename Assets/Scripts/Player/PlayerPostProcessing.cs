@@ -1,7 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
-using UnityEngine.Serialization;
 
 public class PlayerPostProcessing : MonoBehaviour
 {
@@ -15,7 +13,7 @@ public class PlayerPostProcessing : MonoBehaviour
 
     private float damageTimer = 0.0f;
     private float adsT = 0.0f;
-    private float targetDeath_weight;
+    //private float targetDeath_weight;
     
     private int targetADS_weight;
     private int lastADS_targetWeight;
@@ -24,7 +22,7 @@ public class PlayerPostProcessing : MonoBehaviour
     private PostProcessVolume ads_ppv;
     private PostProcessVolume death_ppv;
     
-    private ColorGrading deathColorGrading;
+    //private ColorGrading deathColorGrading;
     
     private const float TOLERANCE = 0.0000001f;
 
@@ -68,7 +66,7 @@ public class PlayerPostProcessing : MonoBehaviour
 
         targetADS_weight = status ? 1 : 0;
 
-        if (!(Math.Abs(lastADS_targetWeight - targetADS_weight) > TOLERANCE)) return;
+        if (!(Mathf.Abs(lastADS_targetWeight - targetADS_weight) > TOLERANCE)) return;
         
         adsT = 0.0f;
         lastADS_targetWeight = targetADS_weight;
