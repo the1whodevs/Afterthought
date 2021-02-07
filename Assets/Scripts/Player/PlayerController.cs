@@ -150,27 +150,20 @@ public class PlayerController : MonoBehaviour
             {
                 if (pl.CurrentWeapon.ammoInMagazine > 0)
                 {
-                    var fireType = pl.CurrentWeapon.fireType;
-
-                    if (fireType == WeaponData.FireType.Burst) pl.CurrentWeapon.ammoInMagazine -= PlayerDamage.BURST_FIRE_COUNT;
-                    else pl.CurrentWeapon.ammoInMagazine--;
-                     
                     attackTimer = 0.0f;
 
-                    fireResetRequired = fireType != WeaponData.FireType.FullAuto;
+                    fireResetRequired = pl.CurrentWeapon.fireType != WeaponData.FireType.FullAuto;
                      
                     pa.Fire();
                 }
                 else
                 {
-                    //pa.ResetAttack();
                     pad.PlayEmptyClip(pl.CurrentWeapon);
                 }
             }
         }
         else if (!fire)
         {
-            //pa.ResetAttack();
             fireResetRequired = false;
         }
 

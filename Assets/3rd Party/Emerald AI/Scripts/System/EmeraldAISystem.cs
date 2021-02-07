@@ -1024,7 +1024,10 @@ namespace EmeraldAI
                 AIAgentActive = m_NavMeshAgent.enabled;
                 AggroDelay += Time.deltaTime;
 
-                CurrentAnimationClip = AIAnimator.GetCurrentAnimatorClipInfo(0)[0].clip;
+                var layerClips = AIAnimator.GetCurrentAnimatorClipInfo(0);
+
+                if (layerClips.Length > 0) CurrentAnimationClip = layerClips[0].clip;
+
                 EmeraldBehaviorsComponent.CheckAnimationStates();
 
                 //If our AI is not in combat, wander according to its Wander Type.

@@ -247,12 +247,15 @@ public class PlayerDamage : MonoBehaviour
     }
 
     /// <summary>
-    /// Called right after Fire() from the respective script.
+    /// Called through animation event from each weapon.
     /// </summary>
     public void TryDealDamage()
     {
         // Play shot effect.
         Player.Active.Audio.PlayGunshot(CurrentWeapon);
+
+        if (CurrentWeapon.fireType == WeaponData.FireType.Burst) CurrentWeapon.ammoInMagazine -= BURST_FIRE_COUNT;
+        else CurrentWeapon.ammoInMagazine--;
 
         var fireType = CurrentWeapon.fireType;
 
