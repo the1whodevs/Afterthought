@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public PlayerAudio Audio { get; private set; }
     public PlayerDamage Damage { get; private set; }
     public PlayerController Controller { get; private set; }
+    public PlayerPickup Pickup { get; private set; }
     public PlayerHealth Health { get; private set; }
     public PlayerExperience Experience { get; private set; }
     public PlayerPostProcessing PostProcessing { get; private set; }
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour
         Melee = GetComponent<PlayerMelee>();
         Equipment = GetComponent<PlayerEquipment>();
         Experience = GetComponent<PlayerExperience>();
+        Pickup = GetComponent<PlayerPickup>();
 
         Active = this;
 
@@ -49,5 +51,6 @@ public class Player : MonoBehaviour
         Animator.Init();
         Loadout.Init();
         Damage.Init();
+        Pickup.Init();
     }
 }
