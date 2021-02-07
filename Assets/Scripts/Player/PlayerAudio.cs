@@ -26,6 +26,8 @@ public class PlayerAudio : MonoBehaviour
     public void Init()
     {
         pc = Player.Active.Controller;
+
+        pc.OnReloadCancel += OnReloadCancel;
     }
 
     private void Update()
@@ -47,6 +49,11 @@ public class PlayerAudio : MonoBehaviour
                 distanceCovered = 0;
             }
         }
+    }
+
+    private void OnReloadCancel()
+    {
+        if (gunAudioSource.isPlaying) gunAudioSource.Stop();
     }
 
     public void PlayGunshot(WeaponData weapon)
