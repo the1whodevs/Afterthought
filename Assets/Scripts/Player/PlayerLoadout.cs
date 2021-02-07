@@ -360,7 +360,6 @@ public class PlayerLoadout : MonoBehaviour
         else EquipWeapon(weaponToEquip);
     }
 
-
     private IEnumerator SwitchWeapon(WeaponData weaponToEquip)
     {
         const float delay = 1.0f;

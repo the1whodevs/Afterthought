@@ -105,17 +105,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 344274077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbe3b957e9829fe4094aa36a59a9a7cf, type: 3}
+  m_Script: {fileID: 11500000, guid: c0d7a534358115b4e96658e33e5afaa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentZoom: 0
   playerT: {fileID: 305737994843635870}
-  mouseSensitivity_X: 1
-  mouseSensitivity_Y: 1
-  cameraMinY: -60
-  cameraMaxY: 67.5
+  mouseSensitivity_X: 9
+  mouseSensitivity_Y: 9
+  cameraMinY: -75
+  cameraMaxY: 75
   rotationSmoothSpeed: 10
-  zoomSpeed: 25
+  zoomSpeed: 2.5
   zoomCamera: {fileID: 7419696752421820827}
 --- !u!114 &305737996245361438
 MonoBehaviour:
