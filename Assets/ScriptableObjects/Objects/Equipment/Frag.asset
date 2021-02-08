@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d8181d236e8d9346b18bb0d3a92f4f0, type: 3}
-  m_Name: Grenade
+  m_Name: Frag
   m_EditorClassIdentifier: 
   name: Frag
   description: Arm, count to 5, and you're a kamikaze!
@@ -34,5 +34,7 @@ MonoBehaviour:
   throwDistance: 30
   throwSpeed: 25
   throwYoffset: 8
+  explosionLifetime: 7.5
   fuseTime: 5
   ragdollForce: 1000
+  Type: 0

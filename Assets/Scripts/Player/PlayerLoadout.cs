@@ -366,6 +366,39 @@ public class PlayerLoadout : MonoBehaviour
         else EquipWeapon(weaponToEquip);
     }
 
+    /// <summary>
+    /// Tries to add equipment to loadoutEquipment ammo. Returns true
+    /// if ammo is added, false if not.
+    /// </summary>
+    /// <param name="equipment"></param>
+    /// <returns></returns>
+    public bool GetEquipmentAmmo(EquipmentData equipment)
+    {
+        if (equipment.Equals(loadout.Equipment[0]))
+        {
+            if (loadout.Equipment[0].currentAmmo < loadout.Equipment[0].magazineCapacity)
+            {
+                loadout.Equipment[0].currentAmmo++;
+                return true;
+            }
+
+            return false;
+        }
+        
+        if (equipment.Equals(loadout.Equipment[1]))
+        {
+            if (loadout.Equipment[1].currentAmmo < loadout.Equipment[1].magazineCapacity)
+            {
+                loadout.Equipment[1].currentAmmo++;
+                return true;
+            }
+
+            return false;
+        }
+
+        return false;
+    }
+
     public void GetAmmo(AmmoData ammoType, ref int amount)
     {
         ammoType.currentAmmo += amount;
