@@ -1,0 +1,1649 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &824252892321406327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 821433228682667011}
+  - component: {fileID: 796711190577878619}
+  - component: {fileID: 803756258586724933}
+  - component: {fileID: 2389526120840589088}
+  - component: {fileID: 5810844953961792738}
+  m_Layer: 0
+  m_Name: Pickable SMG Ammo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &821433228682667011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824252892321406327}
+  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.187134, y: 0.053125, z: 10.943}
+  m_LocalScale: {x: 0.66948, y: 0.65115, z: 0.6911113}
+  m_Children:
+  - {fileID: 761171638584440981}
+  - {fileID: 9184957054826586155}
+  - {fileID: 1852896682385463727}
+  - {fileID: 8954883209045704805}
+  - {fileID: 6334923446330893527}
+  - {fileID: 6668833043227574118}
+  - {fileID: 5262629229666343655}
+  - {fileID: 8431101286614759441}
+  - {fileID: 6567837019237969842}
+  - {fileID: 8443819636882286999}
+  - {fileID: 1543410393899524504}
+  - {fileID: 8732101565405282387}
+  - {fileID: 3723530636394586821}
+  - {fileID: 2323419657975680569}
+  - {fileID: 4027588281546571051}
+  - {fileID: 3761007570629724583}
+  - {fileID: 8448135725061012460}
+  - {fileID: 2309610256145815094}
+  - {fileID: 878600093134016315}
+  - {fileID: 7637540909526528953}
+  - {fileID: 8284854898374204346}
+  - {fileID: 575000137148072642}
+  - {fileID: 2860342344423041817}
+  - {fileID: 6793992207279291288}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &796711190577878619
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824252892321406327}
+  m_Mesh: {fileID: 4300000, guid: 364e48170a94a1942a5b774dbd85c0c8, type: 3}
+--- !u!23 &803756258586724933
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824252892321406327}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 1ba7954f5ee7ef64a99fba6f95490c56, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!114 &2389526120840589088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824252892321406327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2792407391c0db47b9067ad2c56af16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: SMG Ammo
+  ammoToGive: 30
+  ammoTypeToGive: {fileID: 11400000, guid: 18b96c28988bb344587d18f8cfb0c809, type: 2}
+  despawnEffect: {fileID: 0}
+  despawnEffectLifetime: 2
+--- !u!65 &5810844953961792738
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824252892321406327}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.17465208, y: 0.29866582, z: 0.45174542}
+  m_Center: {x: 0, y: 0.14775155, z: -1.9244742e-16}
+--- !u!1001 &573578817979414974
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.166
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.149
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &575000137148072642 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 573578817979414974}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &765388615033783273
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0436
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1135
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &761171638584440981 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 765388615033783273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &882256171820004423
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.166
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.103
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &878600093134016315 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 882256171820004423}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1541434909075970788
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.182
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.149
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &1543410393899524504 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1541434909075970788}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1853726878503740115
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0763
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1135
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &1852896682385463727 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1853726878503740115}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2306528262386445642
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0763
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0678
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &2309610256145815094 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2306528262386445642}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2319772374554522949
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1135
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &2323419657975680569 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2319772374554522949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2863998286489784421
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.182
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.149
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &2860342344423041817 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2863998286489784421}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3721009117327759801
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0436
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1135
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &3723530636394586821 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3721009117327759801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3764662959971398363
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0436
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0678
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &3761007570629724583 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3764662959971398363}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4029546574714570327
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0763
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1135
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &4027588281546571051 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4029546574714570327}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5262333121050927515
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.166
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.103
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &5262629229666343655 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5262333121050927515}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6333510502605545387
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0678
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &6334923446330893527 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6333510502605545387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6569249416418170062
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.199
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.103
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &6567837019237969842 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6569249416418170062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6666305054857593882
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0763
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0678
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &6668833043227574118 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6666305054857593882}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6793141946962247908
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.199
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.149
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &6793992207279291288 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6793141946962247908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7634432103333841093
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.182
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.103
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &7637540909526528953 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7634432103333841093}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8284013984188014790
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.199
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.103
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &8284854898374204346 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8284013984188014790}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8434754478033863533
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.182
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.103
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &8431101286614759441 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8434754478033863533}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8440155036151763691
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.166
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.149
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &8443819636882286999 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8440155036151763691}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8445027617615544464
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0678
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &8448135725061012460 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8445027617615544464}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8728439429725141807
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.199
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.149
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &8732101565405282387 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8728439429725141807}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8955741715434404633
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0436
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0678
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &8954883209045704805 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8955741715434404633}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9185241757081852759
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821433228682667011}
+    m_Modifications:
+    - target: {fileID: 1221386218674614, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_Name
+      value: Gun_Sleve (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1135
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575153e977e4f1349948cee895f2040c, type: 3}
+--- !u!4 &9184957054826586155 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236905392307068, guid: 575153e977e4f1349948cee895f2040c,
+    type: 3}
+  m_PrefabInstance: {fileID: 9185241757081852759}
+  m_PrefabAsset: {fileID: 0}

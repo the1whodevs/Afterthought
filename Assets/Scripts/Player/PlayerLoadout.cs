@@ -366,6 +366,21 @@ public class PlayerLoadout : MonoBehaviour
         else EquipWeapon(weaponToEquip);
     }
 
+    public void GetAmmo(AmmoData ammoType, ref int amount)
+    {
+        ammoType.currentAmmo += amount;
+
+        amount = 0;
+
+        if (ammoType.currentAmmo > ammoType.maxAmmo)
+        {
+            amount = ammoType.currentAmmo - ammoType.maxAmmo;
+            ammoType.currentAmmo = ammoType.maxAmmo;
+        }
+
+        SetAmmoUI();
+    }
+
     public void ReplaceCurrentWeapon(WeaponData newWeapon)
     {
         if (CurrentWeapon.Equals(loadout.Weapons[0]) && !newWeapon.Equals(loadout.Weapons[0]))
