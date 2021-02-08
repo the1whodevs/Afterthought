@@ -21,6 +21,8 @@ public class PlayerLoadout : MonoBehaviour
     public bool HasScope => CurrentWeapon.hasScope;
     public bool UsingEquipment => isUsingEquipment;
 
+    public bool SwitchingWeapons { get; private set; }
+
     public GameObject ScopeGameObject { get; private set; }
     
     /// <summary>
@@ -422,6 +424,7 @@ public class PlayerLoadout : MonoBehaviour
             loadout.Weapons[1] = newWeapon;
         else return;
 
+        SwitchingWeapons = true;
         StartCoroutine(SwitchWeapon(newWeapon));
     }
 
@@ -472,6 +475,7 @@ public class PlayerLoadout : MonoBehaviour
         Player.Active.Camera.currentZoom = CurrentWeapon.scopeZoom;
 
         OnWeaponEquipped?.Invoke(CurrentWeapon);
+        SwitchingWeapons = false;
     }
 
     private void GetFirePoint(GameObject objectToLookIn)

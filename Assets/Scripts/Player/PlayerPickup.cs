@@ -9,13 +9,17 @@ public class PlayerPickup : MonoBehaviour
     [SerializeField] private float pickupLength = 2.0f;
     [SerializeField] private LayerMask pickupLayers;
 
+    private bool fireResetRequired = false;
+
     private PlayerController pc;
+    private PlayerLoadout pl;
 
     private Transform playerCam;
 
     public void Init()
     {
         pc = Player.Active.Controller;
+        pl = Player.Active.Loadout;
 
         playerCam = Player.Active.Camera.transform;
     }
@@ -28,7 +32,7 @@ public class PlayerPickup : MonoBehaviour
 
         var itemHit = Physics.Raycast(playerCam.position, playerCam.forward, out var hit, pickupLength, pickupLayers, QueryTriggerInteraction.Collide);
 
-        if (!itemHit)
+        if (!itemHit || pl.SwitchingWeapons)
         {
             UIManager.Active.HideInteractPrompt();
         }
@@ -36,13 +40,16 @@ public class PlayerPickup : MonoBehaviour
         {
             var interact = Input.GetAxisRaw("Interact") > 0.0f;
 
+            if (!interact) fireResetRequired = false;
+
             // Prioritize loadout selector over other interactables.
             if (hit.transform.CompareTag(loadoutChangerTag))
             {
                 UIManager.Active.ShowInteractPrompt(KeyCode.F, "open loadout editor");
 
-                if (interact)
+                if (interact && !fireResetRequired)
                 {
+                    fireResetRequired = true;
                     pc.GetInUI();
                     Time.timeScale = 0.0f;
                     LoadoutEditor.Instance.ShowWindow();
@@ -58,17 +65,6 @@ public class PlayerPickup : MonoBehaviour
             UIManager.Active.ShowInteractPrompt(KeyCode.F, $"pickup {pickableHit.name}");
 
             if (interact) pickableHit.Interact();
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag(loadoutChangerTag))
-        {
-            if (!pc.IsInUI)
-            {
-                
-            }
         }
     }
 }
