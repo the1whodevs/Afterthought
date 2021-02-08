@@ -12,6 +12,7 @@ public class WeaponData : IDisplayableItem
     public AudioClip RandomShotAudioFX => shotAudioFx[Random.Range(0, shotAudioFx.Length)];
         
     public GameObject wepPrefab;
+    public GameObject pickablePrefab;
     public GameObject projectilePrefab;
     public GameObject muzzleEffect;
     

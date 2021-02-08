@@ -51,13 +51,13 @@ public class PlayerPickup : MonoBehaviour
                 return;
             }
 
-            var pickableHit = hit.transform.GetComponent<PickableObj>();
+            var pickableHit = hit.transform.GetComponent<InteractableObject>();
 
             if (!pickableHit) return;
 
             UIManager.Active.ShowInteractPrompt(KeyCode.F, $"pickup {pickableHit.name}");
 
-            if (interact) pickableHit.Pickup();
+            if (interact) pickableHit.Interact();
         }
     }
 

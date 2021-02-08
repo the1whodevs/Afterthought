@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PickableWeapon : PickableObj
+public class PickableWeapon : InteractableObject
 {
     [SerializeField] private WeaponData weaponToPickup;
 
@@ -9,12 +9,15 @@ public class PickableWeapon : PickableObj
         name = weaponToPickup.name;
     }
 
-    public override void Pickup()
+    public override void Interact()
     {
+        // 'Drop' current weapon.
+        Instantiate(Player.Active.Loadout.CurrentWeapon.pickablePrefab, transform.position, Quaternion.identity, null);
+
+        // Equip this weapon.
         Player.Active.Loadout.ReplaceCurrentWeapon(weaponToPickup);
 
-        Debug.Log("TODO: Also spawn pickable of weapon that is replaced!");
-
+        // Destroy pickable.
         Destroy(gameObject);
     }
 }

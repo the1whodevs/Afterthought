@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class XPCube : PickableObj
+public class XPCube : InteractableObject
 {
     [SerializeField] private int xpToReward = 100;
 
@@ -8,7 +8,7 @@ public class XPCube : PickableObj
 
     [SerializeField] private GameObject despawnEffect;
 
-    public override void Pickup()
+    public override void Interact()
     {
         Player.Active.Experience.GetXP(xpToReward);
 
