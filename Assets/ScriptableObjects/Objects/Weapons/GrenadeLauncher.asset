@@ -19,6 +19,8 @@ MonoBehaviour:
   levelRequired: 1
   isLooted: 0
   wepPrefab: {fileID: 1162446373548900, guid: de3ce606167c3e14698b0790ea606d60, type: 3}
+  pickablePrefab: {fileID: 2326169280053187973, guid: 282056b0a34c9c944a54ac2e6672205a,
+    type: 3}
   projectilePrefab: {fileID: 3015798782867532452, guid: 31f1f74e508898b45b2df01f9e0d945b,
     type: 3}
   muzzleEffect: {fileID: 8074025935625787356, guid: 0f3abd8175ce493419774b294410859f,
@@ -38,6 +40,7 @@ MonoBehaviour:
   - {fileID: 8106189462210167934, guid: f3fc4765e1729e24fada59150233fbeb, type: 3}
   - {fileID: 8360897983169464813, guid: 54d17ef0927945b4e8a0c8c96761cfe7, type: 3}
   weaponType: 1
+  weaponAnimType: 1
   fireType: 2
   ammoType: {fileID: 11400000, guid: 69594e37480eace44902a9601c1154e6, type: 2}
   ammoInMagazine: 30
