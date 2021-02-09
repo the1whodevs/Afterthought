@@ -53,7 +53,8 @@ namespace EmeraldAI
             }
 
             CameraTransform.localRotation = m_OriginalRotation;
-            CameraTransform.localPosition = m_OriginalPosition;
+            Player.Active.Camera.FixCameraOffset();
+            //CameraTransform.localPosition = m_OriginalPosition;
         }
     }
 }

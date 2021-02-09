@@ -27,6 +27,8 @@ public class PlayerCamera : MonoBehaviour
 
     [SerializeField] private Camera zoomCamera;
 
+    private Vector3 offsetFromPlayer;
+
     private Dictionary<string, float> zoomLevels = new Dictionary<string, float>();
     
     private GameObject zoomCameraGameObject;
@@ -44,6 +46,8 @@ public class PlayerCamera : MonoBehaviour
 
     private void Start()
     {
+        offsetFromPlayer = transform.parent.position - transform.position;
+
         zoomLevels.Add("X1", 60.0f);
         zoomLevels.Add("X2", 30.0f);
         zoomLevels.Add("X4", 15.0f);
@@ -116,6 +120,11 @@ public class PlayerCamera : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(zoom), zoom, null);
         }
+    }
+
+    public void FixCameraOffset()
+    {
+        transform.position = transform.parent.position + offsetFromPlayer;
     }
 
     public void ApplyRecoil(float horizontalForce, float verticalForce)

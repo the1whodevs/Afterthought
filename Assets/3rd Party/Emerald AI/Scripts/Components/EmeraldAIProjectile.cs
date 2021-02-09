@@ -282,6 +282,8 @@ namespace EmeraldAI.Utility
                 {
                     if (!HeatSeekingFinished)
                     {
+                        if (!ProjectileCurrentTarget) return;
+
                         if (TargetTypeRef == TargetType.AI && TargetEmeraldSystem != null)
                         {
                             AdjustTargetPosition = TargetEmeraldSystem.HitPointTransform.position;
