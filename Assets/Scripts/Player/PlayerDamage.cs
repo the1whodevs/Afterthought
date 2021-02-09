@@ -106,7 +106,7 @@ public class PlayerDamage : MonoBehaviour
             for (var i = 0; i < numOfBursts; i++)
             {
                 ShotgunFirearmDamage();
-                yield return new WaitForSeconds(DELAY_BETWEEN_BURSTS);
+                yield return new WaitForSeconds((1f/1000f) * DELAY_BETWEEN_BURSTS);
             }
         }
         else
@@ -114,7 +114,7 @@ public class PlayerDamage : MonoBehaviour
             for (var i = 0; i < numOfBursts; i++)
             {
                 NonShotgunFirearmDamage();
-                yield return new WaitForSeconds(DELAY_BETWEEN_BURSTS);
+                yield return new WaitForSeconds((1f / 1000f) * DELAY_BETWEEN_BURSTS);
             }
         }
     }
