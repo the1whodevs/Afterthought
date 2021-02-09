@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1a975727f99e04bbef5ff4da983d6e, type: 3}
   m_Name: PBR Assault Rifle
   m_EditorClassIdentifier: 
-  AbilityName: Firing_Test
+  AbilityName: PBR Assault Rifle
   AbilityDescription: Ability Description
   AbilityDamage: 5
   AbilityDamagePerIncrement: 5
@@ -27,12 +27,12 @@ MonoBehaviour:
   SummonRadius: 10
   ProjectileSpeed: 100
   ProjectileTimeoutSeconds: 6
-  ColliderRadius: 0.5
+  ColliderRadius: 0.05
   TimeoutTime: 4.5
   CollisionTime: 0
-  HeatSeekingSeconds: 0
-  CastEffectTimeoutSeconds: 2
-  AbilityEffectTimeoutSeconds: 5
+  HeatSeekingSeconds: 0.01
+  CastEffectTimeoutSeconds: 0.5
+  AbilityEffectTimeoutSeconds: 23.8
   SummonEffectTimeoutSeconds: 3
   CollisionTimeout: 3
   DamageOvertimeTimeout: 3
@@ -46,9 +46,9 @@ MonoBehaviour:
   DamageOverTimeEffect: {fileID: 0}
   DamageOverTimeSound: {fileID: 0}
   CollisionEffect: {fileID: 0}
-  ImpactSound: {fileID: 8300000, guid: eb61eb7445c3e3b498fd888667c5d3c8, type: 3}
+  ImpactSound: {fileID: 8300000, guid: 3a359142207250a4991c853fab83920b, type: 3}
   SummonSound: {fileID: 0}
-  CastSound: {fileID: 8300000, guid: ff3632769834f53428158bf43c944da1, type: 3}
+  CastSound: {fileID: 8300000, guid: 30739ee4f1717a04bb9dd3aa2a5a4df3, type: 3}
   UseRandomizedTrajectory: 0
   UseGravity: 0
   TrajectoryXOffsetMin: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   TrajectoryZOffsetMax: 0
   EffectOnCollisionRef: 0
   SoundOnCollisionRef: 1
-  HeatSeekingRef: 0
+  HeatSeekingRef: 1
   AbilityType: 0
   DamageType: 0
   SupportType: 0

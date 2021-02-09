@@ -2068,6 +2068,7 @@ namespace EmeraldAI
             else if (WeaponTypeRef == WeaponType.Ranged)
             {
                 CreateEmeraldProjectile();
+                Debug.Log("EmeraldAIAttackEvent");
             }
         }
 
