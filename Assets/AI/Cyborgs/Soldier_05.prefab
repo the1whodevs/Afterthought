@@ -6047,7 +6047,7 @@ MonoBehaviour:
   CurrentDamageAmount: 5
   DamageAmountRun: 5
   WanderRadius: 25
-  TabNumber: 1
+  TabNumber: 4
   TemperamentTabNumber: 2
   DetectionTagsTabNumber: 1
   AnimationTabNumber: 1
@@ -6296,7 +6296,13 @@ MonoBehaviour:
   InjuredSounds: []
   WarningSounds: []
   DeathSounds: []
-  FootStepSounds: []
+  FootStepSounds:
+  - {fileID: 8300000, guid: a949718d1e7476a42ab35b929bdb7a18, type: 3}
+  - {fileID: 8300000, guid: 215c79b218587fa409949eceb1957b63, type: 3}
+  - {fileID: 8300000, guid: 169fe634881d2684ea7fdb7ac3e5d0d8, type: 3}
+  - {fileID: 8300000, guid: c271b719379201345a6a44a1b582c527, type: 3}
+  - {fileID: 8300000, guid: d0885593e1f69924bb5673f90877b5f5, type: 3}
+  - {fileID: 8300000, guid: 1c836aca5eaebc54b8112e681bf3a968, type: 3}
   BlockingSounds: []
   ImpactSounds: []
   CriticalHitSounds: []
@@ -6442,18 +6448,18 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 0
+  DopplerLevel: 2.5
   MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -6501,7 +6507,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.16916667
       inSlope: 0
       outSlope: 0
       tangentMode: 0
