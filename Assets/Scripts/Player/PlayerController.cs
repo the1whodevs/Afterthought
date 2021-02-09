@@ -364,6 +364,8 @@ public class PlayerController : MonoBehaviour
     public void ExitUI()
     {
         IsInUI = false;
+
+        Player.Active.Camera.LoadSensitivityValues();
     }
 
     public float[] GetTerrainTexture()
@@ -371,4 +373,5 @@ public class PlayerController : MonoBehaviour
         var pos = ConvertPosition();
         return CheckTexture(pos.x, pos.y);
     }
+
 }

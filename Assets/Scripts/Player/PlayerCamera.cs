@@ -58,8 +58,7 @@ public class PlayerCamera : MonoBehaviour
         
         cameraT = transform;
 
-        mouseSensitivity_X = PlayerPrefs.GetFloat(MainMenu.HORIZONTAL_SENS_KEY, 1.5f);
-        mouseSensitivity_Y = PlayerPrefs.GetFloat(MainMenu.VERTICAL_SENS_KEY, 1.5f);
+        LoadSensitivityValues();
 
         RotatePlayer(playerT.rotation.eulerAngles.y, cameraT.localRotation.x, Time.deltaTime);
     }
@@ -125,6 +124,13 @@ public class PlayerCamera : MonoBehaviour
     public void FixCameraOffset()
     {
         transform.position = transform.parent.position + offsetFromPlayer;
+    }
+
+
+    public void LoadSensitivityValues()
+    {
+        mouseSensitivity_X = PlayerPrefs.GetFloat(MainMenu.HORIZONTAL_SENS_KEY, 1.5f);
+        mouseSensitivity_Y = PlayerPrefs.GetFloat(MainMenu.VERTICAL_SENS_KEY, 1.5f);
     }
 
     public void ApplyRecoil(float horizontalForce, float verticalForce)
