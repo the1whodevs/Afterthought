@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 552395169842369738}
   - component: {fileID: 1045828706795419859}
   - component: {fileID: 2051558668596746703}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Pickable Jadeaxe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
+  floatSpeed: 0.5
+  floatDist: 0.25
+  rotSpeed: 0.125
   weaponToPickup: {fileID: 11400000, guid: 912257851c082a44bb9336c3183d8025, type: 2}
 --- !u!65 &2051558668596746703
 BoxCollider:
@@ -73,7 +76,7 @@ GameObject:
   - component: {fileID: 5992284423460463624}
   - component: {fileID: 6890931717137976322}
   - component: {fileID: 4434352537928000956}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: polySurface2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +155,7 @@ GameObject:
   - component: {fileID: 5648367952711974605}
   - component: {fileID: 4507151873641620704}
   - component: {fileID: 4262244883983507882}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: polySurface1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +234,7 @@ GameObject:
   - component: {fileID: 357459909587187094}
   - component: {fileID: 8464081919634004052}
   - component: {fileID: 4303005583167638172}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: polySurface3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

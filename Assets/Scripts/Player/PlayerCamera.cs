@@ -153,14 +153,15 @@ public class PlayerCamera : MonoBehaviour
         zoomCameraGameObject.SetActive(status);
 
         var scope = Player.Active.Loadout.ScopeGameObject;
-        
+
+        if (status) currentZoom = Player.Active.Loadout.CurrentWeapon.scopeZoom;
+        else currentZoom = ZoomLevels.X1;
+
         if (scope) scope.SetActive(status);
     }
 
     private void AdjustCameraToCurrentZoom(float delta)
     {
-        if (!zoomCameraGameObject.activeInHierarchy) return;
-        
         var targetFov = zoomLevels[ZoomEnumToString(currentZoom)];
         
         var currentFov = zoomCamera.fieldOfView;

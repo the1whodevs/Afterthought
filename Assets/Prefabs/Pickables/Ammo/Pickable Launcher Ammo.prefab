@@ -65,6 +65,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Launcher Ammo
+  floatSpeed: 0.5
+  floatDist: 0.25
+  rotSpeed: 0.125
   ammoToGive: 6
   ammoTypeToGive: {fileID: 11400000, guid: 69594e37480eace44902a9601c1154e6, type: 2}
   despawnEffect: {fileID: 0}
@@ -215,6 +218,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrenadeLauncher_Ammo (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3015798782867532452, guid: 31f1f74e508898b45b2df01f9e0d945b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3348053923347681779, guid: 31f1f74e508898b45b2df01f9e0d945b, type: 3}
     - {fileID: 4913021669505520575, guid: 31f1f74e508898b45b2df01f9e0d945b, type: 3}
@@ -292,6 +300,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GrenadeLauncher_Ammo (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015798782867532452, guid: 31f1f74e508898b45b2df01f9e0d945b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3348053923347681779, guid: 31f1f74e508898b45b2df01f9e0d945b, type: 3}
@@ -371,6 +384,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrenadeLauncher_Ammo (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3015798782867532452, guid: 31f1f74e508898b45b2df01f9e0d945b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3348053923347681779, guid: 31f1f74e508898b45b2df01f9e0d945b, type: 3}
     - {fileID: 4913021669505520575, guid: 31f1f74e508898b45b2df01f9e0d945b, type: 3}
@@ -448,6 +466,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GrenadeLauncher_Ammo (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015798782867532452, guid: 31f1f74e508898b45b2df01f9e0d945b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3348053923347681779, guid: 31f1f74e508898b45b2df01f9e0d945b, type: 3}
@@ -527,6 +550,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrenadeLauncher_Ammo (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3015798782867532452, guid: 31f1f74e508898b45b2df01f9e0d945b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3348053923347681779, guid: 31f1f74e508898b45b2df01f9e0d945b, type: 3}
     - {fileID: 4913021669505520575, guid: 31f1f74e508898b45b2df01f9e0d945b, type: 3}
@@ -604,6 +632,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GrenadeLauncher_Ammo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015798782867532452, guid: 31f1f74e508898b45b2df01f9e0d945b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3348053923347681779, guid: 31f1f74e508898b45b2df01f9e0d945b, type: 3}

@@ -6,18 +6,19 @@ public class InteractableObject : MonoBehaviour
 
     [SerializeField] protected float floatSpeed = 2.5f;
     [SerializeField] protected float floatDist = 1.0f;
-    [SerializeField] protected float rotSpeed = 10.0f;
+    [SerializeField, Tooltip("Rotations per second")] protected float rotSpeed = 10.0f;
 
-    private float startY;
-    private float toY;
+    private float startPosY;
+    private float endPosY;
+    private float currentFloatSpeed;
 
-    private const float TOLERANCE = 0.0001f;
+    private float floatT = 0.0f;
 
     private void Start()
     {
-        startY = transform.position.y;
-
-        toY = startY + floatDist;
+        currentFloatSpeed = floatSpeed;
+        startPosY = transform.position.y;
+        endPosY = startPosY + floatDist;
     }
 
     private void Update()
@@ -28,21 +29,24 @@ public class InteractableObject : MonoBehaviour
 
     private void Rotate()
     {
-        transform.Rotate(Vector3.up * rotSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.up * 360.0f * rotSpeed * Time.deltaTime);
     }
 
     private void FloatUpDown()
     {
         var pos = transform.position;
+        floatT += Time.deltaTime * currentFloatSpeed;
+        pos.y = Mathf.Lerp(startPosY, endPosY, floatT);
 
-        pos.y = Mathf.Lerp(pos.y, toY, Time.deltaTime * floatSpeed);
-
-        if (Mathf.Abs(pos.y - toY) <= TOLERANCE) 
+        if (floatT >= 1.0f)
         {
-            if (Mathf.Approximately(toY, startY))
-                toY = startY + floatDist;
-            else
-                toY = startY;
+            floatT = 1.0f;
+            currentFloatSpeed = -currentFloatSpeed;
+        }
+        else if (floatT <= 0.0f)
+        {
+            floatT = 0.0f;
+            currentFloatSpeed = -currentFloatSpeed;
         }
 
         transform.position = pos;
