@@ -2183,7 +2183,6 @@ GameObject:
   - component: {fileID: 5475359895772086152}
   - component: {fileID: 8396010996576331121}
   - component: {fileID: 6770779297104118188}
-  - component: {fileID: 1791622972110417630}
   m_Layer: 16
   m_Name: Soldier_02
   m_TagString: Respawn
@@ -2198,7 +2197,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2180620056688173829}
-  m_LocalRotation: {x: -0, y: -0.66944104, z: -0, w: 0.74286526}
+  m_LocalRotation: {x: 0, y: -0.66944194, z: 0, w: 0.74286443}
   m_LocalPosition: {x: -75.849, y: 0.10000001, z: 3.221}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
@@ -2722,7 +2721,7 @@ MonoBehaviour:
   CurrentDamageAmount: 5
   DamageAmountRun: 5
   WanderRadius: 25
-  TabNumber: 6
+  TabNumber: 1
   TemperamentTabNumber: 2
   DetectionTagsTabNumber: 1
   AnimationTabNumber: 1
@@ -3285,32 +3284,8 @@ MonoBehaviour:
   hitEffect: {fileID: 258580847482720398, guid: 540fb040d674efb4b9efe04a40b8712c,
     type: 3}
   hitDecal:
-  - {fileID: 2980059464862511782, guid: 0d108913a24953242b9fd2615389b2d2, type: 3}
-  - {fileID: 7451982899520276796, guid: 88410d22c9389074b897fb2ee54c7544, type: 3}
-  - {fileID: 250868956377727726, guid: 2ed92d32608b2224fb205adf5e3ecfa7, type: 3}
-  - {fileID: 2426192354539326223, guid: 254e6f6087e48724eb3b80f881bc48a9, type: 3}
+  - {fileID: 1205859011489787164, guid: 3fa7af457e4ce9f49a49ca72b80148ee, type: 3}
   explosionDecal: []
---- !u!114 &1791622972110417630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2180620056688173829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82f30180d911a804089f33d1878ee980, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectingRenderers:
-  - targetRenderer: {fileID: 1704098035519714409}
-    setuppingRenderers: []
-  texturePropertyName: _DamageMask
-  textureResolution: 2048
-  zDepth: -1
-  brushes:
-  - size: 0.2
-    brush: {fileID: 2800000, guid: 71b8b61d38e4d144c891b17d70151eb6, type: 3}
 --- !u!1 &2203154768528369684
 GameObject:
   m_ObjectHideFlags: 0
@@ -4899,7 +4874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &407978067857367044
 Transform:
   m_ObjectHideFlags: 0
@@ -6336,7 +6311,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.42572019, y: -0.0000029066578, z: 0.0000001351}
+  m_ConnectedAnchor: {x: 0.42572024, y: -0.0000029066578, z: 0.00000014255058}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -8508,7 +8483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4408116598516046768
 Transform:
   m_ObjectHideFlags: 0
