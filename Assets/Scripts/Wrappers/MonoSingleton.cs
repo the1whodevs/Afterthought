@@ -36,7 +36,7 @@ public class MonoSingleton<T, R> : MonoBehaviour where T: MonoBehaviour where R:
                     break;
 
                 case ReportMissingInstanceType.Warning:
-                    Debug.Log($"Missing {nameof(T)} instance!");
+                    Debug.LogWarning($"Missing {nameof(T)} instance!");
                     break;
 
                 case ReportMissingInstanceType.Create:

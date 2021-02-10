@@ -13,8 +13,8 @@ public class LoadoutData : ScriptableObject
 
     public void CopyTo(LoadoutData target)
     {
-        target.Weapons = Weapons;
-        target.Equipment = Equipment;
-        target.Talents = Talents;
+        target.Weapons = new WeaponData[] { Weapons[0], Weapons[1] };
+        target.Equipment = new EquipmentData[] { Equipment[0], Equipment[1] };
+        target.Talents = new TalentData[] { Talents[0], Talents[1], Talents[2] };
     }
 }

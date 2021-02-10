@@ -86,6 +86,8 @@ public class PlayerLoadout : MonoBehaviour
             ammoData.LoadData();
         }
 
+        ChangeActiveLoadout(TrainingManager.GetTrainingLoadout());
+
         EquipPrimaryWeapon();
     }
 
@@ -133,6 +135,8 @@ public class PlayerLoadout : MonoBehaviour
     {
         foreach (var talent in loadout.Talents)
         {
+            if (!talent) continue;
+
             if (talent.Talent == TalentData.TalentType.IncreaseWeaponTypeDmg &&
                 talent.WeaponTypeAffected == typeToCheck) return talent;
         }
@@ -144,6 +148,8 @@ public class PlayerLoadout : MonoBehaviour
     {
         foreach (var talent in loadout.Talents)
         {
+            if (!talent) continue;
+
             if (talent.Talent == TalentData.TalentType.IncreaseEquipmentDamage) return talent;
         }
 
@@ -154,6 +160,8 @@ public class PlayerLoadout : MonoBehaviour
     {
         foreach (var talent in loadout.Talents)
         {
+            if (!talent) continue;
+
             if (talent.Talent == TalentData.TalentType.IncreaseDamageWhileCrouching) return talent;
         }
 
@@ -164,6 +172,7 @@ public class PlayerLoadout : MonoBehaviour
     {
         foreach (var talent in loadout.Talents)
         {
+            if (!talent) continue;
             if (talent.Talent == TalentData.TalentType.IncreaseMaxHealth) return talent;
         }
 
@@ -174,6 +183,8 @@ public class PlayerLoadout : MonoBehaviour
     {
         foreach (var talent in loadout.Talents)
         {
+            if (!talent) continue;
+
             if (talent.Talent == TalentData.TalentType.IncreaseMaxStamina) return talent;
         }
 
@@ -184,6 +195,8 @@ public class PlayerLoadout : MonoBehaviour
     {
         foreach (var talent in loadout.Talents)
         {
+            if (!talent) continue;
+
             if (talent.Talent == TalentData.TalentType.NoMobilityPenalty) return talent;
         }
 
@@ -194,6 +207,8 @@ public class PlayerLoadout : MonoBehaviour
     {
         foreach (var talent in loadout.Talents)
         {
+            if (!talent) continue;
+
             if (talent.Talent == TalentData.TalentType.MinimalVerticalRecoil) return talent;
         }
 
@@ -204,6 +219,8 @@ public class PlayerLoadout : MonoBehaviour
     {
         foreach (var talent in loadout.Talents)
         {
+            if (!talent) continue;
+
             if (talent.Talent == TalentData.TalentType.MinimalHorizontalRecoil) return talent;
         }
 
@@ -214,6 +231,8 @@ public class PlayerLoadout : MonoBehaviour
     {
         foreach (var talent in loadout.Talents)
         {
+            if (!talent) continue;
+
             if (talent.Talent == TalentData.TalentType.FasterReloading) return talent;
         }
 
@@ -224,6 +243,8 @@ public class PlayerLoadout : MonoBehaviour
     {
         foreach (var talent in loadout.Talents)
         {
+            if (!talent) continue;
+
             if (talent.Talent == TalentData.TalentType.FasterCrouchSpeed) return talent;
         }
 
@@ -381,6 +402,7 @@ public class PlayerLoadout : MonoBehaviour
             if (loadout.Equipment[0].currentAmmo < loadout.Equipment[0].magazineCapacity)
             {
                 loadout.Equipment[0].currentAmmo++;
+                SetAmmoUI();
                 return true;
             }
 
@@ -392,6 +414,7 @@ public class PlayerLoadout : MonoBehaviour
             if (loadout.Equipment[1].currentAmmo < loadout.Equipment[1].magazineCapacity)
             {
                 loadout.Equipment[1].currentAmmo++;
+                SetAmmoUI();
                 return true;
             }
 
