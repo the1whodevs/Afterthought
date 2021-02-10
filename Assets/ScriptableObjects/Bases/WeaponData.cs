@@ -56,6 +56,12 @@ public class WeaponData : IDisplayableItem
 
     public void ReloadMag(ref int availableAmmo)
     {
+        if (availableAmmo == 0)
+        {
+            Debug.Log("Trying to reload with 0 ammo left");
+            return;
+        }
+
         var bulletsForMax = magazineCapacity - ammoInMagazine;
         
         //  Removed warning as it will most likely hit on high reload speeds.
