@@ -27,12 +27,12 @@ MonoBehaviour:
   SummonRadius: 10
   ProjectileSpeed: 150
   ProjectileTimeoutSeconds: 6
-  ColliderRadius: 1.5
+  ColliderRadius: 0.05
   TimeoutTime: 4.5
   CollisionTime: 0
-  HeatSeekingSeconds: 0
-  CastEffectTimeoutSeconds: 3
-  AbilityEffectTimeoutSeconds: 1.5
+  HeatSeekingSeconds: 0.05
+  CastEffectTimeoutSeconds: 4
+  AbilityEffectTimeoutSeconds: 24
   SummonEffectTimeoutSeconds: 3
   CollisionTimeout: 3
   DamageOvertimeTimeout: 3
@@ -48,7 +48,7 @@ MonoBehaviour:
   CollisionEffect: {fileID: 0}
   ImpactSound: {fileID: 8300000, guid: 3a359142207250a4991c853fab83920b, type: 3}
   SummonSound: {fileID: 0}
-  CastSound: {fileID: 8300000, guid: 5693fed405509e848b0b55568ab65ece, type: 3}
+  CastSound: {fileID: 8300000, guid: a457b372289f4e64eb8a3bf6988442f1, type: 3}
   UseRandomizedTrajectory: 0
   UseGravity: 0
   TrajectoryXOffsetMin: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   TrajectoryZOffsetMax: 0
   EffectOnCollisionRef: 0
   SoundOnCollisionRef: 1
-  HeatSeekingRef: 0
+  HeatSeekingRef: 1
   AbilityType: 0
   DamageType: 0
   SupportType: 0

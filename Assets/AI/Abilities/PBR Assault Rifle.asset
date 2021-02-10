@@ -30,9 +30,9 @@ MonoBehaviour:
   ColliderRadius: 0.05
   TimeoutTime: 4.5
   CollisionTime: 0
-  HeatSeekingSeconds: 0.01
-  CastEffectTimeoutSeconds: 0.5
-  AbilityEffectTimeoutSeconds: 23.8
+  HeatSeekingSeconds: 0.05
+  CastEffectTimeoutSeconds: 4
+  AbilityEffectTimeoutSeconds: 24
   SummonEffectTimeoutSeconds: 3
   CollisionTimeout: 3
   DamageOvertimeTimeout: 3
@@ -71,4 +71,4 @@ MonoBehaviour:
   UseCustomAbilityIcon: 0
   UseCastEffect: 1
   ArrowProjectileRef: 0
-  AbilityEditorTabs: 1
+  AbilityEditorTabs: 2
