@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class UIManager : MonoBehaviour
     public GameObject HealthBar => healthBar;
 
     [SerializeField] private TextMeshProUGUI interactPrompt;
+    [SerializeField] private TextMeshProUGUI objectivePrompt;
 
     [SerializeField] private TextMeshProUGUI weaponAmmoCount;
     [SerializeField] private TextMeshProUGUI equipmentAammoCount;
@@ -20,6 +22,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject healthBar;
+
+    [SerializeField] private float objectiveTextSpeed = 1.0f;
 
     private void Awake()
     {
@@ -34,6 +38,31 @@ public class UIManager : MonoBehaviour
         healthBar.SetActive(true);
 
         UpdateAmmoIcons(Player.Active.Loadout.Loadout, Player.Active.Loadout.CurrentWeapon);
+    }
+
+    public void UpdateObjectiveText(string newObjective)
+    { 
+        StartCoroutine(UpdateObjectiveTextSmoothly(newObjective));
+    }
+
+    private IEnumerator UpdateObjectiveTextSmoothly(string newText)
+    {
+        var t = 0.0f;
+
+        objectivePrompt.text = "<sprite=0>";
+
+        string textToDisplay;
+
+        while (t <= 1.0f)
+        {
+            t += Time.deltaTime * objectiveTextSpeed;
+
+            var targetLength = Mathf.CeilToInt(Mathf.Clamp(newText.Length * t, 0, newText.Length));
+            textToDisplay = newText.Substring(0, targetLength);
+            objectivePrompt.text = "<sprite=0> " + textToDisplay;
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     public void ShowInteractPrompt(KeyCode keyPrompt, string actionName)

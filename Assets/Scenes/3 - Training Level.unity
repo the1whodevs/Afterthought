@@ -5482,7 +5482,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 139843367}
-  - component: {fileID: 139843368}
   m_Layer: 0
   m_Name: Ranged Spawn Enemy Trigger
   m_TagString: Untagged
@@ -5504,19 +5503,6 @@ Transform:
   m_Father: {fileID: 153388582}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &139843368
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139843366}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &141867769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6054,7 +6040,6 @@ GameObject:
   m_Component:
   - component: {fileID: 153388582}
   - component: {fileID: 153388583}
-  - component: {fileID: 153388584}
   m_Layer: 0
   m_Name: Training Manager
   m_TagString: Untagged
@@ -6096,22 +6081,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trainingLoadout: {fileID: 11400000, guid: dfc166be42d075243a98d3ff98c00cf9, type: 2}
---- !u!54 &153388584
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153388581}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  pickupEquipmentObjectives: []
+  pickupWeaponObjectives:
+  - order: 1
+    objectiveType: 0
+    objectiveText: Pickup the Cyber Blade
+    objectiveItem: {fileID: 11400000, guid: 3e7d1ef436ebea24dbb71d4af97bb105, type: 2}
+  killTargetsObjectives: []
+  goToAreaObjectives:
+  - order: 0
+    objectiveType: 3
+    objectiveText: Go to melee training
+    targetPosition: {fileID: 295609403}
+    distTolerance: 6.261935
+  playerTag: Player
 --- !u!4 &153402224 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 452652, guid: b5dd74dbb0fbdd849bc839d08c1e681b,
@@ -9077,7 +9060,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 271167258}
-  - component: {fileID: 271167259}
   m_Layer: 0
   m_Name: Projectile Entrance Trigger
   m_TagString: Untagged
@@ -9099,19 +9081,6 @@ Transform:
   m_Father: {fileID: 153388582}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
---- !u!65 &271167259
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271167257}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &272131614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10172,7 +10141,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 295609403}
-  - component: {fileID: 295609402}
   m_Layer: 0
   m_Name: Melee Entrance Trigger
   m_TagString: Untagged
@@ -10180,19 +10148,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &295609402
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295609401}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &295609403
 Transform:
   m_ObjectHideFlags: 0
@@ -10201,7 +10156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295609401}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -89.266, y: 1.8077695, z: -30.63613}
+  m_LocalPosition: {x: -89.266, y: 1.8077695, z: -30.72}
   m_LocalScale: {x: 0.03, y: 5.3424, z: 12.523866}
   m_Children: []
   m_Father: {fileID: 153388582}
@@ -30484,7 +30439,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 783218501}
-  - component: {fileID: 783218502}
   m_Layer: 0
   m_Name: Projectile Spawn Enemy Trigger
   m_TagString: Untagged
@@ -30506,19 +30460,6 @@ Transform:
   m_Father: {fileID: 153388582}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
---- !u!65 &783218502
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783218500}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &783406912 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 414590, guid: 8118c9a8cb3ef1e4ab3efb33c9b10a79,
@@ -58171,7 +58112,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1437402104}
-  - component: {fileID: 1437402105}
   m_Layer: 0
   m_Name: Ranged Entrance Trigger
   m_TagString: Untagged
@@ -58193,19 +58133,6 @@ Transform:
   m_Father: {fileID: 153388582}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
---- !u!65 &1437402105
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437402103}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1437625411 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 466518, guid: a6a545fc6c2315b4ab024a3e6dc2ffde,
@@ -65185,7 +65112,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1601751344}
-  - component: {fileID: 1601751345}
   m_Layer: 0
   m_Name: Progression Entrance Trigger
   m_TagString: Untagged
@@ -65207,19 +65133,6 @@ Transform:
   m_Father: {fileID: 153388582}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
---- !u!65 &1601751345
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601751343}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1601761094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67178,7 +67091,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1645926450}
-  - component: {fileID: 1645926451}
   m_Layer: 0
   m_Name: Melee Spawn Enemy Trigger
   m_TagString: Untagged
@@ -67200,19 +67112,6 @@ Transform:
   m_Father: {fileID: 153388582}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1645926451
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645926449}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1646375015 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 443630, guid: 33230544a05eb454f90bf047f8900f0f,
@@ -79355,6 +79254,72 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1582450330}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1938464906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1938464909}
+  - component: {fileID: 1938464908}
+  - component: {fileID: 1938464907}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1938464907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938464906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1938464908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938464906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1938464909
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938464906}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1939823441
 PrefabInstance:
   m_ObjectHideFlags: 0
