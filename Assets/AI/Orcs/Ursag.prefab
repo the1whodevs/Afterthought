@@ -512,7 +512,6 @@ GameObject:
   - component: {fileID: 8563798163777141401}
   - component: {fileID: 8563798163777141400}
   - component: {fileID: 1060335091}
-  - component: {fileID: 353331370}
   m_Layer: 16
   m_Name: Ursag
   m_TagString: Respawn
@@ -1612,32 +1611,8 @@ MonoBehaviour:
   hitEffect: {fileID: 258580847482720398, guid: 907189bb1273a83499f4581146d101a5,
     type: 3}
   hitDecal:
-  - {fileID: 2980059464862511782, guid: 0d108913a24953242b9fd2615389b2d2, type: 3}
-  - {fileID: 7451982899520276796, guid: 88410d22c9389074b897fb2ee54c7544, type: 3}
-  - {fileID: 250868956377727726, guid: 2ed92d32608b2224fb205adf5e3ecfa7, type: 3}
-  - {fileID: 2426192354539326223, guid: 254e6f6087e48724eb3b80f881bc48a9, type: 3}
+  - {fileID: 1205859011489787164, guid: 3fa7af457e4ce9f49a49ca72b80148ee, type: 3}
   explosionDecal: []
---- !u!114 &353331370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8563798163777141403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82f30180d911a804089f33d1878ee980, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectingRenderers:
-  - targetRenderer: {fileID: 8589544069659741257}
-    setuppingRenderers: []
-  texturePropertyName: _DamageMask
-  textureResolution: 2048
-  zDepth: -1
-  brushes:
-  - size: 0.2
-    brush: {fileID: 2800000, guid: 71b8b61d38e4d144c891b17d70151eb6, type: 3}
 --- !u!1 &8563804804638064911
 GameObject:
   m_ObjectHideFlags: 0

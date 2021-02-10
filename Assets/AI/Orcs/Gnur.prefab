@@ -411,7 +411,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.24486913, y: 0.011415033, z: -0.022753697}
+  m_ConnectedAnchor: {x: 0.2448691, y: 0.011414991, z: -0.022753576}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -677,7 +677,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.42572245, y: 0.00000027567148, z: -0.0000000068102963}
+  m_ConnectedAnchor: {x: -0.4257225, y: 0.0000002766028, z: -0.000000014260877}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -816,7 +816,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.2448716, y: -0.011415244, z: 0.022756845}
+  m_ConnectedAnchor: {x: -0.2448716, y: -0.011415236, z: 0.022756726}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -924,7 +924,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.3629059, y: -0.012924841, z: 0.000000059768425}
+  m_ConnectedAnchor: {x: -0.36290577, y: -0.012924825, z: 0.000000059768425}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -1322,7 +1322,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.21687742, y: 0.056914177, z: 0.20600003}
+  m_ConnectedAnchor: {x: -0.2168773, y: 0.05691418, z: 0.20600003}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -2135,7 +2135,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.4257203, y: 0.0000003799796, z: -0.000000042375177}
+  m_ConnectedAnchor: {x: 0.4257203, y: 0.0000003883615, z: 0.000000016123522}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -2275,7 +2275,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.21687753, y: 0.056914147, z: -0.20599991}
+  m_ConnectedAnchor: {x: -0.21687742, y: 0.056914177, z: -0.20599991}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -2699,7 +2699,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.014488063, y: -0.005314309, z: -0.09005824}
+  m_ConnectedAnchor: {x: 0.014488122, y: -0.0053143096, z: -0.090058036}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -2987,7 +2987,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.01448629, y: -0.0053143026, z: 0.09005784}
+  m_ConnectedAnchor: {x: 0.014486349, y: -0.005314303, z: 0.090058036}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -3346,7 +3346,6 @@ GameObject:
   - component: {fileID: 3545882219019358141}
   - component: {fileID: 3545882219019358140}
   - component: {fileID: 128654102}
-  - component: {fileID: 2101231912}
   m_Layer: 16
   m_Name: Gnur
   m_TagString: Respawn
@@ -4458,32 +4457,8 @@ MonoBehaviour:
   hitEffect: {fileID: 258580847482720398, guid: 907189bb1273a83499f4581146d101a5,
     type: 3}
   hitDecal:
-  - {fileID: 2980059464862511782, guid: 0d108913a24953242b9fd2615389b2d2, type: 3}
-  - {fileID: 7451982899520276796, guid: 88410d22c9389074b897fb2ee54c7544, type: 3}
-  - {fileID: 250868956377727726, guid: 2ed92d32608b2224fb205adf5e3ecfa7, type: 3}
-  - {fileID: 2426192354539326223, guid: 254e6f6087e48724eb3b80f881bc48a9, type: 3}
+  - {fileID: 1205859011489787164, guid: 3fa7af457e4ce9f49a49ca72b80148ee, type: 3}
   explosionDecal: []
---- !u!114 &2101231912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3545882219019358143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82f30180d911a804089f33d1878ee980, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectingRenderers:
-  - targetRenderer: {fileID: 3521522451322490301}
-    setuppingRenderers: []
-  texturePropertyName: _DamageMask
-  textureResolution: 2048
-  zDepth: -1
-  brushes:
-  - size: 0.2
-    brush: {fileID: 2800000, guid: 71b8b61d38e4d144c891b17d70151eb6, type: 3}
 --- !u!1 &3545886650409454777
 GameObject:
   m_ObjectHideFlags: 0
