@@ -9,7 +9,7 @@ public abstract class ObjectiveData
 
     public enum ObjectiveType { PickupWeapon, PickupEquipment, KillTargets, GoToArea, None }
 
-    public ObjectiveType objectiveType = ObjectiveType.None;
+    public ObjectiveType objectiveType { get; protected set; }
 
     public string objectiveText = "Player should do something";
 
@@ -33,6 +33,11 @@ public class ObjectiveDataPickupWeapon : ObjectiveData
 {
     public WeaponData objectiveItem;
 
+    public ObjectiveDataPickupWeapon()
+    {
+        objectiveType = ObjectiveType.PickupWeapon;
+    }
+
     public override void CheckObjective(Object relatedItem)
     {
         if (objectiveItem.Equals((WeaponData)relatedItem))
@@ -47,6 +52,11 @@ public class ObjectiveDataPickupWeapon : ObjectiveData
 public class ObjectiveDataPickupEquipment : ObjectiveData
 {
     public EquipmentData objectiveItem;
+
+    public ObjectiveDataPickupEquipment()
+    {
+        objectiveType = ObjectiveType.PickupEquipment;
+    }
 
     public override void CheckObjective(Object relatedItem)
     {
@@ -64,6 +74,11 @@ public class ObjectiveDataGoToArea : ObjectiveData
     public Transform targetPosition;
     public float distTolerance;
 
+    public ObjectiveDataGoToArea()
+    {
+        objectiveType = ObjectiveType.GoToArea;
+    }
+
     public override void CheckObjective(Object relatedItem)
     {
         var pos = ((Transform)relatedItem).position;
@@ -80,6 +95,11 @@ public class ObjectiveDataGoToArea : ObjectiveData
 public class ObjectiveDataKillTargets : ObjectiveData
 {
     public EmeraldAI.EmeraldAISystem[] targetsToKill;
+
+    public ObjectiveDataKillTargets()
+    {
+        objectiveType = ObjectiveType.KillTargets;
+    }
 
     public override void CheckObjective(Object relatedItem)
     {
