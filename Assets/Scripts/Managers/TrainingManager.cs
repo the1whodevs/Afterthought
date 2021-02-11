@@ -16,6 +16,11 @@ public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInsta
     [SerializeField] private GameObject[] RangedBorderZones;
     [SerializeField] private GameObject[] RangedTargets;
 
+    [Header("Projectiles Zone")]
+    [SerializeField] private GameObject[] ProjectilesEdgeZones;
+    [SerializeField] private GameObject[] ProjectilesBorderZones;
+    [SerializeField] private GameObject[] ProjectilesTargets;
+
     public static LoadoutData GetTrainingLoadout()
     {
         return Active.trainingLoadout;
@@ -49,6 +54,21 @@ public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInsta
     public void OnKillRangedTargets()
     {
         DisableCollidersRangedZone();
+    }
+
+    public void OnReachProjectilesZone()
+    {
+        EnableColliderProjectilesZone();
+    }
+
+    public void OnPickUpProjectilesWeapon()
+    {
+        SpawnEnemiesInProjectilesZone();
+    }
+
+    public void OnKillProjectilesTargets()
+    {
+        DisableCollidersProjectilesZone();
     }
 
     private void EnableColliderMeleeZone()
@@ -112,6 +132,38 @@ public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInsta
         for (int i = 0; i < MeleeTargets.Length; i++)
         {
             RangedTargets[i].SetActive(true);
+        }
+    }
+
+    private void EnableColliderProjectilesZone()
+    {
+        for (int i = 0; i < ProjectilesEdgeZones.Length; i++)
+        {
+            ProjectilesEdgeZones[i].SetActive(false);
+        }
+        for (int i = 0; i < RangedBorderZones.Length; i++)
+        {
+            ProjectilesBorderZones[i].SetActive(true);
+        }
+    }
+
+    private void DisableCollidersProjectilesZone()
+    {
+        for (int i = 0; i < ProjectilesEdgeZones.Length; i++)
+        {
+            ProjectilesEdgeZones[i].SetActive(true);
+        }
+        for (int i = 0; i < RangedBorderZones.Length; i++)
+        {
+            ProjectilesBorderZones[i].SetActive(false);
+        }
+    }
+
+    private void SpawnEnemiesInProjectilesZone()
+    {
+        for (int i = 0; i < MeleeTargets.Length; i++)
+        {
+            ProjectilesTargets[i].SetActive(true);
         }
     }
 }
