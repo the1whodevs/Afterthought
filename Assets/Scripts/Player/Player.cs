@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public PlayerMelee Melee { get; private set; }
     public PlayerEquipment Equipment { get; private set; }
     public PlayerCamera Camera { get; private set; }
+    public PlayerObjectives Objectives { get; private set; }
 
     [SerializeField] private GameObject[] objectsToSpawnOnSpawn;
 
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
         Equipment = GetComponent<PlayerEquipment>();
         Experience = GetComponent<PlayerExperience>();
         Pickup = GetComponent<PlayerPickup>();
+        Objectives = GetComponent<PlayerObjectives>();
 
         Active = this;
 

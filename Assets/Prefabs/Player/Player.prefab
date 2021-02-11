@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 5352462671224431783}
   - component: {fileID: 8596469321991378682}
   - component: {fileID: 1675743893}
+  - component: {fileID: 2958064441689452078}
   - component: {fileID: 3984053435204281585}
   - component: {fileID: 6068314797139404672}
   - component: {fileID: 4836019476473453088}
@@ -574,6 +575,29 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2958064441689452078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305737994843635869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187fffa6ec6b1a34d8a80f176cf27578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupEquipmentObjectives:
+  - order: 0
+    objectiveType: 0
+    objectiveText: 
+    onObjectiveComplete:
+      m_PersistentCalls:
+        m_Calls: []
+    objectiveItem: {fileID: 0}
+  pickupWeaponObjectives: []
+  killTargetsObjectives: []
+  goToAreaObjectives: []
 --- !u!114 &3984053435204281585
 MonoBehaviour:
   m_ObjectHideFlags: 0
