@@ -6,9 +6,15 @@ public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInsta
 {
     [SerializeField] private LoadoutData trainingLoadout;
 
-    [SerializeField] private GameObject[] EdgeZones;
-    [SerializeField] private GameObject[] BorderZones;
+    [Header("Melee Zone")] 
+    [SerializeField] private GameObject[] MeleeEdgeZones;
+    [SerializeField] private GameObject[] MeleeBorderZones;
     [SerializeField] private GameObject[] MeleeTargets;
+
+    [Header("Ranged Zone")]
+    [SerializeField] private GameObject[] RangedEdgeZones;
+    [SerializeField] private GameObject[] RangedBorderZones;
+    [SerializeField] private GameObject[] RangedTargets;
 
     public static LoadoutData GetTrainingLoadout()
     {
@@ -19,25 +25,41 @@ public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInsta
     {
         EnableColliderMeleeZone();
     }
+
     public void OnPickUpCyberBlade()
     {
         SpawnEnemiesInMeleeZone();
     }
+
     public void OnKillMeleeTargets()
     {
         DisableCollidersMeleeZone();
-        Debug.Log("DisableColliders");
+    }
+
+    public void OnReachRangedZone()
+    {
+        EnableColliderRangedZone();
+    }
+
+    public void OnPickUpRangedWeapon()
+    {
+        SpawnEnemiesInRangedZone();
+    }
+
+    public void OnKillRangedTargets()
+    {
+        DisableCollidersRangedZone();
     }
 
     private void EnableColliderMeleeZone()
     {
-        for (int i = 0; i < EdgeZones.Length; i++)
+        for (int i = 0; i < MeleeEdgeZones.Length; i++)
         {
-            EdgeZones[i].SetActive(false);
+            MeleeEdgeZones[i].SetActive(false);
         }
-        for (int i = 0; i < BorderZones.Length; i++)
+        for (int i = 0; i < MeleeBorderZones.Length; i++)
         {
-            BorderZones[i].SetActive(true);
+            MeleeBorderZones[i].SetActive(true);
         }
     }
 
@@ -51,14 +73,45 @@ public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInsta
 
     private void DisableCollidersMeleeZone()
     {
-        for (int i = 0; i < EdgeZones.Length; i++)
+        for (int i = 0; i < MeleeEdgeZones.Length; i++)
         {
-            EdgeZones[i].SetActive(true);
+            MeleeEdgeZones[i].SetActive(true);
         }
-        for (int i = 0; i < BorderZones.Length; i++)
+        for (int i = 0; i < MeleeBorderZones.Length; i++)
         {
-            BorderZones[i].SetActive(false);
+            MeleeBorderZones[i].SetActive(false);
         }
     }
 
+    private void EnableColliderRangedZone()
+    {
+        for (int i = 0; i < RangedEdgeZones.Length; i++)
+        {
+            RangedEdgeZones[i].SetActive(false);
+        }
+        for (int i = 0; i < RangedBorderZones.Length; i++)
+        {
+            RangedBorderZones[i].SetActive(true);
+        }
+    }
+
+    private void DisableCollidersRangedZone()
+    {
+        for (int i = 0; i < RangedEdgeZones.Length; i++)
+        {
+            RangedEdgeZones[i].SetActive(true);
+        }
+        for (int i = 0; i < RangedBorderZones.Length; i++)
+        {
+            RangedBorderZones[i].SetActive(false);
+        }
+    }
+
+    private void SpawnEnemiesInRangedZone()
+    {
+        for (int i = 0; i < MeleeTargets.Length; i++)
+        {
+            RangedTargets[i].SetActive(true);
+        }
+    }
 }
