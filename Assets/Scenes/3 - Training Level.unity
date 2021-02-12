@@ -46347,6 +46347,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: XPCrate
       objectReference: {fileID: 0}
+    - target: {fileID: 6661025804987097214, guid: 9e38bc25f537b4a46a88920b1dbd5a5c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e38bc25f537b4a46a88920b1dbd5a5c, type: 3}
 --- !u!1 &1159683191 stripped
@@ -51974,7 +51979,7 @@ PrefabInstance:
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: TemperamentTabNumber
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -51994,7 +51999,7 @@ PrefabInstance:
     - target: {fileID: 4495697654156814302, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4495723581622210044, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -89812,6 +89817,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orc_04 - Training
       objectReference: {fileID: 0}
+    - target: {fileID: 662630468529831771, guid: 3a37d42a3957dad4c9de14a455e246bd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 662630468530054011, guid: 3a37d42a3957dad4c9de14a455e246bd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -89876,30 +89886,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1840176691}
     m_Modifications:
-    - target: {fileID: 2297047333893617179, guid: 92c88e1663b51d4409f210664821d7b0,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.111
-      objectReference: {fileID: 0}
-    - target: {fileID: 2305561715912451089, guid: 92c88e1663b51d4409f210664821d7b0,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.364
-      objectReference: {fileID: 0}
-    - target: {fileID: 2305561715912451089, guid: 92c88e1663b51d4409f210664821d7b0,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.058
-      objectReference: {fileID: 0}
     - target: {fileID: 3993873453144030699, guid: 92c88e1663b51d4409f210664821d7b0,
         type: 3}
       propertyPath: m_Name
       value: Magur - Training
-      objectReference: {fileID: 0}
-    - target: {fileID: 3993873453144030699, guid: 92c88e1663b51d4409f210664821d7b0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3997839780066662797, guid: 92c88e1663b51d4409f210664821d7b0,
         type: 3}
