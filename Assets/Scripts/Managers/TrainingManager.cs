@@ -26,6 +26,26 @@ public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInsta
     [SerializeField] private GameObject[] ProgressionBorderZones;
     [SerializeField] private GameObject[] ProgressionCrates;
 
+    private void Start()
+    {
+        DisableCollidersMeleeZone();
+        DisableCollidersProgressionZone();
+        DisableCollidersProjectilesZone();
+        DisableCollidersRangedZone();
+
+        for (int i = 0; i < MeleeTargets.Length; i++)
+            MeleeTargets[i].SetActive(false);
+
+        for (int i = 0; i < RangedTargets.Length; i++)
+            RangedTargets[i].SetActive(false);
+
+        for (int i = 0; i < ProjectilesTargets.Length; i++)
+            ProjectilesTargets[i].SetActive(false);
+
+        for (int i = 0; i < ProgressionCrates.Length; i++)
+            ProgressionCrates[i].SetActive(false);
+    }
+
     public static LoadoutData GetTrainingLoadout()
     {
         return Active.trainingLoadout;
