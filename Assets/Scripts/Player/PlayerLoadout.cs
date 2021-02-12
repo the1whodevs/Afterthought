@@ -38,7 +38,7 @@ public class PlayerLoadout : MonoBehaviour
     public Action<EquipmentData> OnEquipmentEquipped;
 
     [SerializeField] private LoadoutData loadout;
-    
+
     [SerializeField] private List<WeaponData> allWeaponData = new List<WeaponData>();
     [SerializeField] private List<EquipmentData> allEquipmentData = new List<EquipmentData>();
     [SerializeField] private List<AmmoData> allAmmoData = new List<AmmoData>();
@@ -439,7 +439,7 @@ public class PlayerLoadout : MonoBehaviour
         SetAmmoUI();
     }
 
-    public void ReplaceCurrentWeapon(WeaponData newWeapon)
+    public void PickupWeapon(WeaponData newWeapon)
     {
         if (CurrentWeapon.Equals(loadout.Weapons[0]) && !newWeapon.Equals(loadout.Weapons[0]))
             loadout.Weapons[0] = newWeapon;
@@ -447,21 +447,30 @@ public class PlayerLoadout : MonoBehaviour
             loadout.Weapons[1] = newWeapon;
         else return;
 
+        var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Physics.Raycast(ray, out var hit, 0);
+
+        var dropSpawnPos = hit.point;
+        dropSpawnPos += (transform.position - hit.point).normalized * (Vector3.Distance(transform.position, hit.point) / 2.0f);
+
+        if (Player.Active.Loadout.CurrentWeapon.pickablePrefab)
+            Instantiate(Player.Active.Loadout.CurrentWeapon.pickablePrefab, dropSpawnPos, Quaternion.identity, null);
+
         SwitchingWeapons = true;
         StartCoroutine(SwitchWeapon(newWeapon));
     }
 
     private IEnumerator SwitchWeapon(WeaponData weaponToEquip)
     {
-        const float delay = 1.0f;
-        
+        const float delay = 0.00125f;
+
         if (CurrentAnimator)
         {
             pa.Unequip();
 
             yield return new WaitForSeconds(delay);
         }
-        
+
         Unequip();
         EquipWeapon(weaponToEquip);
     }
@@ -489,6 +498,7 @@ public class PlayerLoadout : MonoBehaviour
 
         CurrentWeapon = weaponToEquip;
         lastWeapon = CurrentWeapon;
+        futureWeapon = lastWeapon;
         ScopeGameObject = GameObject.FindGameObjectWithTag(scopeTag);
 
         isUsingEquipment = false;

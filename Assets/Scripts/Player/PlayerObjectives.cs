@@ -85,6 +85,8 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives, ReportMissingIns
 
     private void OnPlayerEquippedWeapon(WeaponData equippedWeapon)
     {
+        if (currentObjective is null) return;
+
         if (currentObjective.objectiveType == ObjectiveData.ObjectiveType.PickupWeapon)
             currentObjective.CheckObjective(equippedWeapon);
     }
@@ -96,6 +98,10 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives, ReportMissingIns
         if (!(currentObjective is null))
         {
             UIManager.Active.UpdateObjectiveText(currentObjective.objectiveText);
+        }
+        else
+        {
+            UIManager.Active.UpdateObjectiveText("");
         }
     }
 
