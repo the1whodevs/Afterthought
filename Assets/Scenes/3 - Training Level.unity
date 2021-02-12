@@ -6078,6 +6078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trainingLoadout: {fileID: 11400000, guid: dfc166be42d075243a98d3ff98c00cf9, type: 2}
+  cyberblade: {fileID: 1190135987}
   MeleeEdgeZones:
   - {fileID: 1171774093}
   - {fileID: 1182066816}
@@ -10176,7 +10177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295609401}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -92.427, y: 1.8077695, z: -30.919}
+  m_LocalPosition: {x: -91.472, y: 1.8077695, z: -30.919}
   m_LocalScale: {x: 0.03, y: 5.3424, z: 12.523866}
   m_Children: []
   m_Father: {fileID: 153388582}
@@ -10722,7 +10723,7 @@ PrefabInstance:
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: TemperamentTabNumber
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -10747,7 +10748,7 @@ PrefabInstance:
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: CombatTabNumber
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -10755,6 +10756,46 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 258580847482720398, guid: eefd1d3a745a4ef43916d836e0f32d26,
         type: 3}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MinimumAttackSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MaximumAttackSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[0].MinDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[0].MaxDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[1].MinDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[1].MaxDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeRunAttacks.Array.data[0].MinDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeRunAttacks.Array.data[0].MaxDamage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814302, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_Name
@@ -47148,6 +47189,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1336106919}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1190135987 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7492700248239947038, guid: 34e51ee6c563f8f418d5812da0017a21,
+    type: 3}
+  m_PrefabInstance: {fileID: 737454352}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1191393698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51630,7 +51677,7 @@ PrefabInstance:
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: CombatTabNumber
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -51638,6 +51685,46 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 258580847482720398, guid: eefd1d3a745a4ef43916d836e0f32d26,
         type: 3}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MinimumAttackSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MaximumAttackSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[0].MinDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[0].MaxDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[1].MinDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[1].MaxDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeRunAttacks.Array.data[0].MinDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeRunAttacks.Array.data[0].MaxDamage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814302, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_Name
@@ -70573,7 +70660,7 @@ PrefabInstance:
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
       propertyPath: TemperamentTabNumber
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
@@ -70593,7 +70680,7 @@ PrefabInstance:
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
       propertyPath: CombatTabNumber
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
@@ -70601,6 +70688,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 258580847482720398, guid: eefd1d3a745a4ef43916d836e0f32d26,
         type: 3}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MinimumAttackSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MaximumAttackSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MeleeRunAttacks.Array.data[0].MinDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MeleeRunAttacks.Array.data[0].MaxDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[0].MinDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[0].MaxDamage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718335, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
       propertyPath: m_Name
@@ -87412,7 +87529,7 @@ PrefabInstance:
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
       propertyPath: TemperamentTabNumber
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
@@ -87442,7 +87559,7 @@ PrefabInstance:
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
       propertyPath: CombatTabNumber
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
@@ -87450,6 +87567,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 258580847482720398, guid: eefd1d3a745a4ef43916d836e0f32d26,
         type: 3}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MinimumAttackSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MaximumAttackSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MeleeRunAttacks.Array.data[0].MinDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MeleeRunAttacks.Array.data[0].MaxDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[0].MinDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[0].MaxDamage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718335, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
       propertyPath: m_Name
@@ -89448,7 +89595,7 @@ PrefabInstance:
     - target: {fileID: 662630468529831715, guid: 3a37d42a3957dad4c9de14a455e246bd,
         type: 3}
       propertyPath: CombatTabNumber
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 662630468529831715, guid: 3a37d42a3957dad4c9de14a455e246bd,
         type: 3}
@@ -89459,12 +89606,22 @@ PrefabInstance:
     - target: {fileID: 662630468529831715, guid: 3a37d42a3957dad4c9de14a455e246bd,
         type: 3}
       propertyPath: TemperamentTabNumber
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 662630468529831715, guid: 3a37d42a3957dad4c9de14a455e246bd,
         type: 3}
       propertyPath: StartingHealth
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 662630468529831715, guid: 3a37d42a3957dad4c9de14a455e246bd,
+        type: 3}
+      propertyPath: MinimumAttackSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 662630468529831715, guid: 3a37d42a3957dad4c9de14a455e246bd,
+        type: 3}
+      propertyPath: MaximumAttackSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 662630468529831771, guid: 3a37d42a3957dad4c9de14a455e246bd,
         type: 3}
@@ -89538,12 +89695,12 @@ PrefabInstance:
     - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
         type: 3}
       propertyPath: TemperamentTabNumber
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
         type: 3}
       propertyPath: CombatTabNumber
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
         type: 3}
@@ -89566,10 +89723,45 @@ PrefabInstance:
       propertyPath: StartingHealth
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: MinimumAttackSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: MaximumAttackSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[1].MinDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[1].MaxDamage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: MeleeRunAttacks.Array.data[0].MinDamage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: MeleeRunAttacks.Array.data[0].MaxDamage
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3993873453144030699, guid: 92c88e1663b51d4409f210664821d7b0,
         type: 3}
       propertyPath: m_Name
       value: Magur - Training
+      objectReference: {fileID: 0}
+    - target: {fileID: 3993873453144030699, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3997839780066662797, guid: 92c88e1663b51d4409f210664821d7b0,
         type: 3}
@@ -89746,7 +89938,7 @@ PrefabInstance:
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: CombatTabNumber
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -89763,6 +89955,51 @@ PrefabInstance:
         type: 3}
       propertyPath: StartingHealth
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: AttackDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MinimumAttackSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MaximumAttackSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeRunAttacks.Array.data[0].MinDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeRunAttacks.Array.data[0].MaxDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[0].MinDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[0].MaxDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[1].MinDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[1].MaxDamage
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814302, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -89996,7 +90233,7 @@ PrefabInstance:
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
       propertyPath: CombatTabNumber
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
@@ -90007,12 +90244,42 @@ PrefabInstance:
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
       propertyPath: TemperamentTabNumber
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
       propertyPath: StartingHealth
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MinimumAttackSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MaximumAttackSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[0].MinDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MeleeAttacks.Array.data[0].MaxDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MeleeRunAttacks.Array.data[0].MinDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: MeleeRunAttacks.Array.data[0].MaxDamage
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718335, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}

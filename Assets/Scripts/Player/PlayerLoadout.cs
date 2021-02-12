@@ -448,7 +448,7 @@ public class PlayerLoadout : MonoBehaviour
         else return;
 
         var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        Physics.Raycast(ray, out var hit, 0);
+        Physics.Raycast(ray, out var hit);
 
         var dropSpawnPos = hit.point;
         dropSpawnPos += (transform.position - hit.point).normalized * (Vector3.Distance(transform.position, hit.point) / 2.0f);

@@ -6,7 +6,8 @@ public class TrainingManager : MonoSingleton<TrainingManager>
 {
     [SerializeField] private LoadoutData trainingLoadout;
 
-    [Header("Melee Zone")] 
+    [Header("Melee Zone")]
+    [SerializeField] private GameObject cyberblade;
     [SerializeField] private GameObject[] MeleeEdgeZones;
     [SerializeField] private GameObject[] MeleeBorderZones;
     [SerializeField] private GameObject[] MeleeTargets;
@@ -28,6 +29,8 @@ public class TrainingManager : MonoSingleton<TrainingManager>
 
     private void Start()
     {
+        cyberblade.SetActive(false);
+
         DisableCollidersMeleeZone();
         DisableCollidersProgressionZone();
         DisableCollidersProjectilesZone();
@@ -53,11 +56,13 @@ public class TrainingManager : MonoSingleton<TrainingManager>
 
     public void OnReachMeleeZone()
     {
-        EnableColliderMeleeZone();
+        cyberblade.SetActive(true);
+        //EnableColliderMeleeZone();
     }
 
     public void OnPickUpCyberBlade()
     {
+        EnableColliderMeleeZone();
         SpawnEnemiesInMeleeZone();
     }
 
