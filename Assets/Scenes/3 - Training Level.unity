@@ -89886,11 +89886,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orc_04 - Training
       objectReference: {fileID: 0}
-    - target: {fileID: 662630468529831771, guid: 3a37d42a3957dad4c9de14a455e246bd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 662630468530054011, guid: 3a37d42a3957dad4c9de14a455e246bd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -90024,6 +90019,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1840176691}
     m_Modifications:
+    - target: {fileID: 2193673159446673961, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193673159446673961, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.58421266
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193673159446673961, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193673159446673961, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.6037736
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193673159446673961, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193673159446673961, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3993873453144030699, guid: 92c88e1663b51d4409f210664821d7b0,
         type: 3}
       propertyPath: m_Name

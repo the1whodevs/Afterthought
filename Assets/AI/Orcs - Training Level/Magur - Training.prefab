@@ -414,7 +414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3997839780066662797
 Transform:
   m_ObjectHideFlags: 0
@@ -5084,6 +5084,36 @@ PrefabInstance:
     - target: {fileID: 4432322983238936, guid: 9991959af5d408240a31653fc2cb6053, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.7142857
+      objectReference: {fileID: 0}
+    - target: {fileID: 108580189862167328, guid: 9991959af5d408240a31653fc2cb6053,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.58421266
+      objectReference: {fileID: 0}
+    - target: {fileID: 108580189862167328, guid: 9991959af5d408240a31653fc2cb6053,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108580189862167328, guid: 9991959af5d408240a31653fc2cb6053,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.6037736
+      objectReference: {fileID: 0}
+    - target: {fileID: 108580189862167328, guid: 9991959af5d408240a31653fc2cb6053,
+        type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 108580189862167328, guid: 9991959af5d408240a31653fc2cb6053,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108580189862167328, guid: 9991959af5d408240a31653fc2cb6053,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114272326741369864, guid: 9991959af5d408240a31653fc2cb6053,
         type: 3}
