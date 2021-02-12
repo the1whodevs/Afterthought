@@ -21,6 +21,11 @@ public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInsta
     [SerializeField] private GameObject[] ProjectilesBorderZones;
     [SerializeField] private GameObject[] ProjectilesTargets;
 
+    [Header("Progression Zone")]
+    [SerializeField] private GameObject[] ProgressionEdgeZones;
+    [SerializeField] private GameObject[] ProgressionBorderZones;
+    [SerializeField] private GameObject[] ProgressionCrates;
+
     public static LoadoutData GetTrainingLoadout()
     {
         return Active.trainingLoadout;
@@ -69,6 +74,17 @@ public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInsta
     public void OnKillProjectilesTargets()
     {
         DisableCollidersProjectilesZone();
+    }
+    
+    public void OnReachProgressionZone()
+    {
+        EnableColliderProgressionZone();
+        SpawnCratesInProgressionZone();
+    }
+
+    public void OnInteractinWithXpCrate()
+    {
+        DisableCollidersProgressionZone();
     }
 
     private void EnableColliderMeleeZone()
@@ -141,7 +157,7 @@ public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInsta
         {
             ProjectilesEdgeZones[i].SetActive(false);
         }
-        for (int i = 0; i < RangedBorderZones.Length; i++)
+        for (int i = 0; i < ProjectilesEdgeZones.Length; i++)
         {
             ProjectilesBorderZones[i].SetActive(true);
         }
@@ -153,7 +169,7 @@ public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInsta
         {
             ProjectilesEdgeZones[i].SetActive(true);
         }
-        for (int i = 0; i < RangedBorderZones.Length; i++)
+        for (int i = 0; i < ProjectilesBorderZones.Length; i++)
         {
             ProjectilesBorderZones[i].SetActive(false);
         }
@@ -164,6 +180,38 @@ public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInsta
         for (int i = 0; i < ProjectilesTargets.Length; i++)
         {
             ProjectilesTargets[i].SetActive(true);
+        }
+    }
+
+    private void EnableColliderProgressionZone()
+    {
+        for (int i = 0; i < ProgressionEdgeZones.Length; i++)
+        {
+            ProgressionEdgeZones[i].SetActive(false);
+        }
+        for (int i = 0; i < ProgressionBorderZones.Length; i++)
+        {
+            ProgressionBorderZones[i].SetActive(true);
+        }
+    }
+
+    private void DisableCollidersProgressionZone()
+    {
+        for (int i = 0; i < ProgressionEdgeZones.Length; i++)
+        {
+            ProgressionEdgeZones[i].SetActive(true);
+        }
+        for (int i = 0; i < ProgressionBorderZones.Length; i++)
+        {
+            ProgressionBorderZones[i].SetActive(false);
+        }
+    }
+
+    private void SpawnCratesInProgressionZone()
+    {
+        for (int i = 0; i < ProgressionCrates.Length; i++)
+        {
+            ProgressionCrates[i].SetActive(true);
         }
     }
 }
