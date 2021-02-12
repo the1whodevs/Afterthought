@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerObjectives : MonoSingleton<PlayerObjectives, ReportMissingInstance>
+public class PlayerObjectives : MonoSingleton<PlayerObjectives>
 {
     [SerializeField] private ObjectiveDataPickupEquipment[] pickupEquipmentObjectives;
     [SerializeField] private ObjectiveDataPickupWeapon[] pickupWeaponObjectives;

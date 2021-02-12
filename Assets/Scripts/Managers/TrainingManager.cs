@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInstanceError>
+public class TrainingManager : MonoSingleton<TrainingManager>
 {
     [SerializeField] private LoadoutData trainingLoadout;
 
