@@ -129,7 +129,7 @@ public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInsta
 
     private void SpawnEnemiesInRangedZone()
     {
-        for (int i = 0; i < MeleeTargets.Length; i++)
+        for (int i = 0; i < RangedTargets.Length; i++)
         {
             RangedTargets[i].SetActive(true);
         }
@@ -161,7 +161,7 @@ public class TrainingManager : MonoSingleton<TrainingManager, ReportMissingInsta
 
     private void SpawnEnemiesInProjectilesZone()
     {
-        for (int i = 0; i < MeleeTargets.Length; i++)
+        for (int i = 0; i < ProjectilesTargets.Length; i++)
         {
             ProjectilesTargets[i].SetActive(true);
         }
