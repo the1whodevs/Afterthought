@@ -77,6 +77,8 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives, ReportMissingIns
 
     private void OnPlayerEquippedEquipment(EquipmentData equippedEquipment)
     {
+        if (currentObjective is null) return;
+
         if (currentObjective.objectiveType == ObjectiveData.ObjectiveType.PickupEquipment)
             currentObjective.CheckObjective(equippedEquipment);
     }

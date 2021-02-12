@@ -105,7 +105,6 @@ public class ObjectiveDataKillTargets : ObjectiveData
     {
         for (int i = 0; i < targetsToKill.Length; i++)
         {
-            Debug.Log(targetsToKill[i].CurrentHealth);
             if (targetsToKill[i].CurrentHealth > 0) return;
         }
 
