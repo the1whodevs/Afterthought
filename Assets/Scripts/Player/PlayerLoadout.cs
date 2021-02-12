@@ -86,7 +86,7 @@ public class PlayerLoadout : MonoBehaviour
             ammoData.LoadData();
         }
 
-        ChangeActiveLoadout(TrainingManager.GetTrainingLoadout());
+        if (TrainingManager.Active) ChangeActiveLoadout(TrainingManager.GetTrainingLoadout());
 
         EquipPrimaryWeapon();
     }
