@@ -245,9 +245,9 @@ public class PlayerDamage : MonoBehaviour
     {
         var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
 
-        //var hitRb = hit.rigidbody;
+        var hitRb = hit.rigidbody;
 
-        //if (hitRb) hitRb.AddForce(-hit.normal * 100.0f, ForceMode.Impulse);
+        if (hitRb) hitRb.AddForce(-hit.normal * 100.0f, ForceMode.Impulse);
 
         if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
 
@@ -271,16 +271,16 @@ public class PlayerDamage : MonoBehaviour
                 Quaternion.identity, null), BULLET_HOLE_LIFETIME);
         }
 
-        if (hitSurfaceInfo && hitSurfaceInfo.impactSoundFx[0]) hitSurfaceInfo.PlayImpactSound();
+        if (hitSurfaceInfo && hitSurfaceInfo.impactSoundFx.Length > 0) hitSurfaceInfo.PlayImpactSound();
     }
 
     public void SpawnHitEffects(ContactPoint hit, WeaponData weaponRelated)
     {
         var hitSurfaceInfo = hit.otherCollider.GetComponent<HitSurfaceInfo>();
 
-        //var hitRb = hit.otherCollider.attachedRigidbody;
+        var hitRb = hit.otherCollider.attachedRigidbody;
 
-        //if (hitRb) hitRb.AddForce(-hit.normal * 100.0f, ForceMode.Impulse);
+        if (hitRb) hitRb.AddForce(-hit.normal * 100.0f, ForceMode.Impulse);
 
         if (!hitSurfaceInfo) hitSurfaceInfo = hit.otherCollider.GetComponentInParent<HitSurfaceInfo>();
 
@@ -304,7 +304,7 @@ public class PlayerDamage : MonoBehaviour
                 Quaternion.identity, null), BULLET_HOLE_LIFETIME);
         }
 
-        if (hitSurfaceInfo && hitSurfaceInfo.impactSoundFx[0]) hitSurfaceInfo.PlayImpactSound();
+        if (hitSurfaceInfo && hitSurfaceInfo.impactSoundFx.Length > 0) hitSurfaceInfo.PlayImpactSound();
     }
 
     /// <summary>
