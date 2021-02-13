@@ -203,7 +203,7 @@ public class PlayerController : MonoBehaviour
 
                     fireResetRequired = pl.CurrentWeapon.fireType != WeaponData.FireType.FullAuto;
 
-                    cs.ShakeCamera(0.05f, 0.01f);
+                    // cs.ShakeCamera(0.05f, 0.01f);
                     pa.Fire();
                 }
                 else
