@@ -5,7 +5,19 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Active;
+    public static UIManager Active
+    {
+        get
+        {
+            if (_instance) return _instance;
+
+            _instance = FindObjectOfType<UIManager>();
+
+            return _instance;
+        }
+    }
+
+    private static UIManager _instance;
 
     public GameObject HealthBar => healthBar;
 
@@ -24,16 +36,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject healthBar;
 
     [SerializeField] private float objectiveTextSpeed = 1.0f;
+    [SerializeField] private float recoilModifier = 1.0f;
+    [SerializeField] private float recoilDecay = 1.0f;
 
     // Used to scale crosshair and visualize recoil.
     private float crosshairRecoilProgress = 0.0f;
-
-    private void Awake()
-    {
-        if (Active) Destroy(gameObject);
-
-        Active = this;
-    }
 
     private void Start()
     {
@@ -41,6 +48,33 @@ public class UIManager : MonoBehaviour
         healthBar.SetActive(true);
 
         UpdateAmmoIcons(Player.Active.Loadout.Loadout, Player.Active.Loadout.CurrentWeapon);
+
+        StartCoroutine(CrosshairRecoil());
+    }
+
+    private IEnumerator CrosshairRecoil()
+    {
+        var crosshairRect = crosshair.GetComponent<RectTransform>();
+        var loadout = Player.Active.Loadout;
+
+        while (!loadout)
+        {
+            loadout = Player.Active.Loadout;
+            yield return new WaitForEndOfFrame();
+        }
+
+        while (Application.isPlaying)
+        {
+            if (loadout.CurrentWeapon)
+            {
+                var data = loadout.CurrentWeapon.weaponTypeData;
+                crosshairRect.sizeDelta = Vector2.Lerp(data.crosshairDefaultXY, data.maxRecoilCrosshairXY, crosshairRecoilProgress);
+
+                crosshairRecoilProgress = Mathf.Clamp01(crosshairRecoilProgress - Time.deltaTime * recoilDecay);
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     public void UpdateObjectiveText(string newObjective)
@@ -68,6 +102,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void AddRecoil(float recoilX, float recoilY)
+    {
+        crosshairRecoilProgress = Mathf.Clamp01(crosshairRecoilProgress + Time.deltaTime * recoilModifier * (recoilX * recoilY));
+    }
+
     public void ShowInteractPrompt(KeyCode keyPrompt, string actionName)
     {
         interactPrompt.text = $"Press {keyPrompt} to {actionName}.";
@@ -93,7 +132,8 @@ public class UIManager : MonoBehaviour
     public void UpdateWeaponAmmoUI(WeaponData weaponEquipped)
     {
         crosshair.GetComponent<Image>().sprite = weaponEquipped.weaponTypeData.crosshair;
-        crosshair.GetComponent<RectTransform>().sizeDelta = weaponEquipped.weaponTypeData.crosshairDefaultXY;
+        crosshairRecoilProgress = 0.0f;
+
         weapon_AmmoIcon.sprite = weaponEquipped.weaponTypeData.ammoType.icon;
 
         if (weaponEquipped.weaponType == WeaponData.WeaponType.Melee) weaponAmmoCount.text = "";

@@ -158,6 +158,8 @@ public class PlayerCamera : MonoBehaviour
             verticalForce *= 1.25f;
         }
 
+        UIManager.Active.AddRecoil(horizontalForce, verticalForce);
+
         var randX = UnityEngine.Random.Range(-horizontalForce, horizontalForce);
         var randY = UnityEngine.Random.Range(0.0f, verticalForce);
 
