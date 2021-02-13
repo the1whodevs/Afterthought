@@ -25,6 +25,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private float objectiveTextSpeed = 1.0f;
 
+    // Used to scale crosshair and visualize recoil.
+    private float crosshairRecoilProgress = 0.0f;
+
     private void Awake()
     {
         if (Active) Destroy(gameObject);
