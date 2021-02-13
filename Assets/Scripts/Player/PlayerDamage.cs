@@ -179,6 +179,7 @@ public class PlayerDamage : MonoBehaviour
             if (emeraldAIsys && emeraldAIsys.enabled)
             {
                 emeraldAIsys.Damage(damage, EmeraldAISystem.TargetType.Player, transform, (int)relatedEquipment.ragdollForce);
+                uiManager.RefreshHitmarker();
             }
             else if (playerHealth)
             {
@@ -236,8 +237,10 @@ public class PlayerDamage : MonoBehaviour
 
         // If we hit an AI, damage it.
         if (emeraldAIsys && emeraldAIsys.enabled)
+        {
             emeraldAIsys.Damage((int)dmg, EmeraldAISystem.TargetType.Player, transform, ragdollForce);
-
+            uiManager.RefreshHitmarker();
+        }
         // Otherwise just spawn a bullet hole.
         else
         {

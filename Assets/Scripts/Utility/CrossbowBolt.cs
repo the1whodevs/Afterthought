@@ -47,6 +47,7 @@ public class CrossbowBolt : MonoBehaviour
         {
             emeraldAIsys.Damage(damage, EmeraldAISystem.TargetType.Player, transform, 5000);
             Stick(other);
+            UIManager.Active.RefreshHitmarker();
         }
         // Otherwise just spawn a bullet hole.
         else

@@ -32,12 +32,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image equipmentA_AmmoIcon;
     [SerializeField] private Image equipmentB_AmmoIcon;
 
+    [SerializeField] private RectTransform hitmarkerSpawn;
+    [SerializeField] private GameObject hitmarker;
+
     [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject healthBar;
 
     [SerializeField] private float objectiveTextSpeed = 1.0f;
     [SerializeField] private float recoilModifier = 1.0f;
     [SerializeField] private float recoilDecay = 1.0f;
+    [SerializeField] private float hitmarkerUptime = 1.0f;
 
     // Used to scale crosshair and visualize recoil.
     private float crosshairRecoilProgress = 0.0f;
@@ -50,6 +54,11 @@ public class UIManager : MonoBehaviour
         UpdateAmmoIcons(Player.Active.Loadout.Loadout, Player.Active.Loadout.CurrentWeapon);
 
         StartCoroutine(CrosshairRecoil());
+    }
+
+    public void RefreshHitmarker()
+    {
+        Destroy(Instantiate(hitmarker, hitmarkerSpawn), hitmarkerUptime);
     }
 
     private IEnumerator CrosshairRecoil()

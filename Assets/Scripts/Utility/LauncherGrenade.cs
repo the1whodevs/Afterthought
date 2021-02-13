@@ -55,6 +55,7 @@ public class LauncherGrenade : MonoBehaviour
             if (emeraldAIsys && emeraldAIsys.enabled)
             {
                 emeraldAIsys.Damage(damage, EmeraldAISystem.TargetType.Player, transform, (int)ragdollForce);
+                UIManager.Active.RefreshHitmarker();
             }
             else if (playerHealth)
             {
