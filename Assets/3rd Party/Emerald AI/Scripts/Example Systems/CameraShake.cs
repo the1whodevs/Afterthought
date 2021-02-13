@@ -11,6 +11,8 @@ namespace EmeraldAI
         Vector3 m_OriginalPosition;
         Quaternion m_OriginalRotation;
 
+        Coroutine shakeRoutine;
+
         void Awake()
         {
             Instance = this;
@@ -18,7 +20,10 @@ namespace EmeraldAI
 
         public void ShakeCamera(float ShakeTime, float ShakeAmount)
         {
-            StartCoroutine(CameraShakeSequence(ShakeTime, ShakeAmount));
+            Debug.Log("If camera is still broken with shakes, remove this line!");
+            if (shakeRoutine is not null) StopCoroutine(shakeRoutine);
+
+            shakeRoutine = StartCoroutine(CameraShakeSequence(ShakeTime, ShakeAmount));
         }
 
         IEnumerator CameraShakeSequence(float ShakeTime, float ShakeAmount)
