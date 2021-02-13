@@ -64,31 +64,7 @@ public class LauncherGrenade : MonoBehaviour
             // Otherwise just spawn a bullet hole.
             else
             {
-                var cdp = hit.transform.GetComponent<CharacterDamagePainter>();
-                var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
-                var hitRb = hit.rigidbody;
-                    
-                if (hitRb) hitRb.AddForce(-hit.normal * ragdollForce, ForceMode.Impulse);
-
-                if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
-                    
-                if (!cdp) cdp = hit.transform.GetComponentInParent<CharacterDamagePainter>();
-
-                if (cdp)
-                {
-                    cdp.Paint(hit.point,hit.normal);
-                }
-                else
-                {
-                    Destroy(
-                        hitSurfaceInfo
-                            ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                                hit.transform)
-                            : Instantiate(launcherData.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                                null), PlayerDamage.BULLET_HOLE_LIFETIME);
-                }
-                    
-                if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound(); 
+                Player.Active.Damage.SpawnHitEffects(hit, launcherData);
             }         
         }
         

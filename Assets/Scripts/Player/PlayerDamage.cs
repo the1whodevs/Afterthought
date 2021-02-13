@@ -188,20 +188,13 @@ public class PlayerDamage : MonoBehaviour
             // Otherwise just spawn a bullet hole.
             else
             {
-                var cdp = hit.transform.GetComponent<CharacterDamagePainter>();
                 var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
                 var hitRb = hit.rigidbody;
 
                 if (hitRb) hitRb.AddForce(-hit.normal * relatedEquipment.ragdollForce, ForceMode.Impulse);
 
                 if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
-
-                if (!cdp) cdp = hit.transform.GetComponentInParent<CharacterDamagePainter>();
-
-                if (cdp)
-                {
-                    cdp.Paint(hit.point, hit.normal);
-                }
+                
                 //else
                 //{
                 //    Destroy(
@@ -244,41 +237,74 @@ public class PlayerDamage : MonoBehaviour
         // Otherwise just spawn a bullet hole.
         else
         {
-            var cdp = hit.transform.GetComponent<CharacterDamagePainter>();
-            var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
-
-            var hitRb = hit.rigidbody;
-
-            if (hitRb) hitRb.AddForce(-hit.normal * 100.0f, ForceMode.Impulse);
-
-            if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
-            if (!cdp) cdp = hit.transform.GetComponentInParent<CharacterDamagePainter>();
-
-            Destroy(
-                hitSurfaceInfo
-                    ? Instantiate(hitSurfaceInfo.hitEffect, hit.point, Quaternion.LookRotation(hit.normal),
-                        hit.transform)
-                    : Instantiate(CurrentWeapon.hitImpact, hit.point, Quaternion.LookRotation(hit.normal),
-                        null), BULLET_HOLE_LIFETIME);
-
-            if (cdp)
-            {
-                cdp.Paint(hit.point, hit.normal);
-            }
-            else
-            {
-                Destroy(
-                    hitSurfaceInfo
-                        ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
-                            Quaternion.LookRotation(hit.normal),
-                            hit.transform)
-                        : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
-                            Quaternion.LookRotation(hit.normal),
-                            null), BULLET_HOLE_LIFETIME);
-            }
-
-            if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
+            SpawnHitEffects(hit, CurrentWeapon);
         }
+    }
+
+    public void SpawnHitEffects(RaycastHit hit, WeaponData weaponRelated)
+    {
+        var hitSurfaceInfo = hit.transform.GetComponent<HitSurfaceInfo>();
+
+        //var hitRb = hit.rigidbody;
+
+        //if (hitRb) hitRb.AddForce(-hit.normal * 100.0f, ForceMode.Impulse);
+
+        if (!hitSurfaceInfo) hitSurfaceInfo = hit.transform.GetComponentInParent<HitSurfaceInfo>();
+
+        if (hitSurfaceInfo && hitSurfaceInfo.hitEffect)
+        {
+            Destroy(Instantiate(hitSurfaceInfo.hitEffect, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.identity, null), BULLET_HOLE_LIFETIME);
+        }
+        else
+        {
+            Destroy(Instantiate(weaponRelated.hitImpact, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
+                Quaternion.identity, null), BULLET_HOLE_LIFETIME);
+        }
+
+        if (hitSurfaceInfo && hitSurfaceInfo.RandomHitDecal)
+        {
+            Destroy(Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.identity, null), BULLET_HOLE_LIFETIME);
+        }
+        else
+        {
+            Destroy(Instantiate(weaponRelated.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
+                Quaternion.identity, null), BULLET_HOLE_LIFETIME);
+        }
+
+        if (hitSurfaceInfo && hitSurfaceInfo.impactSoundFx[0]) hitSurfaceInfo.PlayImpactSound();
+    }
+
+    public void SpawnHitEffects(ContactPoint hit, WeaponData weaponRelated)
+    {
+        var hitSurfaceInfo = hit.otherCollider.GetComponent<HitSurfaceInfo>();
+
+        //var hitRb = hit.otherCollider.attachedRigidbody;
+
+        //if (hitRb) hitRb.AddForce(-hit.normal * 100.0f, ForceMode.Impulse);
+
+        if (!hitSurfaceInfo) hitSurfaceInfo = hit.otherCollider.GetComponentInParent<HitSurfaceInfo>();
+
+        if (hitSurfaceInfo && hitSurfaceInfo.hitEffect)
+        {
+            Destroy(Instantiate(hitSurfaceInfo.hitEffect, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.identity, null), BULLET_HOLE_LIFETIME);
+        }
+        else
+        {
+            Destroy(Instantiate(weaponRelated.hitImpact, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
+                Quaternion.identity, null), BULLET_HOLE_LIFETIME);
+        }
+
+        if (hitSurfaceInfo && hitSurfaceInfo.RandomHitDecal)
+        {
+            Destroy(Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.identity, null), BULLET_HOLE_LIFETIME);
+        }
+        else
+        {
+            Destroy(Instantiate(weaponRelated.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
+                Quaternion.identity, null), BULLET_HOLE_LIFETIME);
+        }
+
+        if (hitSurfaceInfo && hitSurfaceInfo.impactSoundFx[0]) hitSurfaceInfo.PlayImpactSound();
     }
 
     /// <summary>

@@ -52,41 +52,9 @@ public class CrossbowBolt : MonoBehaviour
         // Otherwise just spawn a bullet hole.
         else
         {
-            var cdp =other.transform.GetComponent<CharacterDamagePainter>();
-            var hitSurfaceInfo = other.transform.GetComponent<HitSurfaceInfo>();
-            var hit = other.contacts[0];
-            var hitRb = other.rigidbody;
-            
-            if (hitRb) hitRb.AddForce(-hit.normal * 100.0f, ForceMode.Impulse);
-
-            if (!hitSurfaceInfo) hitSurfaceInfo = other.transform.GetComponentInParent<HitSurfaceInfo>();
-            
-            if (!cdp) cdp = other.transform.GetComponentInParent<CharacterDamagePainter>();
-            
-            Destroy(
-                hitSurfaceInfo
-                    ? Instantiate(hitSurfaceInfo.hitEffect, hit.point, Quaternion.LookRotation(hit.normal),
-                        other.transform)
-                    : Instantiate(CurrentWeapon.hitImpact, hit.point, Quaternion.LookRotation(hit.normal),
-                        null), PlayerDamage.BULLET_HOLE_LIFETIME);
-            
-            if (cdp)
-            {
-                cdp.Paint(hit.point,hit.normal);
-            }
-            else
-            {
-                Destroy(
-                    hitSurfaceInfo
-                        ? Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                            other.transform)
-                        : Instantiate(CurrentWeapon.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal),
-                            null), PlayerDamage.BULLET_HOLE_LIFETIME);
-            }
+            Player.Active.Damage.SpawnHitEffects(other.contacts[0], CurrentWeapon);
 
             Stick();
-
-            if (hitSurfaceInfo) hitSurfaceInfo.PlayImpactSound();
         }
     }
 
