@@ -253,22 +253,22 @@ public class PlayerDamage : MonoBehaviour
 
         if (hitSurfaceInfo && hitSurfaceInfo.hitEffect)
         {
-            Destroy(Instantiate(hitSurfaceInfo.hitEffect, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.identity, null), BULLET_HOLE_LIFETIME);
+            Destroy(Instantiate(hitSurfaceInfo.hitEffect, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal), null), BULLET_HOLE_LIFETIME);
         }
-        else
+        else if (weaponRelated.hitImpact)
         {
             Destroy(Instantiate(weaponRelated.hitImpact, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
-                Quaternion.identity, null), BULLET_HOLE_LIFETIME);
+                Quaternion.LookRotation(hit.normal), null), BULLET_HOLE_LIFETIME);
         }
 
         if (hitSurfaceInfo && hitSurfaceInfo.RandomHitDecal)
         {
-            Destroy(Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.identity, null), BULLET_HOLE_LIFETIME);
+            Destroy(Instantiate(hitSurfaceInfo.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(hit.normal), null), BULLET_HOLE_LIFETIME);
         }
-        else
+        else if (weaponRelated.RandomHitDecal)
         {
             Destroy(Instantiate(weaponRelated.RandomHitDecal, hit.point + hit.normal * Random.Range(0.001f, 0.002f),
-                Quaternion.identity, null), BULLET_HOLE_LIFETIME);
+                Quaternion.LookRotation(hit.normal), null), BULLET_HOLE_LIFETIME);
         }
 
         if (hitSurfaceInfo && hitSurfaceInfo.impactSoundFx.Length > 0) hitSurfaceInfo.PlayImpactSound();

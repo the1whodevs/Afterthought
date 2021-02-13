@@ -8,7 +8,15 @@ public class WeaponData : IDisplayableItem
     
     public enum FireType { FullAuto, Burst, SemiAuto, BoltAction }
 
-    public GameObject RandomHitDecal => hitDecal[Random.Range(0, hitDecal.Length)];
+    public GameObject RandomHitDecal 
+    {
+        get
+        {
+            if (hitDecal.Length > 0) return hitDecal[Random.Range(0, hitDecal.Length)];
+
+            return null;
+        }
+    }
     public AudioClip RandomShotAudioFX => shotAudioFx[Random.Range(0, shotAudioFx.Length)];
         
     public GameObject wepPrefab;

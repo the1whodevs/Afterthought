@@ -9,9 +9,18 @@ public class HitSurfaceInfo : MonoBehaviour
     
     public GameObject hitEffect;
     public GameObject[] hitDecal;
-    public GameObject[] explosionDecal;    
+    public GameObject[] explosionDecal;
 
-    public GameObject RandomHitDecal => hitDecal[Random.Range(0, hitDecal.Length)];
+    public GameObject RandomHitDecal
+    {
+        get
+        {
+            if (hitDecal.Length > 0) return hitDecal[Random.Range(0, hitDecal.Length)];
+
+            return null;
+        }
+    }
+
     public GameObject RandomExplosionDecal => explosionDecal[Random.Range(0, explosionDecal.Length)];
 
     private AudioSource audioSource;

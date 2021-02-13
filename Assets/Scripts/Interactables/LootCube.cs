@@ -41,6 +41,8 @@ public class LootCube : InteractableObject
         {
             t += Time.deltaTime * throwSpeed;
 
+            if (!lootToThrow) break;
+
             lootToThrow.transform.position = MoreMaths.Blerp(startPos, endPos, throwY, t);
 
             yield return new WaitForEndOfFrame();
