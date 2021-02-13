@@ -38,14 +38,13 @@ public class PlayerCamera : MonoBehaviour
     private float bodyRotationX = 1f;
     private float camRotationY;
 
-    private void Awake()
+    private bool initialized;
+
+    public void Init()
     {
         if (Active) Destroy(this);
         Active = this;
-    }
 
-    private void Start()
-    {
         offsetFromPlayer = transform.parent.position - transform.position;
 
         zoomLevels.Add("X1", 60.0f);
@@ -61,10 +60,14 @@ public class PlayerCamera : MonoBehaviour
         LoadSensitivityValues();
 
         RotatePlayer(playerT.rotation.eulerAngles.y, cameraT.localRotation.x, Time.deltaTime);
+
+        initialized = true;
     }
 
     private void Update()
     {
+        if (!initialized) return; 
+
         if (Player.Active.Controller.IsInUI) return;
 
         var d = Time.deltaTime;

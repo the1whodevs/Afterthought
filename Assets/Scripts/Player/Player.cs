@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
 
         Active = this;
 
+        Camera.Init();
         Audio.Init();
         Animator.Init();
         Loadout.Init();
