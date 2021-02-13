@@ -311,6 +311,7 @@ public class PlayerLoadout : MonoBehaviour
     private void ReturnFromEquipmentToLastWeapon()
     {
         currentEquipment = null;
+        Destroy(currentEquipmentObject);
         currentEquipmentObject = null;
         currentEquipmentThrowable = null;
 
@@ -344,7 +345,7 @@ public class PlayerLoadout : MonoBehaviour
 
     private IEnumerator SwitchToEquipment(EquipmentData toEquip)
     {
-        const float delay = 1.0f;
+        const float delay = 0.00125f;
 
         // Player unequip animation...
         pa.Unequip();
