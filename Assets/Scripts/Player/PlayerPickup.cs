@@ -16,10 +16,10 @@ public class PlayerPickup : MonoBehaviour
 
     private Transform playerCam;
 
-    public void Init()
+    public void Init(PlayerController pc, PlayerLoadout pl)
     {
-        pc = Player.Active.Controller;
-        pl = Player.Active.Loadout;
+        this.pc = pc;
+        this.pl = pl;
 
         playerCam = Player.Active.Camera.transform;
     }

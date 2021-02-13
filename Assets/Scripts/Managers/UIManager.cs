@@ -89,10 +89,12 @@ public class UIManager : MonoBehaviour
 
     public void UpdateWeaponAmmoUI(WeaponData weaponEquipped)
     {
-        weapon_AmmoIcon.sprite = weaponEquipped.ammoType.icon;
+        crosshair.GetComponent<Image>().sprite = weaponEquipped.weaponTypeData.crosshair;
+        crosshair.GetComponent<RectTransform>().sizeDelta = weaponEquipped.weaponTypeData.crosshairDefaultXY;
+        weapon_AmmoIcon.sprite = weaponEquipped.weaponTypeData.ammoType.icon;
 
         if (weaponEquipped.weaponType == WeaponData.WeaponType.Melee) weaponAmmoCount.text = "";
-        else weaponAmmoCount.text = $"{weaponEquipped.ammoInMagazine} / {weaponEquipped.ammoType.currentAmmo}";
+        else weaponAmmoCount.text = $"{weaponEquipped.ammoInMagazine} / {weaponEquipped.weaponTypeData.ammoType.currentAmmo}";
     }
 
     public void UpdateEquipmentAmmoCountEquipmentA(EquipmentData eqEquipped)

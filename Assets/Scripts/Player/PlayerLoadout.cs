@@ -278,7 +278,7 @@ public class PlayerLoadout : MonoBehaviour
     {
         isReloading = false;
 
-        if (!CurrentWeapon.isShotgun) CurrentWeapon.ReloadMag(ref CurrentWeapon.ammoType.currentAmmo);
+        if (!CurrentWeapon.isShotgun) CurrentWeapon.ReloadMag(ref CurrentWeapon.weaponTypeData.ammoType.currentAmmo);
 
         SetAmmoUI();
     }
@@ -311,7 +311,7 @@ public class PlayerLoadout : MonoBehaviour
     private void ReturnFromEquipmentToLastWeapon()
     {
         currentEquipment = null;
-        Destroy(currentEquipmentObject);
+        Destroy(currentEquipmentObject, 1.0f);
         currentEquipmentObject = null;
         currentEquipmentThrowable = null;
 

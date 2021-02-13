@@ -20,6 +20,7 @@ public class EquipmentData : IDisplayableItem
     public float throwSpeed = 50.0f;
     public float throwYoffset = 10.0f;
 
+    public float throwableDestroyDelay = 0.0f;
     public float explosionLifetime = 7.5f; // How long the explosion prefab remains in scene.
     public float fuseTime = 3.0f;
     public float ragdollForce = 150.0f;

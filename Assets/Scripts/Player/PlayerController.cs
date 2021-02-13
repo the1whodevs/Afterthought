@@ -70,12 +70,12 @@ public class PlayerController : MonoBehaviour
         public float colliderCenterHeight;
     }
      
-    private void Start()
+    public void Init(PlayerAudio pa, PlayerAnimator pan, PlayerLoadout pl)
     {
         cc = GetComponent<CharacterController>();
-        pad = Player.Active.Audio;
-        pa = Player.Active.Animator;
-        pl = Player.Active.Loadout;
+        pad = pa;
+        this.pa = pan;
+        this.pl = pl;
 
         myCamera = Camera.main.transform;
 
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
 
         WeaponFireLogic(fire, aim);
 
-        if (!pl.IsReloading && reload && pl.CurrentWeapon.ammoType.currentAmmo > 0 && pl.CurrentWeapon.ammoInMagazine < pl.CurrentWeapon.magazineCapacity) pl.Reload();
+        if (!pl.IsReloading && reload && pl.CurrentWeapon.weaponTypeData.ammoType.currentAmmo > 0 && pl.CurrentWeapon.ammoInMagazine < pl.CurrentWeapon.magazineCapacity) pl.Reload();
          
         var ads = !pl.IsReloading && aim;
          

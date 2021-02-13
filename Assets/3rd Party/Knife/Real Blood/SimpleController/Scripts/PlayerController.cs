@@ -136,7 +136,7 @@ namespace Knife.Effects.SimpleController
             }
         }
 
-        void Start()
+        public void Init()
         {
             charactarCollider = GetComponent<CapsuleCollider>();
             controller = GetComponent<CharacterController>();

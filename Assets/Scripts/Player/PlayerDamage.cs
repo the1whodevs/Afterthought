@@ -127,21 +127,24 @@ public class PlayerDamage : MonoBehaviour
 
         var pos = toExplode.transform.position;
 
-        Destroy(toExplode);
-        Destroy(Instantiate(relatedEquipment.explosionPrefab, pos, Quaternion.identity, null), relatedEquipment.explosionLifetime);
-
         switch (relatedEquipment.Type)
         {
             case EquipmentData.EquipmentType.DmgExplosion:
+                Destroy(toExplode, relatedEquipment.throwableDestroyDelay);
+                Destroy(Instantiate(relatedEquipment.explosionPrefab, pos, Quaternion.identity, null), relatedEquipment.explosionLifetime);
+
                 DmgExplosion(pos, relatedEquipment);
                 break;
 
             case EquipmentData.EquipmentType.OccludeExplosion:
                 // TODO: Blind all AI & Player for explosionLifetime.
+                Destroy(toExplode, relatedEquipment.throwableDestroyDelay);
+                Destroy(Instantiate(relatedEquipment.explosionPrefab, pos, Quaternion.identity, null), relatedEquipment.explosionLifetime);
                 break;
 
             case EquipmentData.EquipmentType.BlockExplosion:
-                // TODO: Smoke logic?
+                Destroy(toExplode, relatedEquipment.throwableDestroyDelay);
+                Destroy(Instantiate(relatedEquipment.explosionPrefab, pos, Quaternion.identity, toExplode.transform), relatedEquipment.explosionLifetime);
                 break;
 
         }

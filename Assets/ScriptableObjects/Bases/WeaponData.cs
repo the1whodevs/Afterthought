@@ -26,15 +26,14 @@ public class WeaponData : IDisplayableItem
     
     [FormerlySerializedAs("audioFx")] public AudioClip[] shotAudioFx;
     [FormerlySerializedAs("bulletHole")] public GameObject hitImpact;
-    public GameObject[] hitDecal; 
-    
+    public GameObject[] hitDecal;
+
+    public WeaponTypeData weaponTypeData;
     public WeaponType weaponType = WeaponType.Firearm;
 
     public PlayerWeaponAnimator.WeaponAnimatorType weaponAnimType = PlayerWeaponAnimator.WeaponAnimatorType.Pistol;
 
     public FireType fireType = FireType.FullAuto;
-
-    public AmmoData ammoType;
 
     public int ammoInMagazine = 30;
     public int magazineCapacity = 30;

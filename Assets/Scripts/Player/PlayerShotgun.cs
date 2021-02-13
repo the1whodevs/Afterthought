@@ -51,7 +51,7 @@ public class PlayerShotgun : PlayerWeaponAnimator
     {
         anim.SetBool(isReloading, true);
 
-        var lastAmmo = (pl.CurrentWeapon.ammoType.currentAmmo == 1);
+        var lastAmmo = (pl.CurrentWeapon.weaponTypeData.ammoType.currentAmmo == 1);
         var lastForMag = (pl.CurrentWeapon.ammoInMagazine == pl.CurrentWeapon.magazineCapacity - 1);
 
         if (lastForMag || lastAmmo)
@@ -73,12 +73,12 @@ public class PlayerShotgun : PlayerWeaponAnimator
     {
         // Needed for fast reload speeds to work properly.
         if (pl.CurrentWeapon.ammoInMagazine == pl.CurrentWeapon.magazineCapacity || 
-            pl.CurrentWeapon.ammoType.currentAmmo == 0) return;
+            pl.CurrentWeapon.weaponTypeData.ammoType.currentAmmo == 0) return;
 
         pl.CurrentWeapon.ammoInMagazine++;
-        pl.CurrentWeapon.ammoType.currentAmmo--;
+        pl.CurrentWeapon.weaponTypeData.ammoType.currentAmmo--;
 
-        var lastAmmo = (pl.CurrentWeapon.ammoType.currentAmmo == 1);
+        var lastAmmo = (pl.CurrentWeapon.weaponTypeData.ammoType.currentAmmo == 1);
         var lastForMag = (pl.CurrentWeapon.ammoInMagazine == pl.CurrentWeapon.magazineCapacity - 1);
 
         if (lastForMag || lastAmmo)
@@ -90,7 +90,7 @@ public class PlayerShotgun : PlayerWeaponAnimator
         }
         // Check if the lastReload animation called this.
         else if (pl.CurrentWeapon.ammoInMagazine == pl.CurrentWeapon.magazineCapacity ||
-            pl.CurrentWeapon.ammoType.currentAmmo == 0)
+            pl.CurrentWeapon.weaponTypeData.ammoType.currentAmmo == 0)
         {
             // Setting this false in case only 1 bullet is reloaded.
             anim.SetBool(isReloading, false);

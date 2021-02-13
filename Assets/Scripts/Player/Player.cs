@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
         Animator.Init();
         Loadout.Init();
         Damage.Init();
-        Pickup.Init();
+        Controller.Init(Audio, Animator, Loadout);
+        Pickup.Init(Controller, Loadout);
     }
 }
