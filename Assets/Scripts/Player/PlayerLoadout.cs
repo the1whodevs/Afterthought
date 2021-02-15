@@ -486,7 +486,7 @@ public class PlayerLoadout : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
 
-            if (!CurrentWeapon || !CurrentWeapon.hasScope || !CurrentWeaponObject) continue;
+            if (!CurrentWeapon || !CurrentWeaponObject) continue;
 
             if (Player.Active.Controller.IsADS) CurrentWeaponObject.transform.localPosition = Vector3.Lerp(CurrentWeaponObject.transform.localPosition, Vector3.zero + CurrentWeapon.ads_offset, Time.deltaTime * adsOffsetAdjustSpeed);
             else CurrentWeaponObject.transform.localPosition = Vector3.Lerp(CurrentWeaponObject.transform.localPosition, Vector3.zero, Time.deltaTime * adsOffsetAdjustSpeed);
