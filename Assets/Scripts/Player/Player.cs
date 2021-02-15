@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public PlayerEquipment Equipment { get; private set; }
     public PlayerCamera Camera { get; private set; }
     public PlayerObjectives Objectives { get; private set; }
+    public PlayerVisor Visor { get; private set; }
 
     [SerializeField] private GameObject[] objectsToSpawnOnSpawn;
 
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
         Experience = GetComponent<PlayerExperience>();
         Pickup = GetComponent<PlayerPickup>();
         Objectives = GetComponent<PlayerObjectives>();
+        Visor = GetComponent<PlayerVisor>();
 
         Active = this;
 
@@ -56,5 +58,6 @@ public class Player : MonoBehaviour
         Damage.Init();
         Controller.Init(Audio, Animator, Loadout);
         Pickup.Init(Controller, Loadout);
+        Visor.Init(Controller);
     }
 }

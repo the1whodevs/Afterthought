@@ -19,8 +19,11 @@ public class UIManager : MonoBehaviour
 
     private static UIManager _instance;
 
+    public GameObject Crosshair => crosshair;
     public GameObject HealthBar => healthBar;
+    public TextMeshProUGUI ScannedHPdisplay => scannedHPdisplay;
 
+    [SerializeField] private TextMeshProUGUI scannedHPdisplay;
     [SerializeField] private TextMeshProUGUI interactPrompt;
     [SerializeField] private TextMeshProUGUI objectivePrompt;
 

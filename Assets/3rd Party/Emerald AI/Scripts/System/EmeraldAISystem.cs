@@ -17,7 +17,7 @@ namespace EmeraldAI
     [RequireComponent(typeof(EmeraldAIEventsManager))]
     [SelectionBase]
 
-    public class EmeraldAISystem : MonoBehaviour
+    public class EmeraldAISystem : MonoBehaviour, IScannable
     {
         #region Variables
         //Melee Attacks
@@ -2630,6 +2630,16 @@ namespace EmeraldAI
             RoationDifference = (RoationDifference > 180) ? RoationDifference - 360 : RoationDifference;
             float AdjustedAngle = Mathf.Abs(angle) - Mathf.Abs(RoationDifference);
             return AdjustedAngle;
+        }
+
+        public float GetHPPercentage()
+        {
+            return ((float)CurrentHealth / StartingHealth);
+        }
+
+        public Color GetCrosshairColor()
+        {
+            return Color.red;
         }
     }
 }
