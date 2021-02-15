@@ -56,6 +56,9 @@ public class WeaponData : IDisplayableItem
     public float minRange = 150.0f;
     public float maxRange = 300.0f;
 
+    [Tooltip("The offset for localPosition to use, when aiming down sights.")]
+    public Vector3 ads_offset = Vector3.zero;
+
     public float recoil_horizontal = 1.5f;
     public float recoil_vertical = 3.0f;
 

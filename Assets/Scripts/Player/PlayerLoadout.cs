@@ -43,6 +43,8 @@ public class PlayerLoadout : MonoBehaviour
     [SerializeField] private List<EquipmentData> allEquipmentData = new List<EquipmentData>();
     [SerializeField] private List<AmmoData> allAmmoData = new List<AmmoData>();
 
+    [SerializeField] private float adsOffsetAdjustSpeed = 1.0f;
+
     [SerializeField] private Transform WeaponR;
     
     [SerializeField, TagSelector] private string scopeTag;
@@ -89,6 +91,8 @@ public class PlayerLoadout : MonoBehaviour
         if (TrainingManager.Active) ChangeActiveLoadout(TrainingManager.GetTrainingLoadout());
 
         EquipPrimaryWeapon();
+
+        StartCoroutine(AdjustADSPosition());
     }
 
     public void ChangeActiveLoadout(LoadoutData newLoadout)
@@ -474,6 +478,19 @@ public class PlayerLoadout : MonoBehaviour
 
         Unequip();
         EquipWeapon(weaponToEquip);
+    }
+
+    private IEnumerator AdjustADSPosition()
+    {
+        while (Application.isPlaying)
+        {
+            yield return new WaitForEndOfFrame();
+
+            if (!CurrentWeapon || !CurrentWeapon.hasScope || !CurrentWeaponObject) continue;
+
+            if (Player.Active.Controller.IsADS) CurrentWeaponObject.transform.localPosition = Vector3.Lerp(CurrentWeaponObject.transform.localPosition, Vector3.zero + CurrentWeapon.ads_offset, Time.deltaTime * adsOffsetAdjustSpeed);
+            else CurrentWeaponObject.transform.localPosition = Vector3.Lerp(CurrentWeaponObject.transform.localPosition, Vector3.zero, Time.deltaTime * adsOffsetAdjustSpeed);
+        }
     }
 
     private void Unequip()
