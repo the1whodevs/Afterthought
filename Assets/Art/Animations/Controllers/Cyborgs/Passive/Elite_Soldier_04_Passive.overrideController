@@ -389,10 +389,9 @@ AnimatorStateMachine:
   - {fileID: 1101891800655246496}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 1107030571086292122}
+  - first: {fileID: 1107813755197954376}
     second:
-    - {fileID: 1109972040693101644}
-    - {fileID: 1109791084709923588}
+    - {fileID: 1109675832954616432}
   - first: {fileID: 1107246348514381348}
     second:
     - {fileID: 1109954754794497168}
@@ -406,11 +405,12 @@ AnimatorStateMachine:
   - first: {fileID: 1107453411272682502}
     second:
     - {fileID: 1109008801501642540}
-  - first: {fileID: 1107813755197954376}
-    second:
-    - {fileID: 1109675832954616432}
   - first: {fileID: 1107970555804621890}
     second: []
+  - first: {fileID: 1107030571086292122}
+    second:
+    - {fileID: 1109972040693101644}
+    - {fileID: 1109791084709923588}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -324, y: -228, z: 0}
   m_EntryPosition: {x: 48, y: -240, z: 0}
@@ -650,7 +650,7 @@ BlendTree:
   m_Name: Idle
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: d8c54f84fd628ad4596c019a68e5ec1a,
+    m_Motion: {fileID: -203655887218126122, guid: 300749eca6973de45ad129d04defd5ac,
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
@@ -674,7 +674,7 @@ BlendTree:
   m_Name: Idle
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: d8c54f84fd628ad4596c019a68e5ec1a,
+    m_Motion: {fileID: -203655887218126122, guid: 300749eca6973de45ad129d04defd5ac,
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
@@ -13515,7 +13515,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: d8c54f84fd628ad4596c019a68e5ec1a,
+  m_Motion: {fileID: -203655887218126122, guid: 300749eca6973de45ad129d04defd5ac,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
