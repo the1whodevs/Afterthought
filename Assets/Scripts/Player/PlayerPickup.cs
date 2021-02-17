@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerPickup : MonoBehaviour
 {
+    public static Action<InteractableObject> OnInteract;
+
     [Header("Trigger Interact")]
     [SerializeField, TagSelector] private string loadoutChangerTag;
 
@@ -42,29 +45,35 @@ public class PlayerPickup : MonoBehaviour
 
             if (!interact) fireResetRequired = false;
 
-            // Prioritize loadout selector over other interactables.
-            if (hit.transform.CompareTag(loadoutChangerTag))
-            {
-                UIManager.Active.ShowInteractPrompt(KeyCode.F, "open loadout editor");
+            //// Prioritize loadout selector over other interactables.
+            //if (hit.transform.CompareTag(loadoutChangerTag))
+            //{
+            //    UIManager.Active.ShowInteractPrompt(KeyCode.F, "open loadout editor");
 
-                if (interact && !fireResetRequired)
-                {
-                    fireResetRequired = true;
-                    pc.GetInUI();
-                    Time.timeScale = 0.0f;
-                    LoadoutEditor.Instance.ShowWindow();
-                }
+            //    if (interact && !fireResetRequired)
+            //    {
+            //        fireResetRequired = true;
+            //        OnInteract?.Invoke(hit.transform.GetComponent<InteractableObject>());
+            //    }
 
-                return;
-            }
+            //    return;
+            //}
 
             var pickableHit = hit.transform.GetComponent<InteractableObject>();
 
             if (!pickableHit) return;
 
-            UIManager.Active.ShowInteractPrompt(KeyCode.F, $"pickup {pickableHit.name}");
+            UIManager.Active.ShowInteractPrompt(KeyCode.F, 
+                $"{pickableHit.GetActionVerb()} " +
+                $"{pickableHit.GetActionPronoun()} " +
+                $"{pickableHit.name}");
 
-            if (interact) pickableHit.Interact();
+            if (interact && !fireResetRequired)
+            {
+                fireResetRequired = true;
+                OnInteract?.Invoke(pickableHit);
+                pickableHit.Interact();
+            }
         }
     }
 }

@@ -17,6 +17,11 @@ public class PickableAmmo : InteractableObject
         ammoLeftInBox = ammoToGive;
     }
 
+    public override string GetActionVerb()
+    {
+        return "get";
+    }
+
     public override void Interact()
     {
         Player.Active.Loadout.GetAmmo(ammoTypeToGive, ref ammoLeftInBox);

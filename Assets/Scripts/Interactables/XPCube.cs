@@ -8,6 +8,11 @@ public class XPCube : InteractableObject
 
     [SerializeField] private GameObject despawnEffect;
 
+    public override string GetActionVerb()
+    {
+        return "get";
+    }
+
     public override void Interact()
     {
         Player.Active.Experience.GetXP(xpToReward);

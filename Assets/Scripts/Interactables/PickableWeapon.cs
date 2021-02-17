@@ -9,6 +9,11 @@ public class PickableWeapon : InteractableObject
         name = weaponToPickup.name;
     }
 
+    public override string GetActionVerb()
+    {
+        return "equip";
+    }
+
     public override void Interact()
     {
         if (Player.Active.Loadout.CurrentWeapon.Equals(weaponToPickup)) return;
@@ -16,10 +21,6 @@ public class PickableWeapon : InteractableObject
         var secondaryWeapon = Player.Active.Loadout.Loadout.Weapons[1];
 
         if (secondaryWeapon && weaponToPickup.Equals(secondaryWeapon)) return;
-
-        // 'Drop' current weapon if it's possible (i.e. not possible for no weapon weapon)
-        //if (Player.Active.Loadout.CurrentWeapon.pickablePrefab)
-        //    Instantiate(Player.Active.Loadout.CurrentWeapon.pickablePrefab, transform.position, Quaternion.identity, null);
 
         // Equip this weapon.
         Player.Active.Loadout.PickupWeapon(weaponToPickup);

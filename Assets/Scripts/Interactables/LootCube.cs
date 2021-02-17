@@ -14,6 +14,16 @@ public class LootCube : InteractableObject
 
     [SerializeField] private float despawnEffectLifetime = 2.0f;
 
+    public override string GetActionPronoun()
+    {
+        return "the";
+    }
+
+    public override string GetActionVerb()
+    {
+        return "open";
+    }
+
     public override void Interact()
     {
         if (despawnEffect) Destroy(Instantiate(despawnEffect, transform.position, Quaternion.identity, null), despawnEffectLifetime);

@@ -54,6 +54,16 @@ public class InteractableObject : MonoBehaviour
 
     public virtual void Interact()
     {
+        
+    }
 
+    public virtual string GetActionVerb()
+    {
+        return "";
+    }
+
+    public virtual string GetActionPronoun()
+    {
+        return "";
     }
 }

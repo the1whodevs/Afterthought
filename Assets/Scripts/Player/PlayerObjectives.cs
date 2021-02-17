@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class PlayerObjectives : MonoSingleton<PlayerObjectives>
 {
-    [SerializeField] private ObjectiveDataPickupEquipment[] pickupEquipmentObjectives;
-    [SerializeField] private ObjectiveDataPickupWeapon[] pickupWeaponObjectives;
-    [SerializeField] private ObjectiveDataKillTargets[] killTargetsObjectives;
-    [SerializeField] private ObjectiveDataGoToArea[] goToAreaObjectives;
+    [SerializeField] private Objective[] levelObjectiveData;
 
-    private ObjectiveData[] allObjectives;
+    [SerializeField] private ObjectivePickupEquipment[] pickupEquipmentObjectives;
+    [SerializeField] private ObjectivePickupWeapon[] pickupWeaponObjectives;
+    [SerializeField] private ObjectiveKillTargets[] killTargetsObjectives;
+    [SerializeField] private ObjectiveGoToArea[] goToAreaObjectives;
+    [SerializeField] private ObjectiveInteractWithInteractable[] interactWithObjectives;
 
-    private ObjectiveData currentObjective
+    private Objective_Old[] allObjectives;
+
+    private Objective_Old currentObjective
     {
         get
         {
@@ -27,6 +30,7 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives>
     {
         Player.Active.Loadout.OnEquipmentEquipped += OnPlayerEquippedEquipment;
         Player.Active.Loadout.OnWeaponEquipped += OnPlayerEquippedWeapon;
+        PlayerPickup.OnInteract += OnPlayerInteract;
 
         InitializeObjectives();
 
@@ -35,10 +39,11 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives>
 
     private void InitializeObjectives()
     {
-        allObjectives = new ObjectiveData[pickupEquipmentObjectives.Length +
+        allObjectives = new Objective_Old[pickupEquipmentObjectives.Length +
             pickupWeaponObjectives.Length +
             killTargetsObjectives.Length +
-            goToAreaObjectives.Length];
+            goToAreaObjectives.Length +
+            interactWithObjectives.Length];
 
         var index = 0;
 
@@ -70,24 +75,39 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives>
             index++;
         }
 
-        Array.Sort(allObjectives, new ObjectiveDataComparer().Compare);
+        for (var i = 0; i < interactWithObjectives.Length; i++)
+        {
+            allObjectives[index] = interactWithObjectives[i];
+            allObjectives[index].onObjectiveComplete.AddListener(NextObjective);
+            index++;
+        }
+
+        Array.Sort(allObjectives, new ObjectiveComparer().Compare);
 
         NextObjective();
     }
 
+    private void OnPlayerInteract(InteractableObject obj)
+    {
+        if (currentObjective == null) return;
+
+        if (currentObjective.objectiveType == Objective_Old.ObjectiveType.Interact)
+            currentObjective.CheckObjective(obj);
+    }
+
     private void OnPlayerEquippedEquipment(EquipmentData equippedEquipment)
     {
-        if (currentObjective is null) return;
+        if (currentObjective == null) return;
 
-        if (currentObjective.objectiveType == ObjectiveData.ObjectiveType.PickupEquipment)
+        if (currentObjective.objectiveType == Objective_Old.ObjectiveType.PickupEquipment)
             currentObjective.CheckObjective(equippedEquipment);
     }
 
     private void OnPlayerEquippedWeapon(WeaponData equippedWeapon)
     {
-        if (currentObjective is null) return;
+        if (currentObjective == null) return;
 
-        if (currentObjective.objectiveType == ObjectiveData.ObjectiveType.PickupWeapon)
+        if (currentObjective.objectiveType == Objective_Old.ObjectiveType.PickupWeapon)
             currentObjective.CheckObjective(equippedWeapon);
     }
 
@@ -113,18 +133,18 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives>
 
             switch (currentObjective.objectiveType)
             {
-                case ObjectiveData.ObjectiveType.KillTargets:
+                case Objective_Old.ObjectiveType.KillTargets:
                     currentObjective.CheckObjective(null);
                     break;
 
-                case ObjectiveData.ObjectiveType.GoToArea:
+                case Objective_Old.ObjectiveType.GoToArea:
                     currentObjective.CheckObjective(Player.Active.transform);
                     break;
 
-                case ObjectiveData.ObjectiveType.PickupEquipment:
+                case Objective_Old.ObjectiveType.PickupEquipment:
                     break;
 
-                case ObjectiveData.ObjectiveType.PickupWeapon:
+                case Objective_Old.ObjectiveType.PickupWeapon:
                     break;
 
                 default:

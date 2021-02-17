@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 7851517075096024475}
   - component: {fileID: 6663787106524298561}
   - component: {fileID: 1713689197806690000}
+  - component: {fileID: 6600601686622686620}
   m_Layer: 12
   m_Name: Stand_Weapons
   m_TagString: LoadoutSelection
@@ -140,8 +141,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.7220705, y: 2.797095, z: 0.8651667}
-  m_Center: {x: 0.012297749, y: 1.3941106, z: 0.52466506}
+  m_Size: {x: 2.3698025, y: 2.423495, z: 0.52464175}
+  m_Center: {x: -0.008812248, y: 1.2073106, z: -0.10574058}
 --- !u!54 &1713689197806690000
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -158,6 +159,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6600601686622686620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846210657550851555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68ba3e81d63829240bc705a38060e9b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Loadout Editor
+  floatSpeed: 0.5
+  floatDist: 0.25
+  rotSpeed: 0.0125
 --- !u!1 &7846813656290342089
 GameObject:
   m_ObjectHideFlags: 0
