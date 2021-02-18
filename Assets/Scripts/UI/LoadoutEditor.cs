@@ -138,6 +138,8 @@ public class LoadoutEditor : MonoSingleton<LoadoutEditor>
 
     public void SelectLoadout()
     {
+        if (Player.Active.Loadout.Loadout.Equals(displayedLoadout)) return;
+
         Player.Active.Loadout.ChangeActiveLoadout(displayedLoadout);
 
         UpdateDisplays();

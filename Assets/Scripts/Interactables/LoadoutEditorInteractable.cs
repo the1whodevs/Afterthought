@@ -2,6 +2,8 @@
 
 public class LoadoutEditorInteractable : InteractableObject
 {
+    [SerializeField] private bool IsTraining = false;
+
     public override string GetActionPronoun()
     {
         return "the";
@@ -15,7 +17,9 @@ public class LoadoutEditorInteractable : InteractableObject
     public override void Interact()
     {
         Player.Active.Controller.GetInUI();
-        Time.timeScale = 0.0f;
+
+        if (!IsTraining) Time.timeScale = 0.0f;
+
         LoadoutEditor.Active.ShowWindow();
     }
 }

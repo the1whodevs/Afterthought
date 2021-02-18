@@ -45,14 +45,17 @@ public class ObjectiveData : ScriptableObject
         switch (objectiveType)
         {
             case ObjectiveType.KillTargets:
-
                 foreach (var target in targetsToKill)
                     if (target.CurrentHealth > 0) return;
-
                 onObjectiveComplete?.Invoke();
                 break;
 
             case ObjectiveType.GoToArea:
+                if (!targetPosition)
+                {
+                    Debug.LogWarning("targetPosition is null!");
+                    return;
+                }
                 var pos = targetPosition.position;
                 var dist = Vector3.Distance(pos, Player.Active.transform.position);
                 if (dist > distanceTolerance) return;

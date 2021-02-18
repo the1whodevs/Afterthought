@@ -97,10 +97,10 @@ public class PlayerLoadout : MonoBehaviour
 
     public void ChangeActiveLoadout(LoadoutData newLoadout)
     {
-        newLoadout.CopyTo(loadout);
-
         Unequip();
         UnequipEquipment();
+
+        newLoadout.CopyTo(loadout);
 
         EquipPrimaryWeapon();
     }

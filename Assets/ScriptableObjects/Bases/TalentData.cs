@@ -16,6 +16,7 @@ public class TalentData : IDisplayableItem
         MinimalHorizontalRecoil, // Implemented!
         FasterReloading, // wip: Reload speed not implemented yet!
         FasterCrouchSpeed, // Implemented!
+        Empty,
     }
 
     public TalentType Talent;
