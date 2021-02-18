@@ -4,6 +4,6 @@
 
     public void SetLoadoutWeapon()
     {
-        LoadoutEditor.Instance.SetLoadoutWeapon(itemToDisplay, RelatedSlot);
+        LoadoutEditor.Active.SetLoadoutWeapon(itemToDisplay, RelatedSlot);
     }
 }

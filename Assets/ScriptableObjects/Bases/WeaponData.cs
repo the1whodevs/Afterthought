@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
 
-[CreateAssetMenu(menuName = "Veejay/Weapon", fileName = "Weapon")]
+[CreateAssetMenu(menuName = "Veejay/Weapons/Weapon", fileName = "Weapon")]
 public class WeaponData : IDisplayableItem
 {
     public enum WeaponType { Firearm, Projectile, Melee }

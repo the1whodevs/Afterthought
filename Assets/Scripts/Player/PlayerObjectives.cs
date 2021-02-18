@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class PlayerObjectives : MonoSingleton<PlayerObjectives>
 {
-    [SerializeField] private Objective[] levelObjectiveData;
+    [SerializeField] private LevelObjectiveData levelObjectiveData;
 
-    [SerializeField] private ObjectivePickupEquipment[] pickupEquipmentObjectives;
-    [SerializeField] private ObjectivePickupWeapon[] pickupWeaponObjectives;
-    [SerializeField] private ObjectiveKillTargets[] killTargetsObjectives;
-    [SerializeField] private ObjectiveGoToArea[] goToAreaObjectives;
-    [SerializeField] private ObjectiveInteractWithInteractable[] interactWithObjectives;
+    private ObjectiveData[] allObjectives => levelObjectiveData.objectiveData;
 
-    private Objective_Old[] allObjectives;
-
-    private Objective_Old currentObjective
+    private ObjectiveData currentObjective
     {
         get
         {
@@ -28,126 +21,59 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives>
 
     private void Start()
     {
-        Player.Active.Loadout.OnEquipmentEquipped += OnPlayerEquippedEquipment;
-        Player.Active.Loadout.OnWeaponEquipped += OnPlayerEquippedWeapon;
         PlayerPickup.OnInteract += OnPlayerInteract;
+        LoadoutEditor.Active.OnWeaponSwitched += OnLoadoutSlotSwitched;
+        LoadoutEditor.Active.OnEquipmentSwitched += OnLoadoutSlotSwitched;
+        LoadoutEditor.Active.OnTalentSwitched += OnLoadoutSlotSwitched;
 
-        InitializeObjectives();
+        levelObjectiveData.Initialize();
+        NextObjective();
 
         StartCoroutine(CheckForCurrentObjective());
-    }
-
-    private void InitializeObjectives()
-    {
-        allObjectives = new Objective_Old[pickupEquipmentObjectives.Length +
-            pickupWeaponObjectives.Length +
-            killTargetsObjectives.Length +
-            goToAreaObjectives.Length +
-            interactWithObjectives.Length];
-
-        var index = 0;
-
-        for (var i = 0; i < pickupEquipmentObjectives.Length; i++)
-        {
-            allObjectives[index] = pickupEquipmentObjectives[i];
-            allObjectives[index].onObjectiveComplete.AddListener(NextObjective);
-            index++;
-        }
-
-        for (var i = 0; i < pickupWeaponObjectives.Length; i++)
-        {
-            allObjectives[index] = pickupWeaponObjectives[i];
-            allObjectives[index].onObjectiveComplete.AddListener(NextObjective);
-            index++;
-        }
-
-        for (var i = 0; i < killTargetsObjectives.Length; i++)
-        {
-            allObjectives[index] = killTargetsObjectives[i];
-            allObjectives[index].onObjectiveComplete.AddListener(NextObjective);
-            index++;
-        }
-
-        for (var i = 0; i < goToAreaObjectives.Length; i++)
-        {
-            allObjectives[index] = goToAreaObjectives[i];
-            allObjectives[index].onObjectiveComplete.AddListener(NextObjective);
-            index++;
-        }
-
-        for (var i = 0; i < interactWithObjectives.Length; i++)
-        {
-            allObjectives[index] = interactWithObjectives[i];
-            allObjectives[index].onObjectiveComplete.AddListener(NextObjective);
-            index++;
-        }
-
-        Array.Sort(allObjectives, new ObjectiveComparer().Compare);
-
-        NextObjective();
     }
 
     private void OnPlayerInteract(InteractableObject obj)
     {
         if (currentObjective == null) return;
 
-        if (currentObjective.objectiveType == Objective_Old.ObjectiveType.Interact)
+        if (currentObjective.objectiveType == ObjectiveData.ObjectiveType.Interact)
             currentObjective.CheckObjective(obj);
-    }
-
-    private void OnPlayerEquippedEquipment(EquipmentData equippedEquipment)
-    {
-        if (currentObjective == null) return;
-
-        if (currentObjective.objectiveType == Objective_Old.ObjectiveType.PickupEquipment)
-            currentObjective.CheckObjective(equippedEquipment);
-    }
-
-    private void OnPlayerEquippedWeapon(WeaponData equippedWeapon)
-    {
-        if (currentObjective == null) return;
-
-        if (currentObjective.objectiveType == Objective_Old.ObjectiveType.PickupWeapon)
-            currentObjective.CheckObjective(equippedWeapon);
     }
 
     public void NextObjective()
     {
         currentObjectiveId++;
 
-        if (!(currentObjective is null))
-        {
+        if (currentObjective != null)
             UIManager.Active.UpdateObjectiveText(currentObjective.objectiveText);
-        }
         else
-        {
             UIManager.Active.UpdateObjectiveText("");
-        }
+    }
+
+    private void OnLoadoutSlotSwitched(int slotSwitched)
+    {
+        if (currentObjective == null) return;
+
+        if (currentObjective.objectiveType == ObjectiveData.ObjectiveType.EquipEquipmentOnSlot ||
+            currentObjective.objectiveType == ObjectiveData.ObjectiveType.EquipTalentOnSlot ||
+            currentObjective.objectiveType == ObjectiveData.ObjectiveType.EquipWeaponOnSlot)
+            currentObjective.CheckObjective(slotSwitched);
     }
 
     private IEnumerator CheckForCurrentObjective()
     {
         while (true)
         {
-            while (currentObjective is null) yield return new WaitForEndOfFrame();
+            while (currentObjective == null) yield return new WaitForEndOfFrame();
 
             switch (currentObjective.objectiveType)
             {
-                case Objective_Old.ObjectiveType.KillTargets:
-                    currentObjective.CheckObjective(null);
+                case ObjectiveData.ObjectiveType.KillTargets:
+                    currentObjective.CheckObjective();
                     break;
 
-                case Objective_Old.ObjectiveType.GoToArea:
-                    currentObjective.CheckObjective(Player.Active.transform);
-                    break;
-
-                case Objective_Old.ObjectiveType.PickupEquipment:
-                    break;
-
-                case Objective_Old.ObjectiveType.PickupWeapon:
-                    break;
-
-                default:
+                case ObjectiveData.ObjectiveType.GoToArea:
+                    currentObjective.CheckObjective();
                     break;
             }
 

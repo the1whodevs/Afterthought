@@ -1,8 +1,7 @@
 ﻿using System;
 using UnityEngine;
-using static ObjectiveData;
 
-[CreateAssetMenu(menuName = "Veejay/Level Objective", fileName = "NewLevelObjectiveData")]
+[CreateAssetMenu(menuName = "Veejay/Objectives/Level Objective", fileName = "NewLevelObjectiveData")]
 public class LevelObjectiveData : ScriptableObject
 {
     public ObjectiveData[] objectiveData;
@@ -14,6 +13,6 @@ public class LevelObjectiveData : ScriptableObject
 
     private void SortObjectivesBasedOnOrder()
     {
-        Array.Sort(objectiveData, new ObjectiveDataComparer().Compare);
+        Array.Sort(objectiveData, new ObjectiveData.ObjectiveDataComparer().Compare);
     }
 }

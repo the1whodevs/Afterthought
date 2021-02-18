@@ -4,6 +4,6 @@
 
     public void SetLoadoutTalent()
     {
-        LoadoutEditor.Instance.SetLoadoutTalent(itemToDisplay, RelatedSlot);
+        LoadoutEditor.Active.SetLoadoutTalent(itemToDisplay, RelatedSlot);
     }
 }

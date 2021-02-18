@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "Veejay/Objective", fileName = "NewObjectiveData")]
+[CreateAssetMenu(menuName = "Veejay/Objectives/Objective", fileName = "NewObjectiveData")]
 public class ObjectiveData : ScriptableObject
 {
     public System.Action onObjectiveComplete;
 
-    public enum ObjectiveType { KillTargets, GoToArea, Interact }
+    public enum ObjectiveType { KillTargets, GoToArea, Interact, EquipWeaponOnSlot, EquipEquipmentOnSlot, EquipTalentOnSlot }
 
     public ObjectiveType objectiveType;
 
@@ -16,30 +16,31 @@ public class ObjectiveData : ScriptableObject
 
     public string objectiveText = "Player should do something";
 
-    private List<EmeraldAISystem> targetsToKill;
+    [Range(0, 2)] public int equipObjectiveSlot = 0;
+
+    private List<EmeraldAISystem> targetsToKill = new List<EmeraldAISystem>();
 
     private InteractableObject objToInteract;
 
     private Transform targetPosition;
-    private float distanceTolerance;
+    [SerializeField] private float distanceTolerance;
 
-    public void Initialize(List<EmeraldAISystem> targets)
+    public void AddTargetToKill(EmeraldAISystem target)
     {
-        targetsToKill = targets;
+        targetsToKill.Add(target);
     }
 
-    public void Initialize(InteractableObject interactTarget)
+    public void AddTargetPosition(Transform targetPosition)
     {
-        objToInteract = interactTarget;
+        this.targetPosition = targetPosition;
     }
 
-    public void Initialize(Transform positionTarget, float distanceTolerance)
+    public void AddTargetInteractable(InteractableObject targetInteractable)
     {
-        targetPosition = positionTarget;
-        this.distanceTolerance = distanceTolerance;
+        objToInteract = targetInteractable;
     }
 
-    public void CheckObjective(Object toCompare = null)
+    public void CheckObjective()
     {
         switch (objectiveType)
         {
@@ -56,9 +57,33 @@ public class ObjectiveData : ScriptableObject
                 if (Vector3.Distance(pos, targetPosition.position) > distanceTolerance) return;
                 onObjectiveComplete?.Invoke();
                 break;
+        }
+    }
 
+    public void CheckObjective(InteractableObject toCompare)
+    {
+        switch (objectiveType)
+        {
             case ObjectiveType.Interact:
-                if (((InteractableObject)toCompare).Equals(objToInteract)) onObjectiveComplete?.Invoke();
+                if (toCompare.Equals(objToInteract)) onObjectiveComplete?.Invoke();
+                break;
+        }
+    }
+
+    public void CheckObjective(int slot)
+    {
+        switch (objectiveType)
+        {
+            case ObjectiveType.EquipWeaponOnSlot:
+                if (slot == equipObjectiveSlot) onObjectiveComplete?.Invoke();
+                    break;
+
+            case ObjectiveType.EquipEquipmentOnSlot:
+                if (slot == equipObjectiveSlot) onObjectiveComplete?.Invoke();
+                break;
+
+            case ObjectiveType.EquipTalentOnSlot:
+                if (slot == equipObjectiveSlot) onObjectiveComplete?.Invoke();
                 break;
         }
     }

@@ -16,6 +16,6 @@ public class LoadoutEditorInteractable : InteractableObject
     {
         Player.Active.Controller.GetInUI();
         Time.timeScale = 0.0f;
-        LoadoutEditor.Instance.ShowWindow();
+        LoadoutEditor.Active.ShowWindow();
     }
 }

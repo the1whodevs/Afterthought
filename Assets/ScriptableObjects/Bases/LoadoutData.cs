@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Veejay/Loadout", fileName = "Loadout")]
+[CreateAssetMenu(menuName = "Veejay/Weapons/Loadout", fileName = "Loadout")]
 public class LoadoutData : ScriptableObject
 {
     public string LoadoutName = "Loadout 1";

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Veejay/Ammo", fileName = "AmmoData")]
+[CreateAssetMenu(menuName = "Veejay/Weapons/Ammo", fileName = "AmmoData")]
 public class AmmoData : IDisplayableItem
 {
     public int currentAmmo = 300;

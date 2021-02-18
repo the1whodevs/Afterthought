@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Veejay/WeaponTypeData", fileName = "WeaponTypeData")]
+[CreateAssetMenu(menuName = "Veejay/Weapons/Weapon Type", fileName = "WeaponTypeData")]
 public class WeaponTypeData : ScriptableObject
 {
     public Sprite crosshair;

@@ -1,22 +1,22 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class LoadoutEditor : MonoBehaviour
+public class LoadoutEditor : MonoSingleton<LoadoutEditor>
 {
-    public static LoadoutEditor Instance
-    {
-        get
-        {
-            if (_instance) return _instance;
+    /// <summary>
+    /// Passes the index of the talent that was switched (0, 1, 2).
+    /// </summary>
+    public Action<int> OnTalentSwitched;
 
-            _instance = FindObjectOfType<LoadoutEditor>();
+    /// <summary>
+    /// Passes the index of the weapon that was switched (0, 1).
+    /// </summary>
+    public Action<int> OnWeaponSwitched;
 
-            if (!_instance) throw new System.Exception("LoadoutEditor instance not found!");
-
-            return _instance;
-        }
-    }
-
-    private static LoadoutEditor _instance;
+    /// <summary>
+    /// Passes the index of the equipment that was switched (0, 1).
+    /// </summary>
+    public Action<int> OnEquipmentSwitched;
 
     [SerializeField] private LoadoutData[] playerLoadouts;
     [SerializeField] private WeaponData[] allWeapons;
@@ -37,13 +37,6 @@ public class LoadoutEditor : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance && _instance != this)
-        {
-            Debug.LogError("Another instance of loadout editor already exists!");
-            Destroy(this);
-        }
-        else if (!_instance) _instance = this;
-
         HideWindow();
     }
 
@@ -157,6 +150,8 @@ public class LoadoutEditor : MonoBehaviour
 
         displayedLoadout.Weapons[slot] = weapon;
 
+        OnWeaponSwitched?.Invoke(slot);
+
         UpdateDisplays();
     }
 
@@ -167,6 +162,8 @@ public class LoadoutEditor : MonoBehaviour
 
         displayedLoadout.Equipment[slot] = equipment;
 
+        OnEquipmentSwitched?.Invoke(slot);
+
         UpdateDisplays();
     }
 
@@ -176,6 +173,8 @@ public class LoadoutEditor : MonoBehaviour
             if (tal == talent) return;
 
         displayedLoadout.Talents[slot] = talent;
+
+        OnTalentSwitched?.Invoke(slot);
 
         UpdateDisplays();
     }
@@ -194,7 +193,7 @@ public class LoadoutEditor : MonoBehaviour
 
     public void UpdateDisplays()
     {
-        if (!displayedLoadout) throw new System.Exception("Update Displays called but displayedLoadout is null!");
+        if (!displayedLoadout) throw new Exception("Update Displays called but displayedLoadout is null!");
 
         wepDisplayA.SetItemToDisplay(displayedLoadout.Weapons[0]);
         wepDisplayB.SetItemToDisplay(displayedLoadout.Weapons[1]);

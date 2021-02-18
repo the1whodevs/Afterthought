@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Veejay/Talent", fileName = "Talent")]
+[CreateAssetMenu(menuName = "Veejay/Weapons/Talent", fileName = "Talent")]
 public class TalentData : IDisplayableItem
 {
     // Each talent must be added to the enum list AT THE END, and have the behaviour scripted wherever needed!

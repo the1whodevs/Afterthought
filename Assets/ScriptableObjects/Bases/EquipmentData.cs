@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Veejay/Equipment", fileName = "Equipment")]
+[CreateAssetMenu(menuName = "Veejay/Weapons/Equipment", fileName = "Equipment")]
 public class EquipmentData : IDisplayableItem
 {    
     public GameObject prefab;
