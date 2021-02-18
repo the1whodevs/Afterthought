@@ -91,8 +91,9 @@ GameObject:
   - component: {fileID: 6663787106524298561}
   - component: {fileID: 1713689197806690000}
   - component: {fileID: 6600601686622686620}
+  - component: {fileID: -604145698168787317}
   m_Layer: 12
-  m_Name: Stand_Weapons
+  m_Name: Loadout_Editor
   m_TagString: LoadoutSelection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,6 +176,19 @@ MonoBehaviour:
   floatSpeed: 0.5
   floatDist: 0.25
   rotSpeed: 0.0125
+--- !u!114 &-604145698168787317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846210657550851555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21b9e7f34d899d540976caf9fbb70091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objective: {fileID: 11400000, guid: 91ce63a9e647bb14bb3ec5ce039030d2, type: 2}
 --- !u!1 &7846813656290342089
 GameObject:
   m_ObjectHideFlags: 0

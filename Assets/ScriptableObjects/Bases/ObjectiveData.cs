@@ -100,27 +100,10 @@ public class ObjectiveData : ScriptableObject
 }
 
 [System.Serializable]
-public class Objective
+public class OnObjectiveCompleteWrapper
 {
-    [Header("Go-To Settings")]
-    public Transform targetArea;
-    public float distanceTolerance = 1.0f;
-
-    [Space]
-
-    [Header("Interact-With Settings")]
-    public InteractableObject targetInteractable;
-
-    [Space]
-
-    [Header("Kill Targets Settings")]
-    public EmeraldAISystem[] targets;
-
-    [Space]
-
-    [Header("Global Settings")]
-    public UnityEvent onObjectiveComplete;
     public ObjectiveData data;
+    public UnityEvent onObjectiveComplete;
 
     public void Initialize()
     {

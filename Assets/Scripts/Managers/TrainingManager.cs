@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TrainingManager : MonoSingleton<TrainingManager>
 {
     [SerializeField] private LoadoutData trainingLoadout;
+
+    [Header("OnObjectiveComplete Actions")]
+    [SerializeField] private OnObjectiveCompleteWrapper[] onObjectiveCompleteActions;
 
     [Header("Melee Zone")]
     [SerializeField] private GameObject cyberblade;
@@ -21,6 +22,7 @@ public class TrainingManager : MonoSingleton<TrainingManager>
     [SerializeField] private GameObject[] ProjectilesEdgeZones;
     [SerializeField] private GameObject[] ProjectilesBorderZones;
     [SerializeField] private GameObject[] ProjectilesTargets;
+    [SerializeField] private GameObject ProjectilesPowerfulEnemy;
 
     [Header("Progression Zone")]
     [SerializeField] private GameObject[] ProgressionEdgeZones;
@@ -98,6 +100,12 @@ public class TrainingManager : MonoSingleton<TrainingManager>
 
     public void OnKillProjectilesTargets()
     {
+        // Spawn miniboss.
+        ProjectilesPowerfulEnemy.SetActive(true);
+    }
+
+    public void OnKillProjectilesPowerfulEnemy()
+    {
         DisableCollidersProjectilesZone();
     }
     
@@ -107,9 +115,29 @@ public class TrainingManager : MonoSingleton<TrainingManager>
         SpawnCratesInProgressionZone();
     }
 
-    public void OnInteractinWithXpCrate()
+    public void OnInteractWithXpCube()
     {
         DisableCollidersProgressionZone();
+    }
+
+    public void OnInteractWithLootCube()
+    {
+
+    }
+
+    public void OnInteractWithLoadoutEditor()
+    {
+
+    }
+
+    public void OnReachedLoadoutEditorZone()
+    {
+
+    }
+
+    public void OnFinishedLoadoutTraining()
+    {
+
     }
 
     private void EnableColliderMeleeZone()
