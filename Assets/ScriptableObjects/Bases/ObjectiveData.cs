@@ -54,7 +54,8 @@ public class ObjectiveData : ScriptableObject
 
             case ObjectiveType.GoToArea:
                 var pos = targetPosition.position;
-                if (Vector3.Distance(pos, targetPosition.position) > distanceTolerance) return;
+                var dist = Vector3.Distance(pos, Player.Active.transform.position);
+                if (dist > distanceTolerance) return;
                 onObjectiveComplete?.Invoke();
                 break;
         }

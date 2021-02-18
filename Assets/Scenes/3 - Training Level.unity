@@ -6332,6 +6332,7 @@ MonoBehaviour:
   MeleeTargets:
   - {fileID: 1173167848}
   - {fileID: 1817353441}
+  scarfaceMk2: {fileID: 2066596686}
   RangedEdgeZones:
   - {fileID: 1182066816}
   - {fileID: 1153908688}
@@ -6342,6 +6343,7 @@ MonoBehaviour:
   - {fileID: 1086493800}
   - {fileID: 494154021}
   - {fileID: 139082833}
+  crossbow: {fileID: 787562330}
   ProjectilesEdgeZones:
   - {fileID: 1153908688}
   - {fileID: 596856757}
@@ -6352,6 +6354,7 @@ MonoBehaviour:
   - {fileID: 1360203109}
   - {fileID: 950890857}
   ProjectilesPowerfulEnemy: {fileID: 914268692}
+  loadoutEditor: {fileID: 1480947988}
   ProgressionEdgeZones:
   - {fileID: 596856757}
   - {fileID: 1370330533}
@@ -6359,7 +6362,7 @@ MonoBehaviour:
   - {fileID: 739728635}
   - {fileID: 1260722957}
   ProgressionCrates:
-  - {fileID: 0}
+  - {fileID: 256734104}
 --- !u!4 &153402224 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 452652, guid: b5dd74dbb0fbdd849bc839d08c1e681b,
@@ -9491,7 +9494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 271167257}
   m_LocalRotation: {x: -0, y: 0.7071062, z: -0, w: 0.7071075}
-  m_LocalPosition: {x: -139.948, y: 0.015611291, z: -34.87}
+  m_LocalPosition: {x: -139.95, y: 0.015611291, z: -39.51}
   m_LocalScale: {x: 0.03, y: 5.3424, z: 12.523867}
   m_Children: []
   m_Father: {fileID: 153388582}
@@ -41246,7 +41249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1050289618}
   m_Layer: 0
-  m_Name: Pickables
+  m_Name: Interactables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59977,7 +59980,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437402103}
   m_LocalRotation: {x: -0, y: 0.7071057, z: -0, w: 0.70710796}
-  m_LocalPosition: {x: -120.53, y: 1.8077695, z: -15.741}
+  m_LocalPosition: {x: -120.53, y: 1.8077695, z: -11.877}
   m_LocalScale: {x: 0.03, y: 5.3424, z: 12.523867}
   m_Children: []
   m_Father: {fileID: 153388582}
@@ -61796,6 +61799,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c2e9de5d7178c9448f33fb5c9ddd945, type: 3}
+--- !u!1 &1480947988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7846210657550851555, guid: 13bbda16d1c983f41b75da6f5089596a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1457965823}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1481210130 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 414590, guid: 8118c9a8cb3ef1e4ab3efb33c9b10a79,
@@ -67097,7 +67106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601751343}
   m_LocalRotation: {x: -0, y: 0.7071062, z: -0, w: 0.7071075}
-  m_LocalPosition: {x: -143.737, y: 0.015611291, z: -69.94}
+  m_LocalPosition: {x: -149.26, y: 0.015611291, z: -71.75}
   m_LocalScale: {x: 0.03, y: 5.3424, z: 12.523867}
   m_Children: []
   m_Father: {fileID: 153388582}

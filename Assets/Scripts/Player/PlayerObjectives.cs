@@ -19,17 +19,34 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives>
 
     private int currentObjectiveId = -1;
 
+    private void Awake()
+    {
+        StartCoroutine(SubscribeToLoadoutEditorEvents());
+
+        PlayerPickup.OnInteract += OnPlayerInteract;
+
+        levelObjectiveData.Initialize();
+
+        foreach (var obj in levelObjectiveData.objectiveData)
+            obj.onObjectiveComplete += NextObjective;
+
+        NextObjective();
+    }
+
     private void Start()
     {
-        PlayerPickup.OnInteract += OnPlayerInteract;
+        StartCoroutine(CheckForCurrentObjective());
+    }
+
+    private IEnumerator SubscribeToLoadoutEditorEvents()
+    {
+        while (!LoadoutEditor.Active) yield return new WaitForEndOfFrame();
+
         LoadoutEditor.Active.OnWeaponSwitched += OnLoadoutSlotSwitched;
         LoadoutEditor.Active.OnEquipmentSwitched += OnLoadoutSlotSwitched;
         LoadoutEditor.Active.OnTalentSwitched += OnLoadoutSlotSwitched;
 
-        levelObjectiveData.Initialize();
-        NextObjective();
-
-        StartCoroutine(CheckForCurrentObjective());
+        Debug.Log("Subscribed to loadout editor events!");
     }
 
     private void OnPlayerInteract(InteractableObject obj)

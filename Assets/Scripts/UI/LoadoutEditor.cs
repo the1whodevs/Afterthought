@@ -35,7 +35,7 @@ public class LoadoutEditor : MonoSingleton<LoadoutEditor>
 
     private LoadoutData displayedLoadout;
 
-    private void Awake()
+    private void Start()
     {
         HideWindow();
     }

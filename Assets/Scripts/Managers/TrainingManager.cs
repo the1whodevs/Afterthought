@@ -14,17 +14,20 @@ public class TrainingManager : MonoSingleton<TrainingManager>
     [SerializeField] private GameObject[] MeleeTargets;
 
     [Header("Ranged Zone")]
+    [SerializeField] private GameObject scarfaceMk2;
     [SerializeField] private GameObject[] RangedEdgeZones;
     [SerializeField] private GameObject[] RangedBorderZones;
     [SerializeField] private GameObject[] RangedTargets;
 
     [Header("Projectiles Zone")]
+    [SerializeField] private GameObject crossbow;
     [SerializeField] private GameObject[] ProjectilesEdgeZones;
     [SerializeField] private GameObject[] ProjectilesBorderZones;
     [SerializeField] private GameObject[] ProjectilesTargets;
     [SerializeField] private GameObject ProjectilesPowerfulEnemy;
 
     [Header("Progression Zone")]
+    [SerializeField] private GameObject loadoutEditor;
     [SerializeField] private GameObject[] ProgressionEdgeZones;
     [SerializeField] private GameObject[] ProgressionBorderZones;
     [SerializeField] private GameObject[] ProgressionCrates;
@@ -32,22 +35,29 @@ public class TrainingManager : MonoSingleton<TrainingManager>
     private void Start()
     {
         cyberblade.SetActive(false);
+        scarfaceMk2.SetActive(false);
+        crossbow.SetActive(false);
+        loadoutEditor.SetActive(false);
+        ProjectilesPowerfulEnemy.SetActive(false);
 
         DisableCollidersMeleeZone();
         DisableCollidersProgressionZone();
         DisableCollidersProjectilesZone();
         DisableCollidersRangedZone();
 
-        for (int i = 0; i < MeleeTargets.Length; i++)
+        foreach (var obj in onObjectiveCompleteActions)
+            obj.Initialize();
+
+        for (var i = 0; i < MeleeTargets.Length; i++)
             MeleeTargets[i].SetActive(false);
 
-        for (int i = 0; i < RangedTargets.Length; i++)
+        for (var i = 0; i < RangedTargets.Length; i++)
             RangedTargets[i].SetActive(false);
 
-        for (int i = 0; i < ProjectilesTargets.Length; i++)
+        for (var i = 0; i < ProjectilesTargets.Length; i++)
             ProjectilesTargets[i].SetActive(false);
 
-        for (int i = 0; i < ProgressionCrates.Length; i++)
+        for (var i = 0; i < ProgressionCrates.Length; i++)
             ProgressionCrates[i].SetActive(false);
     }
 
@@ -75,6 +85,7 @@ public class TrainingManager : MonoSingleton<TrainingManager>
 
     public void OnReachRangedZone()
     {
+        scarfaceMk2.SetActive(true);
         EnableColliderRangedZone();
     }
 
@@ -90,6 +101,7 @@ public class TrainingManager : MonoSingleton<TrainingManager>
 
     public void OnReachProjectilesZone()
     {
+        crossbow.SetActive(true);
         EnableColliderProjectilesZone();
     }
 
@@ -117,7 +129,7 @@ public class TrainingManager : MonoSingleton<TrainingManager>
 
     public void OnInteractWithXpCube()
     {
-        DisableCollidersProgressionZone();
+        loadoutEditor.SetActive(true);
     }
 
     public void OnInteractWithLootCube()
@@ -137,7 +149,7 @@ public class TrainingManager : MonoSingleton<TrainingManager>
 
     public void OnFinishedLoadoutTraining()
     {
-
+        DisableCollidersProgressionZone();
     }
 
     private void EnableColliderMeleeZone()
