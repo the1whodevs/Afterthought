@@ -3981,7 +3981,7 @@ MonoBehaviour:
   CurrentDamageAmount: 5
   DamageAmountRun: 5
   WanderRadius: 25
-  TabNumber: 1
+  TabNumber: 4
   TemperamentTabNumber: 2
   DetectionTagsTabNumber: 0
   AnimationTabNumber: 1
@@ -4230,7 +4230,9 @@ MonoBehaviour:
   AttackSounds:
   - {fileID: 8300000, guid: 45e6d2dadb986ec468b8288f67918924, type: 3}
   InjuredSounds:
-  - {fileID: 8300000, guid: f6ea411a0b8c4164c965535ca5b867b5, type: 3}
+  - {fileID: 8300000, guid: f15400a7723ea204dacccdce68854bc4, type: 3}
+  - {fileID: 8300000, guid: e0dd40f25b03ce24dafbca1b68f25b60, type: 3}
+  - {fileID: 8300000, guid: 8bab23ee5fbbd294295868b3d43433ab, type: 3}
   WarningSounds: []
   DeathSounds:
   - {fileID: 8300000, guid: 2c8472512992d0743ad27aa6f9d5d7c5, type: 3}
@@ -4544,7 +4546,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9e960b9007bd140b4e89024971a329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactSoundFx: []
+  impactSoundFx:
+  - {fileID: 8300000, guid: f15400a7723ea204dacccdce68854bc4, type: 3}
+  - {fileID: 8300000, guid: e0dd40f25b03ce24dafbca1b68f25b60, type: 3}
+  - {fileID: 8300000, guid: 8bab23ee5fbbd294295868b3d43433ab, type: 3}
   hitEffect: {fileID: 258580847482720398, guid: cd2d1bedc94357140b3b50f34b10daaf,
     type: 3}
   hitDecal:
