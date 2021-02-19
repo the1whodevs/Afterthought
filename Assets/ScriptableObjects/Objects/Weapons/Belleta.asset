@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Belleta
   description: It's beautiful isn't it?
   icon: {fileID: 21300000, guid: 994fb41c0cec83e4d8f40bb7ce261943, type: 3}
-  unlockType: 2
+  unlockType: 0
   levelRequired: 1
   isLooted: 0
   wepPrefab: {fileID: 1170339376308916, guid: 87109e39fc1c2fe45955415c04b02e82, type: 3}
@@ -53,5 +53,6 @@ MonoBehaviour:
   adsMultiplier: 1
   minRange: 150
   maxRange: 300
+  ads_offset: {x: 0, y: 0, z: 0}
   recoil_horizontal: 1.5
   recoil_vertical: 3

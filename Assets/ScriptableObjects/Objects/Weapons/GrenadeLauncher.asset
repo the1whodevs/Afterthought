@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Grenade Launcher
   description: Just another noobtube.
   icon: {fileID: 21300000, guid: 87d3e660b10975f4e8ad262c286597ba, type: 3}
-  unlockType: 2
+  unlockType: 0
   levelRequired: 1
   isLooted: 0
   wepPrefab: {fileID: 1162446373548900, guid: de3ce606167c3e14698b0790ea606d60, type: 3}
@@ -54,5 +54,6 @@ MonoBehaviour:
   adsMultiplier: 1
   minRange: 3
   maxRange: 10
+  ads_offset: {x: 0, y: 0, z: 0}
   recoil_horizontal: 1.5
   recoil_vertical: 3

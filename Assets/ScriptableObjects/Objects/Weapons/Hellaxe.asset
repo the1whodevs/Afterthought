@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Hellaxe
   description: An axe, from hell.
   icon: {fileID: 21300000, guid: b4175708cb9596f4c9bc2aae69f64366, type: 3}
-  unlockType: 2
+  unlockType: 0
   levelRequired: 1
   isLooted: 0
   wepPrefab: {fileID: 1827562430431914, guid: 158d85eb32c87104cb328b5f2e3ab9a1, type: 3}
@@ -51,5 +51,6 @@ MonoBehaviour:
   adsMultiplier: 1
   minRange: 1.5
   maxRange: 1.5
+  ads_offset: {x: 0, y: 0, z: 0}
   recoil_horizontal: 1.5
   recoil_vertical: 3

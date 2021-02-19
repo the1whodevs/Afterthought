@@ -1,5 +1,4 @@
 ﻿using EmeraldAI;
-using Knife.RealBlood.Decals;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -317,6 +316,9 @@ public class PlayerDamage : MonoBehaviour
 
         if (CurrentWeapon.fireType == WeaponData.FireType.Burst) CurrentWeapon.ammoInMagazine -= BURST_FIRE_COUNT;
         else CurrentWeapon.ammoInMagazine--;
+
+        CurrentWeapon.SaveData();
+        CurrentWeapon.weaponTypeData.ammoType.SaveData();
 
         var fireType = CurrentWeapon.fireType;
 

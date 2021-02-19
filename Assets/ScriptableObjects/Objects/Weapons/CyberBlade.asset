@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Cyber Blade
   description: A standard blade for Dark City troops.
   icon: {fileID: 21300000, guid: 5c58280d19acaac439ff9115be457a39, type: 3}
-  unlockType: 0
+  unlockType: 1
   levelRequired: 0
   isLooted: 0
   wepPrefab: {fileID: 1965702313203224, guid: 99516a1148a29804db1f5224a01f835f, type: 3}
@@ -52,5 +52,6 @@ MonoBehaviour:
   adsMultiplier: 1
   minRange: 2.1
   maxRange: 2.1
+  ads_offset: {x: 0, y: 0, z: 0}
   recoil_horizontal: 1.5
   recoil_vertical: 3

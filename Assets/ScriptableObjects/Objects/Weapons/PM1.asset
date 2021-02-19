@@ -15,7 +15,7 @@ MonoBehaviour:
   name: PM1
   description: Standard german SMG.
   icon: {fileID: 21300000, guid: 6bdff99e94cb99b4b89cdc2958a97cb1, type: 3}
-  unlockType: 2
+  unlockType: 0
   levelRequired: 1
   isLooted: 0
   wepPrefab: {fileID: 1060585169976870, guid: 3d0ee8c7f71372b4fbd720bea3abbbfe, type: 3}
@@ -55,5 +55,6 @@ MonoBehaviour:
   adsMultiplier: 1
   minRange: 150
   maxRange: 300
+  ads_offset: {x: 0, y: 0, z: 0}
   recoil_horizontal: 1.5
   recoil_vertical: 3

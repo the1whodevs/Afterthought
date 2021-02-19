@@ -446,6 +446,13 @@ public class PlayerLoadout : MonoBehaviour
 
     public void PickupWeapon(WeaponData newWeapon)
     {
+        if (newWeapon.unlockType.Equals(UnlockType.Loot) &&
+            !newWeapon.isLooted)
+        {
+            newWeapon.isLooted = true;
+            newWeapon.SaveData();
+        }
+
         if (CurrentWeapon.Equals(loadout.Weapons[0]) && !newWeapon.Equals(loadout.Weapons[0]))
             loadout.Weapons[0] = newWeapon;
         else if (!newWeapon.Equals(loadout.Weapons[1]))

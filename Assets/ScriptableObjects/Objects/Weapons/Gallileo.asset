@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Gallileo
   description: Gallilei.
   icon: {fileID: 21300000, guid: f8ceb171726528e4fa00f9e48e5f61d6, type: 3}
-  unlockType: 2
+  unlockType: 0
   levelRequired: 1
   isLooted: 0
   wepPrefab: {fileID: 1013363612589426, guid: 2ad5c36edd0559141b78e7b2213712e6, type: 3}
@@ -53,5 +53,6 @@ MonoBehaviour:
   adsMultiplier: 1
   minRange: 150
   maxRange: 300
+  ads_offset: {x: 0, y: 0, z: 0}
   recoil_horizontal: 1.5
   recoil_vertical: 3

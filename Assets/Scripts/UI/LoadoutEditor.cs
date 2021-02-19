@@ -44,6 +44,8 @@ public class LoadoutEditor : MonoSingleton<LoadoutEditor>
     {
         var weaponsFill = wepDisplayA.AllItemDisplay.transform.GetComponentsInChildren<WeaponDisplay>();
 
+        allWeapons = Sorter.SortWeaponData(allWeapons);
+
         for (var i = 0; i < allWeapons.Length; i++)
         {
             weaponsFill[i].RelatedSlot = 0;
@@ -62,6 +64,8 @@ public class LoadoutEditor : MonoSingleton<LoadoutEditor>
     private void InitEquipmentList()
     {
         var equipmentsFill = equipDisplayA.AllItemDisplay.transform.GetComponentsInChildren<EquipmentDisplay>();
+
+        allEquipment = Sorter.SortEquipmentData(allEquipment);
 
         for (var i = 0; i < allEquipment.Length; i++)
         {
@@ -82,6 +86,8 @@ public class LoadoutEditor : MonoSingleton<LoadoutEditor>
     private void InitTalentList()
     {
         var talentsFill = talentDisplayA.AllItemDisplay.transform.GetComponentsInChildren<TalentDisplay>();
+
+        allTalents = Sorter.SortTalentData(allTalents);
 
         for (var i = 0; i < allTalents.Length; i++)
         {

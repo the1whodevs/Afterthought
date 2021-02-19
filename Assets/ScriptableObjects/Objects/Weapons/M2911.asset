@@ -15,7 +15,7 @@ MonoBehaviour:
   name: M2911
   description: Your standard military pistol.
   icon: {fileID: 21300000, guid: 2091b255074b90d42abc0689d8e5c3e3, type: 3}
-  unlockType: 2
+  unlockType: 0
   levelRequired: 1
   isLooted: 0
   wepPrefab: {fileID: 1425756895877542, guid: 9820bbe58bb57204db392c631110251c, type: 3}
@@ -53,5 +53,6 @@ MonoBehaviour:
   adsMultiplier: 1
   minRange: 150
   maxRange: 300
+  ads_offset: {x: 0, y: 0, z: 0}
   recoil_horizontal: 1.5
   recoil_vertical: 3

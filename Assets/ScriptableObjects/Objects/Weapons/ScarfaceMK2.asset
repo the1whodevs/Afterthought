@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Scarface Mk2
   description: A new Tony Montana.
   icon: {fileID: 21300000, guid: 38046cdd19f6fe54a9c5e8d862ff44e2, type: 3}
-  unlockType: 2
+  unlockType: 1
   levelRequired: 1
   isLooted: 0
   wepPrefab: {fileID: 1502871673688920, guid: 007476434ef17624bb736a3cc4b9fc88, type: 3}
@@ -53,5 +53,6 @@ MonoBehaviour:
   adsMultiplier: 1
   minRange: 150
   maxRange: 300
+  ads_offset: {x: 0, y: 0, z: 0}
   recoil_horizontal: 1.5
   recoil_vertical: 3
