@@ -112,6 +112,30 @@ public class LoadoutEditor : MonoSingleton<LoadoutEditor>
         }
     }
 
+    public int WeaponToIndex(WeaponData data)
+    {
+        for (var i = 0; i < allWeapons.Length; i++)
+            if (allWeapons[i] == data) return i;
+
+        return -1;
+    }
+
+    public int EquipmentToIndex(EquipmentData data)
+    {
+        for (var i = 0; i < allEquipment.Length; i++)
+            if (allEquipment[i] == data) return i;
+
+        return -1;
+    }
+
+    public int TalentToIndex(TalentData data)
+    {
+        for (var i = 0; i < allTalents.Length; i++)
+            if (allTalents[i] == data) return i;
+
+        return -1;
+    }
+
     public void ShowWindow()
     {
         if (!displayedLoadout) displayedLoadout = playerLoadouts[0];

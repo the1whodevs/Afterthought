@@ -3,6 +3,24 @@ using System.Collections.Generic;
 
 public class Sorter : IComparer<WeaponData>, IComparer<EquipmentData>, IComparer<TalentData>
 {
+    public static WeaponData[] SortWeaponDataAZ(WeaponData[] toSort)
+    {
+        Array.Sort(toSort, new Sorter().CompareAZ);
+        return toSort;
+    }
+
+    public static EquipmentData[] SortEquipmentDataAZ(EquipmentData[] toSort)
+    {
+        Array.Sort(toSort, new Sorter().CompareAZ);
+        return toSort;
+    }
+
+    public static TalentData[] SortTalentDataAZ(TalentData[] toSort)
+    {
+        Array.Sort(toSort, new Sorter().CompareAZ);
+        return toSort;
+    }
+
     public static WeaponData[] SortWeaponData(WeaponData[] toSort)
     {
         Array.Sort(toSort, new Sorter().Compare);
@@ -145,5 +163,20 @@ public class Sorter : IComparer<WeaponData>, IComparer<EquipmentData>, IComparer
 
         // Since the two are not the same, and none of them are 'AlwaysUnlocked', and y is not 'Loot', it means that x is 'Loot'
         return 1;
+    }
+
+    public int CompareAZ(WeaponData x, WeaponData y)
+    {
+        return string.Compare(x.name, y.name, false, System.Globalization.CultureInfo.CurrentCulture);
+    }
+
+    public int CompareAZ(EquipmentData x, EquipmentData y)
+    {
+        return string.Compare(x.name, y.name, false, System.Globalization.CultureInfo.CurrentCulture);
+    }
+
+    public int CompareAZ(TalentData x, TalentData y)
+    {
+        return string.Compare(x.name, y.name, false, System.Globalization.CultureInfo.CurrentCulture);
     }
 }
