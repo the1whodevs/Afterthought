@@ -38,7 +38,6 @@ public static class SaveSystem
         public readonly int[] equipmentAmmo;
         // -- Done ---^
 
-
         // -- TODO --v
         public readonly int[] lootablesLootStatus;
         public readonly int[] aiHP;
@@ -53,7 +52,7 @@ public static class SaveSystem
         public readonly float[] aiRotation_Z;
         public readonly float[] aiRotation_W;
 
-        public SaveData(int currentLevel, int playerLevel, int playerXP, int playerHP, Vector3 playerPos, Quaternion playerRot, int objectiveIndex, LoadoutData[] allLoadouts, WeaponData[] allWeapons, AmmoData[] allAmmo,             EquipmentData[] allEquipment, TalentData[] allTalents, EmeraldAI.EmeraldAISystem[] allAIs, ILootable[] lootables)
+        public SaveData(int currentLevel, int playerLevel, int playerXP, int playerHP, Vector3 playerPos, Quaternion playerRot, int objectiveIndex, LoadoutData[] allLoadouts, WeaponData[] allWeapons, AmmoData[] allAmmo, EquipmentData[] allEquipment, TalentData[] allTalents, EmeraldAI.EmeraldAISystem[] allAIs, ILootable[] lootables)
         {
             this.level = currentLevel;
             this.playerLevel = playerLevel;
