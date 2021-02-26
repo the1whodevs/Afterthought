@@ -236,18 +236,18 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5433c28667e4941438bc39639a9b7c49, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 1.5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -343,6 +343,7 @@ MonoBehaviour:
   - {fileID: 4458888194215088260, guid: 273c9fdc130436e409c6f9d650bf5a33, type: 3}
   - {fileID: 4504650418774363838, guid: 27df02a2c6c3a6c4a80f77ab9d2b9003, type: 3}
   - {fileID: 2632853530951579261, guid: 313762adfca68c543a6695e895601518, type: 3}
+  explosionDecal: []
 --- !u!1 &1344770921342638
 GameObject:
   m_ObjectHideFlags: 0
