@@ -25,8 +25,19 @@ public class ObjectiveData : ScriptableObject
     private Transform targetPosition;
     [SerializeField] private float distanceTolerance;
 
+#if UNITY_EDITOR
+
+    private void OnValidate()
+    {
+        if (targetsToKill.Count > 0) targetsToKill.Clear();
+    }
+
+#endif
+
     public void AddTargetToKill(EmeraldAISystem target)
     {
+        if (targetsToKill.Contains(target)) return;
+
         targetsToKill.Add(target);
     }
 

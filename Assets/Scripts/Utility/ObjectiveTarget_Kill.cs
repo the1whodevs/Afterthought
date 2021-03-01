@@ -16,7 +16,7 @@ public class ObjectiveTarget_Kill : MonoBehaviour
 
 #endif
 
-    private void Start()
+    private void Awake()
     {
         objective.AddTargetToKill(GetComponent<EmeraldAI.EmeraldAISystem>());
     }

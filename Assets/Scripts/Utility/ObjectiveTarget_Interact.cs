@@ -16,7 +16,7 @@ public class ObjectiveTarget_Interact : MonoBehaviour
 
 #endif
 
-    private void Start()
+    private void Awake()
     {
         objective.AddTargetInteractable(GetComponent<InteractableObject>());
     }

@@ -16,7 +16,7 @@ public class ObjectiveTarget_GoTo : MonoBehaviour
 
 #endif
 
-    private void Start()
+    private void Awake()
     {
         objective.AddTargetPosition(transform);
     }
