@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("PlayerStart!");
+
         SaveManager.Active.SetPlayerInstance(this);
     }
 

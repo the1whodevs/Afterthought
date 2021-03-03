@@ -10,6 +10,8 @@ public class SaveManager : MonoSingleton<SaveManager>
 
     private Player player;
 
+
+    private const string LOADING_SCENE = "99 - Loading";
     private const int QUICKSAVE_INDEX = -1;
 
     private void Start()
@@ -26,12 +28,12 @@ public class SaveManager : MonoSingleton<SaveManager>
         player.Init();
     }
 
-    private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
+    private void SceneManager_activeSceneChanged(Scene current, Scene next)
     {
         player = null;
-        Debug.Log("Scene changed!");
+        Debug.Log($"Scene changed! Current: {current.name} Next: {next.name}");
 
-        if (currentDataLoading != null) StartCoroutine(LoadData(currentDataLoading));
+        if (currentDataLoading != null && next.name == LOADING_SCENE) StartCoroutine(LoadData(currentDataLoading));
     }
 
     private void Update()
@@ -82,7 +84,7 @@ public class SaveManager : MonoSingleton<SaveManager>
     {
         currentDataLoading = SaveSystem.Load(index);
 
-        SceneManager.LoadScene("Loading", LoadSceneMode.Single);
+        SceneManager.LoadScene(LOADING_SCENE, LoadSceneMode.Single);
     }
 
     public void LoadLast()
@@ -102,13 +104,30 @@ public class SaveManager : MonoSingleton<SaveManager>
         var loadedScene = SceneManager.LoadSceneAsync(data.level, LoadSceneMode.Additive);
         loadedScene.allowSceneActivation = true;
 
-        while (!loadedScene.isDone) yield return new WaitForEndOfFrame();
+        while (!loadedScene.isDone)
+        {
+            Debug.Log("Loading level from data...");
+            yield return new WaitForEndOfFrame();
+        }
+
+        //var asyncop = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+
+        //while (!asyncop.isDone)
+        //{
+        //    Debug.Log("Unloading loading scene...");
+        //    yield return new WaitForEndOfFrame();
+        //}
 
         var scene = SceneManager.GetSceneAt(1);
         SceneManager.SetActiveScene(scene);
 
-        var p = Player.Active;
-        p.Init();
+        while (!player)
+        {
+            Debug.Log("Waiting for player instance...");
+            player = Player.Active;
+            yield return new WaitForEndOfFrame();
+        }
+
         var le = LoadoutEditor.Active;
 
         var temp = new List<ILootable>();
@@ -120,16 +139,16 @@ public class SaveManager : MonoSingleton<SaveManager>
             temp2.AddRange(go.GetComponentsInChildren<EmeraldAI.EmeraldAISystem>(true));
         }
 
-        p.Experience.LoadData(data.level, data.playerXP);
-        p.Health.LoadData(data.playerHP);
-        p.transform.position = new Vector3(data.playerPosition_X, data.playerPosition_Y, data.playerPosition_Z);
-        p.transform.rotation = new Quaternion(data.playerRotation_X, data.playerRotation_Y, data.playerRotation_Z, data.playerRotation_W);
+        player.Experience.LoadData(data.level, data.playerXP);
+        player.Health.LoadData(data.playerHP);
+        player.transform.position = new Vector3(data.playerPosition_X, data.playerPosition_Y, data.playerPosition_Z);
+        player.transform.rotation = new Quaternion(data.playerRotation_X, data.playerRotation_Y, data.playerRotation_Z, data.playerRotation_W);
 
-        p.Objectives.LoadData(data.objectiveIndex);
+        player.Objectives.LoadData(data.objectiveIndex);
 
         le.LoadData(data.loadoutsWepAindex, data.loadoutsWepBindex, data.loadoutsEqAindex, data.loadoutsEqBindex, data.loadoutsTalAindex, data.loadoutsTalBindex, data.loadoutsTalCindex, data.weaponsLootStatus, data.weaponsAmmoInMag, data.equipmentAmmo);
 
-        p.Loadout.LoadData(data.ammoTypesCurrentAmmo);
+        player.Loadout.LoadData(data.ammoTypesCurrentAmmo);
 
         for (var i = 0; i < temp.Count; i++)
             if (data.lootablesLootStatus[i]) Destroy(temp[i].gameObject);
@@ -142,10 +161,6 @@ public class SaveManager : MonoSingleton<SaveManager>
 
             temp2[i].CurrentHealth = data.aiHP[i];
         }
-
-        var asyncop = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-
-        while (!asyncop.isDone) yield return new WaitForEndOfFrame();
 
         Debug.Log("Finished loading data...");
 

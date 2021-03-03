@@ -47,10 +47,10 @@ public class PlayerCamera : MonoBehaviour
 
         offsetFromPlayer = transform.parent.position - transform.position;
 
-        zoomLevels.Add("X1", 60.0f);
-        zoomLevels.Add("X2", 30.0f);
-        zoomLevels.Add("X4", 15.0f);
-        zoomLevels.Add("X8", 7.5f);
+        if (!zoomLevels.ContainsKey("X1")) zoomLevels.Add("X1", 60.0f);
+        if (!zoomLevels.ContainsKey("X2")) zoomLevels.Add("X2", 30.0f);
+        if (!zoomLevels.ContainsKey("X4")) zoomLevels.Add("X4", 15.0f);
+        if (!zoomLevels.ContainsKey("X8")) zoomLevels.Add("X8", 7.5f);
         
         zoomCameraGameObject = zoomCamera.gameObject;
         zoomCameraGameObject.SetActive(false);
