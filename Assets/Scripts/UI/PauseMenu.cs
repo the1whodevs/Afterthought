@@ -44,6 +44,11 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject audioPanel;
     [SerializeField] private GameObject graphicsPanel;
 
+    [Header("Buttons SFX")]
+    [SerializeField] private AudioSource PauseMenuAudioSource;
+    [SerializeField] private AudioClip hoverSFX;
+    [SerializeField] private AudioClip clickSFX;
+
     private void Awake()
     {
         if (_instance && _instance != this) Destroy(gameObject);
@@ -69,6 +74,11 @@ public class PauseMenu : MonoBehaviour
         verticalSensitivitySlider.SetValueWithoutNotify(10.0f * mouseY);
 
         gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        PauseMenuAudioSource.GetComponent<AudioSource>();
     }
 
     public void ResumeButton()
@@ -214,5 +224,15 @@ public class PauseMenu : MonoBehaviour
             loadingProgress.text = (100.0f * (0.1f + asyncOp.progress)).ToString("F1") + "%";
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public void PlayHoverSFX()
+    {
+        PauseMenuAudioSource.PlayOneShot(hoverSFX);
+    }
+
+    public void PlayClickSFX()
+    {
+        PauseMenuAudioSource.PlayOneShot(clickSFX);
     }
 }
