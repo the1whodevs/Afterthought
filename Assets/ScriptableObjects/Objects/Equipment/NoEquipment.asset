@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8181d236e8d9346b18bb0d3a92f4f0, type: 3}
   m_Name: NoEquipment
   m_EditorClassIdentifier: 
-  name: 
+  name: No Equipment
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0dcb21f24f67aa64ba45f4e6f608a830, type: 3}
   unlockType: 2
   levelRequired: 1
   isLooted: 0
@@ -22,17 +22,17 @@ MonoBehaviour:
   prefabToThrow: {fileID: 0}
   explosionPrefab: {fileID: 0}
   explosionDecal: {fileID: 0}
-  currentAmmo: 3
-  magazineCapacity: 3
-  damage: 100
-  minRange: 2.5
-  maxRange: 7.5
+  currentAmmo: 0
+  magazineCapacity: 0
+  damage: 0
+  minRange: 0
+  maxRange: 0
   mobilityPenalty: 0
-  throwDistance: 50
-  throwSpeed: 50
-  throwYoffset: 10
+  throwDistance: 0
+  throwSpeed: 0
+  throwYoffset: 0
   throwableDestroyDelay: 0
-  explosionLifetime: 7.5
-  fuseTime: 3
-  ragdollForce: 150
+  explosionLifetime: 0
+  fuseTime: 0
+  ragdollForce: 0
   Type: 0
