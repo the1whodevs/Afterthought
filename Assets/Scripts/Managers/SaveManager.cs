@@ -64,8 +64,7 @@ public class SaveManager : MonoSingleton<SaveManager>
             temp2.AddRange(go.GetComponentsInChildren<EmeraldAI.EmeraldAISystem>(true));
         }
 
-        SaveSystem.Save(index, SceneManager.GetActiveScene().buildIndex, p.Experience.Level, p.Experience.CurrentXP, p.Health.CurrentHP, p.transform.position, p.transform.rotation,
-            p.Objectives.CurrentObjectiveIndex, le.AllLoadouts, le.AllWeapons, p.Loadout.AllAmmo, le.AllEquipment, le.AllTalents, temp2.ToArray(), temp.ToArray());
+        SaveSystem.Save(index, SceneManager.GetActiveScene().buildIndex, p.Experience.Level, p.Experience.CurrentXP, p.Health.CurrentHP, p.transform.position, p.transform.rotation, p.Camera.transform.localPosition, p.Camera.transform.localRotation, p.Objectives.CurrentObjectiveIndex, le.AllLoadouts, le.AllWeapons, p.Loadout.AllAmmo, le.AllEquipment, le.AllTalents, temp2.ToArray(), temp.ToArray());
     }
 
     public void NewSave()
@@ -139,10 +138,22 @@ public class SaveManager : MonoSingleton<SaveManager>
             temp2.AddRange(go.GetComponentsInChildren<EmeraldAI.EmeraldAISystem>(true));
         }
 
+        player.Controller.enabled = false;
+        player.Camera.enabled = false;
+
         player.Experience.LoadData(data.level, data.playerXP);
         player.Health.LoadData(data.playerHP);
+
         player.transform.position = new Vector3(data.playerPosition_X, data.playerPosition_Y, data.playerPosition_Z);
+
         player.transform.rotation = new Quaternion(data.playerRotation_X, data.playerRotation_Y, data.playerRotation_Z, data.playerRotation_W);
+
+        player.Camera.transform.localPosition = new Vector3(data.cameraPosition_X, data.cameraPosition_Y, data.cameraPosition_Z);
+
+        player.Camera.transform.localRotation = new Quaternion(data.cameraRotation_X, data.cameraRotation_Y, data.cameraRotation_Z, data.cameraRotation_W);
+
+        player.Controller.enabled = true;
+        player.Camera.enabled = true;
 
         player.Objectives.LoadData(data.objectiveIndex);
 
