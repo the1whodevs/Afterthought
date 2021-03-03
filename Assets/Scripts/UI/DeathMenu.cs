@@ -30,6 +30,11 @@ public class DeathMenu : MonoBehaviour
     [SerializeField] private Image loadingImage;
     [SerializeField] private TextMeshProUGUI loadingProgress;
 
+    [Header("Buttons SFX")]
+    [SerializeField] private AudioSource DeathMenuAudioSource;
+    [SerializeField] private AudioClip hoverSFX;
+    [SerializeField] private AudioClip clickSFX;
+
     public const string SAVE_FILE_PREFIX = "AFTERTHOUGHT_SAVE_";
 
     private void Awake()
@@ -42,6 +47,11 @@ public class DeathMenu : MonoBehaviour
         loadingPanel.SetActive(false);
 
         gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        DeathMenuAudioSource.GetComponent<AudioSource>();
     }
 
     public void RestartButton()
@@ -93,5 +103,15 @@ public class DeathMenu : MonoBehaviour
             loadingProgress.text = (100.0f * (0.1f + asyncOp.progress)).ToString("F1") + "%";
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public void PlayHoverSFX()
+    {
+        DeathMenuAudioSource.PlayOneShot(hoverSFX);
+    }
+
+    public void PlayClickSFX()
+    {
+        DeathMenuAudioSource.PlayOneShot(clickSFX);
     }
 }
