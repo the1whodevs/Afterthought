@@ -64,6 +64,11 @@ public class MainMenu : MonoBehaviour
         verticalSensitivitySlider.SetValueWithoutNotify(10.0f * mouseY);
     }
 
+    private void Start()
+    {
+        MainMenuAudioSource.GetComponent<AudioSource>();
+    }
+
     public void ContinueButton()
     {
         // TODO: Load last save file...
