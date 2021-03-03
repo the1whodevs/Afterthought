@@ -31,6 +31,13 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject audioPanel;
     [SerializeField] private GameObject graphicsPanel;
 
+    [Header("Buttons SFX")]
+    [SerializeField] private AudioSource MainMenuAudioSource;
+    [SerializeField] private AudioClip hoverSFX;
+    [SerializeField] private AudioClip clickSFX;
+    [SerializeField] private AudioClip startGameSFX;
+
+
     public const string SAVE_FILE_PREFIX = "AFTERTHOUGHT_SAVE_";
     public const string HORIZONTAL_SENS_KEY = "MOUSE_X_SENSITIVITY";
     public const string VERTICAL_SENS_KEY = "MOUSE_Y_SENSITIVITY";
@@ -180,5 +187,20 @@ public class MainMenu : MonoBehaviour
             loadingProgress.text = (100.0f * (0.1f + asyncOp.progress)).ToString("F1") + "%";
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public void PlayHoverSFX()
+    {
+        MainMenuAudioSource.PlayOneShot(hoverSFX);
+    }
+
+    public void PlayClickSFX()
+    {
+        MainMenuAudioSource.PlayOneShot(clickSFX);
+    }
+
+    public void PlayStartGameSFX()
+    {
+        MainMenuAudioSource.PlayOneShot(startGameSFX);
     }
 }
