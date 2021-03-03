@@ -1,9 +1,49 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public static class SaveSystem
 {
-    private class SaveData
+    public static string SAVE_EXT = ".atsav";
+
+    public static void Save(int saveIndex, int currentLevel, int playerLevel, int playerXP, int playerHP, Vector3 playerPos, Quaternion playerRot, int objectiveIndex, LoadoutData[] allLoadouts, WeaponData[] allWeapons, AmmoData[] allAmmo, EquipmentData[] allEquipment, TalentData[] allTalents, EmeraldAI.EmeraldAISystem[] allAIs, ILootable[] lootables)
+    {
+        var data = new SaveData(currentLevel, playerLevel, playerXP, playerHP, playerPos, playerRot, objectiveIndex, allLoadouts, allWeapons, allAmmo, allEquipment, allTalents, allAIs, lootables);
+
+        var bf = new BinaryFormatter();
+        var path = $"{Application.persistentDataPath}/afterthough_{saveIndex}{SAVE_EXT}";
+        var filestream = new FileStream(path, FileMode.Create);
+
+        Debug.Log("Saved at " + path);
+
+        bf.Serialize(filestream, data);
+        filestream.Close();
+    }
+
+    public static SaveData Load(int saveIndex)
+    {
+        var path = $"{Application.persistentDataPath}/afterthough_{saveIndex}{SAVE_EXT}";
+
+        Debug.Log("Loading from " + path);
+
+        if (File.Exists(path))
+        {
+            var bf = new BinaryFormatter();
+            var filestream = new FileStream(path, FileMode.Open);
+
+            var data = bf.Deserialize(filestream) as SaveData;
+
+            filestream.Close();
+
+            return data;
+        }
+
+        return null;
+    }
+
+    [System.Serializable]
+    public class SaveData
     {
         public readonly int level;
         public readonly int playerLevel;
@@ -36,12 +76,9 @@ public static class SaveSystem
         public readonly int[] weaponsAmmoInMag;
         public readonly int[] ammoTypesCurrentAmmo;
         public readonly int[] equipmentAmmo;
-        // -- Done ---^
+        public readonly bool[] lootablesLootStatus;
 
-        // -- TODO --v
-        public readonly int[] lootablesLootStatus;
         public readonly int[] aiHP;
-        public readonly int[] aiState;
 
         public readonly float[] aiPosition_X;
         public readonly float[] aiPosition_Y;
@@ -143,23 +180,62 @@ public static class SaveSystem
 
             var wepLootTemp = new List<int>();
             var wepAmmoInMagTemp = new List<int>();
+
             for (var i = 0; i < allWeapons.Length; i++)
             {
                 wepLootTemp.Add(allWeapons[i].isLooted ? 1 : 0);
                 wepAmmoInMagTemp.Add(allWeapons[i].ammoInMagazine);
             }
 
+            weaponsLootStatus = wepLootTemp.ToArray();
+            weaponsAmmoInMag = wepAmmoInMagTemp.ToArray();
+
             var ammoTypesCurrentAmmoTemp = new List<int>();
             for (var i = 0; i < allAmmo.Length; i++)
                 ammoTypesCurrentAmmoTemp.Add(allAmmo[i].currentAmmo);
+
+            ammoTypesCurrentAmmo = ammoTypesCurrentAmmoTemp.ToArray();
 
             var equipmentCurrentAmmoTemp = new List<int>();
             for (var i = 0; i < allEquipment.Length; i++)
                 equipmentCurrentAmmoTemp.Add(allEquipment[i].currentAmmo);
 
+            equipmentAmmo = equipmentCurrentAmmoTemp.ToArray();
+
+            lootablesLootStatus = new bool[lootables.Length];
+
+            for (var i = 0; i < lootablesLootStatus.Length; i++)
+                lootablesLootStatus[i] = lootables[i].IsLooted;
+
+            aiHP = new int[allAIs.Length];
+
+            aiPosition_X = new float[allAIs.Length];
+            aiPosition_Y = new float[allAIs.Length];
+            aiPosition_Z = new float[allAIs.Length];
+
+            aiRotation_X = new float[allAIs.Length];
+            aiRotation_Y = new float[allAIs.Length];
+            aiRotation_Z = new float[allAIs.Length];
+            aiRotation_W = new float[allAIs.Length];
+
+            for (var i = 0; i < allAIs.Length; i++)
+            {
+                aiHP[i] = allAIs[i].CurrentHealth;
+
+                var pos = allAIs[i].transform.position;
+                aiPosition_X[i] = pos.x;
+                aiPosition_Y[i] = pos.y;
+                aiPosition_Z[i] = pos.z;
+
+                var rot = allAIs[i].transform.rotation;
+                aiRotation_X[i] = rot.x;
+                aiRotation_Y[i] = rot.y;
+                aiRotation_Z[i] = rot.z;
+                aiRotation_W[i] = rot.w;
+            }
         }
 
-        private int WeaponToIndex(WeaponData data, WeaponData[] allWeapons)
+        public static int WeaponToIndex(WeaponData data, WeaponData[] allWeapons)
         {
             for (var i = 0; i < allWeapons.Length; i++)
                 if (allWeapons[i] == data) return i;
@@ -167,7 +243,7 @@ public static class SaveSystem
             return -1;
         }
 
-        private int EquipmentToIndex(EquipmentData data, EquipmentData[] allEquipment)
+        public static int EquipmentToIndex(EquipmentData data, EquipmentData[] allEquipment)
         {
             for (var i = 0; i < allEquipment.Length; i++)
                 if (allEquipment[i] == data) return i;
@@ -175,7 +251,7 @@ public static class SaveSystem
             return -1;
         }
 
-        private int TalentToIndex(TalentData data, TalentData[] allEquipment)
+        public static int TalentToIndex(TalentData data, TalentData[] allEquipment)
         {
             for (var i = 0; i < allEquipment.Length; i++)
                 if (allEquipment[i] == data) return i;

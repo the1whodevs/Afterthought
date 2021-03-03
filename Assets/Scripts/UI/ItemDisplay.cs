@@ -70,16 +70,4 @@ public class IDisplayableItem : ScriptableObject
 
     public int levelRequired = 1;
     public bool isLooted;
-
-    private string LOOT_STATUS => $"{name}_LOOT_STATUS";
-
-    public virtual void SaveData()
-    {
-        PlayerPrefs.SetInt(LOOT_STATUS, isLooted ? 1 : 0);
-    }
-
-    public virtual void LoadData()
-    {
-        isLooted = PlayerPrefs.GetInt(LOOT_STATUS, 0) == 1;
-    }
 }

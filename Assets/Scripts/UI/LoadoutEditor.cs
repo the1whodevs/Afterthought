@@ -18,9 +18,16 @@ public class LoadoutEditor : MonoSingleton<LoadoutEditor>
     /// </summary>
     public Action<int> OnEquipmentSwitched;
 
+    public LoadoutData[] AllLoadouts => playerLoadouts;
     [SerializeField] private LoadoutData[] playerLoadouts;
+
+    public WeaponData[] AllWeapons => allWeapons;
     [SerializeField] private WeaponData[] allWeapons;
+
+    public EquipmentData[] AllEquipment => allEquipment;
     [SerializeField] private EquipmentData[] allEquipment;
+
+    public TalentData[] AllTalents => allTalents;
     [SerializeField] private TalentData[] allTalents;
 
     [SerializeField] private WeaponDisplay wepDisplayA;
@@ -35,9 +42,39 @@ public class LoadoutEditor : MonoSingleton<LoadoutEditor>
 
     private LoadoutData displayedLoadout;
 
-    private void Start()
+    public void Init()
     {
+        Player.Active.Objectives.LoadoutEditorInit();
+
         HideWindow();
+    }
+
+    public void LoadData(int[] loadoutsWepAindex, int[] loadoutsWepBindex, int[] loadoutsEqAindex, int[] loadoutsEqBindex, int[] loadoutsTalAindex, int[] loadoutsTalBindex, int[] loadoutsTalCindex, int[] weaponsLootStatus, int[] weaponsAmmoInMag, int[] equipmentAmmo)
+    {
+
+        for (var i = 0; i < playerLoadouts.Length; i++)
+        {
+            var loadout = playerLoadouts[i];
+
+            if (loadoutsWepAindex[i] > -1) loadout.Weapons[0] = allWeapons[loadoutsWepAindex[i]];
+            if (loadoutsWepBindex[i] > -1) loadout.Weapons[1] = allWeapons[loadoutsWepBindex[i]];
+
+            if (loadoutsEqAindex[i] > -1) loadout.Equipment[0] = allEquipment[loadoutsEqAindex[i]];
+            if (loadoutsEqBindex[i] > -1) loadout.Equipment[1] = allEquipment[loadoutsEqBindex[i]];
+
+            if (loadoutsTalAindex[i] > -1) loadout.Talents[0] = allTalents[loadoutsTalAindex[i]];
+            if (loadoutsTalBindex[i] > -1) loadout.Talents[1] = allTalents[loadoutsTalBindex[i]];
+            if (loadoutsTalCindex[i] > -1) loadout.Talents[2] = allTalents[loadoutsTalCindex[i]];
+        }
+
+        for (var i = 0; i < allWeapons.Length; i++)
+        {
+            allWeapons[i].isLooted = weaponsLootStatus[i] == 1;
+            allWeapons[i].ammoInMagazine = weaponsAmmoInMag[i];
+        }
+
+        for (var i = 0; i < allEquipment.Length; i++)
+            allEquipment[i].currentAmmo = equipmentAmmo[i];
     }
 
     private void InitWeaponsList()

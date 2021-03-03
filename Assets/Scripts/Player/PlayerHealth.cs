@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public int CurrentHP => currentHealth;
+
     [SerializeField] private int currentHealth;
     [SerializeField] private int startingHealth;
 
@@ -23,8 +25,7 @@ public class PlayerHealth : MonoBehaviour
 
     private UIManager UiManager;
 
-
-    private void Start()
+    public void Init()
     {
         UiManager = UIManager.Active;
 
@@ -35,6 +36,11 @@ public class PlayerHealth : MonoBehaviour
         healthBar = UiManager.HealthBar.transform.Find("Fill").GetComponent<Image>();
 
         UpdateHealthUI();
+    }
+
+    public void LoadData(int hp)
+    {
+        currentHealth = hp;
     }
 
     private void Update()

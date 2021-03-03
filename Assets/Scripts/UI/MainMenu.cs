@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +13,9 @@ public class MainMenu : MonoBehaviour
 
     // The settings window.
     [SerializeField] private GameObject settingsPanel;
+
+    [Header("Load Settings")]
+    [SerializeField, Min(0)] private int sceneIndexToLoadOnNew = 3;
 
     [Header("Loading Screen")]
     [SerializeField] private GameObject loadingPanel;
@@ -71,7 +73,7 @@ public class MainMenu : MonoBehaviour
 
     public void ContinueButton()
     {
-        // TODO: Load last save file...
+        SaveManager.Active.LoadLast();
     }
 
     public void NewGameButton()
@@ -81,14 +83,12 @@ public class MainMenu : MonoBehaviour
         loadingPanel.SetActive(true);
         mainPanel.SetActive(false);
 
-        // TODO: Load cinematic scene...
-
-        StartCoroutine(LoadScene(2));
+        StartCoroutine(LoadScene(sceneIndexToLoadOnNew));
     }
 
     public void LoadGameButton()
     {
-
+        // TODO: Show LoadGame window.
     }
 
     public void SettingsToggle()
@@ -190,6 +190,7 @@ public class MainMenu : MonoBehaviour
         {
             loadingImage.fillAmount = 0.1f + asyncOp.progress;
             loadingProgress.text = (100.0f * (0.1f + asyncOp.progress)).ToString("F1") + "%";
+
             yield return new WaitForEndOfFrame();
         }
     }

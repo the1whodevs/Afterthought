@@ -88,16 +88,4 @@ public class WeaponData : IDisplayableItem
             availableAmmo = 0;
         }
     }
-
-    public override void SaveData()
-    {
-        base.SaveData();
-        PlayerPrefs.SetInt(AMMO_IN_MAG, ammoInMagazine);
-    }
-
-    public override void LoadData()
-    {
-        base.LoadData();
-        ammoInMagazine = PlayerPrefs.GetInt(AMMO_IN_MAG, magazineCapacity);
-    }
 }

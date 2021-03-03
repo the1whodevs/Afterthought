@@ -23,9 +23,14 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject[] objectsToSpawnOnSpawn;
 
-    private void Awake()
+    private void Start()
     {
-        if (Active) Destroy(this);
+        SaveManager.Active.SetPlayerInstance(this);
+    }
+
+    public void Init()
+    {
+        Debug.Log("Player Init...");
 
         foreach (var toSpawn in objectsToSpawnOnSpawn)
         {
@@ -51,13 +56,20 @@ public class Player : MonoBehaviour
 
         Active = this;
 
+
         Camera.Init();
         Audio.Init();
         Animator.Init();
         Loadout.Init();
+        UIManager.Active.Init(Loadout);
+        Objectives.Init();
         Damage.Init();
         Controller.Init(Audio, Animator, Loadout);
         Pickup.Init(Controller, Loadout);
         Visor.Init(Controller);
+        Health.Init();
+        PostProcessing.Init();
+
+        Debug.Log("Player init completed!");
     }
 }

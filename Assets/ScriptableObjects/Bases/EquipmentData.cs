@@ -35,18 +35,4 @@ public class EquipmentData : IDisplayableItem
         BlockExplosion }
 
     public EquipmentType Type = EquipmentType.DmgExplosion;
-
-    private string AMMO_IN_MAG => $"{name}_AMMOinMAG";
-
-    public override void SaveData()
-    {
-        base.SaveData();
-        PlayerPrefs.SetInt(AMMO_IN_MAG, currentAmmo);
-    }
-
-    public override void LoadData()
-    {
-        base.LoadData();
-        currentAmmo = PlayerPrefs.GetInt(AMMO_IN_MAG, magazineCapacity);
-    }
 }

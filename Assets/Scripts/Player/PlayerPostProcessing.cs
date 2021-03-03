@@ -26,7 +26,7 @@ public class PlayerPostProcessing : MonoBehaviour
     
     private const float TOLERANCE = 0.0000001f;
 
-    private void Start()
+    public void Init()
     {
         damageTimer = effectDuration + waitTime;
         

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerObjectives : MonoSingleton<PlayerObjectives>
 {
+    public int CurrentObjectiveIndex => currentObjectiveId;
+
     [SerializeField] private LevelObjectiveData levelObjectiveData;
 
     private ObjectiveData[] allObjectives => levelObjectiveData.objectiveData;
@@ -19,7 +21,7 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives>
 
     private int currentObjectiveId = -1;
 
-    private void Awake()
+    public void LoadoutEditorInit()
     {
         StartCoroutine(SubscribeToLoadoutEditorEvents());
 
@@ -33,9 +35,14 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives>
         NextObjective();
     }
 
-    private void Start()
+    public void Init()
     {
         StartCoroutine(CheckForCurrentObjective());
+    }
+
+    public void LoadData(int currentObjectiveIndex)
+    {
+        currentObjectiveId = currentObjectiveIndex;
     }
 
     private IEnumerator SubscribeToLoadoutEditorEvents()

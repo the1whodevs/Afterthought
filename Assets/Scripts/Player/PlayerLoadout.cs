@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using EmeraldAI;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class PlayerLoadout : MonoBehaviour
@@ -41,6 +39,8 @@ public class PlayerLoadout : MonoBehaviour
 
     [SerializeField] private List<WeaponData> allWeaponData = new List<WeaponData>();
     [SerializeField] private List<EquipmentData> allEquipmentData = new List<EquipmentData>();
+
+    public AmmoData[] AllAmmo => allAmmoData.ToArray();
     [SerializeField] private List<AmmoData> allAmmoData = new List<AmmoData>();
 
     [SerializeField] private float adsOffsetAdjustSpeed = 1.0f;
@@ -72,27 +72,18 @@ public class PlayerLoadout : MonoBehaviour
         uiManager = UIManager.Active;
         
         pa = Player.Active.Animator;
-        
-        foreach (var weaponData in allWeaponData)
-        {
-            weaponData.LoadData();
-        }
-
-        foreach (var equipmentData in allEquipmentData)
-        {
-            equipmentData.LoadData();
-        }
-
-        foreach (var ammoData in allAmmoData)
-        {
-            ammoData.LoadData();
-        }
 
         if (TrainingManager.Active) ChangeActiveLoadout(TrainingManager.GetTrainingLoadout());
 
         EquipPrimaryWeapon();
 
         StartCoroutine(AdjustADSPosition());
+    }
+
+    public void LoadData(int[] ammoTypesCurrentAmmo)
+    {
+        for (var i = 0; i < allAmmoData.Count; i++)
+            allAmmoData[i].currentAmmo = ammoTypesCurrentAmmo[i];
     }
 
     public void ChangeActiveLoadout(LoadoutData newLoadout)
@@ -448,10 +439,7 @@ public class PlayerLoadout : MonoBehaviour
     {
         if (newWeapon.unlockType.Equals(UnlockType.Loot) &&
             !newWeapon.isLooted)
-        {
             newWeapon.isLooted = true;
-            newWeapon.SaveData();
-        }
 
         if (CurrentWeapon.Equals(loadout.Weapons[0]) && !newWeapon.Equals(loadout.Weapons[0]))
             loadout.Weapons[0] = newWeapon;

@@ -3,20 +3,17 @@ using UnityEngine;
 
 public class PlayerExperience : MonoBehaviour
 {
-    public int Level { get; private set; }
+    public int Level { get; private set; } = 1;
 
     public int XPRequired => xpRequired.GetIntValue(Level);
     public int CurrentXP = 0;
 
     [SerializeField] private IncrementalEquation xpRequired;
 
-    private const string PLAYER_LEVEL_KEY = "PLAYER_LEVEL";
-    private const string PLAYER_XP_KEY = "PLAYER_CURRENT_XP";
-
-    private void Start()
+    public void LoadData(int level, int xp)
     {
-        Level = PlayerPrefs.GetInt(PLAYER_LEVEL_KEY, 1);
-        CurrentXP = PlayerPrefs.GetInt(PLAYER_XP_KEY, 0);
+        Level = level;
+        CurrentXP = xp;
     }
 
     public void GetXP(int value)
@@ -33,9 +30,6 @@ public class PlayerExperience : MonoBehaviour
             Level++;
 
             Debug.LogFormat("Level Up! New Level: {0} // CurrentXP: {1} // XPRequired: {1}", Level, CurrentXP, XPRequired);
-
-            PlayerPrefs.SetInt(PLAYER_LEVEL_KEY, Level);
-            PlayerPrefs.SetInt(PLAYER_XP_KEY, CurrentXP);
         }
     }
 }

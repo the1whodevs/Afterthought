@@ -49,14 +49,20 @@ public class UIManager : MonoBehaviour
     // Used to scale crosshair and visualize recoil.
     private float crosshairRecoilProgress = 0.0f;
 
-    private void Start()
+    private PlayerLoadout pl;
+
+    public void Init(PlayerLoadout loadout)
     {
+        pl = loadout;
+
         crosshair.SetActive(true);
         healthBar.SetActive(true);
 
-        UpdateAmmoIcons(Player.Active.Loadout.Loadout, Player.Active.Loadout.CurrentWeapon);
+        UpdateAmmoIcons(pl.Loadout, pl.CurrentWeapon);
 
         StartCoroutine(CrosshairRecoil());
+
+        LoadoutEditor.Active.Init();
     }
 
     public void RefreshHitmarker()
