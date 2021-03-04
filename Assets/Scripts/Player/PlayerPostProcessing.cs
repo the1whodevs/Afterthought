@@ -21,8 +21,10 @@ public class PlayerPostProcessing : MonoBehaviour
     private PostProcessVolume damage_ppv;
     private PostProcessVolume ads_ppv;
     private PostProcessVolume death_ppv;
-    
+
     //private ColorGrading deathColorGrading;
+
+    private bool hasInitialized = false;
     
     private const float TOLERANCE = 0.0000001f;
 
@@ -37,10 +39,14 @@ public class PlayerPostProcessing : MonoBehaviour
         damage_ppv.weight = 0.0f;
         ads_ppv.weight = 0.0f;
         death_ppv.weight = 0.0f;
+
+        hasInitialized = true;
     }
 
     private void Update()
     {
+        if (!hasInitialized) return;
+
         DamageTimer();
         ADSTransition();
     }

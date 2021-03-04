@@ -18,6 +18,7 @@ public class PlayerAudio : MonoBehaviour
     private float airTime;
 
     private bool isWalking;
+    private bool hasInitialized = false;
 
     private AudioClip previousClip;
 
@@ -28,10 +29,14 @@ public class PlayerAudio : MonoBehaviour
         pc = Player.Active.Controller;
 
         pc.OnReloadCancel += OnReloadCancel;
+
+        hasInitialized = true;
     }
 
     private void Update()
     {
+        if (!hasInitialized) return;
+
         var isGrounded = pc.IsGrounded;
         var rbSpeed = pc.MoveSpeed;
 

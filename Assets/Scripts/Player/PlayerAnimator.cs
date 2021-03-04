@@ -15,6 +15,8 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private float weaponSwitchSpeed = 1.0f;
     [SerializeField] private float reloadSpeed = 1.0f;
 
+    private bool hasInitialized = false;
+
     private PlayerMelee meleeAnims;
     private PlayerPistol pistolAnims;
     private PlayerShotgun shotgunAnims;
@@ -49,10 +51,14 @@ public class PlayerAnimator : MonoBehaviour
         pl.OnWeaponEquipped += OnWeaponEquipped;
         pl.OnEquipmentEquipped += OnEquipEquipment;
         pc.OnReloadCancel += OnReloadCancel;
+
+        hasInitialized = true;
     }
 
     private void Update()
     {
+        if (!hasInitialized) return;
+
         if (pc.IsInUI || !activeAnim) return;
 
         activeAnim.Animate();

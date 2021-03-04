@@ -43,9 +43,10 @@ public class PlayerCamera : MonoBehaviour
     public void Init()
     {
         if (Active) Destroy(this);
+
         Active = this;
 
-        offsetFromPlayer = transform.parent.position - transform.position;
+        RecalculateOffset();
 
         if (!zoomLevels.ContainsKey("X1")) zoomLevels.Add("X1", 60.0f);
         if (!zoomLevels.ContainsKey("X2")) zoomLevels.Add("X2", 30.0f);
@@ -62,6 +63,11 @@ public class PlayerCamera : MonoBehaviour
         RotatePlayer(playerT.rotation.eulerAngles.y, cameraT.localRotation.x, Time.deltaTime);
 
         initialized = true;
+    }
+
+    public void RecalculateOffset()
+    {
+        offsetFromPlayer = transform.parent.position - transform.position;
     }
 
     private void Update()

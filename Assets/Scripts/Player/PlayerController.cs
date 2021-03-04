@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     // e.g. Bolt-action, semi-auto, burst
     private bool fireResetRequired = false;
     private bool CanAttack => attackTimer >= attackInterval;
+    private bool hasInitialized = false;
 
     // Used to determine if the player has been cooking a grenade!
     private bool lastEquipmentAUseState = false;
@@ -85,10 +86,14 @@ public class PlayerController : MonoBehaviour
         myCamera = Camera.main.transform;
 
         currentTerrain = Terrain.activeTerrain;
+
+        hasInitialized = true;
     }
     
     private void Update()
     {
+        if (!hasInitialized) return;
+
         var d = Time.deltaTime;
 
         if (IsInUI) return;

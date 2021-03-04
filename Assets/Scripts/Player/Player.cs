@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class Player : MonoBehaviour
     {
         Debug.Log("PlayerStart!");
 
+        Active = this;
+
         SaveManager.Active.SetPlayerInstance(this);
     }
 
@@ -36,9 +39,35 @@ public class Player : MonoBehaviour
 
         foreach (var toSpawn in objectsToSpawnOnSpawn)
         {
-            Instantiate(toSpawn);
+            var g = Instantiate(toSpawn, transform.parent);
+            SceneManager.MoveGameObjectToScene(g, SceneManager.GetActiveScene());
         }
 
+        GetReferences();
+
+        InitComponents();
+
+        Debug.Log("Player init completed!");
+    }
+
+    public void InitComponents()
+    {
+        Camera.Init();
+        Audio.Init();
+        Animator.Init();
+        Loadout.Init();
+        UIManager.Active.Init(Loadout);
+        Objectives.Init();
+        Damage.Init();
+        Controller.Init(Audio, Animator, Loadout);
+        Pickup.Init(Controller, Loadout);
+        Visor.Init(Controller);
+        Health.Init();
+        PostProcessing.Init();
+    }
+
+    public void GetReferences()
+    {
         Loadout = GetComponent<PlayerLoadout>();
         Audio = GetComponent<PlayerAudio>();
         Damage = GetComponent<PlayerDamage>();
@@ -55,23 +84,5 @@ public class Player : MonoBehaviour
         Pickup = GetComponent<PlayerPickup>();
         Objectives = GetComponent<PlayerObjectives>();
         Visor = GetComponent<PlayerVisor>();
-
-        Active = this;
-
-
-        Camera.Init();
-        Audio.Init();
-        Animator.Init();
-        Loadout.Init();
-        UIManager.Active.Init(Loadout);
-        Objectives.Init();
-        Damage.Init();
-        Controller.Init(Audio, Animator, Loadout);
-        Pickup.Init(Controller, Loadout);
-        Visor.Init(Controller);
-        Health.Init();
-        PostProcessing.Init();
-
-        Debug.Log("Player init completed!");
     }
 }

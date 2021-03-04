@@ -25,7 +25,7 @@ public class SaveManager : MonoSingleton<SaveManager>
     public void SetPlayerInstance(Player inst)
     {
         player = inst;
-        player.Init();
+        if (currentDataLoading == null) player.Init();
     }
 
     private void SceneManager_activeSceneChanged(Scene current, Scene next)
@@ -96,8 +96,6 @@ public class SaveManager : MonoSingleton<SaveManager>
 
     private IEnumerator LoadData(SaveSystem.SaveData data)
     {
-        currentDataLoading = null;
-
         Debug.Log("Loading data...");
 
         var loadedScene = SceneManager.LoadSceneAsync(data.level, LoadSceneMode.Additive);
@@ -123,9 +121,13 @@ public class SaveManager : MonoSingleton<SaveManager>
         while (!player)
         {
             Debug.Log("Waiting for player instance...");
-            player = Player.Active;
+            //player = Player.Active;
             yield return new WaitForEndOfFrame();
         }
+
+        currentDataLoading = null;
+
+        player.GetReferences();
 
         var le = LoadoutEditor.Active;
 
@@ -154,6 +156,7 @@ public class SaveManager : MonoSingleton<SaveManager>
 
         player.Controller.enabled = true;
         player.Camera.enabled = true;
+        player.Camera.RecalculateOffset();
 
         player.Objectives.LoadData(data.objectiveIndex);
 
@@ -175,6 +178,6 @@ public class SaveManager : MonoSingleton<SaveManager>
 
         Debug.Log("Finished loading data...");
 
-        currentDataLoading = null;
+        player.InitComponents();
     }
 }

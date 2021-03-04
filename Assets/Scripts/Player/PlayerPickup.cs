@@ -13,6 +13,7 @@ public class PlayerPickup : MonoBehaviour
     [SerializeField] private LayerMask pickupLayers;
 
     private bool fireResetRequired = false;
+    private bool hasInitialized = false;
 
     private PlayerController pc;
     private PlayerLoadout pl;
@@ -25,10 +26,14 @@ public class PlayerPickup : MonoBehaviour
         this.pl = pl;
 
         playerCam = Player.Active.Camera.transform;
+
+        hasInitialized = true;
     }
 
     private void Update()
     {
+        if (!hasInitialized) return;
+
         if (pc.IsInUI) return;
 
         Debug.DrawRay(playerCam.position, playerCam.forward * pickupLength, Color.blue);
