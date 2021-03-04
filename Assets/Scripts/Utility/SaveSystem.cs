@@ -12,7 +12,7 @@ public static class SaveSystem
         var data = new SaveData(currentLevel, playerLevel, playerXP, playerHP, playerPos, playerRot, cameraPos, cameraRot, objectiveIndex, allLoadouts, allWeapons, allAmmo, allEquipment, allTalents, allAIs, lootables);
 
         var bf = new BinaryFormatter();
-        var path = $"{Application.persistentDataPath}/afterthough_{saveIndex}{SAVE_EXT}";
+        var path = $"{Application.persistentDataPath}/afterthought_{saveIndex}{SAVE_EXT}";
         var filestream = new FileStream(path, FileMode.Create);
 
         Debug.Log("Saved at " + path);
@@ -23,7 +23,7 @@ public static class SaveSystem
 
     public static SaveData Load(int saveIndex)
     {
-        var path = $"{Application.persistentDataPath}/afterthough_{saveIndex}{SAVE_EXT}";
+        var path = $"{Application.persistentDataPath}/afterthought_{saveIndex}{SAVE_EXT}";
 
         Debug.Log("Loading from " + path);
 
@@ -81,10 +81,11 @@ public static class SaveSystem
         public readonly int[] loadoutsTalBindex;
         public readonly int[] loadoutsTalCindex;
 
-        public readonly int[] weaponsLootStatus;
         public readonly int[] weaponsAmmoInMag;
         public readonly int[] ammoTypesCurrentAmmo;
         public readonly int[] equipmentAmmo;
+
+        public readonly bool[] weaponsLootStatus;
         public readonly bool[] lootablesLootStatus;
 
         public readonly int[] aiHP;
@@ -198,12 +199,12 @@ public static class SaveSystem
                 TalentToIndex(allLoadouts[5].Talents[2], allTalents),           
            };
 
-            var wepLootTemp = new List<int>();
+            var wepLootTemp = new List<bool>();
             var wepAmmoInMagTemp = new List<int>();
 
             for (var i = 0; i < allWeapons.Length; i++)
             {
-                wepLootTemp.Add(allWeapons[i].isLooted ? 1 : 0);
+                wepLootTemp.Add(allWeapons[i].isLooted);
                 wepAmmoInMagTemp.Add(allWeapons[i].ammoInMagazine);
             }
 

@@ -18,6 +18,10 @@ public class LoadoutEditor : MonoSingleton<LoadoutEditor>
     /// </summary>
     public Action<int> OnEquipmentSwitched;
 
+    [SerializeField] private WeaponData noWeaponWeapon;
+    [SerializeField] private EquipmentData noEquipmentEquipment;
+    [SerializeField] private TalentData noTalentTalent;
+
     public LoadoutData[] AllLoadouts => playerLoadouts;
     [SerializeField] private LoadoutData[] playerLoadouts;
 
@@ -49,27 +53,41 @@ public class LoadoutEditor : MonoSingleton<LoadoutEditor>
         HideWindow();
     }
 
-    public void LoadData(int[] loadoutsWepAindex, int[] loadoutsWepBindex, int[] loadoutsEqAindex, int[] loadoutsEqBindex, int[] loadoutsTalAindex, int[] loadoutsTalBindex, int[] loadoutsTalCindex, int[] weaponsLootStatus, int[] weaponsAmmoInMag, int[] equipmentAmmo)
+    public void LoadData(int[] loadoutsWepAindex, int[] loadoutsWepBindex, int[] loadoutsEqAindex, int[] loadoutsEqBindex, int[] loadoutsTalAindex, int[] loadoutsTalBindex, int[] loadoutsTalCindex, bool[] weaponsLootStatus, int[] weaponsAmmoInMag, int[] equipmentAmmo)
     {
+        allWeapons = Sorter.SortWeaponDataAZ(allWeapons);
+        allEquipment = Sorter.SortEquipmentDataAZ(allEquipment);
+        allTalents = Sorter.SortTalentDataAZ(allTalents);
 
         for (var i = 0; i < playerLoadouts.Length; i++)
         {
             var loadout = playerLoadouts[i];
 
             if (loadoutsWepAindex[i] > -1) loadout.Weapons[0] = allWeapons[loadoutsWepAindex[i]];
+            else loadout.Weapons[0] = noWeaponWeapon;
+
             if (loadoutsWepBindex[i] > -1) loadout.Weapons[1] = allWeapons[loadoutsWepBindex[i]];
+            else loadout.Weapons[1] = noWeaponWeapon;
 
             if (loadoutsEqAindex[i] > -1) loadout.Equipment[0] = allEquipment[loadoutsEqAindex[i]];
+            else loadout.Equipment[0] = noEquipmentEquipment;
+
             if (loadoutsEqBindex[i] > -1) loadout.Equipment[1] = allEquipment[loadoutsEqBindex[i]];
+            else loadout.Equipment[1] = noEquipmentEquipment;
 
             if (loadoutsTalAindex[i] > -1) loadout.Talents[0] = allTalents[loadoutsTalAindex[i]];
+            else loadout.Talents[0] = noTalentTalent;
+
             if (loadoutsTalBindex[i] > -1) loadout.Talents[1] = allTalents[loadoutsTalBindex[i]];
+            else loadout.Talents[1] = noTalentTalent;
+
             if (loadoutsTalCindex[i] > -1) loadout.Talents[2] = allTalents[loadoutsTalCindex[i]];
+            else loadout.Talents[2] = noTalentTalent;
         }
 
         for (var i = 0; i < allWeapons.Length; i++)
         {
-            allWeapons[i].isLooted = weaponsLootStatus[i] == 1;
+            allWeapons[i].isLooted = weaponsLootStatus[i];
             allWeapons[i].ammoInMagazine = weaponsAmmoInMag[i];
         }
 

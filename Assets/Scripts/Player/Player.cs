@@ -33,15 +33,20 @@ public class Player : MonoBehaviour
         SaveManager.Active.SetPlayerInstance(this);
     }
 
-    public void Init()
+    public void SpawnObjectsToSpawnOnSpawn()
     {
-        Debug.Log("Player Init...");
-
         foreach (var toSpawn in objectsToSpawnOnSpawn)
         {
             var g = Instantiate(toSpawn, transform.parent);
             SceneManager.MoveGameObjectToScene(g, SceneManager.GetActiveScene());
         }
+    }
+
+    public void Init()
+    {
+        Debug.Log("Player Init...");
+
+        SpawnObjectsToSpawnOnSpawn();
 
         GetReferences();
 

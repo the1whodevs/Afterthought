@@ -10,13 +10,11 @@ public class SaveManager : MonoSingleton<SaveManager>
 
     private Player player;
 
-
     private const string LOADING_SCENE = "99 - Loading";
     private const int QUICKSAVE_INDEX = -1;
 
     private void Start()
     {
-        Debug.Log("SaveManage Start!");
         DontDestroyOnLoad(this);
 
         SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
@@ -118,18 +116,28 @@ public class SaveManager : MonoSingleton<SaveManager>
         var scene = SceneManager.GetSceneAt(1);
         SceneManager.SetActiveScene(scene);
 
+        yield return new WaitForSeconds(1.0f);
+
         while (!player)
         {
             Debug.Log("Waiting for player instance...");
-            //player = Player.Active;
+            player = Player.Active;
             yield return new WaitForEndOfFrame();
         }
 
         currentDataLoading = null;
 
+        player.SpawnObjectsToSpawnOnSpawn();
         player.GetReferences();
 
         var le = LoadoutEditor.Active;
+
+        while (!le)
+        {
+            Debug.Log("Waiting for Loadout Editor instance...");
+            le = LoadoutEditor.Active; 
+            yield return new WaitForEndOfFrame();
+        }
 
         var temp = new List<ILootable>();
         var temp2 = new List<EmeraldAI.EmeraldAISystem>();
