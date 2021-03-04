@@ -22,11 +22,11 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float mouseSensitivity_Y = 1.0f;
     [SerializeField] private float cameraMinY = -60f;
     [SerializeField] private float cameraMaxY = 75f;
-    [SerializeField] private float rotationSmoothSpeed = 10f;
     [SerializeField] private float zoomSpeed = 2.5f;
 
     [SerializeField] private Camera zoomCamera;
 
+    public Vector3 OffsetFromPlayer => offsetFromPlayer;
     private Vector3 offsetFromPlayer;
 
     private Dictionary<string, float> zoomLevels = new Dictionary<string, float>();
@@ -35,18 +35,19 @@ public class PlayerCamera : MonoBehaviour
     
     private Transform cameraT;
 
+    public float BodyRotationX => bodyRotationX;
     private float bodyRotationX = 1f;
+
+    public float CamRotationY => camRotationY;
     private float camRotationY;
 
     private bool initialized;
 
-    public void Init()
+    public void Init(bool cleanInit)
     {
         if (Active) Destroy(this);
 
         Active = this;
-
-        RecalculateOffset();
 
         if (!zoomLevels.ContainsKey("X1")) zoomLevels.Add("X1", 60.0f);
         if (!zoomLevels.ContainsKey("X2")) zoomLevels.Add("X2", 30.0f);
@@ -60,14 +61,34 @@ public class PlayerCamera : MonoBehaviour
 
         LoadSensitivityValues();
 
-        RotatePlayer(playerT.rotation.eulerAngles.y, cameraT.localRotation.x, Time.deltaTime);
+        if (cleanInit)
+        {
+            RecalculateOffset();
+            RotatePlayer(playerT.rotation.eulerAngles.y, cameraT.localRotation.x, Time.deltaTime);
+        }
 
         initialized = true;
     }
 
+    public void LoadData(Vector3 offsetFromPlayer, float bodyRotationX, float camRotationY)
+    {
+        this.offsetFromPlayer = offsetFromPlayer;
+        this.bodyRotationX = bodyRotationX;
+        this.camRotationY = camRotationY;
+
+        FixCameraOffset();
+    }
+
     public void RecalculateOffset()
     {
+        Debug.Log($"OffsetFromPlayer: {transform.parent.position} - {transform.position} = {transform.parent.position - transform.position}");
+
         offsetFromPlayer = transform.parent.position - transform.position;
+    }
+
+    public void FixCameraOffset()
+    {
+        transform.position = transform.parent.position - offsetFromPlayer;
     }
 
     private void Update()
@@ -129,12 +150,6 @@ public class PlayerCamera : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(zoom), zoom, null);
         }
     }
-
-    public void FixCameraOffset()
-    {
-        transform.position = transform.parent.position + offsetFromPlayer;
-    }
-
 
     public void LoadSensitivityValues()
     {

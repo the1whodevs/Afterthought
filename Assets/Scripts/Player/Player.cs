@@ -42,7 +42,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Init()
+    /// <summary>
+    /// A clean init is when the game is loading a scene naturally,
+    /// and not due to a Load of a save file!
+    /// </summary>
+    /// <param name="cleanInit"></param>
+    public void Init(bool cleanInit)
     {
         Debug.Log("Player Init...");
 
@@ -50,21 +55,21 @@ public class Player : MonoBehaviour
 
         GetReferences();
 
-        InitComponents();
+        InitComponents(cleanInit);
 
         Debug.Log("Player init completed!");
     }
 
-    public void InitComponents()
+    public void InitComponents(bool cleanInit)
     {
-        Camera.Init();
+        Camera.Init(cleanInit);
         Audio.Init();
         Animator.Init();
         Loadout.Init();
         UIManager.Active.Init(Loadout);
         Objectives.Init();
         Damage.Init();
-        Controller.Init(Audio, Animator, Loadout);
+        Controller.Init(Audio, Animator, Loadout, Camera.transform);
         Pickup.Init(Controller, Loadout);
         Visor.Init(Controller);
         Health.Init();

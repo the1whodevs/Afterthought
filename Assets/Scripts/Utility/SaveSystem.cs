@@ -7,9 +7,9 @@ public static class SaveSystem
 {
     public static string SAVE_EXT = ".atsav";
 
-    public static void Save(int saveIndex, int currentLevel, int playerLevel, int playerXP, int playerHP, Vector3 playerPos, Quaternion playerRot, Vector3 cameraPos, Quaternion cameraRot, int objectiveIndex, LoadoutData[] allLoadouts, WeaponData[] allWeapons, AmmoData[] allAmmo, EquipmentData[] allEquipment, TalentData[] allTalents, EmeraldAI.EmeraldAISystem[] allAIs, ILootable[] lootables)
+    public static void Save(int saveIndex, int currentLevel, int playerLevel, int playerXP, int playerHP, Vector3 playerPos, Quaternion playerRot, float cameraRotY, float bodyRotX, Vector3 camPlayerOffset, int objectiveIndex, LoadoutData[] allLoadouts, WeaponData[] allWeapons, AmmoData[] allAmmo, EquipmentData[] allEquipment, TalentData[] allTalents, EmeraldAI.EmeraldAISystem[] allAIs, ILootable[] lootables)
     {
-        var data = new SaveData(currentLevel, playerLevel, playerXP, playerHP, playerPos, playerRot, cameraPos, cameraRot, objectiveIndex, allLoadouts, allWeapons, allAmmo, allEquipment, allTalents, allAIs, lootables);
+        var data = new SaveData(currentLevel, playerLevel, playerXP, playerHP, playerPos, playerRot, cameraRotY, bodyRotX, camPlayerOffset, objectiveIndex, allLoadouts, allWeapons, allAmmo, allEquipment, allTalents, allAIs, lootables);
 
         var bf = new BinaryFormatter();
         var path = $"{Application.persistentDataPath}/afterthought_{saveIndex}{SAVE_EXT}";
@@ -59,14 +59,11 @@ public static class SaveSystem
         public readonly float playerRotation_Z;
         public readonly float playerRotation_W;
 
-        public readonly float cameraPosition_X;
-        public readonly float cameraPosition_Y;
-        public readonly float cameraPosition_Z;
-
-        public readonly float cameraRotation_X;
-        public readonly float cameraRotation_Y;
-        public readonly float cameraRotation_Z;
-        public readonly float cameraRotation_W;
+        public readonly float cameraRotationY;
+        public readonly float bodyRotationX;
+        public readonly float cameraPlayerOffset_X;
+        public readonly float cameraPlayerOffset_Y;
+        public readonly float cameraPlayerOffset_Z;
 
         public readonly int objectiveIndex;
 
@@ -99,7 +96,7 @@ public static class SaveSystem
         public readonly float[] aiRotation_Z;
         public readonly float[] aiRotation_W;
 
-        public SaveData(int currentLevel, int playerLevel, int playerXP, int playerHP, Vector3 playerPos, Quaternion playerRot, Vector3 cameraPos, Quaternion cameraRot, int objectiveIndex, LoadoutData[] allLoadouts, WeaponData[] allWeapons, AmmoData[] allAmmo, EquipmentData[] allEquipment, TalentData[] allTalents, EmeraldAI.EmeraldAISystem[] allAIs, ILootable[] lootables)
+        public SaveData(int currentLevel, int playerLevel, int playerXP, int playerHP, Vector3 playerPos, Quaternion playerRot, float camRotY, float bodyRotX, Vector3 cameraPlayerOffset, int objectiveIndex, LoadoutData[] allLoadouts, WeaponData[] allWeapons, AmmoData[] allAmmo, EquipmentData[] allEquipment, TalentData[] allTalents, EmeraldAI.EmeraldAISystem[] allAIs, ILootable[] lootables)
         {
             this.level = currentLevel;
             this.playerLevel = playerLevel;
@@ -115,13 +112,12 @@ public static class SaveSystem
             this.playerRotation_Z = playerRot.z;
             this.playerRotation_W = playerRot.w;
 
-            this.cameraPosition_X = cameraPos.x;
-            this.cameraPosition_Y = cameraPos.y;
-            this.cameraPosition_Z = cameraPos.z;
-            this.cameraRotation_X = cameraRot.x;
-            this.cameraRotation_Y = cameraRot.y;
-            this.cameraRotation_Z = cameraRot.z;
-            this.cameraRotation_W = cameraRot.w;
+            this.cameraRotationY = camRotY;
+            this.bodyRotationX = bodyRotX;
+
+            this.cameraPlayerOffset_X = cameraPlayerOffset.x;
+            this.cameraPlayerOffset_Y = cameraPlayerOffset.y;
+            this.cameraPlayerOffset_Z = cameraPlayerOffset.z;
 
             this.objectiveIndex = objectiveIndex;
 

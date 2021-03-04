@@ -64,8 +64,6 @@ public class PlayerController : MonoBehaviour
     private PlayerAnimator pa;
     private PlayerLoadout pl;
 
-    private CameraShake cs;
-
     [System.Serializable]
     public class PlayerStandState
     {
@@ -74,16 +72,14 @@ public class PlayerController : MonoBehaviour
         public float colliderCenterHeight;
     }
      
-    public void Init(PlayerAudio pa, PlayerAnimator pan, PlayerLoadout pl)
+    public void Init(PlayerAudio pa, PlayerAnimator pan, PlayerLoadout pl, Transform playerCamera)
     {
         cc = GetComponent<CharacterController>();
         pad = pa;
         this.pa = pan;
         this.pl = pl;
 
-        cs = Player.Active.Camera.GetComponent<CameraShake>();
-
-        myCamera = Camera.main.transform;
+        myCamera = playerCamera;
 
         currentTerrain = Terrain.activeTerrain;
 

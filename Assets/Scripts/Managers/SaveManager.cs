@@ -23,7 +23,8 @@ public class SaveManager : MonoSingleton<SaveManager>
     public void SetPlayerInstance(Player inst)
     {
         player = inst;
-        if (currentDataLoading == null) player.Init();
+
+        if (currentDataLoading == null) player.Init(true);
     }
 
     private void SceneManager_activeSceneChanged(Scene current, Scene next)
@@ -62,7 +63,9 @@ public class SaveManager : MonoSingleton<SaveManager>
             temp2.AddRange(go.GetComponentsInChildren<EmeraldAI.EmeraldAISystem>(true));
         }
 
-        SaveSystem.Save(index, SceneManager.GetActiveScene().buildIndex, p.Experience.Level, p.Experience.CurrentXP, p.Health.CurrentHP, p.transform.position, p.transform.rotation, p.Camera.transform.localPosition, p.Camera.transform.localRotation, p.Objectives.CurrentObjectiveIndex, le.AllLoadouts, le.AllWeapons, p.Loadout.AllAmmo, le.AllEquipment, le.AllTalents, temp2.ToArray(), temp.ToArray());
+        p.Camera.RecalculateOffset();
+
+        SaveSystem.Save(index, SceneManager.GetActiveScene().buildIndex, p.Experience.Level, p.Experience.CurrentXP, p.Health.CurrentHP, p.transform.position, p.transform.rotation, p.Camera.CamRotationY, p.Camera.BodyRotationX, p.Camera.OffsetFromPlayer, p.Objectives.CurrentObjectiveIndex, le.AllLoadouts, le.AllWeapons, p.Loadout.AllAmmo, le.AllEquipment, le.AllTalents, temp2.ToArray(), temp.ToArray());
     }
 
     public void NewSave()
@@ -156,15 +159,13 @@ public class SaveManager : MonoSingleton<SaveManager>
 
         player.transform.position = new Vector3(data.playerPosition_X, data.playerPosition_Y, data.playerPosition_Z);
 
-        player.transform.rotation = new Quaternion(data.playerRotation_X, data.playerRotation_Y, data.playerRotation_Z, data.playerRotation_W);
+        //player.transform.rotation = new Quaternion(data.playerRotation_X, data.playerRotation_Y, data.playerRotation_Z, data.playerRotation_W);
 
-        player.Camera.transform.localPosition = new Vector3(data.cameraPosition_X, data.cameraPosition_Y, data.cameraPosition_Z);
+        player.Camera.LoadData(new Vector3(data.cameraPlayerOffset_X, data.cameraPlayerOffset_Y, data.cameraPlayerOffset_Z), data.bodyRotationX, data.cameraRotationY);
 
-        player.Camera.transform.localRotation = new Quaternion(data.cameraRotation_X, data.cameraRotation_Y, data.cameraRotation_Z, data.cameraRotation_W);
-
-        player.Controller.enabled = true;
         player.Camera.enabled = true;
         player.Camera.RecalculateOffset();
+        player.Controller.enabled = true;
 
         player.Objectives.LoadData(data.objectiveIndex);
 
@@ -186,6 +187,6 @@ public class SaveManager : MonoSingleton<SaveManager>
 
         Debug.Log("Finished loading data...");
 
-        player.InitComponents();
+        player.InitComponents(false);
     }
 }
