@@ -1,5 +1,4 @@
-﻿using EmeraldAI;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -291,6 +290,18 @@ public class PlayerController : MonoBehaviour
 
         if (!cc.isGrounded) return;
         
+        if (Physics.Raycast(transform.position, Vector3.down, out var hit, groundLayer))
+        {
+            var angle = Vector3.Angle(Vector3.up, hit.normal);
+
+            if (angle > cc.slopeLimit)
+            {
+                // Slide down.
+                ApplyGravity();
+                return;
+            }
+        }
+
         if (isJumping && !isCrouching)
         {
             playerVelocity.y = jumpHeight;

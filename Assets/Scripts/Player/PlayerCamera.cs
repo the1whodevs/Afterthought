@@ -86,6 +86,8 @@ public class PlayerCamera : MonoBehaviour
 
     public void FixCameraOffset()
     {
+        if (!transform.parent) return;
+
         transform.position = transform.parent.position - offsetFromPlayer;
     }
 

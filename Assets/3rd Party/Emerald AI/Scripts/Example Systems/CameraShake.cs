@@ -20,7 +20,6 @@ namespace EmeraldAI
 
         public void ShakeCamera(float ShakeTime, float ShakeAmount)
         {
-            Debug.Log("If camera is still broken with shakes, remove this line!");
             if (shakeRoutine != null) StopCoroutine(shakeRoutine);
 
             shakeRoutine = StartCoroutine(CameraShakeSequence(ShakeTime, ShakeAmount));
