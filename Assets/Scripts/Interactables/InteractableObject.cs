@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class InteractableObject : MonoBehaviour
+public class InteractableObject : MonoBehaviour, ILootable
 {
     public new string name;
 
@@ -13,6 +13,8 @@ public class InteractableObject : MonoBehaviour
     private float currentFloatSpeed;
 
     private float floatT = 0.0f;
+
+    public bool IsLooted { get; private set; }
 
     private void Start()
     {
@@ -65,5 +67,17 @@ public class InteractableObject : MonoBehaviour
     public virtual string GetActionPronoun()
     {
         return "";
+    }
+
+    public virtual void Loot()
+    {
+        IsLooted = true;
+
+        gameObject.SetActive(false);
+    }
+
+    public virtual void SetLootStatus(bool status)
+    {
+        IsLooted = status;
     }
 }

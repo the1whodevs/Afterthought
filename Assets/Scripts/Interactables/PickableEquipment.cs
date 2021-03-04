@@ -13,6 +13,9 @@ public class PickableEquipment : InteractableObject
     {
         // Only used as ammo pickup. Player can change equipment
         // only through the loadout editor!
-        if (Player.Active.Loadout.GetEquipmentAmmo(relatedEquipment)) Destroy(gameObject);
+        if (Player.Active.Loadout.GetEquipmentAmmo(relatedEquipment)) 
+        {
+            Loot();
+        }
     }
 }

@@ -50,20 +50,6 @@ public class PlayerPickup : MonoBehaviour
 
             if (!interact) fireResetRequired = false;
 
-            //// Prioritize loadout selector over other interactables.
-            //if (hit.transform.CompareTag(loadoutChangerTag))
-            //{
-            //    UIManager.Active.ShowInteractPrompt(KeyCode.F, "open loadout editor");
-
-            //    if (interact && !fireResetRequired)
-            //    {
-            //        fireResetRequired = true;
-            //        OnInteract?.Invoke(hit.transform.GetComponent<InteractableObject>());
-            //    }
-
-            //    return;
-            //}
-
             var pickableHit = hit.transform.GetComponent<InteractableObject>();
 
             if (!pickableHit) return;

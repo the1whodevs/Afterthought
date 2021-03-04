@@ -35,8 +35,20 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives>
         NextObjective();
     }
 
-    public void Init()
+    public void Init(bool cleanInit)
     {
+        if (!cleanInit)
+        {
+            var temp = currentObjectiveId;
+            currentObjectiveId = 0;
+            for (var i = 0; i < temp; i++)
+            {
+                Debug.Log($"CurrentID: {currentObjectiveId} / i: {i}");
+                allObjectives[i].onObjectiveComplete?.Invoke();
+            }
+
+        }
+
         StartCoroutine(CheckForCurrentObjective());
     }
 

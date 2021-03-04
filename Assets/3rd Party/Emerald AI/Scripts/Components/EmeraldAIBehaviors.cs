@@ -329,6 +329,8 @@ namespace EmeraldAI
         /// </summary>
         public void DeadState()
         {
+            if (!EmeraldComponent) Start();
+
             EmeraldComponent.IsDead = true;
             EmeraldComponent.DeathEvent.Invoke();
 

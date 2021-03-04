@@ -25,7 +25,7 @@ public class PickableWeapon : InteractableObject
         // Equip this weapon.
         Player.Active.Loadout.PickupWeapon(weaponToPickup);
 
-        // Destroy pickable.
-        Destroy(gameObject);
+        // Loot ilootable.
+        Loot();
     }
 }

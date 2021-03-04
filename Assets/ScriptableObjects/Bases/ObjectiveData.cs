@@ -39,6 +39,11 @@ public class ObjectiveData : ScriptableObject
         if (targetsToKill.Contains(target)) return;
 
         targetsToKill.Add(target);
+
+        for (int i = targetsToKill.Count - 1; i >= 0; i--)
+        {
+            if (!targetsToKill[i]) targetsToKill.RemoveAt(i);
+        }
     }
 
     public void AddTargetPosition(Transform targetPosition)

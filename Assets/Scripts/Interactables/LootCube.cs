@@ -1,5 +1,6 @@
 ﻿using Five.MoreMaths;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LootCube : InteractableObject
@@ -13,6 +14,19 @@ public class LootCube : InteractableObject
     [SerializeField] private Vector2 xOffset = new Vector2(-1.0f, 1.0f);
 
     [SerializeField] private float despawnEffectLifetime = 2.0f;
+
+    private List<GameObject> objectsToSpawn = new List<GameObject>();
+
+    private void Start()
+    {
+        for (var i = 0; i < loot.Length; i++)
+        {
+            var spawnedLoot = Instantiate(loot[i], transform.position, Quaternion.identity, null);
+
+            objectsToSpawn.Add(spawnedLoot);
+            spawnedLoot.SetActive(false);
+        }
+    }
 
     public override string GetActionPronoun()
     {
@@ -28,15 +42,23 @@ public class LootCube : InteractableObject
     {
         if (despawnEffect) Destroy(Instantiate(despawnEffect, transform.position, Quaternion.identity, null), despawnEffectLifetime);
 
-        for (var i = 0; i < loot.Length; i++)
+        for (var i = 0; i < objectsToSpawn.Count; i++)
         {
-            var spawnedLoot = Instantiate(loot[i], transform.position, Quaternion.identity, null);
+            var spawnedLoot = objectsToSpawn[i];
+            spawnedLoot.SetActive(true);
 
             // Start coroutine on the Player monobehaviour as this will be destroyed!
             Player.Active.StartCoroutine(ThrowLoot(spawnedLoot));
         }
 
-        Destroy(gameObject);
+        Loot();
+    }
+
+    public override void SetLootStatus(bool status)
+    {
+        base.SetLootStatus(status);
+
+        if (status) Interact();
     }
 
     private IEnumerator ThrowLoot(GameObject lootToThrow)

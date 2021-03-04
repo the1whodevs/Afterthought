@@ -19,6 +19,6 @@ public class XPCube : InteractableObject
 
         if (despawnEffect) Destroy(Instantiate(despawnEffect, transform.position, Quaternion.identity, null), despawnEffectLifetime);
 
-        Destroy(gameObject);
+        Loot();
     }
 }

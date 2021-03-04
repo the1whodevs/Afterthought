@@ -26,8 +26,6 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("PlayerStart!");
-
         Active = this;
 
         SaveManager.Active.SetPlayerInstance(this);
@@ -65,9 +63,9 @@ public class Player : MonoBehaviour
         Camera.Init(cleanInit);
         Audio.Init();
         Animator.Init();
-        Loadout.Init();
+        Loadout.Init(cleanInit);
         UIManager.Active.Init(Loadout);
-        Objectives.Init();
+        Objectives.Init(cleanInit);
         Damage.Init();
         Controller.Init(Audio, Animator, Loadout, Camera.transform);
         Pickup.Init(Controller, Loadout);

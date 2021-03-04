@@ -81,8 +81,6 @@ public class PlayerCamera : MonoBehaviour
 
     public void RecalculateOffset()
     {
-        Debug.Log($"OffsetFromPlayer: {transform.parent.position} - {transform.position} = {transform.parent.position - transform.position}");
-
         offsetFromPlayer = transform.parent.position - transform.position;
     }
 

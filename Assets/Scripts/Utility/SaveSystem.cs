@@ -15,8 +15,6 @@ public static class SaveSystem
         var path = $"{Application.persistentDataPath}/afterthought_{saveIndex}{SAVE_EXT}";
         var filestream = new FileStream(path, FileMode.Create);
 
-        Debug.Log("Saved at " + path);
-
         bf.Serialize(filestream, data);
         filestream.Close();
     }
@@ -24,8 +22,6 @@ public static class SaveSystem
     public static SaveData Load(int saveIndex)
     {
         var path = $"{Application.persistentDataPath}/afterthought_{saveIndex}{SAVE_EXT}";
-
-        Debug.Log("Loading from " + path);
 
         if (File.Exists(path))
         {
@@ -84,7 +80,9 @@ public static class SaveSystem
 
         public readonly bool[] weaponsLootStatus;
         public readonly bool[] lootablesLootStatus;
+        public readonly bool[] lootablesObjectStatus;
 
+        public readonly bool[] aiObjectStatus;
         public readonly int[] aiHP;
 
         public readonly float[] aiPosition_X;
@@ -220,9 +218,13 @@ public static class SaveSystem
             equipmentAmmo = equipmentCurrentAmmoTemp.ToArray();
 
             lootablesLootStatus = new bool[lootables.Length];
+            lootablesObjectStatus = new bool[lootables.Length];
 
             for (var i = 0; i < lootablesLootStatus.Length; i++)
+            {
                 lootablesLootStatus[i] = lootables[i].IsLooted;
+                lootablesObjectStatus[i] = lootables[i].gameObject.activeSelf;
+            }
 
             aiHP = new int[allAIs.Length];
 
@@ -235,8 +237,12 @@ public static class SaveSystem
             aiRotation_Z = new float[allAIs.Length];
             aiRotation_W = new float[allAIs.Length];
 
+            aiObjectStatus = new bool[allAIs.Length];
+
             for (var i = 0; i < allAIs.Length; i++)
             {
+                aiObjectStatus[i] = allAIs[i].gameObject.activeSelf;
+
                 aiHP[i] = allAIs[i].CurrentHealth;
 
                 var pos = allAIs[i].transform.position;

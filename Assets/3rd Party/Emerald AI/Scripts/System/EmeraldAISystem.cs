@@ -877,11 +877,27 @@ namespace EmeraldAI
         public LayerMask AIAvoidanceLayerMask;
         #endregion
 
+        private bool hasInitialized = false;
+
         //Initialize Emerald AI and its components
-        void Awake()
+        public void Awake()
         {
+            if (hasInitialized) return;
+
+            hasInitialized = true;
+
             EmeraldInitializerComponent = GetComponent<EmeraldAIInitializer>();
             EmeraldInitializerComponent.Initialize();
+        }
+
+        public void CheckDead()
+        {
+            //The AI has died, initialize its death state.
+            if (CurrentHealth <= 0 && !IsDead)
+            {
+                ReceivedRagdollForceAmount = 5;
+                EmeraldBehaviorsComponent.DeadState();
+            }
         }
 
         /// <summary>

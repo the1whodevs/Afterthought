@@ -67,13 +67,13 @@ public class PlayerLoadout : MonoBehaviour
     private bool isReloading;
     private bool isUsingEquipment;
 
-    public void Init()
+    public void Init(bool cleanInit)
     {
         uiManager = UIManager.Active;
         
         pa = Player.Active.Animator;
 
-        if (TrainingManager.Active) ChangeActiveLoadout(TrainingManager.GetTrainingLoadout());
+        if (TrainingManager.Active && cleanInit) ChangeActiveLoadout(TrainingManager.GetTrainingLoadout());
 
         EquipPrimaryWeapon();
 

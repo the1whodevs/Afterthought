@@ -30,7 +30,6 @@ public class SaveManager : MonoSingleton<SaveManager>
     private void SceneManager_activeSceneChanged(Scene current, Scene next)
     {
         player = null;
-        Debug.Log($"Scene changed! Current: {current.name} Next: {next.name}");
 
         if (currentDataLoading != null && next.name == LOADING_SCENE) StartCoroutine(LoadData(currentDataLoading));
     }
@@ -54,18 +53,47 @@ public class SaveManager : MonoSingleton<SaveManager>
         var p = Player.Active;
         var le = LoadoutEditor.Active; 
 
-        var temp = new List<ILootable>();
-        var temp2 = new List<EmeraldAI.EmeraldAISystem>();
+        var lootables = new List<ILootable>();
+        var ais = new List<EmeraldAI.EmeraldAISystem>();
+        var scene = SceneManager.GetActiveScene();
 
-        foreach (var go in SceneManager.GetActiveScene().GetRootGameObjects()) 
+        foreach (var go in scene.GetRootGameObjects()) 
         {
-            temp.AddRange(go.GetComponentsInChildren<ILootable>(true));
-            temp2.AddRange(go.GetComponentsInChildren<EmeraldAI.EmeraldAISystem>(true));
+            lootables.AddRange(go.GetComponentsInChildren<ILootable>(true));
+            ais.AddRange(go.GetComponentsInChildren<EmeraldAI.EmeraldAISystem>(true));
+        }
+
+        var indexesToDisable = new List<int>();
+
+        for (var i = 0; i < lootables.Count; i++)
+        {
+            if (lootables[i].gameObject.activeInHierarchy) continue;
+
+            lootables[i].gameObject.SetActive(true);
+            indexesToDisable.Add(i);
+        }
+
+        foreach (var go in scene.GetRootGameObjects())
+        {
+            var lootablesChildren = go.GetComponentsInChildren<ILootable>(true);
+
+            foreach (var lootable in lootablesChildren)
+            {
+                if (lootables.Contains(lootable)) continue;
+
+                lootables.Add(lootable);
+                Debug.Log("Added " + lootable.gameObject.name);
+            }
+        }
+
+        for (var i = 0; i < indexesToDisable.Count; i++)
+        {
+            lootables[indexesToDisable[i]].gameObject.SetActive(false);
         }
 
         p.Camera.RecalculateOffset();
 
-        SaveSystem.Save(index, SceneManager.GetActiveScene().buildIndex, p.Experience.Level, p.Experience.CurrentXP, p.Health.CurrentHP, p.transform.position, p.transform.rotation, p.Camera.CamRotationY, p.Camera.BodyRotationX, p.Camera.OffsetFromPlayer, p.Objectives.CurrentObjectiveIndex, le.AllLoadouts, le.AllWeapons, p.Loadout.AllAmmo, le.AllEquipment, le.AllTalents, temp2.ToArray(), temp.ToArray());
+        SaveSystem.Save(index, scene.buildIndex, p.Experience.Level, p.Experience.CurrentXP, p.Health.CurrentHP, p.transform.position, p.transform.rotation, p.Camera.CamRotationY, p.Camera.BodyRotationX, p.Camera.OffsetFromPlayer, p.Objectives.CurrentObjectiveIndex, le.AllLoadouts, le.AllWeapons, p.Loadout.AllAmmo, le.AllEquipment, le.AllTalents, ais.ToArray(), lootables.ToArray());
     }
 
     public void NewSave()
@@ -97,24 +125,13 @@ public class SaveManager : MonoSingleton<SaveManager>
 
     private IEnumerator LoadData(SaveSystem.SaveData data)
     {
-        Debug.Log("Loading data...");
-
         var loadedScene = SceneManager.LoadSceneAsync(data.level, LoadSceneMode.Additive);
         loadedScene.allowSceneActivation = true;
 
         while (!loadedScene.isDone)
         {
-            Debug.Log("Loading level from data...");
             yield return new WaitForEndOfFrame();
         }
-
-        //var asyncop = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-
-        //while (!asyncop.isDone)
-        //{
-        //    Debug.Log("Unloading loading scene...");
-        //    yield return new WaitForEndOfFrame();
-        //}
 
         var scene = SceneManager.GetSceneAt(1);
         SceneManager.SetActiveScene(scene);
@@ -123,7 +140,6 @@ public class SaveManager : MonoSingleton<SaveManager>
 
         while (!player)
         {
-            Debug.Log("Waiting for player instance...");
             player = Player.Active;
             yield return new WaitForEndOfFrame();
         }
@@ -137,18 +153,34 @@ public class SaveManager : MonoSingleton<SaveManager>
 
         while (!le)
         {
-            Debug.Log("Waiting for Loadout Editor instance...");
             le = LoadoutEditor.Active; 
             yield return new WaitForEndOfFrame();
         }
 
-        var temp = new List<ILootable>();
-        var temp2 = new List<EmeraldAI.EmeraldAISystem>();
+        var lootables = new List<ILootable>();
+        var ais = new List<EmeraldAI.EmeraldAISystem>();
 
         foreach (var go in scene.GetRootGameObjects())
         {
-            temp.AddRange(go.GetComponentsInChildren<ILootable>(true));
-            temp2.AddRange(go.GetComponentsInChildren<EmeraldAI.EmeraldAISystem>(true));
+            lootables.AddRange(go.GetComponentsInChildren<ILootable>(true));
+            ais.AddRange(go.GetComponentsInChildren<EmeraldAI.EmeraldAISystem>(true));
+        }
+
+        for (var i = 0; i < lootables.Count; i++)
+        {
+            lootables[i].gameObject.SetActive(true);
+        }
+
+        foreach (var go in scene.GetRootGameObjects())
+        {
+            var lootablesChildren = go.GetComponentsInChildren<ILootable>(true);
+
+            foreach (var lootable in lootablesChildren)
+            {
+                if (lootables.Contains(lootable)) continue;
+
+                lootables.Add(lootable);
+            }
         }
 
         player.Controller.enabled = false;
@@ -159,34 +191,44 @@ public class SaveManager : MonoSingleton<SaveManager>
 
         player.transform.position = new Vector3(data.playerPosition_X, data.playerPosition_Y, data.playerPosition_Z);
 
-        //player.transform.rotation = new Quaternion(data.playerRotation_X, data.playerRotation_Y, data.playerRotation_Z, data.playerRotation_W);
-
         player.Camera.LoadData(new Vector3(data.cameraPlayerOffset_X, data.cameraPlayerOffset_Y, data.cameraPlayerOffset_Z), data.bodyRotationX, data.cameraRotationY);
 
         player.Camera.enabled = true;
         player.Camera.RecalculateOffset();
         player.Controller.enabled = true;
 
-        player.Objectives.LoadData(data.objectiveIndex);
+        player.Objectives.LoadData(data.objectiveIndex-1);
 
         le.LoadData(data.loadoutsWepAindex, data.loadoutsWepBindex, data.loadoutsEqAindex, data.loadoutsEqBindex, data.loadoutsTalAindex, data.loadoutsTalBindex, data.loadoutsTalCindex, data.weaponsLootStatus, data.weaponsAmmoInMag, data.equipmentAmmo);
 
         player.Loadout.LoadData(data.ammoTypesCurrentAmmo);
+        player.InitComponents(false);
 
-        for (var i = 0; i < temp.Count; i++)
-            if (data.lootablesLootStatus[i]) Destroy(temp[i].gameObject);
 
-        for (var i = 0; i < temp2.Count; i++)
+        for (var i = 0; i < lootables.Count; i++)
         {
-            temp2[i].transform.position = new Vector3(data.aiPosition_X[i], data.aiPosition_Y[i], data.aiPosition_Z[i]);
+            lootables[i].gameObject.SetActive(true);
 
-            temp2[i].transform.rotation = new Quaternion(data.aiRotation_X[i], data.aiRotation_Y[i], data.aiRotation_Z[i], data.aiRotation_W[i]);
+            yield return new WaitForEndOfFrame();
 
-            temp2[i].CurrentHealth = data.aiHP[i];
+            lootables[i].SetLootStatus(data.lootablesLootStatus[i]);
+            
+            lootables[i].gameObject.SetActive(data.lootablesObjectStatus[i]);
         }
 
-        Debug.Log("Finished loading data...");
 
-        player.InitComponents(false);
+        for (var i = 0; i < ais.Count; i++)
+        {
+            ais[i].transform.position = new Vector3(data.aiPosition_X[i], data.aiPosition_Y[i], data.aiPosition_Z[i]);
+
+            ais[i].transform.rotation = new Quaternion(data.aiRotation_X[i], data.aiRotation_Y[i], data.aiRotation_Z[i], data.aiRotation_W[i]);
+
+            ais[i].CurrentHealth = data.aiHP[i];
+
+            ais[i].gameObject.SetActive(data.aiObjectStatus[i]);
+
+            if (ais[i].CurrentHealth <= 0) ais[i].CheckDead();
+        }
+
     }
 }
