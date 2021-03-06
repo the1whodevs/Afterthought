@@ -77,9 +77,9 @@ public class UIManager : MonoSingleton<UIManager>
         deathMenu.ShowDeathMenu();
     }
 
-    public void ShowPortalMenu()
+    public void ShowPortalMenu(int targetBuildIndex)
     {
-        portalMenu.ShowPortalMenu();
+        portalMenu.ShowPortalMenu(targetBuildIndex);
     }
 
     public void Init(PlayerLoadout loadout)

@@ -1,21 +1,23 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PortalMenu : MonoSingleton<PortalMenu>
 {
-    public Action onPortalAccept;
+    public Action<int> onPortalAccept;
 
     [SerializeField] private GameObject mainPanel;
-   
+
+    private int lastTargetBuildIndex;
 
     private void Start()
     {
         mainPanel.SetActive(true);
     }
 
-    public void ShowPortalMenu()
+    public void ShowPortalMenu(int targetBuildIndex)
     {
+        lastTargetBuildIndex = targetBuildIndex;
+
         Player.Active.Controller.EnterUI();
 
         gameObject.SetActive(true);
@@ -23,7 +25,7 @@ public class PortalMenu : MonoSingleton<PortalMenu>
 
     public void YesButton()
     {
-        onPortalAccept?.Invoke();
+        onPortalAccept?.Invoke(lastTargetBuildIndex);
 
         if (Player.Active) Player.Active.Controller.ExitUI();
 
