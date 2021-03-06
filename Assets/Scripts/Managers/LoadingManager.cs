@@ -17,6 +17,7 @@ public class LoadingManager : MonoSingleton<LoadingManager>
     [SerializeField] private GameObject loadingOverlay;
 
     [SerializeField] private Image loadingFillImage;
+    [SerializeField] private Image loadingBackground;
 
     [SerializeField] private TextMeshProUGUI loadingProgressDisplay;
     [SerializeField] private TextMeshProUGUI pressAnyKeyDisplay;
@@ -24,6 +25,8 @@ public class LoadingManager : MonoSingleton<LoadingManager>
     [SerializeField] private float textFadeSpeed = 5.0f;
     [SerializeField] private float fakeLoadingSpeed = 5.0f;
     [SerializeField] private float loadingDelay = 0.25f;
+
+    [SerializeField] private Sprite[] loadingBackgroundsPerScene;
 
     [SerializeField] private GameObject endLoadingButton;
 
@@ -44,6 +47,8 @@ public class LoadingManager : MonoSingleton<LoadingManager>
     public void LoadLevel(int buildIndex)
     {
         Loading = true;
+
+        loadingBackground.sprite = loadingBackgroundsPerScene[buildIndex];
 
         ShowLoadingOverlay();
 

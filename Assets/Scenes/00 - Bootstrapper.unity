@@ -758,9 +758,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingOverlay: {fileID: 3398809223083931240}
   loadingFillImage: {fileID: 3398809223584251450}
+  loadingBackground: {fileID: 2092936650}
   loadingProgressDisplay: {fileID: 3398809223236808545}
   pressAnyKeyDisplay: {fileID: 70962219}
   textFadeSpeed: 3
+  fakeLoadingSpeed: 5
+  loadingDelay: 0.25
+  loadingBackgroundsPerScene:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 40ed0da8d67cee54886dee1f1f90c0e1, type: 3}
+  - {fileID: 21300000, guid: dfe1c1bedb6db774a8c070a1d6db82c1, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 4d109ff44dff3044f875bc366acc6efb, type: 3}
+  - {fileID: 0}
   endLoadingButton: {fileID: 287279760}
 --- !u!4 &363076313
 Transform:
@@ -1173,7 +1184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &635164321
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1583,6 +1594,135 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d27d37bab3c447b8eb7a2a6756e952, type: 3}
+--- !u!1001 &1822993688
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8162761273146709292, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_Name
+      value: 4K ScreenshotManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[1].m_Width
+      value: 2560
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[1].m_Height
+      value: 1600
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[1].m_ResolutionName
+      value: Android Tablet 9 Inch (Nexus 10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[0].m_Width
+      value: 3840
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[0].m_Height
+      value: 2160
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[0].m_Orientation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[0].m_ResolutionName
+      value: 4K UHD
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_Config.m_Resolutions.Array.data[0].m_Category
+      value: Popularity/Steam hardware 2020-03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_Config.m_RelativePath
+      value: Screenshots/Afterthought/
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_Config.m_ColorFormat
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
+        type: 3}
+      propertyPath: m_Config.m_CaptureHotkey.m_Key
+      value: 267
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9601c70971bee0b44b434aec0907648d, type: 3}
 --- !u!1 &1834878870
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,7 +2166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
