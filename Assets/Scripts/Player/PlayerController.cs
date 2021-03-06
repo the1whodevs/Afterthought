@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
+        if (LoadingManager.Active.Loading) return;
         if (!hasInitialized) return;
 
         var d = Time.deltaTime;
@@ -97,7 +98,7 @@ public class PlayerController : MonoBehaviour
         {
             IsInUI = true;
             Time.timeScale = 0.0f;
-            PauseMenu.Instance.ShowPauseMenu();
+            UIManager.Active.ShowPauseMenu();
         }
 
         UpdatePlayer();
@@ -374,16 +375,22 @@ public class PlayerController : MonoBehaviour
         return textureValues;
     }
 
-    public void GetInUI()
+    public void EnterUI()
     {
         IsInUI = true;
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void ExitUI()
     {
-        IsInUI = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         Player.Active.Camera.LoadSensitivityValues();
+
+        IsInUI = false;
     }
 
     public float[] GetTerrainTexture()

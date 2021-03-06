@@ -146,7 +146,6 @@ public class SaveManager : MonoSingleton<SaveManager>
 
         currentDataLoading = null;
 
-        player.SpawnObjectsToSpawnOnSpawn();
         player.GetReferences();
 
         var le = LoadoutEditor.Active;

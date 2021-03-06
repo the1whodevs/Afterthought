@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -22,22 +21,11 @@ public class Player : MonoBehaviour
     public PlayerObjectives Objectives { get; private set; }
     public PlayerVisor Visor { get; private set; }
 
-    [SerializeField] private GameObject[] objectsToSpawnOnSpawn;
-
     private void Start()
     {
         Active = this;
 
         SaveManager.Active.SetPlayerInstance(this);
-    }
-
-    public void SpawnObjectsToSpawnOnSpawn()
-    {
-        foreach (var toSpawn in objectsToSpawnOnSpawn)
-        {
-            var g = Instantiate(toSpawn, transform.parent);
-            SceneManager.MoveGameObjectToScene(g, SceneManager.GetActiveScene());
-        }
     }
 
     /// <summary>
@@ -48,8 +36,6 @@ public class Player : MonoBehaviour
     public void Init(bool cleanInit)
     {
         Debug.Log("Player Init...");
-
-        SpawnObjectsToSpawnOnSpawn();
 
         GetReferences();
 

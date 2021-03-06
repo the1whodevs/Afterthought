@@ -171,17 +171,15 @@ public class LoadoutEditor : MonoSingleton<LoadoutEditor>
     {
         if (!displayedLoadout) displayedLoadout = playerLoadouts[0];
 
-
         InitWeaponsList();
         InitEquipmentList();
         InitTalentList();
 
         UpdateDisplays();
 
-        gameObject.SetActive(true);
+        Player.Active.Controller.EnterUI();
 
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        gameObject.SetActive(true);
     }
 
     public void CloseAllItemDisplays()
@@ -244,9 +242,6 @@ public class LoadoutEditor : MonoSingleton<LoadoutEditor>
 
     public void HideWindow()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
         Time.timeScale = 1.0f;
 
         if (Player.Active) Player.Active.Controller.ExitUI();

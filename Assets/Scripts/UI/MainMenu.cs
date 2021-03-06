@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
@@ -17,11 +15,6 @@ public class MainMenu : MonoBehaviour
     [Header("Load Settings")]
     [SerializeField, Min(0)] private int sceneIndexToLoadOnNew = 3;
 
-    [Header("Loading Screen")]
-    [SerializeField] private GameObject loadingPanel;
-    [SerializeField] private Image loadingImage;
-    [SerializeField] private TextMeshProUGUI loadingProgress;
-
     // The panels within the settings window.
     [Header("Controls Panel")]
     [SerializeField] private GameObject controlsPanel;
@@ -33,13 +26,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject audioPanel;
     [SerializeField] private GameObject graphicsPanel;
 
-    [Header("Buttons SFX")]
-    [SerializeField] private AudioSource MainMenuAudioSource;
-    [SerializeField] private AudioClip hoverSFX;
-    [SerializeField] private AudioClip clickSFX;
-    [SerializeField] private AudioClip startGameSFX;
-
-
     public const string SAVE_FILE_PREFIX = "AFTERTHOUGHT_SAVE_";
     public const string HORIZONTAL_SENS_KEY = "MOUSE_X_SENSITIVITY";
     public const string VERTICAL_SENS_KEY = "MOUSE_Y_SENSITIVITY";
@@ -49,7 +35,6 @@ public class MainMenu : MonoBehaviour
         continueButton.SetActive(PlayerPrefs.HasKey($"{SAVE_FILE_PREFIX}0"));
         mainPanel.SetActive(true);
         settingsPanel.SetActive(false);
-        loadingPanel.SetActive(false);
 
         controlsPanel.SetActive(true);
         audioPanel.SetActive(false);
@@ -66,11 +51,6 @@ public class MainMenu : MonoBehaviour
         verticalSensitivitySlider.SetValueWithoutNotify(10.0f * mouseY);
     }
 
-    private void Start()
-    {
-        MainMenuAudioSource.GetComponent<AudioSource>();
-    }
-
     public void ContinueButton()
     {
         SaveManager.Active.LoadLast();
@@ -80,10 +60,9 @@ public class MainMenu : MonoBehaviour
     {
         if (!mainPanel.activeInHierarchy) return;
 
-        loadingPanel.SetActive(true);
         mainPanel.SetActive(false);
 
-        StartCoroutine(LoadScene(sceneIndexToLoadOnNew));
+        LoadingManager.Active.LoadLevel(sceneIndexToLoadOnNew);
     }
 
     public void LoadGameButton()
@@ -130,7 +109,12 @@ public class MainMenu : MonoBehaviour
     {
         value = horizontalSensitivityIF.text;
 
-        if (int.TryParse(value, out var intVal)) return;
+        if (int.TryParse(value, out var intVal))
+        {
+            if (intVal / 10.0f > horizontalSensitivitySlider.maxValue)
+                horizontalSensitivityIF.SetTextWithoutNotify($"{horizontalSensitivitySlider.maxValue}");
+            return;
+        }
 
         horizontalSensitivityIF.SetTextWithoutNotify("5");
     }
@@ -142,8 +126,12 @@ public class MainMenu : MonoBehaviour
         if (int.TryParse(s, out var intVal))
         {
             var sens = intVal / 10.0f;
+
+            if (sens > horizontalSensitivitySlider.maxValue)
+                sens = horizontalSensitivitySlider.maxValue;
+
             PlayerPrefs.SetFloat(HORIZONTAL_SENS_KEY, sens);
-            horizontalSensitivitySlider.SetValueWithoutNotify(intVal);
+            horizontalSensitivitySlider.SetValueWithoutNotify(sens * 10.0f);
         }
     }
 
@@ -159,7 +147,12 @@ public class MainMenu : MonoBehaviour
     {
         value = verticalSensitivityIF.text;
 
-        if (int.TryParse(value, out var intVal)) return;
+        if (int.TryParse(value, out var intVal))
+        {
+            if (intVal / 10.0f > verticalSensitivitySlider.maxValue)
+                verticalSensitivityIF.SetTextWithoutNotify($"{verticalSensitivitySlider.maxValue}");
+            return;
+        }
 
         verticalSensitivityIF.SetTextWithoutNotify("5");
     }
@@ -171,8 +164,14 @@ public class MainMenu : MonoBehaviour
         if (int.TryParse(s, out var intVal))
         {
             var sens = intVal / 10.0f;
+
+
+            if (sens > horizontalSensitivitySlider.maxValue)
+                sens = horizontalSensitivitySlider.maxValue;
+
+
             PlayerPrefs.SetFloat(VERTICAL_SENS_KEY, sens);
-            verticalSensitivitySlider.SetValueWithoutNotify(intVal);
+            verticalSensitivitySlider.SetValueWithoutNotify(sens * 10.0f);
         }
     }
 
@@ -181,32 +180,18 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    private IEnumerator LoadScene(int buildIndex)
-    {
-        var asyncOp = SceneManager.LoadSceneAsync(buildIndex, LoadSceneMode.Single);
-        asyncOp.allowSceneActivation = true;
-
-        while (!asyncOp.isDone)
-        {
-            loadingImage.fillAmount = 0.1f + asyncOp.progress;
-            loadingProgress.text = (100.0f * (0.1f + asyncOp.progress)).ToString("F1") + "%";
-
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
     public void PlayHoverSFX()
     {
-        MainMenuAudioSource.PlayOneShot(hoverSFX);
+        UISoundFXManager.Active.PlayHoverSFX();
     }
 
     public void PlayClickSFX()
     {
-        MainMenuAudioSource.PlayOneShot(clickSFX);
+        UISoundFXManager.Active.PlayClickSFX();
     }
 
     public void PlayStartGameSFX()
     {
-        MainMenuAudioSource.PlayOneShot(startGameSFX);
+        UISoundFXManager.Active.PlayStartGameSFX();
     }
 }

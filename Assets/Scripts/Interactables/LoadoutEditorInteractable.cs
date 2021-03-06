@@ -16,7 +16,7 @@ public class LoadoutEditorInteractable : InteractableObject
 
     public override void Interact()
     {
-        Player.Active.Controller.GetInUI();
+        Player.Active.Controller.EnterUI();
 
         if (!IsTraining) Time.timeScale = 0.0f;
 

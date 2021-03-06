@@ -1,37 +1,14 @@
-﻿using System.Collections;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : MonoSingleton<PauseMenu>
 {
-    public static PauseMenu Instance
-    {
-        get
-        {
-            if (_instance) return _instance;
-
-            _instance = FindObjectOfType<PauseMenu>();
-
-            if (!_instance) throw new System.Exception("PauseMenu is missing!");
-
-            return _instance;
-        }
-    }
-
-    private static PauseMenu _instance;
-
     // The panel containing all main menu buttons.
     [SerializeField] private GameObject mainPanel;
 
     // The settings window.
     [SerializeField] private GameObject settingsPanel;
-
-    [Header("Loading Screen")]
-    [SerializeField] private GameObject loadingPanel;
-    [SerializeField] private Image loadingImage;
-    [SerializeField] private TextMeshProUGUI loadingProgress;
 
     // The panels within the settings window.
     [Header("Controls Panel")]
@@ -44,20 +21,10 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject audioPanel;
     [SerializeField] private GameObject graphicsPanel;
 
-    [Header("Buttons SFX")]
-    [SerializeField] private AudioSource PauseMenuAudioSource;
-    [SerializeField] private AudioClip hoverSFX;
-    [SerializeField] private AudioClip clickSFX;
-
     private void Awake()
     {
-        if (_instance && _instance != this) Destroy(gameObject);
-
-        if (!_instance) _instance = this;
-
         mainPanel.SetActive(true);
         settingsPanel.SetActive(false);
-        loadingPanel.SetActive(false);
 
         controlsPanel.SetActive(true);
         audioPanel.SetActive(false);
@@ -76,26 +43,17 @@ public class PauseMenu : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void Start()
-    {
-        PauseMenuAudioSource.GetComponent<AudioSource>();
-    }
-
     public void ResumeButton()
     {
         Time.timeScale = 1.0f;
         gameObject.SetActive(false);
 
         if (Player.Active) Player.Active.Controller.ExitUI();
-
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void ShowPauseMenu()
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        Player.Active.Controller.EnterUI();
 
         gameObject.SetActive(true);
     }
@@ -149,7 +107,12 @@ public class PauseMenu : MonoBehaviour
     {
         value = horizontalSensitivityIF.text;
 
-        if (int.TryParse(value, out var intVal)) return;
+        if (int.TryParse(value, out var intVal))
+        {
+            if (intVal / 10.0f > horizontalSensitivitySlider.maxValue)
+                horizontalSensitivityIF.SetTextWithoutNotify($"{horizontalSensitivitySlider.maxValue}");
+            return;
+        }
 
         horizontalSensitivityIF.SetTextWithoutNotify("5");
     }
@@ -161,8 +124,12 @@ public class PauseMenu : MonoBehaviour
         if (int.TryParse(s, out var intVal))
         {
             var sens = intVal / 10.0f;
+
+            if (sens > horizontalSensitivitySlider.maxValue)
+                sens = horizontalSensitivitySlider.maxValue;
+
             PlayerPrefs.SetFloat(MainMenu.HORIZONTAL_SENS_KEY, sens);
-            horizontalSensitivitySlider.SetValueWithoutNotify(intVal);
+            horizontalSensitivitySlider.SetValueWithoutNotify(sens * 10.0f);
         }
     }
 
@@ -178,7 +145,12 @@ public class PauseMenu : MonoBehaviour
     {
         value = verticalSensitivityIF.text;
 
-        if (int.TryParse(value, out var intVal)) return;
+        if (int.TryParse(value, out var intVal))
+        {
+            if (intVal / 10.0f > verticalSensitivitySlider.maxValue)
+                verticalSensitivityIF.SetTextWithoutNotify($"{verticalSensitivitySlider.maxValue}");
+            return;
+        }
 
         verticalSensitivityIF.SetTextWithoutNotify("5");
     }
@@ -190,19 +162,24 @@ public class PauseMenu : MonoBehaviour
         if (int.TryParse(s, out var intVal))
         {
             var sens = intVal / 10.0f;
+
+
+            if (sens > horizontalSensitivitySlider.maxValue)
+                sens = horizontalSensitivitySlider.maxValue;
+
+
             PlayerPrefs.SetFloat(MainMenu.VERTICAL_SENS_KEY, sens);
-            verticalSensitivitySlider.SetValueWithoutNotify(intVal);
+            verticalSensitivitySlider.SetValueWithoutNotify(sens * 10.0f);
         }
     }
 
     public void BackToMainMenu()
     {
-        loadingPanel.SetActive(true);
         mainPanel.SetActive(false);
 
         Time.timeScale = 1.0f;
 
-        StartCoroutine(LoadScene(1));
+        LoadingManager.Active.LoadLevel(1);
     }
 
     public void ExitGame()
@@ -212,27 +189,13 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
     }
 
-
-    private IEnumerator LoadScene(int buildIndex)
-    {
-        var asyncOp = SceneManager.LoadSceneAsync(buildIndex, LoadSceneMode.Single);
-        asyncOp.allowSceneActivation = true;
-
-        while (!asyncOp.isDone)
-        {
-            loadingImage.fillAmount = 0.1f + asyncOp.progress;
-            loadingProgress.text = (100.0f * (0.1f + asyncOp.progress)).ToString("F1") + "%";
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
     public void PlayHoverSFX()
     {
-        PauseMenuAudioSource.PlayOneShot(hoverSFX);
+        UISoundFXManager.Active.PlayHoverSFX();
     }
 
     public void PlayClickSFX()
     {
-        PauseMenuAudioSource.PlayOneShot(clickSFX);
+        UISoundFXManager.Active.PlayClickSFX();
     }
 }

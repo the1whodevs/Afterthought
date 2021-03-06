@@ -93,6 +93,7 @@ public class PlayerCamera : MonoBehaviour
 
     private void Update()
     {
+        if (LoadingManager.Active.Loading) return;
         if (!initialized) return; 
 
         if (Player.Active.Controller.IsInUI) return;

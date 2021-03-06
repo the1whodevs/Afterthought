@@ -84,6 +84,6 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator ShowDeathMenuDelay()
     {
         yield return new WaitForSeconds(1.0f);
-        DeathMenu.Instance.ShowDeathMenu();
+        UIManager.Active.ShowDeathMenu();
     }
 }

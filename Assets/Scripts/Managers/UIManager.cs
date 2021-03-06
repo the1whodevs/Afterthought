@@ -3,25 +3,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoSingleton<UIManager>
 {
-    public static UIManager Active
-    {
-        get
-        {
-            if (_instance) return _instance;
-
-            _instance = FindObjectOfType<UIManager>();
-
-            return _instance;
-        }
-    }
-
-    private static UIManager _instance;
-
     public GameObject Crosshair => crosshair;
     public GameObject HealthBar => healthBar;
     public TextMeshProUGUI ScannedHPdisplay => scannedHPdisplay;
+
+    [Header("In-game UI")]
+    [SerializeField] private GameObject ingamePanel;
 
     [SerializeField] private TextMeshProUGUI scannedHPdisplay;
     [SerializeField] private TextMeshProUGUI interactPrompt;
@@ -51,8 +40,43 @@ public class UIManager : MonoBehaviour
 
     private PlayerLoadout pl;
 
+    private PauseMenu pauseMenu;
+    private DeathMenu deathMenu;
+
+    private void Awake()
+    {
+        if (Active && Active == this) DontDestroyOnLoad(gameObject);
+        else
+        {
+            Debug.LogError("A second instance of UIManager has been found!");
+            Destroy(gameObject);
+        }
+
+        pauseMenu = PauseMenu.Active;
+        deathMenu = DeathMenu.Active;
+
+        HideIngamePanel();
+    }
+
+    public void HideIngamePanel()
+    {
+        ingamePanel.SetActive(false);
+    }
+
+    public void ShowPauseMenu()
+    {
+        pauseMenu.ShowPauseMenu();
+    }
+
+    public void ShowDeathMenu()
+    {
+        deathMenu.ShowDeathMenu();
+    }
+
     public void Init(PlayerLoadout loadout)
     {
+        ingamePanel.SetActive(true);
+
         pl = loadout;
 
         crosshair.SetActive(true);
