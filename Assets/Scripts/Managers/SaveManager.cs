@@ -6,18 +6,27 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoSingleton<SaveManager>
 {
+    public System.Action onDataLoadingCompleted;
+
+    public bool LoadingData { get; private set; } = false;
+
     private static SaveSystem.SaveData currentDataLoading;
 
     private Player player;
+    private LoadoutEditor le;
 
-    private const string LOADING_SCENE = "99 - Loading";
     private const int QUICKSAVE_INDEX = -1;
 
-    private void Start()
+    private void Awake()
     {
         DontDestroyOnLoad(this);
 
-        SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
+        le = LoadoutEditor.Active;
+    }
+
+    private void Start()
+    {
+        LoadingManager.Active.onTargetLevelLoaded += OnTargetLevelLoaded;
     }
 
     public void SetPlayerInstance(Player inst)
@@ -27,11 +36,11 @@ public class SaveManager : MonoSingleton<SaveManager>
         if (currentDataLoading == null) player.Init(true);
     }
 
-    private void SceneManager_activeSceneChanged(Scene current, Scene next)
+    private void OnTargetLevelLoaded()
     {
         player = null;
 
-        if (currentDataLoading != null && next.name == LOADING_SCENE) StartCoroutine(LoadData(currentDataLoading));
+        if (currentDataLoading != null) StartCoroutine(LoadData(currentDataLoading));
     }
 
     private void Update()
@@ -112,7 +121,9 @@ public class SaveManager : MonoSingleton<SaveManager>
     {
         currentDataLoading = SaveSystem.Load(index);
 
-        SceneManager.LoadScene(LOADING_SCENE, LoadSceneMode.Single);
+        LoadingData = true;
+
+        LoadingManager.Active.LoadLevel(currentDataLoading.level);
     }
 
     public void LoadLast()
@@ -125,18 +136,7 @@ public class SaveManager : MonoSingleton<SaveManager>
 
     private IEnumerator LoadData(SaveSystem.SaveData data)
     {
-        var loadedScene = SceneManager.LoadSceneAsync(data.level, LoadSceneMode.Additive);
-        loadedScene.allowSceneActivation = true;
-
-        while (!loadedScene.isDone)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        var scene = SceneManager.GetSceneAt(1);
-        SceneManager.SetActiveScene(scene);
-
-        yield return new WaitForSeconds(1.0f);
+        var scene = SceneManager.GetActiveScene();
 
         while (!player)
         {
@@ -147,14 +147,6 @@ public class SaveManager : MonoSingleton<SaveManager>
         currentDataLoading = null;
 
         player.GetReferences();
-
-        var le = LoadoutEditor.Active;
-
-        while (!le)
-        {
-            le = LoadoutEditor.Active; 
-            yield return new WaitForEndOfFrame();
-        }
 
         var lootables = new List<ILootable>();
         var ais = new List<EmeraldAI.EmeraldAISystem>();
@@ -215,7 +207,6 @@ public class SaveManager : MonoSingleton<SaveManager>
             lootables[i].gameObject.SetActive(data.lootablesObjectStatus[i]);
         }
 
-
         for (var i = 0; i < ais.Count; i++)
         {
             ais[i].transform.position = new Vector3(data.aiPosition_X[i], data.aiPosition_Y[i], data.aiPosition_Z[i]);
@@ -229,5 +220,8 @@ public class SaveManager : MonoSingleton<SaveManager>
             if (ais[i].CurrentHealth <= 0) ais[i].CheckDead();
         }
 
+        onDataLoadingCompleted?.Invoke();
+
+        LoadingData = false;
     }
 }

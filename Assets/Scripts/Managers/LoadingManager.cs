@@ -10,6 +10,8 @@ public class LoadingManager : MonoSingleton<LoadingManager>
     public bool Loading { get; private set; }
 
     public Action<int> onLoadingStarted; // sends the build index to be loaded as a parameter
+    public Action onLoadingSceneLoaded;
+    public Action onTargetLevelLoaded;
     public Action onLoadingFinished;
 
     [SerializeField] private GameObject loadingOverlay;
@@ -25,11 +27,18 @@ public class LoadingManager : MonoSingleton<LoadingManager>
 
     [SerializeField] private GameObject endLoadingButton;
 
+    private const string LOADING_SCENE = "99 - Loading";
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
 
         HideLoadingOverlay();
+    }
+
+    public void LoadLevel(string levelName)
+    {
+        LoadLevel(SceneManager.GetSceneByName(levelName).buildIndex);
     }
 
     public void LoadLevel(int buildIndex)
@@ -65,7 +74,15 @@ public class LoadingManager : MonoSingleton<LoadingManager>
 
     private IEnumerator LoadScene(int buildIndex)
     {
+        onLoadingStarted?.Invoke(buildIndex);
+
         Time.timeScale = 1.0f;
+
+        var loadingSceneAsyncOp = SceneManager.LoadSceneAsync(LOADING_SCENE, LoadSceneMode.Single);
+
+        while (!loadingSceneAsyncOp.isDone) yield return new WaitForEndOfFrame();
+
+        onLoadingSceneLoaded?.Invoke();
 
         var t = 0.0f;
 
@@ -91,6 +108,12 @@ public class LoadingManager : MonoSingleton<LoadingManager>
 
             yield return new WaitForEndOfFrame();
         }
+
+        onTargetLevelLoaded?.Invoke();
+
+        while (SaveManager.Active.LoadingData) yield return new WaitForEndOfFrame();
+
+        onLoadingFinished?.Invoke();
 
         UISoundFXManager.Active.PlayLoadingFinished();
 
