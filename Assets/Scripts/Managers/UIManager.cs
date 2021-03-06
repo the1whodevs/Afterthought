@@ -42,6 +42,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     private PauseMenu pauseMenu;
     private DeathMenu deathMenu;
+    private PortalMenu portalMenu;
 
     private void Awake()
     {
@@ -54,6 +55,9 @@ public class UIManager : MonoSingleton<UIManager>
 
         pauseMenu = PauseMenu.Active;
         deathMenu = DeathMenu.Active;
+        portalMenu = PortalMenu.Active;
+
+        portalMenu.gameObject.SetActive(false);
 
         HideIngamePanel();
     }
@@ -71,6 +75,11 @@ public class UIManager : MonoSingleton<UIManager>
     public void ShowDeathMenu()
     {
         deathMenu.ShowDeathMenu();
+    }
+
+    public void ShowPortalMenu()
+    {
+        portalMenu.ShowPortalMenu();
     }
 
     public void Init(PlayerLoadout loadout)

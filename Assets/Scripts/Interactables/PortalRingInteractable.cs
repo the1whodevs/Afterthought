@@ -1,12 +1,21 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PortalRingInteractable : InteractableObject
 {
     [SerializeField, Min(0)] private int sceneBuildIndexDestination = 0;
 
+    private IEnumerator Start()
+    {
+        while (!PortalMenu.Active) 
+        {
+            Debug.Log("Waiting for Portal Menu Reference");
+
+            yield return new WaitForEndOfFrame();
+        } 
+
+        PortalMenu.Active.onPortalAccept += () => { LoadingManager.Active.LoadLevel(sceneBuildIndexDestination); };
+    }
     public override string GetActionPronoun()
     {
         return "the";
@@ -19,6 +28,6 @@ public class PortalRingInteractable : InteractableObject
 
     public override void Interact()
     {
-        SceneManager.LoadScene(sceneBuildIndexDestination);
+        UIManager.Active.ShowPortalMenu();
     }
 }
