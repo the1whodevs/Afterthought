@@ -24,6 +24,10 @@ public class PortalMenu : MonoSingleton<PortalMenu>
     public void YesButton()
     {
         onPortalAccept?.Invoke();
+
+        if (Player.Active) Player.Active.Controller.ExitUI();
+
+        gameObject.SetActive(false);
     }
 
     public void NoButton()
@@ -31,6 +35,7 @@ public class PortalMenu : MonoSingleton<PortalMenu>
         Time.timeScale = 1.0f;
 
         if (Player.Active) Player.Active.Controller.ExitUI();
+
         gameObject.SetActive(false);
     }
 

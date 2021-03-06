@@ -55,6 +55,9 @@ public class PauseMenu : MonoSingleton<PauseMenu>
     {
         Player.Active.Controller.EnterUI();
 
+        mainPanel.SetActive(true);
+        settingsPanel.SetActive(false);
+
         gameObject.SetActive(true);
     }
 
@@ -178,6 +181,8 @@ public class PauseMenu : MonoSingleton<PauseMenu>
         mainPanel.SetActive(false);
 
         Time.timeScale = 1.0f;
+
+        gameObject.SetActive(false);
 
         LoadingManager.Active.LoadLevel(1);
     }

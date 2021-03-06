@@ -43,16 +43,17 @@ public class PlayerPickup : MonoBehaviour
         if (!itemHit || pl.SwitchingWeapons)
         {
             UIManager.Active.HideInteractPrompt();
+            return;
         }
+
+        var pickableHit = hit.transform.GetComponent<InteractableObject>();
+
+        if (!pickableHit) UIManager.Active.HideInteractPrompt();
         else
         {
             var interact = Input.GetAxisRaw("Interact") > 0.0f;
 
             if (!interact) fireResetRequired = false;
-
-            var pickableHit = hit.transform.GetComponent<InteractableObject>();
-
-            if (!pickableHit) return;
 
             UIManager.Active.ShowInteractPrompt(KeyCode.F, 
                 $"{pickableHit.GetActionVerb()} " +

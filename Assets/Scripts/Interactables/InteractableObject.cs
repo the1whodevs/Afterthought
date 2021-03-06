@@ -4,6 +4,9 @@ public class InteractableObject : MonoBehaviour, ILootable
 {
     public new string name;
 
+    [SerializeField] protected bool doFloat = true;
+    [SerializeField] protected bool doRotate = true;
+
     [SerializeField] protected float floatSpeed = 2.5f;
     [SerializeField] protected float floatDist = 1.0f;
     [SerializeField, Tooltip("Rotations per second")] protected float rotSpeed = 10.0f;
@@ -25,8 +28,8 @@ public class InteractableObject : MonoBehaviour, ILootable
 
     private void Update()
     {
-        FloatUpDown();
-        Rotate();
+        if (doFloat) FloatUpDown();
+        if (doRotate) Rotate();
     }
 
     private void Rotate()

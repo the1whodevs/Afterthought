@@ -16,6 +16,7 @@ public class PortalRingInteractable : InteractableObject
 
         PortalMenu.Active.onPortalAccept += () => { LoadingManager.Active.LoadLevel(sceneBuildIndexDestination); };
     }
+
     public override string GetActionPronoun()
     {
         return "the";

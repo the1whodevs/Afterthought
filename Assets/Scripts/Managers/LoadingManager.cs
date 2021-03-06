@@ -20,6 +20,8 @@ public class LoadingManager : MonoSingleton<LoadingManager>
     [SerializeField] private TextMeshProUGUI pressAnyKeyDisplay;
 
     [SerializeField] private float textFadeSpeed = 5.0f;
+    [SerializeField] private float fakeLoadingSpeed = 5.0f;
+    [SerializeField] private float loadingDelay = 0.25f;
 
     [SerializeField] private GameObject endLoadingButton;
 
@@ -63,27 +65,50 @@ public class LoadingManager : MonoSingleton<LoadingManager>
 
     private IEnumerator LoadScene(int buildIndex)
     {
+        Time.timeScale = 1.0f;
+
+        var t = 0.0f;
+
+        while (t <= 1.0f)
+        {
+            t += Time.deltaTime * fakeLoadingSpeed;
+
+            loadingFillImage.fillAmount = Mathf.Lerp(0.0f, 0.1f, t);
+            loadingProgressDisplay.text = (100.0f * loadingFillImage.fillAmount).ToString("F0") + "%";
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(loadingDelay);
+
         var asyncOp = SceneManager.LoadSceneAsync(buildIndex, LoadSceneMode.Single);
         asyncOp.allowSceneActivation = true;
-
-        Time.timeScale = 1.0f;
 
         while (!asyncOp.isDone)
         {
             loadingFillImage.fillAmount = 0.1f + asyncOp.progress;
-            loadingProgressDisplay.text = (100.0f * (0.1f + asyncOp.progress)).ToString("F1") + "%";
+            loadingProgressDisplay.text = (100.0f * (0.1f + asyncOp.progress)).ToString("F0") + "%";
 
             yield return new WaitForEndOfFrame();
         }
 
         UISoundFXManager.Active.PlayLoadingFinished();
 
+        // If going to the main menu...
+        if (buildIndex == 1)
+        {
+            // Just hide the loading overlay.
+            HideLoadingOverlay();
+            yield break;
+        }
+
+        // ... otherwise wait for player interaction.
         endLoadingButton.SetActive(true);
         pressAnyKeyDisplay.color = Color.white;
         pressAnyKeyDisplay.gameObject.SetActive(true);
         loadingProgressDisplay.gameObject.SetActive(false);
 
-        var t = 0.0f;
+        t = 0.0f;
 
         var alphaStart = 1.0f;
         var alphaEnd = 0.0f;
