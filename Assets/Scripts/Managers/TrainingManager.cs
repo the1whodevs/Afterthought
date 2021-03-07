@@ -35,8 +35,6 @@ public class TrainingManager : MonoSingleton<TrainingManager>
     // In awake to make sure if we're loading, active status is override by saved data.
     public void Awake()
     {
-        Debug.Log("Training Manager awake!");
-
         cyberblade.SetActive(false);
         scarfaceMk2.SetActive(false);
         crossbow.SetActive(false);

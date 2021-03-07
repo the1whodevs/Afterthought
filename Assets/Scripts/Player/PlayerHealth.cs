@@ -18,7 +18,6 @@ public class PlayerHealth : MonoBehaviour
     private int maxHealth;
 
     private float targetFill = 1.0f;
-    private float currentFill = 1.0f;
     
     private bool isDead;
 
@@ -26,13 +25,14 @@ public class PlayerHealth : MonoBehaviour
 
     private UIManager UiManager;
 
-    public void Init()
+    public void Init(bool cleanInit)
     {
         UiManager = UIManager.Active;
 
         var talent = Player.Active.Loadout.HasIncreasedMaxHealth();
         maxHealth = startingHealth * (int)(talent ? talent.value : 1.0f);
-        currentHealth = maxHealth;
+
+        if (cleanInit) currentHealth = maxHealth;
 
         healthBar = UiManager.HealthBar.transform.Find("Fill").GetComponent<Image>();
 
@@ -75,11 +75,13 @@ public class PlayerHealth : MonoBehaviour
     public void AddHealth(int valueToAdd)
     {
         currentHealth = Mathf.Clamp(currentHealth + valueToAdd, 0, maxHealth);
+        UpdateHealthUI();
     }
 
     public void AddHealth(float percentageOfMaxToAdd)
     {
         currentHealth = Mathf.Clamp(currentHealth + Mathf.CeilToInt(percentageOfMaxToAdd * maxHealth), 0, maxHealth);
+        UpdateHealthUI();
     }
 
     private void PlayerDeath()

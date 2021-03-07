@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         Controller.Init(Audio, Animator, Loadout, Camera.transform);
         Pickup.Init(Controller, Loadout);
         Visor.Init(Controller);
-        Health.Init();
+        Health.Init(cleanInit);
         PostProcessing.Init();
     }
 

@@ -99,19 +99,33 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void ShowLoadGamePanel()
     {
+        var hasSelectedSave = false;
+
         if (SaveManager.Active.HasQuicksave)
         {
+            hasSelectedSave = true;
             var quickSaveDisplay = Instantiate(saveGameDisplayPrefab, loadGameDisplayContent);
             spawnedLoadDisplays.Add(quickSaveDisplay);
             quickSaveDisplay.GetComponent<SaveDisplay>().Init(-1);
+            quickSaveDisplay.GetComponent<SaveDisplay>().Select();
         }
 
         for (var i = SaveManager.Active.NumOfSaves - 1; i >= 0; i--)
         {
+            Debug.Log($"Index: {i}");
             var display = Instantiate(saveGameDisplayPrefab, loadGameDisplayContent);
             spawnedLoadDisplays.Add(display);
             display.GetComponent<SaveDisplay>().Init(i);
+
+            if (!hasSelectedSave)
+            {
+                hasSelectedSave = true;
+                display.GetComponent<SaveDisplay>().Select();
+            }
         }
+
+        if (!hasSelectedSave)
+            saveToLoadInfo.text = "";
 
         loadGameDisplayContent.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, heightPerSaveGameDisplay * SaveManager.Active.NumOfSaves);
 
@@ -120,11 +134,20 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void ShowSaveGamePanel()
     {
+        var hasSelectedSave = false;
+
+        var newSaveDisplay = Instantiate(saveGameDisplayPrefab, saveGameDisplayContent);
+        spawnedSaveDisplays.Add(newSaveDisplay);
+        newSaveDisplay.GetComponent<SaveDisplay>().Init(SaveManager.Active.NumOfSaves);
+
         if (SaveManager.Active.HasQuicksave)
         {
+            hasSelectedSave = true;
+
             var quickSaveDisplay = Instantiate(saveGameDisplayPrefab, saveGameDisplayContent);
             spawnedSaveDisplays.Add(quickSaveDisplay);
             quickSaveDisplay.GetComponent<SaveDisplay>().Init(-1);
+            quickSaveDisplay.GetComponent<SaveDisplay>().Select();
         }
 
         for (var i = SaveManager.Active.NumOfSaves - 1; i >= 0; i--)
@@ -132,7 +155,22 @@ public class UIManager : MonoSingleton<UIManager>
             var display = Instantiate(saveGameDisplayPrefab, saveGameDisplayContent);
             spawnedSaveDisplays.Add(display);
             display.GetComponent<SaveDisplay>().Init(i);
+
+            if (!hasSelectedSave)
+            {
+                hasSelectedSave = true;
+                display.GetComponent<SaveDisplay>().Select();
+            }
         }
+
+        if (!hasSelectedSave)
+        {
+            hasSelectedSave = true;
+            newSaveDisplay.GetComponent<SaveDisplay>().Select();
+        }
+
+        if (!hasSelectedSave)
+            selectedSaveSlotInfo.text = "";
 
         saveGameDisplayContent.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, heightPerSaveGameDisplay * SaveManager.Active.NumOfSaves);
 

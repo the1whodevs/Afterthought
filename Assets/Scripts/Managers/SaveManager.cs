@@ -26,9 +26,8 @@ public class SaveManager : MonoSingleton<SaveManager>
     {
         DontDestroyOnLoad(this);
 
-        NumOfSaves = Directory.GetFiles(Application.persistentDataPath + "/", SaveSystem.SAVE_EXT).Length;
-
-        HasQuicksave = File.Exists(SaveSystem.QUICKSAVE_DIR);
+        NumOfSaves = SaveSystem.GetNumOfSaves();
+        HasQuicksave = SaveSystem.CheckForQuicksave();
 
         le = LoadoutEditor.Active;
     }
@@ -70,6 +69,8 @@ public class SaveManager : MonoSingleton<SaveManager>
     {
         if (selectedSaveIndex >= -1)
         {
+            NumOfSaves--;
+
             var i = selectedSaveIndex;
 
             selectedSaveIndex = -100;
@@ -108,6 +109,10 @@ public class SaveManager : MonoSingleton<SaveManager>
     public void SaveAtIndex(int index)
     {
         if (index == -1) HasQuicksave = true;
+        else if (index == NumOfSaves)
+        {
+            NumOfSaves++;
+        }
 
         var p = Player.Active;
         var le = LoadoutEditor.Active; 
@@ -153,13 +158,6 @@ public class SaveManager : MonoSingleton<SaveManager>
         p.Camera.RecalculateOffset();
 
         SaveSystem.Save(index, scene.buildIndex, p.Experience.Level, p.Experience.CurrentXP, p.Health.CurrentHP, p.transform.position, p.transform.rotation, p.Camera.CamRotationY, p.Camera.BodyRotationX, p.Camera.OffsetFromPlayer, p.Objectives.CurrentObjectiveIndex, le.AllLoadouts, le.AllWeapons, p.Loadout.AllAmmo, le.AllEquipment, le.AllTalents, ais.ToArray(), lootables.ToArray());
-    }
-
-    public void NewSave()
-    {
-        SaveAtIndex(NumOfSaves);
-
-        NumOfSaves++;
     }
 
     public void QuickLoad()
@@ -245,18 +243,6 @@ public class SaveManager : MonoSingleton<SaveManager>
         player.Loadout.LoadData(data.ammoTypesCurrentAmmo);
         player.InitComponents(false);
 
-
-        for (var i = 0; i < lootables.Count; i++)
-        {
-            lootables[i].gameObject.SetActive(true);
-
-            yield return new WaitForEndOfFrame();
-
-            lootables[i].SetLootStatus(data.lootablesLootStatus[i]);
-            
-            lootables[i].gameObject.SetActive(data.lootablesObjectStatus[i]);
-        }
-
         for (var i = 0; i < ais.Count; i++)
         {
             ais[i].transform.position = new Vector3(data.aiPosition_X[i], data.aiPosition_Y[i], data.aiPosition_Z[i]);
@@ -268,6 +254,17 @@ public class SaveManager : MonoSingleton<SaveManager>
             ais[i].gameObject.SetActive(data.aiObjectStatus[i]);
 
             if (ais[i].CurrentHealth <= 0) ais[i].CheckDead();
+        }
+
+        for (var i = 0; i < lootables.Count; i++)
+        {
+            lootables[i].gameObject.SetActive(true);
+
+            yield return new WaitForEndOfFrame();
+
+            lootables[i].SetLootStatus(data.lootablesLootStatus[i]);
+            
+            lootables[i].gameObject.SetActive(data.lootablesObjectStatus[i]);
         }
 
         onDataLoadingCompleted?.Invoke();

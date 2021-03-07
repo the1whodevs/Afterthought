@@ -16,13 +16,25 @@ public class SaveDisplay : MonoBehaviour
     public void Init(int index)
     {
         myIndex = index;
-        this.Data = SaveSystem.Load(index);
 
-        saveTitle.text = index == -1 ? "QUICK SAVE" : $"Save #{index}";
+        if (SaveManager.Active.NumOfSaves == index)
+        {
+            saveTitle.text = "NEW SAVE";
+            saveInfo.text = "";
+            saveScreenshot.sprite = null;
+        }
+        else
+        {
+            this.Data = SaveSystem.Load(index);
 
-        saveInfo.text = $"{SceneManager.GetSceneByBuildIndex(Data.level).name} - Level {Data.playerLevel} - {Data.objectiveIndex}";
+            Debug.Log("Data: " + Data);
 
-        saveScreenshot.sprite = SaveSystem.GetScreenshot(index);
+            saveTitle.text = index == -1 ? "QUICK SAVE" : $"Save #{index}";
+
+            saveInfo.text = $"{SceneManager.GetSceneByBuildIndex(Data.level).name} - Level {Data.playerLevel} - {Data.objectiveIndex}";
+
+            saveScreenshot.sprite = SaveSystem.GetScreenshot(index);
+        }
     }
 
     public void Select()

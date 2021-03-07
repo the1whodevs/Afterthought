@@ -6,16 +6,23 @@ using System.IO;
 public static class SaveSystem
 {
     public static string SAVES_DIR => $"{Application.persistentDataPath}/";
-    public static string QUICKSAVE_DIR => $"{SAVES_DIR}afterthought_-1{SAVE_EXT}";
+    public const string SAVE_PREFIX = "afterthought_";
+
+    public static string QUICKSAVE_DIR => $"{SAVES_DIR}{SAVE_PREFIX }-1{SAVE_EXT}";
     public static string SAVE_EXT = ".atsav";
     public static string SCREENSHOT_EXT = ".png";
+
+    private static string GetSavePathForIndex(int saveIndex)
+    {
+        return $"{SAVES_DIR}{SAVE_PREFIX}{saveIndex}";
+    }
 
     public static void Save(int saveIndex, int currentLevel, int playerLevel, int playerXP, int playerHP, Vector3 playerPos, Quaternion playerRot, float cameraRotY, float bodyRotX, Vector3 camPlayerOffset, int objectiveIndex, LoadoutData[] allLoadouts, WeaponData[] allWeapons, AmmoData[] allAmmo, EquipmentData[] allEquipment, TalentData[] allTalents, EmeraldAI.EmeraldAISystem[] allAIs, ILootable[] lootables)
     {
         var data = new SaveData(currentLevel, playerLevel, playerXP, playerHP, playerPos, playerRot, cameraRotY, bodyRotX, camPlayerOffset, objectiveIndex, allLoadouts, allWeapons, allAmmo, allEquipment, allTalents, allAIs, lootables);
 
         var bf = new BinaryFormatter();
-        var pathNoExt = $"{SAVES_DIR}afterthought_{saveIndex}";
+        var pathNoExt = GetSavePathForIndex(saveIndex);
         var path = $"{pathNoExt}{SAVE_EXT}";
         var screenshotPath = $"{pathNoExt}{SCREENSHOT_EXT}";
 
@@ -27,10 +34,49 @@ public static class SaveSystem
         filestream.Close();
     }
 
+    public static SaveData Load(int saveIndex)
+    {
+        var path = $"{GetSavePathForIndex(saveIndex)}{SAVE_EXT}";
+
+        if (File.Exists(path))
+        {
+            var bf = new BinaryFormatter();
+            var filestream = new FileStream(path, FileMode.Open);
+
+            var data = bf.Deserialize(filestream) as SaveData;
+
+            filestream.Close();
+
+            return data;
+        }
+
+        return null;
+    }
+
+    public static bool CheckForQuicksave()
+    {
+        return File.Exists(QUICKSAVE_DIR);
+    }
+
+    public static int GetNumOfSaves()
+    {
+        var numOfSaves = 0;
+        var index = 0;
+
+        while (File.Exists($"{GetSavePathForIndex(index)}{SAVE_EXT}")) 
+        { 
+            numOfSaves++;
+            index++;
+        }
+
+        return numOfSaves;
+    }
+
     public static void DeleteAt(int index)
     {
-        var path = $"{SAVES_DIR}afterthought_{index}{SAVE_EXT}";
-        var screenshotPath = $"{SAVES_DIR}afterthought_{index}{SCREENSHOT_EXT}";
+        var pathNoExt = GetSavePathForIndex(index);
+        var path = $"{pathNoExt}{SAVE_EXT}";
+        var screenshotPath = $"{pathNoExt}{SCREENSHOT_EXT}";
 
         if (File.Exists(path)) File.Delete(path);
         if (File.Exists(screenshotPath)) File.Delete(screenshotPath);
@@ -44,7 +90,7 @@ public static class SaveSystem
 
     public static Sprite GetScreenshot(int saveIndex)
     {
-        var path = $"{SAVES_DIR}afterthought_{saveIndex}{SCREENSHOT_EXT}";
+        var path = $"{GetSavePathForIndex(saveIndex)}{SCREENSHOT_EXT}";
 
         return LoadNewSprite(path);
     }
@@ -74,25 +120,6 @@ public static class SaveSystem
                 return Tex2D;                 // If data = readable -> return texture
         }
         return null;                     // Return null if load failed
-    }
-
-    public static SaveData Load(int saveIndex)
-    {
-        var path = $"{Application.persistentDataPath}/afterthought_{saveIndex}{SAVE_EXT}";
-
-        if (File.Exists(path))
-        {
-            var bf = new BinaryFormatter();
-            var filestream = new FileStream(path, FileMode.Open);
-
-            var data = bf.Deserialize(filestream) as SaveData;
-
-            filestream.Close();
-
-            return data;
-        }
-
-        return null;
     }
 
     [System.Serializable]
