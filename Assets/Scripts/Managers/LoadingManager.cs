@@ -140,6 +140,8 @@ public class LoadingManager : MonoSingleton<LoadingManager>
 
         UISoundFXManager.Active.PlayLoadingFinished();
 
+        UIManager.Active.HidePauseMenu();
+
         // If going to the main menu...
         if (buildIndex == 1)
         {

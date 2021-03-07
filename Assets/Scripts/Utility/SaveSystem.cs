@@ -89,11 +89,8 @@ public static class SaveSystem
             path = $"{pathNoExt}{SAVE_EXT}";
             screenshotPath = $"{pathNoExt}{SCREENSHOT_EXT}";
 
-
             if (!File.Exists(path) && i + 1 <= previousLastIndex)
             {
-                Debug.Log($"{i} doesn't exist, renaming next!");
-
                 var tempPathNoExt = GetSavePathForIndex(i + 1);
                 var tempPath = $"{tempPathNoExt}{SAVE_EXT}";
                 var tempScreenshotPath = $"{tempPathNoExt}{SCREENSHOT_EXT}";
