@@ -1316,6 +1316,8 @@ GameObject:
   - component: {fileID: 6811976312163973629}
   - component: {fileID: 6811976312163973628}
   - component: {fileID: 2015024096}
+  - component: {fileID: -289114554456036337}
+  - component: {fileID: 5703260972271116140}
   m_Layer: 16
   m_Name: Costalmed
   m_TagString: Respawn
@@ -2239,8 +2241,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.66140425, y: 1.9009717, z: 0.18903589}
-  m_Center: {x: 0, y: 0.9504858, z: 0}
+  m_Size: {x: 0.7195264, y: 1.9009717, z: 0.18903589}
+  m_Center: {x: -0.02906094, y: 0.9504858, z: 0}
 --- !u!195 &6811976312163973625
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2442,6 +2444,47 @@ MonoBehaviour:
   hitDecal:
   - {fileID: 1205859011489787164, guid: 3fa7af457e4ce9f49a49ca72b80148ee, type: 3}
   explosionDecal: []
+--- !u!114 &-289114554456036337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6811976312163973631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4003e971b273c4341879232e936a0d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Costalmed
+  doFloat: 0
+  doRotate: 0
+  floatSpeed: 0
+  floatDist: 0
+  rotSpeed: 0
+  loot:
+  - {fileID: 6357799748272396374, guid: abf1ea45545454f4b8fc983626b169b2, type: 3}
+  despawnEffect: {fileID: 1055862917370258, guid: a921fa6024a125d45b996937084b35d6,
+    type: 3}
+  throwDist: 0.5
+  throwY: 0.5
+  throwSpeed: 5
+  xOffset: {x: -0.5, y: 0.5}
+  despawnEffectLifetime: 2
+  lootCollider: {fileID: 5703260972271116140}
+--- !u!65 &5703260972271116140
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6811976312163973631}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5852911, y: 1.9616107, z: 0.3147066}
+  m_Center: {x: 0, y: 0.6881598, z: -0.34264672}
 --- !u!1 &6811979113019261327
 GameObject:
   m_ObjectHideFlags: 0
