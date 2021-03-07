@@ -27,11 +27,11 @@ public class SaveDisplay : MonoBehaviour
         {
             this.Data = SaveSystem.Load(index);
 
-            Debug.Log("Data: " + Data);
-
             saveTitle.text = index == -1 ? "QUICK SAVE" : $"Save #{index}";
 
-            saveInfo.text = $"{SceneManager.GetSceneByBuildIndex(Data.level).name} - Level {Data.playerLevel} - {Data.objectiveIndex}";
+            var scene = LoadingManager.Active.GetSceneName(Data.level);
+
+            saveInfo.text = $"{scene} - Level {Data.playerLevel} - {Data.objectiveIndex}";
 
             saveScreenshot.sprite = SaveSystem.GetScreenshot(index);
         }

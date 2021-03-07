@@ -112,7 +112,6 @@ public class UIManager : MonoSingleton<UIManager>
 
         for (var i = SaveManager.Active.NumOfSaves - 1; i >= 0; i--)
         {
-            Debug.Log($"Index: {i}");
             var display = Instantiate(saveGameDisplayPrefab, loadGameDisplayContent);
             spawnedLoadDisplays.Add(display);
             display.GetComponent<SaveDisplay>().Init(i);
@@ -126,8 +125,6 @@ public class UIManager : MonoSingleton<UIManager>
 
         if (!hasSelectedSave)
             saveToLoadInfo.text = "";
-
-        loadGameDisplayContent.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, heightPerSaveGameDisplay * SaveManager.Active.NumOfSaves);
 
         loadGamePanel.SetActive(true);
     }
@@ -171,8 +168,6 @@ public class UIManager : MonoSingleton<UIManager>
 
         if (!hasSelectedSave)
             selectedSaveSlotInfo.text = "";
-
-        saveGameDisplayContent.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, heightPerSaveGameDisplay * SaveManager.Active.NumOfSaves);
 
         saveGamePanel.SetActive(true);
     }

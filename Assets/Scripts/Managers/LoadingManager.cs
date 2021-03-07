@@ -7,6 +7,15 @@ using TMPro;
 
 public class LoadingManager : MonoSingleton<LoadingManager>
 {
+    [System.Serializable]
+    private class LoadingData
+    {
+        public int buildIndex = -1;
+        public string sceneName = "";
+        public string description = "";
+        public Sprite loadingBackground;
+    }
+
     public bool Loading { get; private set; }
 
     public Action<int> onLoadingStarted; // sends the build index to be loaded as a parameter
@@ -20,13 +29,14 @@ public class LoadingManager : MonoSingleton<LoadingManager>
     [SerializeField] private Image loadingBackground;
 
     [SerializeField] private TextMeshProUGUI loadingProgressDisplay;
+    [SerializeField] private TextMeshProUGUI loadingDescription;
     [SerializeField] private TextMeshProUGUI pressAnyKeyDisplay;
 
     [SerializeField] private float textFadeSpeed = 5.0f;
     [SerializeField] private float fakeLoadingSpeed = 5.0f;
     [SerializeField] private float loadingDelay = 0.25f;
 
-    [SerializeField] private Sprite[] loadingBackgroundsPerScene;
+    [SerializeField] private LoadingData[] loadingData;
 
     [SerializeField] private GameObject endLoadingButton;
 
@@ -44,13 +54,19 @@ public class LoadingManager : MonoSingleton<LoadingManager>
         LoadLevel(SceneManager.GetSceneByName(levelName).buildIndex);
     }
 
+    public string GetSceneName(int buildIndex)
+    {
+        return loadingData[buildIndex].sceneName;
+    }
+
     public void LoadLevel(int buildIndex)
     {
         if (Loading) return;
 
         Loading = true;
 
-        loadingBackground.sprite = loadingBackgroundsPerScene[buildIndex];
+        loadingBackground.sprite = loadingData[buildIndex].loadingBackground;
+        loadingDescription.text = loadingData[buildIndex].description;
 
         ShowLoadingOverlay();
 
