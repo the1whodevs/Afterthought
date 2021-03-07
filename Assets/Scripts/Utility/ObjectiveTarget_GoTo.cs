@@ -4,6 +4,8 @@ public class ObjectiveTarget_GoTo : MonoBehaviour
 {
     [SerializeField] private ObjectiveData objective;
 
+    public bool drawGizmo = true;
+
 #if UNITY_EDITOR
 
     private void OnValidate()
@@ -16,7 +18,8 @@ public class ObjectiveTarget_GoTo : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (objective) Gizmos.DrawSphere(transform.position, objective.distanceTolerance);
+        Gizmos.color = new Color(1, 1, 1, 0.2f);
+        if (objective && drawGizmo) Gizmos.DrawSphere(transform.position, objective.distanceTolerance);
     }
 #endif
 
