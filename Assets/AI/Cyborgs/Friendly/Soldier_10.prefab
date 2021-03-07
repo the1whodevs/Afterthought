@@ -8939,13 +8939,13 @@ MonoBehaviour:
   ObstructionDetectionUpdateSeconds: 0.1
   ObstructionDetectionUpdateTimer: 0
   CurrentHealth: 0
-  StartingHealth: 15
+  StartingHealth: 100
   DetectionRadius: 49
   CurrentDamageAmount: 5
   DamageAmountRun: 5
   WanderRadius: 25
   TabNumber: 1
-  TemperamentTabNumber: 3
+  TemperamentTabNumber: 0
   DetectionTagsTabNumber: 1
   AnimationTabNumber: 1
   SoundTabNumber: 0
@@ -8956,7 +8956,7 @@ MonoBehaviour:
   AttackAnimationNumber: 1
   RunAttackAnimationNumber: 1
   IdleAnimationNumber: 1
-  CombatTabNumber: 1
+  CombatTabNumber: 0
   FactionsAndTagTabNumber: 1
   EventTabNumber: 0
   MinimumWaitTime: 3
@@ -9354,7 +9354,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 2.5
   MinDistance: 1
-  MaxDistance: 50
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

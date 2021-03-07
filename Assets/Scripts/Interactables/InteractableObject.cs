@@ -17,7 +17,7 @@ public class InteractableObject : MonoBehaviour, ILootable
 
     private float floatT = 0.0f;
 
-    public bool IsLooted { get; private set; }
+    public bool IsLooted { get; protected set; }
 
     private void Start()
     {

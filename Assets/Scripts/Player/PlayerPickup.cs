@@ -48,7 +48,7 @@ public class PlayerPickup : MonoBehaviour
 
         var pickableHit = hit.transform.GetComponent<InteractableObject>();
 
-        if (!pickableHit) UIManager.Active.HideInteractPrompt();
+        if (!pickableHit || pickableHit.IsLooted || (pickableHit.GetComponent<EmeraldAI.EmeraldAISystem>() && pickableHit.GetComponent<EmeraldAI.EmeraldAISystem>().CurrentHealth > 0)) UIManager.Active.HideInteractPrompt();
         else
         {
             var interact = Input.GetAxisRaw("Interact") > 0.0f;

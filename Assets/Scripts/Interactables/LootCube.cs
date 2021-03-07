@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class LootCube : InteractableObject
 {
-    [SerializeField] private GameObject[] loot;
-    [SerializeField] private GameObject despawnEffect;
+    [SerializeField] protected GameObject[] loot;
+    [SerializeField] protected GameObject despawnEffect;
 
-    [SerializeField] private float throwDist = 1.0f;
-    [SerializeField] private float throwY = 0.5f;
-    [SerializeField] private float throwSpeed = 1.0f;
-    [SerializeField] private Vector2 xOffset = new Vector2(-1.0f, 1.0f);
+    [SerializeField] protected float throwDist = 1.0f;
+    [SerializeField] protected float throwY = 0.5f;
+    [SerializeField] protected float throwSpeed = 1.0f;
+    [SerializeField] protected Vector2 xOffset = new Vector2(-1.0f, 1.0f);
 
-    [SerializeField] private float despawnEffectLifetime = 2.0f;
+    [SerializeField] protected float despawnEffectLifetime = 2.0f;
 
-    private List<GameObject> objectsToSpawn = new List<GameObject>();
+    protected List<GameObject> objectsToSpawn = new List<GameObject>();
 
-    private void Start()
+    protected virtual void Start()
     {
         for (var i = 0; i < loot.Length; i++)
         {
@@ -45,6 +45,7 @@ public class LootCube : InteractableObject
         for (var i = 0; i < objectsToSpawn.Count; i++)
         {
             var spawnedLoot = objectsToSpawn[i];
+            spawnedLoot.transform.position = transform.position;
             spawnedLoot.SetActive(true);
 
             // Start coroutine on the Player monobehaviour as this will be destroyed!
