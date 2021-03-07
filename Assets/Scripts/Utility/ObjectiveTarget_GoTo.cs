@@ -19,7 +19,7 @@ public class ObjectiveTarget_GoTo : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1, 1, 1, 0.2f);
-        if (objective && drawGizmo) Gizmos.DrawSphere(transform.position, objective.distanceTolerance);
+        if (objective && drawGizmo) Gizmos.DrawWireSphere(transform.position, objective.distanceTolerance);
     }
 #endif
 
