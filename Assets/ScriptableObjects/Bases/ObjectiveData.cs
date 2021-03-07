@@ -23,7 +23,7 @@ public class ObjectiveData : ScriptableObject
     private InteractableObject objToInteract;
 
     private Transform targetPosition;
-    [SerializeField] private float distanceTolerance;
+    public float distanceTolerance;
 
 #if UNITY_EDITOR
 

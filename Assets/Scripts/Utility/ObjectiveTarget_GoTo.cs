@@ -14,6 +14,10 @@ public class ObjectiveTarget_GoTo : MonoBehaviour
             Debug.LogError("Objective given is not of type 'GoToArea'!");
     }
 
+    private void OnDrawGizmos()
+    {
+        if (objective) Gizmos.DrawSphere(transform.position, objective.distanceTolerance);
+    }
 #endif
 
     private void Awake()
