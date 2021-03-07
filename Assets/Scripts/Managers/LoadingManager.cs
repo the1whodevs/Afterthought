@@ -46,6 +46,8 @@ public class LoadingManager : MonoSingleton<LoadingManager>
 
     public void LoadLevel(int buildIndex)
     {
+        if (Loading) return;
+
         Loading = true;
 
         loadingBackground.sprite = loadingBackgroundsPerScene[buildIndex];

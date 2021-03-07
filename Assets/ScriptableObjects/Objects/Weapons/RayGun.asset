@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fef08fbc7152e42abbab0859810c80, type: 3}
+  m_Name: RayGun
+  m_EditorClassIdentifier: 
+  name: Raygun
+  description: Your standard military raygun.
+  icon: {fileID: 0}
+  unlockType: 0
+  levelRequired: 1
+  isLooted: 0
+  wepPrefab: {fileID: 1425756895877542, guid: 9e07b96bd7a25814d93e159a81a7c160, type: 3}
+  pickablePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  muzzleEffect: {fileID: 6002720521190060909, guid: a082bc92011a84a43801e11d8edfde30,
+    type: 3}
+  reloadAudioFx: {fileID: 0}
+  emptyClipAudioFx: {fileID: 8300000, guid: fb71015e62b9fff4e9a92e483a09cc81, type: 3}
+  isShotgun: 0
+  hasScope: 0
+  scopeZoom: 1
+  shotAudioFx:
+  - {fileID: 8300000, guid: 92542780aa14a03429807b01f687df61, type: 3}
+  - {fileID: 8300000, guid: ce4d168fdca679647adce8536b665be1, type: 3}
+  - {fileID: 8300000, guid: fb71015e62b9fff4e9a92e483a09cc81, type: 3}
+  - {fileID: 8300000, guid: d11cb5995ddf93d499e16699ac8b26fe, type: 3}
+  hitImpact: {fileID: 7258679735602562002, guid: 608cb554bb30cb746956424c326042ca,
+    type: 3}
+  hitDecal:
+  - {fileID: 4872030368321478434, guid: 960205a0fb6e3be40a6638fe08d0f3f5, type: 3}
+  - {fileID: 7236115212231471541, guid: cf07e507cad403a478ca42da02f44087, type: 3}
+  - {fileID: 8106189462210167934, guid: f3fc4765e1729e24fada59150233fbeb, type: 3}
+  - {fileID: 8360897983169464813, guid: 54d17ef0927945b4e8a0c8c96761cfe7, type: 3}
+  weaponTypeData: {fileID: 11400000, guid: 89e5e4eb204f84a45b082465be38c5f0, type: 2}
+  weaponType: 0
+  weaponAnimType: 1
+  fireType: 2
+  ammoInMagazine: 69420
+  magazineCapacity: 8
+  projectileSpeed: 100
+  weaponDamage: -3
+  fireRate: 2
+  shootAudioPitch: 0.5
+  reloadSpeed: 1
+  mobilityPenalty: -1
+  adsMultiplier: 1
+  minRange: 150
+  maxRange: 300
+  ads_offset: {x: 0, y: 0, z: 0}
+  recoil_horizontal: 3
+  recoil_vertical: 3

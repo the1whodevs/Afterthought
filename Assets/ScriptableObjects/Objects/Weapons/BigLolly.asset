@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fef08fbc7152e42abbab0859810c80, type: 3}
+  m_Name: BigLolly
+  m_EditorClassIdentifier: 
+  name: Big Lolly
+  description: The biggest lolly
+  icon: {fileID: 0}
+  unlockType: 2
+  levelRequired: 1
+  isLooted: 0
+  wepPrefab: {fileID: 1309338933929924, guid: 4651ae178d0fd53408c42c25f2487d41, type: 3}
+  pickablePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  muzzleEffect: {fileID: 0}
+  reloadAudioFx: {fileID: 0}
+  emptyClipAudioFx: {fileID: 0}
+  isShotgun: 0
+  hasScope: 0
+  scopeZoom: 0
+  shotAudioFx:
+  - {fileID: 8300000, guid: 1f5286acdece135419ab14032e0ef6d3, type: 3}
+  - {fileID: 8300000, guid: 81d950c8f5cda7749aa8d542834feef1, type: 3}
+  - {fileID: 8300000, guid: 2e486bf05058e0b4e8855e02d6b61eca, type: 3}
+  - {fileID: 8300000, guid: 5b7a0324d26825645b04c627eb152289, type: 3}
+  hitImpact: {fileID: 1205859011489787164, guid: 3fa7af457e4ce9f49a49ca72b80148ee,
+    type: 3}
+  hitDecal:
+  - {fileID: 4872030368321478434, guid: 960205a0fb6e3be40a6638fe08d0f3f5, type: 3}
+  - {fileID: 7236115212231471541, guid: cf07e507cad403a478ca42da02f44087, type: 3}
+  - {fileID: 8106189462210167934, guid: f3fc4765e1729e24fada59150233fbeb, type: 3}
+  - {fileID: 8360897983169464813, guid: 54d17ef0927945b4e8a0c8c96761cfe7, type: 3}
+  weaponTypeData: {fileID: 11400000, guid: d19d9cdf1ad39c248a204be7e3df11c5, type: 2}
+  weaponType: 2
+  weaponAnimType: 0
+  fireType: 0
+  ammoInMagazine: -579
+  magazineCapacity: -1
+  projectileSpeed: 100
+  weaponDamage: 7
+  fireRate: 7
+  shootAudioPitch: 1
+  reloadSpeed: 1
+  mobilityPenalty: -1
+  adsMultiplier: 1
+  minRange: 3.5
+  maxRange: 3.5
+  ads_offset: {x: 0, y: 0, z: 0}
+  recoil_horizontal: 0
+  recoil_vertical: 0
