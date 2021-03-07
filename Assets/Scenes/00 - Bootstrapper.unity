@@ -2236,7 +2236,7 @@ MonoBehaviour:
       type: 3}
   - buildIndex: 1
     sceneName: Main Menu
-    description: 
+    description: Be loyal to the cause. Robocorp is the only way.
     loadingBackground: {fileID: 21300000, guid: 40ed0da8d67cee54886dee1f1f90c0e1,
       type: 3}
   - buildIndex: 2
@@ -2246,22 +2246,25 @@ MonoBehaviour:
       type: 3}
   - buildIndex: 3
     sceneName: Training
-    description: 
+    description: Test your skills on the training simulation. Defeat anything in
+      your pass.
     loadingBackground: {fileID: 21300000, guid: 793b8d72676082c4189c05f8a15ea645,
       type: 3}
   - buildIndex: 4
     sceneName: The Hub
-    description: 
+    description: Hub is robocorp's travelling point to different galaxies. Use the
+      portals to travel trhough the levels.
     loadingBackground: {fileID: 21300000, guid: 78afb4bc14dcb7d4ea39e045532be40a,
       type: 3}
   - buildIndex: 5
     sceneName: Battle of Ruins
-    description: 
+    description: The orcs are the only thing standing between you and the resistance.
+      Prove yourself to Robocorp.
     loadingBackground: {fileID: 21300000, guid: 4d109ff44dff3044f875bc366acc6efb,
       type: 3}
   - buildIndex: 6
     sceneName: Sleeping Dimension
-    description: 
+    description: Why did you enter this madness??
     loadingBackground: {fileID: 21300000, guid: 87604472b8d9ebb4e9ef090a3ed132f1,
       type: 3}
   - buildIndex: 7
@@ -7286,7 +7289,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -768.13, y: -372.04}
+  m_AnchoredPosition: {x: -745, y: -388}
   m_SizeDelta: {x: 299.7486, y: 156.0741}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1322622500
@@ -7336,10 +7339,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 17
+  m_fontSizeBase: 17
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 20
   m_fontSizeMax: 72
   m_fontStyle: 0

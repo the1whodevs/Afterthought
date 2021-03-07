@@ -21,4 +21,9 @@ public class BattleOfRuinsManager : MonoBehaviour
     [Header("Last Defence")]
     [SerializeField] private GameObject[] LastDefenseTargets;
 
+    public void Awake()
+    {
+        Debug.Log("");
+    }
+
 }
