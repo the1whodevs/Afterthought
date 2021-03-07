@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using EmeraldAI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,10 +10,13 @@ public class BattleOfRuinsManager : MonoBehaviour
 
     [Header("First Defence")]
     [SerializeField] private GameObject[] firstDefenceTargets;
-    [SerializeField] private float spawnDistanceCheck;
+    [SerializeField] private float spawnInterval = 2.0f;
+    [SerializeField] private GameObject[] enemiesToSpawn;
+    [SerializeField] private Transform spawnPosition;
+    [SerializeField] private EmeraldAI.EmeraldAISystem[] availableOrcTargets;
 
-    private bool spawnChargingOrcs = true;
 
+    private Coroutine spawnChargingOrcsCoroutine;
 
     public void Awake()
     {
@@ -21,11 +25,8 @@ public class BattleOfRuinsManager : MonoBehaviour
 
         for (var i = 0; i < firstDefenceTargets.Length; i++)
             firstDefenceTargets[i].SetActive(false);
-    }
 
-    private void Start()
-    {
-        if (Vector3.Distance(Player.Active.transform.position, Vector3.zero) > spawnDistanceCheck) spawnChargingOrcs = false;
+        spawnChargingOrcsCoroutine = StartCoroutine(SpawnChargingOrcs());
     }
 
     public void OnReachFirstDefense()
@@ -43,7 +44,35 @@ public class BattleOfRuinsManager : MonoBehaviour
 
     public void StopChargingOrcs()
     {
-        spawnChargingOrcs = false;
         SpawnEnemiesInFirstDefence();
+        StopCoroutine(spawnChargingOrcsCoroutine);
+    }
+
+    public void OpenWayIntoRuins()
+    {
+
+    }
+
+    private IEnumerator SpawnChargingOrcs()
+    {
+        var timer = 0.0f;
+
+        while (Application.isPlaying)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= spawnInterval)
+            {
+                timer = 0.0f;
+
+                var orcPrefabToSpawn = enemiesToSpawn[Random.Range(0, enemiesToSpawn.Length)];
+                var spawnedOrc = Instantiate(orcPrefabToSpawn, spawnPosition.position, Quaternion.identity, null).GetComponent<EmeraldAISystem>();
+                var cyborgToAttack = availableOrcTargets[Random.Range(0, availableOrcTargets.Length)];
+
+                spawnedOrc.CurrentTarget = cyborgToAttack.transform;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
     }
 }
