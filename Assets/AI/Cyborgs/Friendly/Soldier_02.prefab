@@ -2482,11 +2482,13 @@ MonoBehaviour:
   RelationTypeRef: 0
   FactionRelations: 
   FactionRelationsList:
+  - FactionIndex: 5
+    RelationTypeRef: 2
   - FactionIndex: 6
     RelationTypeRef: 0
   PlayerFaction:
   - PlayerTag: Player
-    RelationTypeRef: 0
+    RelationTypeRef: 2
   StartingRunSpeed: 0
   StartingRunAnimationSpeed: 0
   StationaryIdleTimer: 0
@@ -2721,8 +2723,8 @@ MonoBehaviour:
   CurrentDamageAmount: 5
   DamageAmountRun: 5
   WanderRadius: 25
-  TabNumber: 1
-  TemperamentTabNumber: 0
+  TabNumber: 2
+  TemperamentTabNumber: 2
   DetectionTagsTabNumber: 1
   AnimationTabNumber: 1
   SoundTabNumber: 0

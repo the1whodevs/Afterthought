@@ -3012,8 +3012,7 @@ MonoBehaviour:
     AnimationClip: {fileID: 7400000, guid: 09852b6d123e55644834c32e61e2e254, type: 3}
   AttackAnimationList:
   - AnimationSpeed: 1.5
-    AnimationClip: {fileID: -203655887218126122, guid: b00be06c45d91894f8909f940cfc0653,
-      type: 3}
+    AnimationClip: {fileID: 7400000, guid: f425c16ee47e73249ac108a081715fc5, type: 3}
   RunAttackAnimationList:
   - AnimationSpeed: 1
     AnimationClip: {fileID: 7400000, guid: 1d0831d56ec3d6d40b9f2e260c09885e, type: 3}
@@ -3037,8 +3036,7 @@ MonoBehaviour:
   RangedRunAttackAnimationList: []
   RangedDeathAnimationList: []
   CurrentAnimationClip: {fileID: 0}
-  Attack1Animation: {fileID: -203655887218126122, guid: b00be06c45d91894f8909f940cfc0653,
-    type: 3}
+  Attack1Animation: {fileID: 7400000, guid: f425c16ee47e73249ac108a081715fc5, type: 3}
   Attack2Animation: {fileID: 0}
   Attack3Animation: {fileID: 0}
   Attack4Animation: {fileID: 0}
@@ -3169,7 +3167,7 @@ MonoBehaviour:
   EmeraldTag: Respawn
   UITag: Player
   RagdollTag: Untagged
-  AnimationsUpdated: 1
+  AnimationsUpdated: 0
   RayCastUpdateSeconds: 0.1
   ObstructionDetectionUpdateSeconds: 0.1
   ObstructionDetectionUpdateTimer: 0
@@ -3179,7 +3177,7 @@ MonoBehaviour:
   CurrentDamageAmount: 5
   DamageAmountRun: 5
   WanderRadius: 25
-  TabNumber: 4
+  TabNumber: 6
   TemperamentTabNumber: 2
   DetectionTagsTabNumber: 0
   AnimationTabNumber: 2
@@ -3514,7 +3512,7 @@ MonoBehaviour:
     m_Bits: 69632
   ObstructionDetectionLayerMask:
     serializedVersion: 2
-    m_Bits: 150327
+    m_Bits: 4
   UILayerMask:
     serializedVersion: 2
     m_Bits: 0
