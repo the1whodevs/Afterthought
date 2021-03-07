@@ -4,26 +4,46 @@ using UnityEngine;
 
 public class BattleOfRuinsManager : MonoBehaviour
 {
-    [SerializeField] private LoadoutData battleOfRuinsData;
-
     [Header("OnObjectiveComplete Actions")]
     [SerializeField] private OnObjectiveCompleteWrapper[] onObjectiveCompleteActions;
 
     [Header("First Defence")]
-    [SerializeField] private GameObject[] FirstDefenseTargets;
+    [SerializeField] private GameObject[] firstDefenceTargets;
+    [SerializeField] private float spawnDistanceCheck;
 
-    [Header("Second Defence")]
-    [SerializeField] private GameObject[] SecondDefenseTargets;
+    private bool spawnChargingOrcs = true;
 
-    [Header("Stairs Defence")]
-    [SerializeField] private GameObject[] StairsDefenseTargets;
-
-    [Header("Last Defence")]
-    [SerializeField] private GameObject[] LastDefenseTargets;
 
     public void Awake()
     {
-        Debug.Log("");
+        foreach (var obj in onObjectiveCompleteActions)
+            obj.Initialize();
+
+        for (var i = 0; i < firstDefenceTargets.Length; i++)
+            firstDefenceTargets[i].SetActive(false);
     }
 
+    private void Start()
+    {
+        if (Vector3.Distance(Player.Active.transform.position, Vector3.zero) > spawnDistanceCheck) spawnChargingOrcs = false;
+    }
+
+    public void OnReachFirstDefense()
+    {
+        SpawnEnemiesInFirstDefence();
+    }
+
+    private void SpawnEnemiesInFirstDefence()
+    {
+        for (int i = 0; i < firstDefenceTargets.Length; i++)
+        {
+            firstDefenceTargets[i].SetActive(true);
+        }
+    }
+
+    public void StopChargingOrcs()
+    {
+        spawnChargingOrcs = false;
+        SpawnEnemiesInFirstDefence();
+    }
 }
