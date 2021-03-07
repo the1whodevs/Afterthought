@@ -1,6 +1,5 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SaveDisplay : MonoBehaviour
@@ -21,7 +20,6 @@ public class SaveDisplay : MonoBehaviour
         {
             saveTitle.text = "NEW SAVE";
             saveInfo.text = "";
-            saveScreenshot.sprite = null;
         }
         else
         {

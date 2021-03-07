@@ -262,6 +262,11 @@ public class UIManager : MonoSingleton<UIManager>
         pauseMenu.ShowPauseMenu();
     }
 
+    public void HidePauseMenu()
+    {
+        pauseMenu.gameObject.SetActive(false);
+    }
+
     public void ShowDeathMenu()
     {
         deathMenu.ShowDeathMenu();

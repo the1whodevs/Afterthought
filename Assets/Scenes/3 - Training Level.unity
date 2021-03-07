@@ -11638,12 +11638,12 @@ PrefabInstance:
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: DetectionTagsTabNumber
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: FactionsAndTagTabNumber
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -11654,6 +11654,26 @@ PrefabInstance:
         type: 3}
       propertyPath: FactionRelationsList.Array.data[1].RelationTypeRef
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.x
+      value: -139.21274
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.y
+      value: 0.26864016
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.z
+      value: -56.788624
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: ObstructionDetectionLayerMask.m_Bits
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814302, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -53299,32 +53319,32 @@ PrefabInstance:
     - target: {fileID: 96235682830327611, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.014486493
+      value: 0.014486311
       objectReference: {fileID: 0}
     - target: {fileID: 96235682830327611, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.0053197937
+      value: -0.0053118607
       objectReference: {fileID: 0}
     - target: {fileID: 96235682830327611, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.09006017
+      value: 0.09005804
       objectReference: {fileID: 0}
     - target: {fileID: 399867600010683260, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.3915714
+      value: -0.39157128
       objectReference: {fileID: 0}
     - target: {fileID: 399867600010683260, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.015610169
+      value: -0.0156090455
       objectReference: {fileID: 0}
     - target: {fileID: 399867600010683260, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.011903103
+      value: 0.011903044
       objectReference: {fileID: 0}
     - target: {fileID: 936829154123998521, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -53334,42 +53354,42 @@ PrefabInstance:
     - target: {fileID: 936829154123998521, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.014425235
+      value: -0.014430566
       objectReference: {fileID: 0}
     - target: {fileID: 936829154123998521, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.003966928
+      value: 0.0039691036
       objectReference: {fileID: 0}
     - target: {fileID: 3232793446732802884, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.4257208
+      value: 0.42572123
       objectReference: {fileID: 0}
     - target: {fileID: 3232793446732802884, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.000002341345
+      value: -0.000002587214
       objectReference: {fileID: 0}
     - target: {fileID: 3232793446732802884, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.0000026337802
+      value: 0.00000047683716
       objectReference: {fileID: 0}
     - target: {fileID: 3954647522920206596, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.30339944
+      value: -0.30339873
       objectReference: {fileID: 0}
     - target: {fileID: 3954647522920206596, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.000000037252907
+      value: -0.0000015795233
       objectReference: {fileID: 0}
     - target: {fileID: 3954647522920206596, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.00000028312203
+      value: 0.00000043213362
       objectReference: {fileID: 0}
     - target: {fileID: 4495619350065681466, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -53480,12 +53500,12 @@ PrefabInstance:
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: DetectionTagsTabNumber
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: FactionsAndTagTabNumber
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -53496,6 +53516,26 @@ PrefabInstance:
         type: 3}
       propertyPath: FactionRelationsList.Array.data[1].RelationTypeRef
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.x
+      value: -125.334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.y
+      value: 1.447
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.z
+      value: -8.633
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: ObstructionDetectionLayerMask.m_Bits
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814302, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -55235,17 +55275,17 @@ PrefabInstance:
     - target: {fileID: 4499161043096473114, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -140.89401
+      value: -125.334
       objectReference: {fileID: 0}
     - target: {fileID: 4499161043096473114, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.90000004
+      value: 0.127
       objectReference: {fileID: 0}
     - target: {fileID: 4499161043096473114, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.553939
+      value: -8.633
       objectReference: {fileID: 0}
     - target: {fileID: 4499161043096473114, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -55255,7 +55295,7 @@ PrefabInstance:
     - target: {fileID: 4499161043096473114, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.41869858
+      value: 0.6240885
       objectReference: {fileID: 0}
     - target: {fileID: 4499161043096473114, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -55265,7 +55305,7 @@ PrefabInstance:
     - target: {fileID: 4499161043096473114, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9081253
+      value: 0.78135365
       objectReference: {fileID: 0}
     - target: {fileID: 4499161043096473114, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -55280,7 +55320,7 @@ PrefabInstance:
     - target: {fileID: 4499161043096473114, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 49.505
+      value: 77.231
       objectReference: {fileID: 0}
     - target: {fileID: 4499161043096473114, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -56245,47 +56285,47 @@ PrefabInstance:
     - target: {fileID: 4736649059404954754, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.42572197
+      value: -0.4257224
       objectReference: {fileID: 0}
     - target: {fileID: 4736649059404954754, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.000003892929
+      value: 0.0000027157369
       objectReference: {fileID: 0}
     - target: {fileID: 4736649059404954754, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: -0.00000037439176
+      value: -0.0000010319056
       objectReference: {fileID: 0}
     - target: {fileID: 5381776655197593269, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.24178852
+      value: -0.24178745
       objectReference: {fileID: 0}
     - target: {fileID: 5381776655197593269, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.043754384
+      value: 0.04376329
       objectReference: {fileID: 0}
     - target: {fileID: 5381776655197593269, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: -0.17163248
+      value: -0.17163475
       objectReference: {fileID: 0}
     - target: {fileID: 6470952114994497524, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.014488023
+      value: 0.014488064
       objectReference: {fileID: 0}
     - target: {fileID: 6470952114994497524, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.0053105075
+      value: -0.0053173206
       objectReference: {fileID: 0}
     - target: {fileID: 6470952114994497524, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: -0.09005994
+      value: -0.09005819
       objectReference: {fileID: 0}
     - target: {fileID: 7030161335263920060, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
@@ -56370,32 +56410,32 @@ PrefabInstance:
     - target: {fileID: 7208949044245045006, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.22244713
+      value: -0.22244638
       objectReference: {fileID: 0}
     - target: {fileID: 7208949044245045006, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.044698548
+      value: 0.044705335
       objectReference: {fileID: 0}
     - target: {fileID: 7208949044245045006, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.17997038
+      value: 0.17996858
       objectReference: {fileID: 0}
     - target: {fileID: 7762714701643111668, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.3034015
+      value: 0.30340087
       objectReference: {fileID: 0}
     - target: {fileID: 7762714701643111668, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.000003714114
+      value: -0.0000009462236
       objectReference: {fileID: 0}
     - target: {fileID: 7762714701643111668, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.000002518296
+      value: -0.00000019371507
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1173167849, guid: 3b4676d17f9a55f4f83f9e09aaf3c790, type: 3}
@@ -73533,12 +73573,12 @@ PrefabInstance:
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
       propertyPath: DetectionTagsTabNumber
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
       propertyPath: FactionsAndTagTabNumber
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
@@ -73559,6 +73599,26 @@ PrefabInstance:
         type: 3}
       propertyPath: FactionRelationsList.Array.data[1].FactionIndex
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.x
+      value: -147.34193
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.y
+      value: 0.26864016
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.z
+      value: -57.357452
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: ObstructionDetectionLayerMask.m_Bits
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718335, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
@@ -79466,7 +79526,7 @@ PrefabInstance:
     - target: {fileID: 3725453663189332761, guid: bfa2f5820e0b70d4b8f79f0071be06a6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3725453663189332761, guid: bfa2f5820e0b70d4b8f79f0071be06a6,
         type: 3}
@@ -81599,6 +81659,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6811976312163973575, guid: efdf00008e3126a43850bffec66552bf,
+        type: 3}
+      propertyPath: TabNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6811976312163973575, guid: efdf00008e3126a43850bffec66552bf,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.x
+      value: -77.229294
+      objectReference: {fileID: 0}
+    - target: {fileID: 6811976312163973575, guid: efdf00008e3126a43850bffec66552bf,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.y
+      value: 1.4200001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6811976312163973575, guid: efdf00008e3126a43850bffec66552bf,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.z
+      value: 4.6479087
+      objectReference: {fileID: 0}
+    - target: {fileID: 6811976312163973575, guid: efdf00008e3126a43850bffec66552bf,
+        type: 3}
+      propertyPath: ObstructionDetectionLayerMask.m_Bits
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6811976312163973631, guid: efdf00008e3126a43850bffec66552bf,
         type: 3}
@@ -89830,6 +89915,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: TabNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: TemperamentTabNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: CombatTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: FactionsAndTagTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: DetectionTagsTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.x
+      value: -137.92725
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.y
+      value: 0.42000014
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.z
+      value: -14.642189
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: ObstructionDetectionLayerMask.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718335, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
       propertyPath: m_Name
@@ -90690,6 +90820,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1840176691}
     m_Modifications:
+    - target: {fileID: 662630468529831715, guid: 3a37d42a3957dad4c9de14a455e246bd,
+        type: 3}
+      propertyPath: TabNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 662630468529831715, guid: 3a37d42a3957dad4c9de14a455e246bd,
+        type: 3}
+      propertyPath: MinimumAttackSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 662630468529831715, guid: 3a37d42a3957dad4c9de14a455e246bd,
+        type: 3}
+      propertyPath: MaximumAttackSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 662630468529831715, guid: 3a37d42a3957dad4c9de14a455e246bd,
+        type: 3}
+      propertyPath: DetectionTagsTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 662630468529831715, guid: 3a37d42a3957dad4c9de14a455e246bd,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.x
+      value: -138.877
+      objectReference: {fileID: 0}
+    - target: {fileID: 662630468529831715, guid: 3a37d42a3957dad4c9de14a455e246bd,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.y
+      value: 6.247
+      objectReference: {fileID: 0}
+    - target: {fileID: 662630468529831715, guid: 3a37d42a3957dad4c9de14a455e246bd,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.z
+      value: -30.316
+      objectReference: {fileID: 0}
+    - target: {fileID: 662630468529831715, guid: 3a37d42a3957dad4c9de14a455e246bd,
+        type: 3}
+      propertyPath: ObstructionDetectionLayerMask.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 662630468529831771, guid: 3a37d42a3957dad4c9de14a455e246bd,
         type: 3}
       propertyPath: m_Name
@@ -90787,17 +90957,47 @@ PrefabInstance:
     - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
         type: 3}
       propertyPath: TabNumber
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
         type: 3}
       propertyPath: TemperamentTabNumber
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
         type: 3}
       propertyPath: StartingHealth
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: FactionsAndTagTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: DetectionTagsTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.x
+      value: -143.39262
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.y
+      value: 0.53864014
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.z
+      value: -53.362576
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205733544642635857, guid: 92c88e1663b51d4409f210664821d7b0,
+        type: 3}
+      propertyPath: ObstructionDetectionLayerMask.m_Bits
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3993873453144030699, guid: 92c88e1663b51d4409f210664821d7b0,
         type: 3}
@@ -90886,6 +91086,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1840176691}
     m_Modifications:
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: TabNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: CombatTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: FactionsAndTagTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: DetectionTagsTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.x
+      value: -105.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.y
+      value: 1.9200001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.z
+      value: -31.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495697654156814294, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
+        type: 3}
+      propertyPath: ObstructionDetectionLayerMask.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4495697654156814302, guid: 3b4676d17f9a55f4f83f9e09aaf3c790,
         type: 3}
       propertyPath: m_Name
@@ -91279,12 +91519,12 @@ PrefabInstance:
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
       propertyPath: DetectionTagsTabNumber
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
       propertyPath: FactionsAndTagTabNumber
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}
@@ -91305,6 +91545,26 @@ PrefabInstance:
         type: 3}
       propertyPath: FactionRelationsList.Array.data[1].FactionIndex
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.x
+      value: -114.10268
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.y
+      value: 1.4200001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.z
+      value: -24.434
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976049263637718279, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
+        type: 3}
+      propertyPath: ObstructionDetectionLayerMask.m_Bits
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3976049263637718335, guid: 2a4e4326e72b9c94f8a4fe3ac3caa418,
         type: 3}

@@ -72,20 +72,41 @@ public static class SaveSystem
         return numOfSaves;
     }
 
-    public static void DeleteAt(int index)
+    public static void DeleteAt(int index, int previousLastIndex)
     {
         var pathNoExt = GetSavePathForIndex(index);
         var path = $"{pathNoExt}{SAVE_EXT}";
         var screenshotPath = $"{pathNoExt}{SCREENSHOT_EXT}";
 
-        if (File.Exists(path)) File.Delete(path);
-        if (File.Exists(screenshotPath)) File.Delete(screenshotPath);
+        File.Delete(path);
+        File.Delete(screenshotPath);
+
+        if (index == -1) return;
+
+        for (var i = 0; i < previousLastIndex; i++)
+        {
+            pathNoExt = GetSavePathForIndex(i);
+            path = $"{pathNoExt}{SAVE_EXT}";
+            screenshotPath = $"{pathNoExt}{SCREENSHOT_EXT}";
+
+
+            if (!File.Exists(path) && i + 1 <= previousLastIndex)
+            {
+                Debug.Log($"{i} doesn't exist, renaming next!");
+
+                var tempPathNoExt = GetSavePathForIndex(i + 1);
+                var tempPath = $"{tempPathNoExt}{SAVE_EXT}";
+                var tempScreenshotPath = $"{tempPathNoExt}{SCREENSHOT_EXT}";
+
+                if (File.Exists(tempPath)) File.Move(tempPath, path);
+                if (File.Exists(tempScreenshotPath)) File.Move(tempScreenshotPath, screenshotPath);
+            }
+        }
     }
 
     public static void TakeScreenshot(string path)
     {
         ScreenCapture.CaptureScreenshot(path);
-        Debug.Log(path);
     }
 
     public static Sprite GetScreenshot(int saveIndex)

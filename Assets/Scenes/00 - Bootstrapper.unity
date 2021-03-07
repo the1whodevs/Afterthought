@@ -2694,6 +2694,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 631301716}
+        m_MethodName: PlayClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &456525179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4714,6 +4725,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 631301716}
+        m_MethodName: PlayClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &679855131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5833,6 +5855,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 886042922686407920}
         m_MethodName: DeleteSelectedSave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 631301716}
+        m_MethodName: PlayClickSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7323,8 +7356,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -745, y: -388}
-  m_SizeDelta: {x: 299.7486, y: 156.0741}
+  m_AnchoredPosition: {x: -752.02, y: -388}
+  m_SizeDelta: {x: 313.79822, y: 156.0741}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1322622500
 MonoBehaviour:
@@ -8816,135 +8849,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!1001 &1822993688
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8162761273146709292, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_Name
-      value: 4K ScreenshotManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273147001194, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_Config.m_Resolutions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_Config.m_Resolutions.Array.data[1].m_Width
-      value: 2560
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_Config.m_Resolutions.Array.data[1].m_Height
-      value: 1600
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_Config.m_Resolutions.Array.data[1].m_ResolutionName
-      value: Android Tablet 9 Inch (Nexus 10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_Config.m_Resolutions.Array.data[0].m_Width
-      value: 3840
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_Config.m_Resolutions.Array.data[0].m_Height
-      value: 2160
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_Config.m_Resolutions.Array.data[0].m_Orientation
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_Config.m_Resolutions.Array.data[0].m_ResolutionName
-      value: 4K UHD
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_Config.m_Resolutions.Array.data[0].m_Category
-      value: Popularity/Steam hardware 2020-03
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_Config.m_RelativePath
-      value: Screenshots/Afterthought/
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_Config.m_ColorFormat
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8162761273152757914, guid: 9601c70971bee0b44b434aec0907648d,
-        type: 3}
-      propertyPath: m_Config.m_CaptureHotkey.m_Key
-      value: 267
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9601c70971bee0b44b434aec0907648d, type: 3}
 --- !u!1 &1834878870
 GameObject:
   m_ObjectHideFlags: 0
@@ -9728,6 +9632,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 886042922686407920}
         m_MethodName: SaveToSelectedSlot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 631301716}
+        m_MethodName: PlayClickSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

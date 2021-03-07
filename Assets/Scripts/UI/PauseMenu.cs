@@ -26,7 +26,6 @@ public class PauseMenu : MonoSingleton<PauseMenu>
 
         mainPanel.SetActive(true);
         
-
         gameObject.SetActive(true);
     }
 

@@ -69,13 +69,15 @@ public class SaveManager : MonoSingleton<SaveManager>
     {
         if (selectedSaveIndex >= -1)
         {
-            NumOfSaves--;
+            if (selectedSaveIndex > -1) NumOfSaves--;
 
             var i = selectedSaveIndex;
 
             selectedSaveIndex = -100;
 
-            SaveSystem.DeleteAt(i);
+            SaveSystem.DeleteAt(i, NumOfSaves);
+
+            if (i == -1) HasQuicksave = false;
 
             UIManager.Active.RefreshSaveLoadPanels();
         }
@@ -97,16 +99,16 @@ public class SaveManager : MonoSingleton<SaveManager>
         {
             var i = selectedSaveIndex;
             selectedSaveIndex = -100;
-            SaveAtIndex(i);
+            StartCoroutine(SaveAtIndex(i));
         }
     }
 
     public void QuickSave()
     {
-        SaveAtIndex(QUICKSAVE_INDEX);
+        StartCoroutine(SaveAtIndex(QUICKSAVE_INDEX));
     }
 
-    public void SaveAtIndex(int index)
+    public IEnumerator SaveAtIndex(int index)
     {
         if (index == -1) HasQuicksave = true;
         else if (index == NumOfSaves)
@@ -157,7 +159,14 @@ public class SaveManager : MonoSingleton<SaveManager>
 
         p.Camera.RecalculateOffset();
 
+        var pauseStatus = !(Time.timeScale > 0.0f);
+        if (pauseStatus) UIManager.Active.HidePauseMenu();
+
+        yield return new WaitForEndOfFrame();
+
         SaveSystem.Save(index, scene.buildIndex, p.Experience.Level, p.Experience.CurrentXP, p.Health.CurrentHP, p.transform.position, p.transform.rotation, p.Camera.CamRotationY, p.Camera.BodyRotationX, p.Camera.OffsetFromPlayer, p.Objectives.CurrentObjectiveIndex, le.AllLoadouts, le.AllWeapons, p.Loadout.AllAmmo, le.AllEquipment, le.AllTalents, ais.ToArray(), lootables.ToArray());
+
+        if (pauseStatus) UIManager.Active.ShowPauseMenu();
     }
 
     public void QuickLoad()
