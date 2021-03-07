@@ -154,8 +154,8 @@ public class PlayerCamera : MonoBehaviour
 
     public void LoadSensitivityValues()
     {
-        mouseSensitivity_X = PlayerPrefs.GetFloat(MainMenu.HORIZONTAL_SENS_KEY, 1.5f);
-        mouseSensitivity_Y = PlayerPrefs.GetFloat(MainMenu.VERTICAL_SENS_KEY, 1.5f);
+        mouseSensitivity_X = PlayerPrefs.GetFloat(SettingsManager.HORIZONTAL_SENS_KEY, 1.5f);
+        mouseSensitivity_Y = PlayerPrefs.GetFloat(SettingsManager.VERTICAL_SENS_KEY, 1.5f);
     }
 
     public void ApplyRecoil(float horizontalForce, float verticalForce)
