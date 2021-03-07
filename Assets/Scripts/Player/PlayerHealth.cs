@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public int CurrentHP => currentHealth;
+    public int MaxHP => maxHealth;
 
     [SerializeField] private int currentHealth;
     [SerializeField] private int startingHealth;
@@ -69,6 +70,16 @@ public class PlayerHealth : MonoBehaviour
     public void UpdateHealthUI()
     {
         targetFill = (float)currentHealth / maxHealth;
+    }
+
+    public void AddHealth(int valueToAdd)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + valueToAdd, 0, maxHealth);
+    }
+
+    public void AddHealth(float percentageOfMaxToAdd)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + Mathf.CeilToInt(percentageOfMaxToAdd * maxHealth), 0, maxHealth);
     }
 
     private void PlayerDeath()

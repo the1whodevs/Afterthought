@@ -1,5 +1,41 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &70055287099821714
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3100993500426478064}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2889706, y: 0.11713311, z: 0.20263949}
+  m_Center: {x: 0.000000007450581, y: 0.055961475, z: 0}
+--- !u!114 &8264559700639688703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3100993500426478064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ededc9b454a603d439738ae4ae19b116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Small First Aid Kit
+  doFloat: 0
+  doRotate: 1
+  floatSpeed: 0
+  floatDist: 0
+  rotSpeed: 0.2
+  healthAmount: 10
+  maxHPpercentage: 0.15
+  usePercentage: 0
+  despawnEffect: {fileID: 1919843589960360, guid: 37da4edcd01038448b36597dbd43c3b6,
+    type: 3}
 --- !u!1001 &3102133457805172950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13,15 +49,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4091322306220304, guid: 8e67136c8d3a7e944bb171113bac561d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -83.337166
+      value: -81.800896
       objectReference: {fileID: 0}
     - target: {fileID: 4091322306220304, guid: 8e67136c8d3a7e944bb171113bac561d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.10000001
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 4091322306220304, guid: 8e67136c8d3a7e944bb171113bac561d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.1180844
+      value: 5.9088073
       objectReference: {fileID: 0}
     - target: {fileID: 4091322306220304, guid: 8e67136c8d3a7e944bb171113bac561d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -57,3 +93,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e67136c8d3a7e944bb171113bac561d, type: 3}
+--- !u!1 &3100993500426478064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1140026153091366, guid: 8e67136c8d3a7e944bb171113bac561d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3102133457805172950}
+  m_PrefabAsset: {fileID: 0}
