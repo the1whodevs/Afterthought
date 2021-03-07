@@ -9,17 +9,26 @@ public class SaveManager : MonoSingleton<SaveManager>
     public System.Action onDataLoadingCompleted;
 
     public bool LoadingData { get; private set; } = false;
+    public bool HasQuicksave { get; private set; }
+
+    public int NumOfSaves { get; private set; }
 
     private static SaveSystem.SaveData currentDataLoading;
 
     private Player player;
     private LoadoutEditor le;
 
+    private int selectedSaveIndex = -100;
+
     private const int QUICKSAVE_INDEX = -1;
 
     private void Awake()
     {
         DontDestroyOnLoad(this);
+
+        NumOfSaves = Directory.GetFiles(Application.persistentDataPath + "/", SaveSystem.SAVE_EXT).Length;
+
+        HasQuicksave = File.Exists(SaveSystem.QUICKSAVE_DIR);
 
         le = LoadoutEditor.Active;
     }
@@ -52,6 +61,45 @@ public class SaveManager : MonoSingleton<SaveManager>
             QuickLoad();
     }
 
+    public void SelectSave(int index)
+    {
+        selectedSaveIndex = index;
+    }
+
+    public void DeleteSelectedSave()
+    {
+        if (selectedSaveIndex >= -1)
+        {
+            var i = selectedSaveIndex;
+
+            selectedSaveIndex = -100;
+
+            SaveSystem.DeleteAt(i);
+
+            UIManager.Active.RefreshSaveLoadPanels();
+        }
+    }
+
+    public void LoadSelectedFile()
+    {
+        if (selectedSaveIndex >= -1)
+        {
+            var i = selectedSaveIndex;
+            selectedSaveIndex = -100;
+            LoadAtIndex(i);
+        }
+    }
+
+    public void SaveSelectedIndex()
+    {
+        if (selectedSaveIndex >= -1)
+        {
+            var i = selectedSaveIndex;
+            selectedSaveIndex = -100;
+            SaveAtIndex(i);
+        }
+    }
+
     public void QuickSave()
     {
         SaveAtIndex(QUICKSAVE_INDEX);
@@ -59,6 +107,8 @@ public class SaveManager : MonoSingleton<SaveManager>
 
     public void SaveAtIndex(int index)
     {
+        if (index == -1) HasQuicksave = true;
+
         var p = Player.Active;
         var le = LoadoutEditor.Active; 
 
@@ -107,9 +157,9 @@ public class SaveManager : MonoSingleton<SaveManager>
 
     public void NewSave()
     {
-        var filePaths = Directory.GetFiles(Application.persistentDataPath + "/", SaveSystem.SAVE_EXT);
+        SaveAtIndex(NumOfSaves);
 
-        SaveAtIndex(filePaths.Length);
+        NumOfSaves++;
     }
 
     public void QuickLoad()

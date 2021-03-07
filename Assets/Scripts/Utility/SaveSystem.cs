@@ -5,18 +5,75 @@ using System.IO;
 
 public static class SaveSystem
 {
+    public static string SAVES_DIR => $"{Application.persistentDataPath}/";
+    public static string QUICKSAVE_DIR => $"{SAVES_DIR}afterthought_-1{SAVE_EXT}";
     public static string SAVE_EXT = ".atsav";
+    public static string SCREENSHOT_EXT = ".png";
 
     public static void Save(int saveIndex, int currentLevel, int playerLevel, int playerXP, int playerHP, Vector3 playerPos, Quaternion playerRot, float cameraRotY, float bodyRotX, Vector3 camPlayerOffset, int objectiveIndex, LoadoutData[] allLoadouts, WeaponData[] allWeapons, AmmoData[] allAmmo, EquipmentData[] allEquipment, TalentData[] allTalents, EmeraldAI.EmeraldAISystem[] allAIs, ILootable[] lootables)
     {
         var data = new SaveData(currentLevel, playerLevel, playerXP, playerHP, playerPos, playerRot, cameraRotY, bodyRotX, camPlayerOffset, objectiveIndex, allLoadouts, allWeapons, allAmmo, allEquipment, allTalents, allAIs, lootables);
 
         var bf = new BinaryFormatter();
-        var path = $"{Application.persistentDataPath}/afterthought_{saveIndex}{SAVE_EXT}";
+        var pathNoExt = $"{SAVES_DIR}afterthought_{saveIndex}";
+        var path = $"{pathNoExt}{SAVE_EXT}";
+        var screenshotPath = $"{pathNoExt}{SCREENSHOT_EXT}";
+
+        TakeScreenshot(screenshotPath);
+
         var filestream = new FileStream(path, FileMode.Create);
 
         bf.Serialize(filestream, data);
         filestream.Close();
+    }
+
+    public static void DeleteAt(int index)
+    {
+        var path = $"{SAVES_DIR}afterthought_{index}{SAVE_EXT}";
+        var screenshotPath = $"{SAVES_DIR}afterthought_{index}{SCREENSHOT_EXT}";
+
+        if (File.Exists(path)) File.Delete(path);
+        if (File.Exists(screenshotPath)) File.Delete(screenshotPath);
+    }
+
+    public static void TakeScreenshot(string path)
+    {
+        ScreenCapture.CaptureScreenshot(path);
+        Debug.Log(path);
+    }
+
+    public static Sprite GetScreenshot(int saveIndex)
+    {
+        var path = $"{SAVES_DIR}afterthought_{saveIndex}{SCREENSHOT_EXT}";
+
+        return LoadNewSprite(path);
+    }
+
+    public static Sprite LoadNewSprite(string FilePath, float PixelsPerUnit = 100.0f, SpriteMeshType spriteType = SpriteMeshType.Tight)
+    {
+        // Load a PNG or JPG image from disk to a Texture2D, assign this texture to a new sprite and return its reference
+        Texture2D SpriteTexture = LoadTexture(FilePath);
+        Sprite NewSprite = Sprite.Create(SpriteTexture, new Rect(0, 0, SpriteTexture.width, SpriteTexture.height), new Vector2(0, 0), PixelsPerUnit, 0, spriteType);
+
+        return NewSprite;
+    }
+
+    public static Texture2D LoadTexture(string FilePath)
+    {
+        // Load a PNG or JPG file from disk to a Texture2D
+        // Returns null if load fails
+
+        Texture2D Tex2D;
+        byte[] FileData;
+
+        if (File.Exists(FilePath))
+        {
+            FileData = File.ReadAllBytes(FilePath);
+            Tex2D = new Texture2D(2, 2);           // Create new "empty" texture
+            if (Tex2D.LoadImage(FileData))           // Load the imagedata into the texture (size is set automatically)
+                return Tex2D;                 // If data = readable -> return texture
+        }
+        return null;                     // Return null if load failed
     }
 
     public static SaveData Load(int saveIndex)

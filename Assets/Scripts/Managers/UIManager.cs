@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,32 @@ public class UIManager : MonoSingleton<UIManager>
     public GameObject Crosshair => crosshair;
     public GameObject HealthBar => healthBar;
     public TextMeshProUGUI ScannedHPdisplay => scannedHPdisplay;
+
+    [Header("Load & Save UI")]
+    [SerializeField] private GameObject saveGameDisplayPrefab;
+    [SerializeField] private float heightPerSaveGameDisplay;
+
+    [Header("Load Game UI")]
+    [SerializeField] private GameObject loadGamePanel;
+    [SerializeField] private RectTransform loadGameDisplayContent;
+    [SerializeField] private TextMeshProUGUI saveToLoadInfo;
+    [SerializeField] private Image saveToLoadScreenshot;
+    [SerializeField] private Button loadGameButton;
+    [SerializeField] private Button deleteSaveToLoadButton;
+
+    private List<GameObject> spawnedLoadDisplays = new List<GameObject>();
+
+    [Header("Save Game UI")]
+    [SerializeField] private GameObject saveGamePanel;
+    [SerializeField] private RectTransform saveGameDisplayContent;
+    [SerializeField] private TextMeshProUGUI selectedSaveSlotInfo;
+    [SerializeField] private Image selectedSaveSlotScreenshot;
+    [SerializeField] private Button saveGameButton;
+    [SerializeField] private Button deleteSelectedSaveButton;
+    private List<GameObject> spawnedSaveDisplays = new List<GameObject>();
+
+    [Header("Settings UI")]
+    [SerializeField] private GameObject settingsPanel;
 
     [Header("In-game UI")]
     [SerializeField] private GameObject ingamePanel;
@@ -58,13 +85,143 @@ public class UIManager : MonoSingleton<UIManager>
         portalMenu = PortalMenu.Active;
 
         portalMenu.gameObject.SetActive(false);
+        settingsPanel.SetActive(false);
 
+        HideLoadGamePanel();
+        HideSaveGamePanel();
         HideIngamePanel();
     }
 
     public void HideIngamePanel()
     {
         ingamePanel.SetActive(false);
+    }
+
+    public void ShowLoadGamePanel()
+    {
+        if (SaveManager.Active.HasQuicksave)
+        {
+            var quickSaveDisplay = Instantiate(saveGameDisplayPrefab, loadGameDisplayContent);
+            spawnedLoadDisplays.Add(quickSaveDisplay);
+            quickSaveDisplay.GetComponent<SaveDisplay>().Init(-1);
+        }
+
+        for (var i = SaveManager.Active.NumOfSaves - 1; i >= 0; i--)
+        {
+            var display = Instantiate(saveGameDisplayPrefab, loadGameDisplayContent);
+            spawnedLoadDisplays.Add(display);
+            display.GetComponent<SaveDisplay>().Init(i);
+        }
+
+        loadGameDisplayContent.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, heightPerSaveGameDisplay * SaveManager.Active.NumOfSaves);
+
+        loadGamePanel.SetActive(true);
+    }
+
+    public void ShowSaveGamePanel()
+    {
+        if (SaveManager.Active.HasQuicksave)
+        {
+            var quickSaveDisplay = Instantiate(saveGameDisplayPrefab, saveGameDisplayContent);
+            spawnedSaveDisplays.Add(quickSaveDisplay);
+            quickSaveDisplay.GetComponent<SaveDisplay>().Init(-1);
+        }
+
+        for (var i = SaveManager.Active.NumOfSaves - 1; i >= 0; i--)
+        {
+            var display = Instantiate(saveGameDisplayPrefab, saveGameDisplayContent);
+            spawnedSaveDisplays.Add(display);
+            display.GetComponent<SaveDisplay>().Init(i);
+        }
+
+        saveGameDisplayContent.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, heightPerSaveGameDisplay * SaveManager.Active.NumOfSaves);
+
+        saveGamePanel.SetActive(true);
+    }
+
+    public void SelectSave(string infoText, Sprite screenshot)
+    {
+        if (loadGamePanel.activeInHierarchy)
+        {
+            saveToLoadInfo.text = infoText;
+            saveToLoadScreenshot.sprite = screenshot;
+            loadGameButton.interactable = true;
+            deleteSaveToLoadButton.interactable = true;
+        }
+        else if (saveGamePanel.activeInHierarchy)
+        {
+            selectedSaveSlotInfo.text = infoText;
+            selectedSaveSlotScreenshot.sprite = screenshot;
+            saveGameButton.interactable = true;
+            deleteSelectedSaveButton.interactable = true;
+        }
+    }
+
+    public void RefreshSaveLoadPanels()
+    {
+        var status = loadGamePanel.activeInHierarchy;
+
+        if (status)
+        {
+            HideLoadGamePanel();
+            ShowLoadGamePanel();
+        }
+
+        status = saveGamePanel.activeInHierarchy;
+
+        if (status)
+        {
+            HideSaveGamePanel();
+            ShowLoadGamePanel();
+        }
+    }
+
+    public void DeleteSelectedSave()
+    {
+        SaveManager.Active.DeleteSelectedSave();
+    }
+
+    public void HideLoadGamePanel()
+    {
+        loadGamePanel.SetActive(false);
+        loadGameButton.interactable = false;
+        deleteSaveToLoadButton.interactable = false;
+
+        while (spawnedLoadDisplays.Count > 0)
+        {
+            var display = spawnedLoadDisplays[0];
+            spawnedLoadDisplays.RemoveAt(0);
+            Destroy(display);
+        }
+    }
+
+    public void HideSaveGamePanel()
+    {
+        saveGamePanel.SetActive(false);
+        saveGameButton.interactable = false;
+        deleteSelectedSaveButton.interactable = false;
+
+        while (spawnedSaveDisplays.Count > 0)
+        {
+            var display = spawnedSaveDisplays[0];
+            spawnedSaveDisplays.RemoveAt(0);
+            Destroy(display);
+        }
+    }
+
+    public void LoadSelectedSaveFile()
+    {
+        SaveManager.Active.LoadSelectedFile();
+
+        HideLoadGamePanel();
+    }
+
+    public void SaveToSelectedSlot()
+    {
+        // TODO: Check & display overwrite confirmation!
+        SaveManager.Active.SaveSelectedIndex();
+
+        HideSaveGamePanel();
     }
 
     public void ShowPauseMenu()
@@ -75,6 +232,11 @@ public class UIManager : MonoSingleton<UIManager>
     public void ShowDeathMenu()
     {
         deathMenu.ShowDeathMenu();
+    }
+
+    public void ShowSettings()
+    {
+        settingsPanel.SetActive(true);
     }
 
     public void ShowPortalMenu(int targetBuildIndex)
