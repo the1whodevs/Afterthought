@@ -8,6 +8,9 @@ public class SaveManager : MonoSingleton<SaveManager>
 {
     public System.Action onDataLoadingCompleted;
 
+    [SerializeField] private KeyCode quickSaveButton;
+    [SerializeField] private KeyCode quickLoadButton;
+
     public bool LoadingData { get; private set; } = false;
     public bool HasQuicksave { get; private set; }
 
@@ -53,11 +56,14 @@ public class SaveManager : MonoSingleton<SaveManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadPlus))
-            QuickSave();
+        if (Player.Active && !LoadingData)
+        {
+            if (Input.GetKeyDown(KeyCode.KeypadPlus))
+                QuickSave();
 
-        if (Input.GetKeyDown(KeyCode.KeypadPeriod))
-            QuickLoad();
+            if (Input.GetKeyDown(KeyCode.KeypadPeriod))
+                QuickLoad();
+        }
     }
 
     public void SelectSave(int index)
