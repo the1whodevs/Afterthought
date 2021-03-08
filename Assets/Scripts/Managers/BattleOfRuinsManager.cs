@@ -31,6 +31,9 @@ public class BattleOfRuinsManager : MonoBehaviour
     [SerializeField] private GameObject[] lastDefenceTargets;
     [SerializeField] private GameObject[] companionCyborgs;
 
+    [Header("Boss Fight")]
+    [SerializeField] private GameObject miniBoss;
+
 
     private Coroutine spawnChargingOrcsCoroutine;
 
@@ -59,6 +62,8 @@ public class BattleOfRuinsManager : MonoBehaviour
         for (var i = 0; i < companionCyborgs.Length; i++)
             companionCyborgs[i].SetActive(false);
 
+        miniBoss.SetActive(false);
+
         gateEffectToSpawn.SetActive(false);
     }
 
@@ -81,6 +86,11 @@ public class BattleOfRuinsManager : MonoBehaviour
     {
         SpawnLastDefenseEnemies();
         SpawnCompanionAI();
+    }
+
+    public void OnKillLastDefenceTargets()
+    {
+        SpawnMiniBoss();
     }
 
     private void SpawnEnemiesInFirstDefence()
@@ -135,6 +145,12 @@ public class BattleOfRuinsManager : MonoBehaviour
             companionCyborgs[i].SetActive(true);
             companionCyborgs[i].GetComponent<EmeraldAISystem>().EmeraldEventsManagerComponent.ResetAI();
         }
+    }
+
+    private void SpawnMiniBoss()
+    {
+        miniBoss.SetActive(true);
+        miniBoss.GetComponent<EmeraldAISystem>().EmeraldEventsManagerComponent.ResetAI();
     }
 
     public void StopChargingOrcs()
