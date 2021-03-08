@@ -14,16 +14,6 @@ public class DeathMenu : MonoSingleton<DeathMenu>
         gameObject.SetActive(false);
     }
 
-    public void LoadGameButton()
-    {
-        // TODO: Show load game panel.
-    }
-
-    public void LoadLastSaveButton()
-    {
-        SaveManager.Active.LoadLast();
-    }
-
     public void RestartLevelButton()
     {
         mainPanel.SetActive(false);
