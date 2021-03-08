@@ -1493,6 +1493,7 @@ GameObject:
   - component: {fileID: 423880146455042316}
   - component: {fileID: 423880146455042315}
   - component: {fileID: 551578112}
+  - component: {fileID: 1388893497338124425}
   m_Layer: 16
   m_Name: Kanit
   m_TagString: Respawn
@@ -2597,6 +2598,36 @@ MonoBehaviour:
   hitDecal:
   - {fileID: 1205859011489787164, guid: 3fa7af457e4ce9f49a49ca72b80148ee, type: 3}
   explosionDecal: []
+--- !u!114 &1388893497338124425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423880146455042314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4003e971b273c4341879232e936a0d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Kanit
+  doFloat: 0
+  doRotate: 0
+  floatSpeed: 0
+  floatDist: 0
+  rotSpeed: 0
+  loot:
+  - lootChance: 0.5
+    lootPrefab: {fileID: 6357799748272396374, guid: abf1ea45545454f4b8fc983626b169b2,
+      type: 3}
+  despawnEffect: {fileID: 1055862917370258, guid: a921fa6024a125d45b996937084b35d6,
+    type: 3}
+  throwDist: 0.35
+  throwY: 1
+  throwSpeed: 5
+  throwPosYoffset: 0.5
+  xOffset: {x: -0.5, y: 0.5}
+  despawnEffectLifetime: 2
 --- !u!1 &423890630155703648
 GameObject:
   m_ObjectHideFlags: 0
