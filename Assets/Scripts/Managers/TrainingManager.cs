@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EmeraldAI;
+using UnityEngine;
 
 public class TrainingManager : MonoSingleton<TrainingManager>
 {
@@ -32,8 +33,8 @@ public class TrainingManager : MonoSingleton<TrainingManager>
     [SerializeField] private GameObject[] ProgressionBorderZones;
     [SerializeField] private GameObject[] ProgressionCrates;
 
-    // In awake to make sure if we're loading, active status is override by saved data.
-    public void Awake()
+    // This is called after normal execution, may cause a bug in loading!
+    public void Start()
     {
         cyberblade.SetActive(false);
         scarfaceMk2.SetActive(false);
@@ -115,6 +116,7 @@ public class TrainingManager : MonoSingleton<TrainingManager>
     {
         // Spawn miniboss.
         ProjectilesPowerfulEnemy.SetActive(true);
+        ProjectilesPowerfulEnemy.GetComponent<EmeraldAISystem>().EmeraldEventsManagerComponent.ResetAI();
     }
 
     public void OnKillProjectilesPowerfulEnemy()
@@ -170,6 +172,7 @@ public class TrainingManager : MonoSingleton<TrainingManager>
         for (int i = 0; i < MeleeTargets.Length; i++)
         {
             MeleeTargets[i].SetActive(true);
+            MeleeTargets[i].GetComponent<EmeraldAISystem>().EmeraldEventsManagerComponent.ResetAI();
         }
     }
 
@@ -214,6 +217,7 @@ public class TrainingManager : MonoSingleton<TrainingManager>
         for (int i = 0; i < RangedTargets.Length; i++)
         {
             RangedTargets[i].SetActive(true);
+            RangedTargets[i].GetComponent<EmeraldAISystem>().EmeraldEventsManagerComponent.ResetAI();
         }
     }
 
@@ -246,6 +250,7 @@ public class TrainingManager : MonoSingleton<TrainingManager>
         for (int i = 0; i < ProjectilesTargets.Length; i++)
         {
             ProjectilesTargets[i].SetActive(true);
+            ProjectilesTargets[i].GetComponent<EmeraldAISystem>().EmeraldEventsManagerComponent.ResetAI();
         }
     }
 

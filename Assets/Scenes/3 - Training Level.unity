@@ -9136,6 +9136,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1050289618}
     m_Modifications:
+    - target: {fileID: 3961372435913523348, guid: 39687f7c3801f5b43a7467276c0f6a3d,
+        type: 3}
+      propertyPath: loot.Array.data[0].lootPrefab
+      value: 
+      objectReference: {fileID: 1053516753396778350, guid: 0fd2352d77d537d44a940a5cb42d46c1,
+        type: 3}
+    - target: {fileID: 3961372435913523348, guid: 39687f7c3801f5b43a7467276c0f6a3d,
+        type: 3}
+      propertyPath: throwSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3961372435913523348, guid: 39687f7c3801f5b43a7467276c0f6a3d,
+        type: 3}
+      propertyPath: throwY
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3961372435913523348, guid: 39687f7c3801f5b43a7467276c0f6a3d,
+        type: 3}
+      propertyPath: throwDist
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4806396253764690964, guid: 39687f7c3801f5b43a7467276c0f6a3d,
         type: 3}
       propertyPath: m_Name
@@ -90832,6 +90853,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 662630468537240789, guid: 3a37d42a3957dad4c9de14a455e246bd,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4f8f531def1c1e249936751c7b692c45, type: 2}
     - target: {fileID: 6890227829946701438, guid: 3a37d42a3957dad4c9de14a455e246bd,
         type: 3}
       propertyPath: impactSoundFx.Array.size

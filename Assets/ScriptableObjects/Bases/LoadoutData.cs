@@ -18,20 +18,6 @@ public class LoadoutData : ScriptableObject
         target.Talents = new TalentData[] { Talents[0], Talents[1], Talents[2] };
     }
 
-    public override bool Equals(object other)
-    {
-        var data = (LoadoutData)other;
-
-        if (!data) return false;
-
-        return Equals(data.Weapons, Weapons) && Equals(data.Equipment, Equipment) && Equals(data.Talents, Talents);
-    }
-
-    public override int GetHashCode()
-    {
-        return Weapons.GetHashCode() + Equipment.GetHashCode() + Talents.GetHashCode();
-    }
-
     public override string ToString()
     {
         return LoadoutName;

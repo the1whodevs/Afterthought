@@ -52,7 +52,7 @@ public class LauncherGrenade : MonoBehaviour
             var playerHealth = hit.transform.GetComponent<PlayerHealth>();
 
             // If we hit an AI, damage it.
-            if (emeraldAIsys && emeraldAIsys.enabled)
+            if (emeraldAIsys && emeraldAIsys.enabled && !emeraldAIsys.CheckIsFriendlyToPlayer())
             {
                 emeraldAIsys.Damage(damage, EmeraldAISystem.TargetType.Player, transform, (int)ragdollForce);
                 UIManager.Active.RefreshHitmarker();

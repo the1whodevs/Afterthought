@@ -28,8 +28,9 @@ public class SaveDisplay : MonoBehaviour
             saveTitle.text = index == -1 ? "QUICK SAVE" : $"Save #{index}";
 
             var scene = LoadingManager.Active.GetSceneName(Data.level);
+            var objectiveText = LoadingManager.Active.GetObjectiveDescription(Data.level, Data.objectiveIndex);
 
-            saveInfo.text = $"{scene} - Level {Data.playerLevel} - {Data.objectiveIndex}";
+            saveInfo.text = $"{scene} - Level {Data.playerLevel} - {objectiveText}";
 
             saveScreenshot.sprite = SaveSystem.GetScreenshot(index);
         }

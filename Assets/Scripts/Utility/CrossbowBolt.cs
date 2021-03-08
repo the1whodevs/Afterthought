@@ -43,7 +43,7 @@ public class CrossbowBolt : MonoBehaviour
         var emeraldAIsys = other.transform.GetComponent<EmeraldAISystem>();
         
         // If we hit an AI, damage it.
-        if (emeraldAIsys && emeraldAIsys.enabled)
+        if (emeraldAIsys && emeraldAIsys.enabled && !emeraldAIsys.CheckIsFriendlyToPlayer())
         {
             emeraldAIsys.Damage(damage, EmeraldAISystem.TargetType.Player, transform, 5000);
             Stick(other);

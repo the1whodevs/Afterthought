@@ -3967,7 +3967,7 @@ MonoBehaviour:
   RangedDeath6Animation: {fileID: 0}
   AnimatorControllerGenerated: 1
   AnimationListsChanged: 0
-  FilePath: Assets/Art/Animations/Controllers/Orc_04.overrideController
+  FilePath: Assets/Art/Animations/Controllers/Orc/Orc_04.overrideController
   EmeraldTag: Respawn
   UITag: Player
   RagdollTag: Untagged
@@ -3982,9 +3982,9 @@ MonoBehaviour:
   DamageAmountRun: 5
   WanderRadius: 25
   TabNumber: 1
-  TemperamentTabNumber: 0
+  TemperamentTabNumber: 2
   DetectionTagsTabNumber: 0
-  AnimationTabNumber: 1
+  AnimationTabNumber: 2
   SoundTabNumber: 1
   MovementTabNumber: 1
   WeaponTypeTabNumber: 0
@@ -3993,7 +3993,7 @@ MonoBehaviour:
   AttackAnimationNumber: 1
   RunAttackAnimationNumber: 1
   IdleAnimationNumber: 1
-  CombatTabNumber: 2
+  CombatTabNumber: 0
   FactionsAndTagTabNumber: 1
   EventTabNumber: 1
   MinimumWaitTime: 3
@@ -4332,7 +4332,7 @@ Animator:
   m_GameObject: {fileID: 6245687095845613531}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1b21570cd281266439d47a34281fa1f4, type: 3}
-  m_Controller: {fileID: 9100000, guid: 87633f8130fe78f479f20a1567c6d062, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4f8f531def1c1e249936751c7b692c45, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

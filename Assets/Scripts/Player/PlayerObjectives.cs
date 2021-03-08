@@ -40,12 +40,11 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives>
         if (!cleanInit)
         {
             var temp = currentObjectiveId;
+
             currentObjectiveId = 0;
+
             for (var i = 0; i < temp; i++)
-            {
-                Debug.Log($"CurrentID: {currentObjectiveId} / i: {i}");
                 allObjectives[i].onObjectiveComplete?.Invoke();
-            }
 
         }
 
@@ -64,8 +63,6 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives>
         LoadoutEditor.Active.OnWeaponSwitched += OnLoadoutSlotSwitched;
         LoadoutEditor.Active.OnEquipmentSwitched += OnLoadoutSlotSwitched;
         LoadoutEditor.Active.OnTalentSwitched += OnLoadoutSlotSwitched;
-
-        Debug.Log("Subscribed to loadout editor events!");
     }
 
     private void OnPlayerInteract(InteractableObject obj)
@@ -78,6 +75,8 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives>
 
     public void NextObjective()
     {
+        if (!SaveManager.Active.LoadingData) UISoundFXManager.Active.PlayObjectiveUpdatedClip();
+
         currentObjectiveId++;
 
         if (currentObjective != null)

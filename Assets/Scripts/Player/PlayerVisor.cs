@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class PlayerVisor : MonoBehaviour
 {
+    public bool TargetIsFriendly { get; private set; }
+
     [SerializeField] private LayerMask scannableItemLayers;
 
     private PlayerController pc;
@@ -35,14 +37,17 @@ public class PlayerVisor : MonoBehaviour
         if (!Physics.Raycast(ray, out var hit, mainCam.farClipPlane, scannableItemLayers)) return;
 
         var scannable = hit.transform.GetComponent<IScannable>();
+
         if (scannable != null) 
         { 
             crosshairImage.color = scannable.GetCrosshairColor();
             scannedHPpercentage.color = crosshairImage.color;
-            scannedHPpercentage.text = $"HP: {100*scannable.GetHPPercentage():F2} %";
+            scannedHPpercentage.text = $"{scannable.GetCurrentHP()}/{scannable.GetMaxHP()} ({(scannable.GetHPPercentage() * 100):F1}%)";
+            TargetIsFriendly = scannable.CheckIsFriendlyToPlayer();
         }
         else
         {
+            TargetIsFriendly = false;
             crosshairImage.color = Color.white;
             scannedHPpercentage.color = Color.white;
             scannedHPpercentage.text = "";

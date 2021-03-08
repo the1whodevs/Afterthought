@@ -14,6 +14,7 @@ public class LoadingManager : MonoSingleton<LoadingManager>
         public string sceneName = "";
         public string description = "";
         public Sprite loadingBackground;
+        public LevelObjectiveData levelObjectiveData;
     }
 
     public bool Loading { get; private set; }
@@ -52,6 +53,11 @@ public class LoadingManager : MonoSingleton<LoadingManager>
     public void LoadLevel(string levelName)
     {
         LoadLevel(SceneManager.GetSceneByName(levelName).buildIndex);
+    }
+
+    public string GetObjectiveDescription(int buildIndex, int objectiveIndex)
+    {
+        return loadingData[buildIndex].levelObjectiveData.objectiveData[objectiveIndex].objectiveText;
     }
 
     public string GetSceneName(int buildIndex)

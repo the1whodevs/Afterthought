@@ -182,6 +182,8 @@ public class PlayerController : MonoBehaviour
 
     private void WeaponFireLogic(bool fire, bool aim)
     {
+        if (Player.Active.Visor.TargetIsFriendly) return;
+
         if (pl.CurrentWeapon.weaponAnimType.Equals(PlayerWeaponAnimator.WeaponAnimatorType.Melee) && !fire && aim)
         {
             fire = aim;
@@ -204,7 +206,6 @@ public class PlayerController : MonoBehaviour
 
                     fireResetRequired = pl.CurrentWeapon.fireType != WeaponData.FireType.FullAuto;
 
-                    // cs.ShakeCamera(0.05f, 0.01f);
                     pa.Fire();
                 }
                 else

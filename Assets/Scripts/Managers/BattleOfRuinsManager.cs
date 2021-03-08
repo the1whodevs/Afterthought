@@ -18,15 +18,15 @@ public class BattleOfRuinsManager : MonoBehaviour
 
     private Coroutine spawnChargingOrcsCoroutine;
 
-    public void Awake()
+    public void Start()
     {
         foreach (var obj in onObjectiveCompleteActions)
             obj.Initialize();
 
+        spawnChargingOrcsCoroutine = StartCoroutine(SpawnChargingOrcs());
+
         for (var i = 0; i < firstDefenceTargets.Length; i++)
             firstDefenceTargets[i].SetActive(false);
-
-        spawnChargingOrcsCoroutine = StartCoroutine(SpawnChargingOrcs());
     }
 
     public void OnReachFirstDefense()
@@ -37,8 +37,9 @@ public class BattleOfRuinsManager : MonoBehaviour
     private void SpawnEnemiesInFirstDefence()
     {
         for (int i = 0; i < firstDefenceTargets.Length; i++)
-        {
+        { 
             firstDefenceTargets[i].SetActive(true);
+            firstDefenceTargets[i].GetComponent<EmeraldAISystem>().EmeraldEventsManagerComponent.ResetAI();
         }
     }
 

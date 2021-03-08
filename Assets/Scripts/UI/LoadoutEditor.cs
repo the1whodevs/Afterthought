@@ -197,7 +197,16 @@ public class LoadoutEditor : MonoSingleton<LoadoutEditor>
 
     public void SelectLoadout()
     {
-        if (Player.Active.Loadout.Loadout.Equals(displayedLoadout)) return;
+        var currentLoadout = Player.Active.Loadout.Loadout;
+
+        if (currentLoadout.Weapons[0] == displayedLoadout.Weapons[0] &&
+            currentLoadout.Weapons[1] == displayedLoadout.Weapons[1] &&
+            currentLoadout.Equipment[0] == displayedLoadout.Equipment[0] &&
+            currentLoadout.Equipment[1] == displayedLoadout.Equipment[1] &&
+            currentLoadout.Talents[0] == currentLoadout.Talents[0] &&
+            currentLoadout.Talents[1] == currentLoadout.Talents[1] &&
+            currentLoadout.Talents[2] == currentLoadout.Talents[2])
+            return;
 
         Player.Active.Loadout.ChangeActiveLoadout(displayedLoadout);
 

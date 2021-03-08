@@ -14,6 +14,9 @@ public class UISoundFXManager : MonoSingleton<UISoundFXManager>
     [SerializeField] private AudioClip loadingStartedClip;
     [SerializeField] private AudioClip loadingFinishedClip;
 
+    [Header("Ingame SFX")]
+    [SerializeField] private AudioClip objectiveUpdatedClip;
+
     private void Awake()
     {
         if (Active && Active == this)
@@ -25,6 +28,11 @@ public class UISoundFXManager : MonoSingleton<UISoundFXManager>
             Debug.LogError("Another UISoundFXManager has been found!");
             Destroy(gameObject);
         }
+    }
+
+    public void PlayObjectiveUpdatedClip()
+    {
+        uiSFXplayer.PlayOneShot(objectiveUpdatedClip);
     }
 
     public void PlayHoverSFX()

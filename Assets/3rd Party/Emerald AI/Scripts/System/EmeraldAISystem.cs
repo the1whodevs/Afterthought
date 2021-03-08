@@ -2655,7 +2655,28 @@ namespace EmeraldAI
 
         public Color GetCrosshairColor()
         {
-            return Color.red;
+            if (PlayerFaction[0].RelationTypeRef == EmeraldAISystem.PlayerFactionClass.RelationType.Enemy) 
+                return Color.red;
+
+            if (PlayerFaction[0].RelationTypeRef == EmeraldAISystem.PlayerFactionClass.RelationType.Neutral)
+                return Color.cyan;
+
+            return Color.green;
+        }
+
+        public float GetCurrentHP()
+        {
+            return CurrentHealth;
+        }
+
+        public float GetMaxHP()
+        {
+            return StartingHealth;
+        }
+
+        public bool CheckIsFriendlyToPlayer()
+        {
+            return (PlayerFaction[0].RelationTypeRef == EmeraldAISystem.PlayerFactionClass.RelationType.Friendly);
         }
     }
 }

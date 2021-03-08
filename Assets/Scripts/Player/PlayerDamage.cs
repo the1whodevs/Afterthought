@@ -211,6 +211,8 @@ public class PlayerDamage : MonoBehaviour
 
     private void HitscanDamage(Vector3 scanDir, int ragdollForce)
     {
+        if (Player.Active.Visor.TargetIsFriendly) return;
+
         var ray = new Ray(playerCamera.transform.position, scanDir);
 
         Debug.DrawLine(ray.origin, ray.direction * CurrentWeapon.maxRange, Color.blue, 1.0f, true);
@@ -218,6 +220,8 @@ public class PlayerDamage : MonoBehaviour
         if (!Physics.Raycast(ray, out var hit, CurrentWeapon.maxRange, hitScanLayerMask)) return;
 
         var emeraldAIsys = hit.transform.GetComponent<EmeraldAISystem>();
+
+        if (emeraldAIsys && emeraldAIsys.CheckIsFriendlyToPlayer()) return;
 
         var dmg = CurrentWeapon.weaponDamage;
         var talent = Player.Active.Loadout.HasIncreasedWeaponTypeTalent(CurrentWeapon.weaponType);
@@ -313,6 +317,8 @@ public class PlayerDamage : MonoBehaviour
     {
         // Play shot effect.
         Player.Active.Audio.PlayGunshot(CurrentWeapon);
+
+        if (Player.Active.Visor.TargetIsFriendly) return;
 
         if (CurrentWeapon.fireType == WeaponData.FireType.Burst) CurrentWeapon.ammoInMagazine -= BURST_FIRE_COUNT;
         else CurrentWeapon.ammoInMagazine--;
