@@ -27,6 +27,10 @@ public class BattleOfRuinsManager : MonoBehaviour
     [Header("Stairs Defence")]
     [SerializeField] private GameObject[] stairsDefenceTargets;
 
+    [Header("Last Defence")]
+    [SerializeField] private GameObject[] lastDefenceTargets;
+    [SerializeField] private GameObject[] companionCyborgs;
+
 
     private Coroutine spawnChargingOrcsCoroutine;
 
@@ -49,6 +53,12 @@ public class BattleOfRuinsManager : MonoBehaviour
         for (var i = 0; i < stairsDefenceTargets.Length; i++)
             stairsDefenceTargets[i].SetActive(false);
 
+        for (var i = 0; i < lastDefenceTargets.Length; i++)
+            lastDefenceTargets[i].SetActive(false);
+
+        for (var i = 0; i < companionCyborgs.Length; i++)
+            companionCyborgs[i].SetActive(false);
+
         gateEffectToSpawn.SetActive(false);
     }
 
@@ -65,6 +75,12 @@ public class BattleOfRuinsManager : MonoBehaviour
     public void OnReachStairsDestination()
     {
         SpawnStairEnemiesDefence();
+    }
+
+    public void OnKillStairTargets()
+    {
+        SpawnLastDefenseEnemies();
+        SpawnCompanionAI();
     }
 
     private void SpawnEnemiesInFirstDefence()
@@ -100,6 +116,24 @@ public class BattleOfRuinsManager : MonoBehaviour
         {
             stairsDefenceTargets[i].SetActive(true);
             stairsDefenceTargets[i].GetComponent<EmeraldAISystem>().EmeraldEventsManagerComponent.ResetAI();
+        }
+    }
+
+    private void SpawnLastDefenseEnemies()
+    {
+        for (int i = 0; i < lastDefenceTargets.Length; i++)
+        {
+            lastDefenceTargets[i].SetActive(true);
+            lastDefenceTargets[i].GetComponent<EmeraldAISystem>().EmeraldEventsManagerComponent.ResetAI();
+        }
+    }
+
+    private void SpawnCompanionAI()
+    {
+        for (int i = 0; i < companionCyborgs.Length; i++)
+        {
+            companionCyborgs[i].SetActive(true);
+            companionCyborgs[i].GetComponent<EmeraldAISystem>().EmeraldEventsManagerComponent.ResetAI();
         }
     }
 
