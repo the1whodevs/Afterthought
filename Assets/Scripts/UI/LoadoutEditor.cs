@@ -53,6 +53,18 @@ public class LoadoutEditor : MonoSingleton<LoadoutEditor>
         HideWindow();
     }
 
+    public void SetAllStartingAmmo()
+    {
+        for (var i = 0; i < allWeapons.Length; i++)
+        {
+            allWeapons[i].ammoInMagazine = allWeapons[i].magazineCapacity;
+            allWeapons[i].weaponTypeData.ammoType.ResetAmmo();
+        }
+
+        for (var i = 0; i < allEquipment.Length; i++)
+            allEquipment[i].currentAmmo = allEquipment[i].magazineCapacity;
+    }
+
     public void LoadData(int[] loadoutsWepAindex, int[] loadoutsWepBindex, int[] loadoutsEqAindex, int[] loadoutsEqBindex, int[] loadoutsTalAindex, int[] loadoutsTalBindex, int[] loadoutsTalCindex, bool[] weaponsLootStatus, int[] weaponsAmmoInMag, int[] equipmentAmmo)
     {
         allWeapons = Sorter.SortWeaponDataAZ(allWeapons);

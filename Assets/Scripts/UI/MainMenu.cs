@@ -28,6 +28,7 @@ public class MainMenu : MonoBehaviour
 
         mainPanel.SetActive(false);
 
+        LoadoutEditor.Active.SetAllStartingAmmo();
         LoadingManager.Active.LoadLevel(sceneIndexToLoadOnNew);
     }
 
