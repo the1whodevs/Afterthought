@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5317731907694660390}
+  - component: {fileID: 931527707500790715}
   m_Layer: 0
   m_Name: Chest_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 93
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5317731907694660390
 Transform:
@@ -32,6 +33,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &931527707500790715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216724022068127368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9431b30cb23b89842bfb433da6da97db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Loot Chest
+  doFloat: 0
+  doRotate: 0
+  floatSpeed: 0
+  floatDist: 0
+  rotSpeed: 0
+  loot:
+  - lootChance: 0.5
+    lootPrefab: {fileID: 2026814560097139350, guid: eacbda10fef38d940bc4b3d7ea2c0669,
+      type: 3}
+  - lootChance: 0.5
+    lootPrefab: {fileID: 6795776760129747235, guid: 39bd0bf62c8cc734db60f3be17dfbfef,
+      type: 3}
+  - lootChance: 0.5
+    lootPrefab: {fileID: 824252892321406327, guid: e0d4b091913520f46b1420870281f8d3,
+      type: 3}
+  - lootChance: 0.5
+    lootPrefab: {fileID: 8723209949739586086, guid: 0abc0e70a2a8c43449274f6fd6151063,
+      type: 3}
+  - lootChance: 0.5
+    lootPrefab: {fileID: 869367632204079590, guid: 09e2d2ba2283f4c478c7f1b0f6c0729a,
+      type: 3}
+  - lootChance: 0.5
+    lootPrefab: {fileID: 6091762175342372575, guid: 8819340baed2c4b4c84362267aea2eaf,
+      type: 3}
+  - lootChance: 0.5
+    lootPrefab: {fileID: 2026814560097139350, guid: eacbda10fef38d940bc4b3d7ea2c0669,
+      type: 3}
+  - lootChance: 0.5
+    lootPrefab: {fileID: 2104524342417212230, guid: b4ea6dbc21c50154db73057996953113,
+      type: 3}
+  - lootChance: 0.5
+    lootPrefab: {fileID: 6357799748272396374, guid: abf1ea45545454f4b8fc983626b169b2,
+      type: 3}
+  despawnEffect: {fileID: 1919843589960360, guid: dc54bdc56541a09418e4115d077a0366,
+    type: 3}
+  throwDist: 2.5
+  throwY: 0.5
+  throwSpeed: 1
+  throwPosYoffset: 0.5
+  xOffset: {x: -1, y: 1}
+  despawnEffectLifetime: 2
 --- !u!1001 &76480006527031736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39,10 +94,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5317731907694660390}
     m_Modifications:
+    - target: {fileID: 303263137181494650, guid: 79a388a94862f9e4ea6a7546ef35170d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 693196470579138454, guid: 79a388a94862f9e4ea6a7546ef35170d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1324386134015464121, guid: 79a388a94862f9e4ea6a7546ef35170d,
         type: 3}
       propertyPath: m_Name
       value: SM_Chest_lid_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324386134015464121, guid: 79a388a94862f9e4ea6a7546ef35170d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1348961537498883250, guid: 79a388a94862f9e4ea6a7546ef35170d,
         type: 3}
@@ -99,6 +169,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8830558706058977888, guid: 79a388a94862f9e4ea6a7546ef35170d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79a388a94862f9e4ea6a7546ef35170d, type: 3}
 --- !u!4 &1420832313964477706 stripped
@@ -114,10 +189,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5317731907694660390}
     m_Modifications:
+    - target: {fileID: 5432046859382923471, guid: 85cb75aca6fc60d45bf07fa4c255279a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7258589985272995308, guid: 85cb75aca6fc60d45bf07fa4c255279a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8130107665865977906, guid: 85cb75aca6fc60d45bf07fa4c255279a,
         type: 3}
       propertyPath: m_Name
       value: SM_Chest_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130107665865977906, guid: 85cb75aca6fc60d45bf07fa4c255279a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177369276804792036, guid: 85cb75aca6fc60d45bf07fa4c255279a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8498389169281638933, guid: 85cb75aca6fc60d45bf07fa4c255279a,
         type: 3}
