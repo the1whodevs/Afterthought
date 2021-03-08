@@ -38,6 +38,7 @@ public class SaveDisplay : MonoBehaviour
 
     public void Select()
     {
+        UISoundFXManager.Active.PlayClickSFX();
         SaveManager.Active.SelectSave(myIndex);
         UIManager.Active.SelectSave(saveInfo.text, saveScreenshot.sprite);
     }
