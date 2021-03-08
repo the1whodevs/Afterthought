@@ -21,6 +21,9 @@ public class BattleOfRuinsManager : MonoBehaviour
     [Header("Second Defence")]
     [SerializeField] private GameObject[] secondDefenceTargets;
 
+    [Header("Ruins Defence")]
+    [SerializeField] private GameObject[] ruinsDefenceTargets;
+
 
     private Coroutine spawnChargingOrcsCoroutine;
 
@@ -37,12 +40,20 @@ public class BattleOfRuinsManager : MonoBehaviour
         for (var i = 0; i < secondDefenceTargets.Length; i++)
             secondDefenceTargets[i].SetActive(false);
 
+        for (var i = 0; i < ruinsDefenceTargets.Length; i++)
+            ruinsDefenceTargets[i].SetActive(false);
+
         gateEffectToSpawn.SetActive(false);
     }
 
     public void OnReachFirstDefense()
     {
         SpawnEnemiesInFirstDefence();
+    }
+
+    public void OnReachFirstRuins()
+    {
+        SpawnEnemiesInRuinsDefence();
     }
 
     private void SpawnEnemiesInFirstDefence()
@@ -60,6 +71,15 @@ public class BattleOfRuinsManager : MonoBehaviour
         {
             secondDefenceTargets[i].SetActive(true);
             secondDefenceTargets[i].GetComponent<EmeraldAISystem>().EmeraldEventsManagerComponent.ResetAI();
+        }
+    }
+
+    private void SpawnEnemiesInRuinsDefence()
+    {
+        for (int i = 0; i < ruinsDefenceTargets.Length; i++)
+        {
+            ruinsDefenceTargets[i].SetActive(true);
+            ruinsDefenceTargets[i].GetComponent<EmeraldAISystem>().EmeraldEventsManagerComponent.ResetAI();
         }
     }
 
