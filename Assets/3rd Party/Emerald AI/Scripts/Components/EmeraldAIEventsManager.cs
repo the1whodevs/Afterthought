@@ -841,7 +841,7 @@ namespace EmeraldAI
 
             hasAlerted = true;
 
-            var range = 30.0f;
+            var range = 10.0f;
 
             var hits = Physics.SphereCastAll(transform.position, range, Vector3.down);
 
