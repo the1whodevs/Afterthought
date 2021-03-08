@@ -100,9 +100,9 @@ public class BattleOfRuinsManager : MonoBehaviour
 
     private IEnumerator GateEffect()
     {
+        yield return new WaitForSeconds(secondsToWaitForCover);
+
         gateEffectToSpawn.SetActive(true);
         gateToDestroy.SetActive(false);
-
-        yield return new WaitForSeconds(secondsToWaitForCover);
     }
 }

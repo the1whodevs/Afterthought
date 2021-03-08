@@ -75,12 +75,14 @@ public class PlayerObjectives : MonoSingleton<PlayerObjectives>
 
     public void NextObjective()
     {
+
         if (!SaveManager.Active.LoadingData) UISoundFXManager.Active.PlayObjectiveUpdatedClip();
 
         currentObjectiveId++;
-
+        
         if (currentObjective != null)
             UIManager.Active.UpdateObjectiveText(currentObjective.objectiveText);
+
         else
             UIManager.Active.UpdateObjectiveText("");
     }
