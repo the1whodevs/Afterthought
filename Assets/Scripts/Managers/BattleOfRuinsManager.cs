@@ -18,6 +18,9 @@ public class BattleOfRuinsManager : MonoBehaviour
     [SerializeField] private GameObject gateToDestroy;
     [SerializeField] private float secondsToWaitForCover;
 
+    [Header("Second Defence")]
+    [SerializeField] private GameObject[] secondDefenceTargets;
+
 
     private Coroutine spawnChargingOrcsCoroutine;
 
@@ -30,6 +33,9 @@ public class BattleOfRuinsManager : MonoBehaviour
 
         for (var i = 0; i < firstDefenceTargets.Length; i++)
             firstDefenceTargets[i].SetActive(false);
+
+        for (var i = 0; i < secondDefenceTargets.Length; i++)
+            secondDefenceTargets[i].SetActive(false);
 
         gateEffectToSpawn.SetActive(false);
     }
@@ -48,6 +54,15 @@ public class BattleOfRuinsManager : MonoBehaviour
         }
     }
 
+    private void SpawnEnemiesInSecondDefence()
+    {
+        for (int i = 0; i < secondDefenceTargets.Length; i++)
+        {
+            secondDefenceTargets[i].SetActive(true);
+            secondDefenceTargets[i].GetComponent<EmeraldAISystem>().EmeraldEventsManagerComponent.ResetAI();
+        }
+    }
+
     public void StopChargingOrcs()
     {
         SpawnEnemiesInFirstDefence();
@@ -56,6 +71,7 @@ public class BattleOfRuinsManager : MonoBehaviour
 
     public void OpenWayIntoRuins()
     {
+        SpawnEnemiesInSecondDefence();
         StartCoroutine(GateEffect());
     }
 
