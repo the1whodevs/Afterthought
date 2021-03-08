@@ -154,7 +154,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.014488122, y: -0.0053143096, z: -0.09005823}
+  m_ConnectedAnchor: {x: 0.014488063, y: -0.005314309, z: -0.09005824}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -324,7 +324,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.20621511, y: 0.03803013, z: 0.24799985}
+  m_ConnectedAnchor: {x: -0.20621523, y: 0.03803013, z: 0.24799985}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -728,7 +728,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.014486349, y: -0.005314303, z: 0.090057835}
+  m_ConnectedAnchor: {x: 0.01448629, y: -0.0053143026, z: 0.09005784}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1080,7 +1080,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.38775405, y: -0.020768035, z: 0.000000059008403}
+  m_ConnectedAnchor: {x: -0.3877542, y: -0.020768043, z: 0.000000059008403}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -1317,7 +1317,6 @@ GameObject:
   - component: {fileID: 6811976312163973628}
   - component: {fileID: 2015024096}
   - component: {fileID: -289114554456036337}
-  - component: {fileID: 5703260972271116140}
   m_Layer: 16
   m_Name: Costalmed
   m_TagString: Respawn
@@ -1424,7 +1423,7 @@ MonoBehaviour:
   RotateTowardsTarget: 0
   m_AttackAnimationClipMissing: 0
   ProjectileCollisionPointY: 1.32
-  m_ProjectileCollisionPoint: {x: 7.2024326, y: 0.05, z: 11.170577}
+  m_ProjectileCollisionPoint: {x: 7.2024326, y: 1.37, z: 11.170577}
   ObstructionTimer: 0
   ObstructionSeconds: 4
   IdleVolume: 0.3
@@ -1853,8 +1852,8 @@ MonoBehaviour:
   CurrentDamageAmount: 5
   DamageAmountRun: 5
   WanderRadius: 25
-  TabNumber: 2
-  TemperamentTabNumber: 2
+  TabNumber: 1
+  TemperamentTabNumber: 0
   DetectionTagsTabNumber: 0
   AnimationTabNumber: 2
   SoundTabNumber: 1
@@ -1907,7 +1906,7 @@ MonoBehaviour:
   RegenerateAmount: 1
   RegenerateTimer: 0
   AILevel: 1
-  AIName: AI Name
+  AIName: Costalmed
   AITitle: AI Title
   StoppingDistance: 0.3
   FollowingStoppingDistance: 5
@@ -2463,28 +2462,17 @@ MonoBehaviour:
   floatDist: 0
   rotSpeed: 0
   loot:
-  - {fileID: 6357799748272396374, guid: abf1ea45545454f4b8fc983626b169b2, type: 3}
+  - lootChance: 0.5
+    lootPrefab: {fileID: 6357799748272396374, guid: abf1ea45545454f4b8fc983626b169b2,
+      type: 3}
   despawnEffect: {fileID: 1055862917370258, guid: a921fa6024a125d45b996937084b35d6,
     type: 3}
-  throwDist: 0.5
-  throwY: 0.5
+  throwDist: 0.35
+  throwY: 1
   throwSpeed: 5
+  throwPosYoffset: 0.5
   xOffset: {x: -0.5, y: 0.5}
   despawnEffectLifetime: 2
-  lootCollider: {fileID: 5703260972271116140}
---- !u!65 &5703260972271116140
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6811976312163973631}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5852911, y: 1.9616107, z: 0.3147066}
-  m_Center: {x: 0, y: 0.6881598, z: -0.34264672}
 --- !u!1 &6811979113019261327
 GameObject:
   m_ObjectHideFlags: 0
@@ -2684,7 +2672,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.30010667, y: 0.0056951502, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: -0.3001068, y: 0.005695151, z: 0.000000029802322}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -3729,7 +3717,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.4257203, y: 0.0000003883615, z: 0.000000016123522}
+  m_ConnectedAnchor: {x: 0.4257203, y: 0.0000003799796, z: -0.000000042375177}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -3976,7 +3964,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.25989744, y: -0.0024558092, z: -0.025712999}
+  m_ConnectedAnchor: {x: 0.25989744, y: -0.0024557877, z: -0.02571312}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -4145,7 +4133,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.20621535, y: 0.03802927, z: -0.24799973}
+  m_ConnectedAnchor: {x: -0.20621544, y: 0.038029246, z: -0.24799973}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -4863,7 +4851,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.4257225, y: 0.0000002766028, z: -0.000000014260877}
+  m_ConnectedAnchor: {x: -0.42572245, y: 0.00000027567148, z: -0.0000000068102963}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:

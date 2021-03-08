@@ -1,18 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MobLoot : LootCube
+﻿public class MobLoot : LootCube
 {
     private EmeraldAI.EmeraldAISystem attachedSystem;
-    [SerializeField] private Collider lootCollider;
 
     protected override void Start()
     {
         base.Start();
-        lootCollider.enabled = false;
+
         attachedSystem = GetComponent<EmeraldAI.EmeraldAISystem>();
-        attachedSystem.DeathEvent.AddListener(() => { lootCollider.enabled = true; });
+
+        name = attachedSystem.AIName;
+    }
+
+    public override string GetActionVerb()
+    {
+        return "search";
+    }
+
+    public override string GetActionPronoun()
+    {
+        return "";
     }
 
     public override void Interact()

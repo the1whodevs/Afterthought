@@ -46,9 +46,10 @@ public class PlayerPickup : MonoBehaviour
             return;
         }
 
-        var pickableHit = hit.transform.GetComponent<InteractableObject>();
+        var pickableHit = hit.transform.GetComponentInParent<InteractableObject>();
+        var aiSys = pickableHit ? pickableHit.GetComponentInParent<EmeraldAI.EmeraldAISystem>() : null;
 
-        if (!pickableHit || pickableHit.IsLooted || (pickableHit.GetComponent<EmeraldAI.EmeraldAISystem>() && pickableHit.GetComponent<EmeraldAI.EmeraldAISystem>().CurrentHealth > 0)) UIManager.Active.HideInteractPrompt();
+        if (!pickableHit || pickableHit.IsLooted || (aiSys && aiSys.CurrentHealth > 0)) UIManager.Active.HideInteractPrompt();
         else
         {
             var interact = Input.GetAxisRaw("Interact") > 0.0f;

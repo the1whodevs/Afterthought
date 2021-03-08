@@ -185,10 +185,7 @@ public class SaveManager : MonoSingleton<SaveManager>
 
     public void LoadLast()
     {
-        var filePaths = Directory.GetFiles(Application.persistentDataPath + "/", SaveSystem.SAVE_EXT);
-
-        if (filePaths.Length > 0) LoadAtIndex(filePaths.Length);
-        else Debug.LogError("No save files found!");
+        LoadAtIndex(NumOfSaves-1);
     }
 
     private IEnumerator LoadData(SaveSystem.SaveData data)
