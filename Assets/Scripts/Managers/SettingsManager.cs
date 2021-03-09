@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,11 @@ public class SettingsManager : MonoSingleton<SettingsManager>
     [SerializeField] private GameObject settingsWindow;
     [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject audioPanel;
+
+    [SerializeField] private TextMeshProUGUI quicksaveBindingDisplay;
+    [SerializeField] private TextMeshProUGUI quickloadBindingDisplay;
+
+    private bool recordingKey = false;
 
     public const string HORIZONTAL_SENS_KEY = "MOUSE_X_SENSITIVITY";
     public const string VERTICAL_SENS_KEY = "MOUSE_Y_SENSITIVITY";
@@ -40,6 +46,14 @@ public class SettingsManager : MonoSingleton<SettingsManager>
         controlsPanel.SetActive(true);
         audioPanel.SetActive(false);
         settingsWindow.SetActive(true);
+
+        UpdateBindingTexts();
+    }
+
+    private void UpdateBindingTexts()
+    {
+        quicksaveBindingDisplay.text = SaveManager.Active.GetQuicksaveBinding.ToString();
+        quickloadBindingDisplay.text = SaveManager.Active.GetQuickloadBinding.ToString();
     }
 
     public void HideSettingsWindow()
@@ -91,5 +105,55 @@ public class SettingsManager : MonoSingleton<SettingsManager>
         }
 
         verticalSensInputField.SetTextWithoutNotify("10");
+    }
+
+    public void StartRecordKeyQuicksave()
+    {
+        if (recordingKey) return;
+
+        recordingKey = true;
+
+        StartCoroutine(RecordKey(SaveManager.Active.SetQuickSaveBinding));
+    }
+
+    public void StartRecordKeyQuickload()
+    {
+        if (recordingKey) return;
+
+        recordingKey = true;
+
+        StartCoroutine(RecordKey(SaveManager.Active.SetQuickLoadBinding));
+    }
+
+    private IEnumerator RecordKey(System.Action<KeyCode> setter)
+    {
+        while (recordingKey)
+        {
+            Debug.Log("Recording key...");
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                recordingKey = false;
+                break;
+            }
+
+            foreach (KeyCode vKey in System.Enum.GetValues(typeof(KeyCode)))
+            {
+                if (vKey.CompareTo(KeyCode.Escape) == 0) continue;
+
+                if (Input.GetKey(vKey))
+                {
+                    Debug.Log($"Caught {vKey} key...");
+
+                    setter(vKey);
+                    recordingKey = false;
+                    break;
+                }
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        UpdateBindingTexts();
     }
 }

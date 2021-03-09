@@ -23,6 +23,9 @@ public class SaveManager : MonoSingleton<SaveManager>
 
     private int selectedSaveIndex = -100;
 
+    private const string QUICKSAVE_KEYCODEINDEX_KEY = "QUICKSAVE_KEYCODE_INDEX";
+    private const string QUICKLOAD_KEYCODEINDEX_KEY = "QUICKLOAD_KEYCODE_INDEX";
+
     private const int QUICKSAVE_INDEX = -1;
 
     private void Awake()
@@ -33,6 +36,10 @@ public class SaveManager : MonoSingleton<SaveManager>
         HasQuicksave = SaveSystem.CheckForQuicksave();
 
         le = LoadoutEditor.Active;
+
+        quickSaveButton = (KeyCode)PlayerPrefs.GetInt(QUICKSAVE_KEYCODEINDEX_KEY, (int)quickSaveButton);
+
+        quickLoadButton = (KeyCode)PlayerPrefs.GetInt(QUICKLOAD_KEYCODEINDEX_KEY, (int)quickLoadButton);
     }
 
     private void Start()
@@ -107,6 +114,21 @@ public class SaveManager : MonoSingleton<SaveManager>
             selectedSaveIndex = -100;
             StartCoroutine(SaveAtIndex(i));
         }
+    }
+
+    public KeyCode GetQuicksaveBinding => quickSaveButton;
+    public KeyCode GetQuickloadBinding => quickLoadButton;
+
+    public void SetQuickSaveBinding(KeyCode newBinding)
+    {
+        quickSaveButton = newBinding;
+        PlayerPrefs.SetInt(QUICKSAVE_KEYCODEINDEX_KEY, (int)quickSaveButton);
+    }
+
+    public void SetQuickLoadBinding(KeyCode newBinding)
+    {
+        quickLoadButton = newBinding;
+        PlayerPrefs.SetInt(QUICKLOAD_KEYCODEINDEX_KEY, (int)quickLoadButton);
     }
 
     public void QuickSave()
