@@ -10,13 +10,18 @@ public class DeathMenu : MonoSingleton<DeathMenu>
 
     private void Awake()
     {
+        HideDeathMenu();
+    }
+
+    public void HideDeathMenu()
+    {
         mainPanel.SetActive(true);
         gameObject.SetActive(false);
     }
 
     public void RestartLevelButton()
     {
-        mainPanel.SetActive(false);
+        HideDeathMenu();
 
         LoadingManager.Active.LoadLevel(SceneManager.GetActiveScene().buildIndex);
     }
@@ -30,7 +35,7 @@ public class DeathMenu : MonoSingleton<DeathMenu>
 
     public void BackToMainMenu()
     {
-        mainPanel.SetActive(false);
+        HideDeathMenu();
 
         LoadingManager.Active.LoadLevel(1);
     }

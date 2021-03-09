@@ -1074,10 +1074,13 @@ namespace EmeraldAI.Utility
         /// </summary>
         public void DetectTargetType (Transform Target, bool? OverrideFactionRequirement = false)
         {
+            if (!EmeraldComponent) EmeraldComponent = GetComponent<EmeraldAISystem>();
+
             if (Target != null)
             {
                 m_TurnLerpValue = 0;
                 LookWeightLerp2 = 0;
+
                 EmeraldComponent.FirstTimeInCombat = false;
                 EmeraldComponent.IsTurning = false;
 

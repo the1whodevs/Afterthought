@@ -16,6 +16,8 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         mainPanel.SetActive(true);
+
+        UpdateContinueButton();
     }
 
     public void UpdateContinueButton()

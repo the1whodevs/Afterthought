@@ -1,6 +1,5 @@
 ﻿using EmeraldAI;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleOfRuinsManager : MonoBehaviour
@@ -10,12 +9,14 @@ public class BattleOfRuinsManager : MonoBehaviour
 
     [Header("First Defence")]
     [SerializeField] private GameObject[] firstDefenceTargets;
+    [SerializeField] private float spawnInitialDelay = 2.5f;
     [SerializeField] private float spawnInterval = 2.0f;
-    [SerializeField] private GameObject[] enemiesToSpawn;
     [SerializeField] private Transform spawnPosition;
+    [SerializeField] private EmeraldAISystem[] chargingOrcs;
     [SerializeField] private EmeraldAI.EmeraldAISystem[] availableOrcTargets;
     [SerializeField] private GameObject gateEffectToSpawn;
     [SerializeField] private GameObject gateToDestroy;
+    [SerializeField] private GameObject portalToHub;
     [SerializeField] private float secondsToWaitForCover;
 
     [Header("Second Defence")]
@@ -34,11 +35,12 @@ public class BattleOfRuinsManager : MonoBehaviour
     [Header("Boss Fight")]
     [SerializeField] private GameObject miniBoss;
 
-
     private Coroutine spawnChargingOrcsCoroutine;
 
     public void Start()
     {
+        portalToHub.SetActive(false);
+
         foreach (var obj in onObjectiveCompleteActions)
             obj.Initialize();
 
@@ -65,6 +67,11 @@ public class BattleOfRuinsManager : MonoBehaviour
         miniBoss.SetActive(false);
 
         gateEffectToSpawn.SetActive(false);
+    }
+
+    public void OnKilledEliteOrc()
+    {
+        portalToHub.SetActive(true);
     }
 
     public void OnReachFirstDefense()
@@ -167,25 +174,25 @@ public class BattleOfRuinsManager : MonoBehaviour
 
     private IEnumerator SpawnChargingOrcs()
     {
-        var timer = 0.0f;
+        var index = 0;
 
-        while (Application.isPlaying)
+        yield return new WaitForSeconds(spawnInitialDelay);
+
+        while (index < chargingOrcs.Length)
         {
-            timer += Time.deltaTime;
+            yield return new WaitForSeconds(spawnInterval);
 
-            if (timer >= spawnInterval)
-            {
-                timer = 0.0f;
+            var spawnedOrc = chargingOrcs[index];
+            index++;
 
-                var orcPrefabToSpawn = enemiesToSpawn[Random.Range(0, enemiesToSpawn.Length)];
-                var spawnedOrc = Instantiate(orcPrefabToSpawn, spawnPosition.position, Quaternion.identity, null).GetComponent<EmeraldAISystem>();
-                var cyborgToAttack = availableOrcTargets[Random.Range(0, availableOrcTargets.Length)];
+            spawnedOrc.transform.position = spawnPosition.position;
 
-                spawnedOrc.CurrentTarget = cyborgToAttack.transform;
-            }
-            yield return new WaitForEndOfFrame();
+            spawnedOrc.EmeraldEventsManagerComponent.ResetAI();
+
+            var cyborgToAttack = availableOrcTargets[Random.Range(0, availableOrcTargets.Length)];
+
+            spawnedOrc.EmeraldEventsManagerComponent.SetCombatTarget(cyborgToAttack.transform);
         }
-
     }
 
     private IEnumerator GateEffect()

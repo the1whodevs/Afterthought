@@ -191,7 +191,7 @@ public class SaveManager : MonoSingleton<SaveManager>
 
         p.Camera.RecalculateOffset();
 
-        var pauseStatus = !(Time.timeScale > 0.0f);
+        var pauseStatus = !(Time.timeScale > 0.0f) || (PauseMenu.Active && PauseMenu.Active.gameObject.activeInHierarchy);
         if (pauseStatus) UIManager.Active.HidePauseMenu();
 
         yield return new WaitForEndOfFrame();

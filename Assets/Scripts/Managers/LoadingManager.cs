@@ -147,9 +147,10 @@ public class LoadingManager : MonoSingleton<LoadingManager>
         UISoundFXManager.Active.PlayLoadingFinished();
 
         UIManager.Active.HidePauseMenu();
+        DeathMenu.Active.HideDeathMenu();
 
-        // If going to the main menu...
-        if (buildIndex == 1)
+        // If going to the main menu, or the cinematic scene...
+        if (buildIndex == 1 || buildIndex == 2)
         {
             // Just hide the loading overlay.
             HideLoadingOverlay();
