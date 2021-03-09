@@ -45,7 +45,7 @@ public class CrossbowBolt : MonoBehaviour
         // If we hit an AI, damage it.
         if (emeraldAIsys && emeraldAIsys.enabled && !emeraldAIsys.CheckIsFriendlyToPlayer())
         {
-            emeraldAIsys.Damage(damage, EmeraldAISystem.TargetType.Player, transform, 5000);
+            emeraldAIsys.Damage(damage, Player.Active.transform, EmeraldAISystem.TargetType.Player, Player.Active.Damage.RagdollForce_Shotgun);
             Stick(other);
             UIManager.Active.RefreshHitmarker();
         }

@@ -37,7 +37,7 @@ namespace EmeraldAI.Example
                         //Cause damage to the AI that is hit using the Emerald AI damage function. 
                         //This is can be a helpfull example for users who have VR games or games where the player is the camera.
                         //In this case, the PlayerObject is a child of the camera.
-                        EmeraldComponent.Damage(DamageAmount, EmeraldAISystem.TargetType.Player, PlayerObject.transform, 400);
+                        EmeraldComponent.Damage(DamageAmount, PlayerObject.transform, EmeraldAISystem.TargetType.Player, 400);
                     }
                 }
             }

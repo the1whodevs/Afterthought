@@ -29,7 +29,7 @@ namespace EmeraldAI.CharacterController
 
                     if (TempTarget.GetComponent<EmeraldAISystem>() != null && angle <= DamageAngle)
                     {
-                        TempTarget.GetComponent<EmeraldAISystem>().Damage(DamageAmount, EmeraldAISystem.TargetType.Player, transform, 500);
+                        TempTarget.GetComponent<EmeraldAISystem>().Damage(DamageAmount, transform, EmeraldAISystem.TargetType.Player, 500);
                     }
                 }
             }

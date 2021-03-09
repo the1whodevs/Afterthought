@@ -114,7 +114,7 @@ namespace EmeraldAI.Utility
                 //Apply damage over time to another AI
                 if (m_TargetType == EmeraldAISystem.TargetType.AI)
                 {
-                    m_TargetEmeraldComponent.Damage(m_DamageAmount);
+                    m_TargetEmeraldComponent.Damage(m_DamageAmount, transform);
                     m_AttackerEmeraldComponent.OnDoDamageEvent.Invoke();
                 }
                 else if (m_TargetType == EmeraldAISystem.TargetType.Player) //Apply damage over time to the player

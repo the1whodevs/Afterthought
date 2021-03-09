@@ -6,6 +6,10 @@ using Random = UnityEngine.Random;
 
 public class PlayerDamage : MonoBehaviour
 {
+    public int RagdollForce_Shotgun => ragdollForce_Shotgun;
+    public int RagdollForce_NonShotgun => ragdollForce_NonShotgun;
+    public int RagdollForce_Melee => ragdollForce_Melee;
+
     [SerializeField] private int ragdollForce_Shotgun = 1500;
     [SerializeField] private int ragdollForce_NonShotgun = 750;
     [SerializeField] private int ragdollForce_Melee = 250;
@@ -177,7 +181,7 @@ public class PlayerDamage : MonoBehaviour
             // If we hit an AI, damage it.
             if (emeraldAIsys && emeraldAIsys.enabled)
             {
-                emeraldAIsys.Damage(damage, EmeraldAISystem.TargetType.Player, transform, (int)relatedEquipment.ragdollForce);
+                emeraldAIsys.Damage(damage, transform, EmeraldAISystem.TargetType.Player, (int)relatedEquipment.ragdollForce);
                 uiManager.RefreshHitmarker();
             }
             else if (playerHealth)
@@ -234,7 +238,7 @@ public class PlayerDamage : MonoBehaviour
         // If we hit an AI, damage it.
         if (emeraldAIsys && emeraldAIsys.enabled)
         {
-            emeraldAIsys.Damage((int)dmg, EmeraldAISystem.TargetType.Player, transform, ragdollForce);
+            emeraldAIsys.Damage((int)dmg, transform, EmeraldAISystem.TargetType.Player, ragdollForce);
             uiManager.RefreshHitmarker();
         }
         // Otherwise just spawn a bullet hole.

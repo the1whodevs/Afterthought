@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using EmeraldAI.Utility;
 
@@ -710,7 +709,7 @@ namespace EmeraldAI
         {
             if (!EmeraldComponent.IsDead)
             {
-                EmeraldComponent.Damage(9999999, EmeraldAISystem.TargetType.AI);
+                EmeraldComponent.Damage(9999999, null, EmeraldAISystem.TargetType.AI);
             }
         }
 
@@ -853,7 +852,7 @@ namespace EmeraldAI
 
                 if (!eAIsys) continue;
 
-                eAIsys.GetComponent<EmeraldAIEventsManager>().SetCombatTargetPlayer();
+                eAIsys.GetComponent<EmeraldAIEventsManager>().SetCombatTarget(EmeraldComponent.CurrentTarget);
             }
         }
 
@@ -862,23 +861,23 @@ namespace EmeraldAI
         /// </summary>
         public void SetCombatTargetPlayer()
         {
-            var Target = Player.Active.transform;
+            //var Target = Player.Active.transform;
 
-            if (EmeraldComponent.ConfidenceRef != EmeraldAISystem.ConfidenceType.Coward && Target != null)
-            {
-                EmeraldComponent.CurrentTarget = Target;
-                EmeraldComponent.EmeraldDetectionComponent.DetectTargetType(EmeraldComponent.CurrentTarget, true);
-                EmeraldComponent.m_NavMeshAgent.ResetPath();
-                EmeraldComponent.m_NavMeshAgent.stoppingDistance = EmeraldComponent.AttackDistance;
-                EmeraldComponent.m_NavMeshAgent.destination = Target.position;
-                EmeraldComponent.EmeraldDetectionComponent.PreviousTarget = Target;
-                EmeraldComponent.MaxChaseDistance = 2000;
-                EmeraldComponent.EmeraldBehaviorsComponent.ActivateCombatState();
-            }
-            else if (Target == null)
-            {
-                Debug.Log("The SetCombatTarget paramter is null. Ensure that the target exists before calling this function.");
-            }
+            //if (EmeraldComponent.ConfidenceRef != EmeraldAISystem.ConfidenceType.Coward && Target != null)
+            //{
+            //    EmeraldComponent.CurrentTarget = Target;
+            //    EmeraldComponent.EmeraldDetectionComponent.DetectTargetType(EmeraldComponent.CurrentTarget, true);
+            //    EmeraldComponent.m_NavMeshAgent.ResetPath();
+            //    EmeraldComponent.m_NavMeshAgent.stoppingDistance = EmeraldComponent.AttackDistance;
+            //    EmeraldComponent.m_NavMeshAgent.destination = Target.position;
+            //    EmeraldComponent.EmeraldDetectionComponent.PreviousTarget = Target;
+            //    EmeraldComponent.MaxChaseDistance = 2000;
+            //    EmeraldComponent.EmeraldBehaviorsComponent.ActivateCombatState();
+            //}
+            //else if (Target == null)
+            //{
+            //    Debug.Log("The SetCombatTarget paramter is null. Ensure that the target exists before calling this function.");
+            //}
         }
 
 

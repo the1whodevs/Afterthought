@@ -2170,7 +2170,7 @@ namespace EmeraldAI
                         }
                         else if (TargetTypeRef == TargetType.AI && TargetEmerald != null)
                         {                          
-                            TargetEmerald.Damage(CurrentDamageAmount, TargetType.AI, this.transform, SentRagdollForceAmount, CriticalHit);
+                            TargetEmerald.Damage(CurrentDamageAmount, this.transform, TargetType.AI, SentRagdollForceAmount, CriticalHit);
                             OnDoDamageEvent.Invoke();
 
                             if (TargetEmerald.CurrentBlockingState != BlockingState.Blocking && !TargetEmerald.IsDead)
@@ -2239,7 +2239,7 @@ namespace EmeraldAI
         /// <param name="TypeOfTarget">The type of target who is causing the damage.</param>
         /// <param name="AttackerTransform">The transform of the current attacker.</param>
         /// <param name="RagdollForce">The amount of force to apply to this AI when they die. (Use Ragdoll must be enabled on this AI)</param>
-        public void Damage (int DamageAmount, TargetType? TypeOfTarget = null, Transform AttackerTransform = null, int RagdollForce = 100, bool CriticalHit = false)
+        public void Damage (int DamageAmount, Transform AttackerTransform, TargetType ? TypeOfTarget = null, int RagdollForce = 100, bool CriticalHit = false)
         {
             if (CombatStateRef == CombatState.Active && AttackerTransform != CurrentTarget)
             {

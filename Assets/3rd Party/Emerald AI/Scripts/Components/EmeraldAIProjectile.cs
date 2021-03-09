@@ -422,7 +422,7 @@ namespace EmeraldAI.Utility
                 {
                     if (AbilityType == AbilityTypeEnum.Damage && DamageType == DamageTypeEnum.Instant)
                     {
-                        TargetEmeraldSystem.Damage(Damage, EmeraldAISystem.TargetType.AI, EmeraldSystem.transform, EmeraldSystem.SentRagdollForceAmount, CriticalHit);
+                        TargetEmeraldSystem.Damage(Damage, EmeraldSystem.transform, EmeraldAISystem.TargetType.AI, EmeraldSystem.SentRagdollForceAmount, CriticalHit);
                         EmeraldSystem.OnDoDamageEvent.Invoke();
                         if (CriticalHit)
                             EmeraldSystem.OnCriticalHitEvent.Invoke();
@@ -430,7 +430,7 @@ namespace EmeraldAI.Utility
                     else if (AbilityType == AbilityTypeEnum.Damage && DamageType == DamageTypeEnum.OverTime)
                     {
                         //Apply the initial damage to our target
-                        TargetEmeraldSystem.Damage(AbilityImpactDamage, EmeraldAISystem.TargetType.AI, EmeraldSystem.transform, EmeraldSystem.SentRagdollForceAmount);
+                        TargetEmeraldSystem.Damage(AbilityImpactDamage, EmeraldSystem.transform, EmeraldAISystem.TargetType.AI, EmeraldSystem.SentRagdollForceAmount);
                         EmeraldSystem.OnDoDamageEvent.Invoke();
                         if (AbilityStacksRef == Yes_No.No && !TargetEmeraldSystem.ActiveEffects.Contains(EmeraldSystem.CurrentlyCreatedAbility.AbilityName) && AbilityName != string.Empty || AbilityStacksRef == Yes_No.Yes)
                         {

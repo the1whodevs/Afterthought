@@ -17,7 +17,7 @@ namespace EmeraldAI.Example
             //Damages an AI to the collided object
             if (collision.gameObject.GetComponent<EmeraldAI.EmeraldAISystem>() != null)
             {
-                collision.gameObject.GetComponent<EmeraldAI.EmeraldAISystem>().Damage(DamageAmount, EmeraldAI.EmeraldAISystem.TargetType.Player, transform, 400);
+                collision.gameObject.GetComponent<EmeraldAI.EmeraldAISystem>().Damage(DamageAmount, transform, EmeraldAI.EmeraldAISystem.TargetType.Player, 400);
             }
         }
     }

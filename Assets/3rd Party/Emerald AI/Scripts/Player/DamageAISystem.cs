@@ -46,7 +46,7 @@ namespace EmeraldAI.CharacterController
                             {
                                 int DamageAmount = Random.Range(DamageAmountMin, DamageAmountMax + 1);
                                 CombatTextSystem.Instance.CreateCombatText(DamageAmount, hit.transform.position - Vector3.up * 0.25f, false, false, false);
-                                hit.collider.gameObject.GetComponent<EmeraldAISystem>().Damage(DamageAmount, EmeraldAISystem.TargetType.Player, transform.root, 400);
+                                hit.collider.gameObject.GetComponent<EmeraldAISystem>().Damage(DamageAmount, transform.root, EmeraldAISystem.TargetType.Player, 400);
                                 m_Timer = 0;
                             }
                         }
@@ -73,7 +73,7 @@ namespace EmeraldAI.CharacterController
                                 LineColor = Color.red;
                                 int DamageAmount = Random.Range(DamageAmountMin, DamageAmountMax + 1);
                                 CombatTextSystem.Instance.CreateCombatText(DamageAmount, EmeraldComponent.HitPointTransform.position, false, false, false);
-                                EmeraldComponent.Damage(DamageAmount, EmeraldAISystem.TargetType.Player, transform.root, 400);
+                                EmeraldComponent.Damage(DamageAmount, transform.root, EmeraldAISystem.TargetType.Player, 400);
                                 m_Timer = 0;
                             }
                         }

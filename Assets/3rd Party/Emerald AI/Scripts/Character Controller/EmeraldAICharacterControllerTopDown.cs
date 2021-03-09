@@ -478,7 +478,7 @@ namespace EmeraldAI.CharacterController
 
                     CombatTextSystem.Instance.CreateCombatText(Damage, CurrentTarget.position, CriticalHit, false, false);
                     EmeraldAISystem m_EmeraldComponent = CurrentTarget.GetComponent<EmeraldAISystem>();
-                    m_EmeraldComponent.Damage(Damage, EmeraldAISystem.TargetType.Player, transform, 300);
+                    m_EmeraldComponent.Damage(Damage, transform, EmeraldAISystem.TargetType.Player, 300);
 
                     m_EmeraldComponent.AIRenderer.material.SetFloat("_DamageFlash", 0.75f);
                     StartCoroutine(DamageFlash(m_EmeraldComponent.AIRenderer));

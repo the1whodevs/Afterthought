@@ -122,7 +122,7 @@ namespace EmeraldAI.CharacterController
                                 _audioSource.PlayOneShot(impactSounds[Random.Range(0, impactSounds.Count)]);
                             }
 
-                            hit.collider.gameObject.GetComponent<EmeraldAISystem>().Damage(damage, EmeraldAISystem.TargetType.Player, transform.root, 500);
+                            hit.collider.gameObject.GetComponent<EmeraldAISystem>().Damage(damage, transform.root, EmeraldAISystem.TargetType.Player,  500);
                         }
                     }
 
