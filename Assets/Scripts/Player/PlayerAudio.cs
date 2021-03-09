@@ -14,6 +14,9 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] private AudioClip[] mudClips;
     [SerializeField] private AudioClip[] stoneClips;
 
+    [Header("Various Sounds")]
+    [SerializeField] private AudioClip interactSound;
+
     private float distanceCovered;
     private float airTime;
 
@@ -59,6 +62,11 @@ public class PlayerAudio : MonoBehaviour
     private void OnReloadCancel()
     {
         if (gunAudioSource.isPlaying) gunAudioSource.Stop();
+    }
+
+    public void PlayInteract()
+    {
+        gunAudioSource.PlayOneShot(interactSound);
     }
 
     public void PlayGunshot(WeaponData weapon)

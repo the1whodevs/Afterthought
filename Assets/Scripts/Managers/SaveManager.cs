@@ -93,6 +93,10 @@ public class SaveManager : MonoSingleton<SaveManager>
             if (i == -1) HasQuicksave = false;
 
             UIManager.Active.RefreshSaveLoadPanels();
+
+            var mm = MainMenu.Instance;
+
+            if (mm) mm.UpdateContinueButton();
         }
     }
 

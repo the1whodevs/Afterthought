@@ -2,6 +2,8 @@
 
 public class MainMenu : MonoBehaviour
 {
+    public static MainMenu Instance => FindObjectOfType<MainMenu>();
+
     [SerializeField] private GameObject continueButton;
 
     // The panel containing all main menu buttons.
@@ -13,8 +15,12 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
-        continueButton.SetActive(SaveManager.Active.NumOfSaves > 0);
         mainPanel.SetActive(true);
+    }
+
+    public void UpdateContinueButton()
+    {
+        continueButton.SetActive(SaveManager.Active.NumOfSaves > 0);
     }
 
     public void ContinueButton()

@@ -63,6 +63,7 @@ public class PlayerPickup : MonoBehaviour
 
             if (interact && !fireResetRequired)
             {
+                Player.Active.Audio.PlayInteract();
                 fireResetRequired = true;
                 OnInteract?.Invoke(pickableHit);
                 pickableHit.Interact();
