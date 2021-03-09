@@ -92,6 +92,12 @@ public class UIManager : MonoSingleton<UIManager>
         HideIngamePanel();
     }
 
+    public void CheckHideMenus()
+    {
+        if (deathMenu.gameObject.activeInHierarchy) deathMenu.gameObject.SetActive(false);
+        if (pauseMenu.gameObject.activeInHierarchy) pauseMenu.gameObject.SetActive(false);
+    }
+
     public void HideIngamePanel()
     {
         ingamePanel.SetActive(false);

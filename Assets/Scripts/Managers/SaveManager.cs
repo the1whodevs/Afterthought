@@ -144,9 +144,7 @@ public class SaveManager : MonoSingleton<SaveManager>
     {
         if (index == -1) HasQuicksave = true;
         else if (index == NumOfSaves)
-        {
             NumOfSaves++;
-        }
 
         var p = Player.Active;
         var le = LoadoutEditor.Active; 

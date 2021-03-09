@@ -41,6 +41,8 @@ public class LoadingManager : MonoSingleton<LoadingManager>
 
     [SerializeField] private GameObject endLoadingButton;
 
+    private bool mustForceSave = false;
+
     private const string LOADING_SCENE = "99 - Loading";
 
     private void Awake()
@@ -63,6 +65,13 @@ public class LoadingManager : MonoSingleton<LoadingManager>
     public string GetSceneName(int buildIndex)
     {
         return loadingData[buildIndex].sceneName;
+    }
+
+    public void ForceSaveAfterFullLoad(int buildIndex)
+    {
+        mustForceSave = true;
+
+        LoadLevel(buildIndex);
     }
 
     public void LoadLevel(int buildIndex)
@@ -94,11 +103,30 @@ public class LoadingManager : MonoSingleton<LoadingManager>
 
     public void HideLoadingOverlay()
     {
+
         loadingOverlay.SetActive(false);
 
         if (Player.Active) Player.Active.Controller.ExitUI();
 
         Loading = false;
+
+        StartCoroutine(TryForceSave());
+    }
+
+    private IEnumerator TryForceSave()
+    {
+        if (mustForceSave)
+        {
+            mustForceSave = false;
+
+            while (!Player.Active)
+            {
+                Debug.Log("Waiting for player instance to save...");
+                yield return new WaitForEndOfFrame();
+            }
+
+            StartCoroutine(SaveManager.Active.SaveAtIndex(SaveManager.Active.NumOfSaves));
+        }
     }
 
     private IEnumerator LoadScene(int buildIndex)
@@ -144,18 +172,20 @@ public class LoadingManager : MonoSingleton<LoadingManager>
 
         onLoadingFinished?.Invoke();
 
-        UISoundFXManager.Active.PlayLoadingFinished();
-
-        UIManager.Active.HidePauseMenu();
-        DeathMenu.Active.HideDeathMenu();
+        UIManager.Active.CheckHideMenus();
 
         // If going to the main menu, or the cinematic scene...
         if (buildIndex == 1 || buildIndex == 2)
         {
             // Just hide the loading overlay.
             HideLoadingOverlay();
+
+            if (buildIndex == 2) CinematicManager.Active.StartVideo();
+
             yield break;
         }
+
+        UISoundFXManager.Active.PlayLoadingFinished();
 
         // ... otherwise wait for player interaction.
         endLoadingButton.SetActive(true);
@@ -175,7 +205,7 @@ public class LoadingManager : MonoSingleton<LoadingManager>
 
             t += textFadeSpeed * Time.deltaTime;
 
-            if (Input.anyKeyDown)
+            if (Input.anyKey)
             {
                 HideLoadingOverlay();
                 break;
