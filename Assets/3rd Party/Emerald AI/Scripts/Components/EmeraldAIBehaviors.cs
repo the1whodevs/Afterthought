@@ -914,7 +914,7 @@ namespace EmeraldAI
             }
             else if (EmeraldComponent.AlignAIWithGroundRef == EmeraldAISystem.AlignAIWithGround.No)
             {
-                Quaternion qTarget = Quaternion.LookRotation(DestinationDirection, Vector3.up);
+                Quaternion qTarget = DestinationDirection == Vector3.zero ? Quaternion.identity : Quaternion.LookRotation(DestinationDirection, Vector3.up);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, qTarget, Time.deltaTime * EmeraldComponent.BackupTurningSpeed);
             }
 
