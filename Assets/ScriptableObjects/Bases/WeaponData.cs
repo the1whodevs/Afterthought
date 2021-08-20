@@ -61,6 +61,8 @@ public class WeaponData : IDisplayableItem
 
     public float recoil_horizontal = 1.5f;
     public float recoil_vertical = 3.0f;
+    public float recoil_speed = 2.5f;
+    public float recoil_recovery = 0.5f;
 
     private string AMMO_IN_MAG => $"{name}_AMMOinMAG";
 

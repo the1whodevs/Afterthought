@@ -27,15 +27,16 @@ public class PlayerCamera : MonoBehaviour
 
     [SerializeField] private Camera zoomCamera;
 
-    [Header("Weapon Sway")]
-    [SerializeField] private bool useSway = true;
+    [Header("Weapon Sway & Recoil")]
     [SerializeField] private Transform weaponHolder;
+    [SerializeField] private bool useSway = true;
     [SerializeField] private float swayAmount;
     [SerializeField] private float smoothing;
     [SerializeField] private float swayCapX = 0.15f;
     [SerializeField] private float swayCapY = 0.15f;
 
     private Vector3 weaponHolderStartPos;
+    private Quaternion weaponHolderStartRot;
 
     public Vector3 OffsetFromPlayer => offsetFromPlayer;
     private Vector3 offsetFromPlayer;
@@ -86,7 +87,7 @@ public class PlayerCamera : MonoBehaviour
         
         cameraT = transform;
         weaponHolderStartPos = weaponHolder.localPosition;
-
+        weaponHolderStartRot = weaponHolder.localRotation;
         LoadSensitivityValues();
 
         if (cleanInit)
@@ -220,6 +221,8 @@ public class PlayerCamera : MonoBehaviour
 
     public void ApplyRecoil(float horizontalForce, float verticalForce)
     {
+        Debug.Log("ADDING RECOIL...");
+
         if (!_playerController) _playerController = Player.Active.Controller;
 
         //var talent = Player.Active.Loadout.HasMinimalHorizontalRecoil();
@@ -242,10 +245,15 @@ public class PlayerCamera : MonoBehaviour
 
         UIManager.Active.AddRecoil(horizontalForce, verticalForce);
 
-//        var randX = UnityEngine.Random.Range(-horizontalForce, horizontalForce);
-//        var randY = UnityEngine.Random.Range(0.0f, verticalForce);
+        //RotateWeapon(UnityEngine.Random.Range(-horizontalForce, horizontalForce), UnityEngine.Random.Range(0.0f, verticalForce), Player.Active.Loadout.CurrentWeapon.recoil_speed, Time.deltaTime);
+        RotateWeapon(horizontalForce, verticalForce, Player.Active.Loadout.CurrentWeapon.recoil_speed, Time.deltaTime);
+    }
 
-        RotatePlayer(UnityEngine.Random.Range(-horizontalForce, horizontalForce), UnityEngine.Random.Range(0.0f, verticalForce), Time.deltaTime);
+    public void RotateWeapon(float xRot, float yRot, float speed, float delta)
+    {
+        var targetRot = weaponHolderStartRot * Quaternion.Euler(weaponHolder.right * yRot + weaponHolder.up * xRot);
+        //weaponHolder.Rotate(weaponHolder.right * (yRot * speed * delta) + weaponHolder.up * (xRot * speed * delta), Space.Self);
+        weaponHolder.localRotation = Quaternion.Lerp(weaponHolder.localRotation, targetRot, speed * delta);
     }
 
     public void ToggleZoom(bool status)

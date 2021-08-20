@@ -103,6 +103,8 @@ public class PlayerController : MonoBehaviour
 
         UpdatePlayer();
         WeaponControls(d);
+
+        if (!TryingToFire) Player.Active.Camera.RotateWeapon(0, 0, Player.Active.Loadout.CurrentWeapon.recoil_recovery, d);
     }
 
     private void UpdatePlayer()
