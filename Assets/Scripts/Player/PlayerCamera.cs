@@ -27,6 +27,16 @@ public class PlayerCamera : MonoBehaviour
 
     [SerializeField] private Camera zoomCamera;
 
+    [Header("Weapon Sway")]
+    [SerializeField] private bool useSway = true;
+    [SerializeField] private Transform weaponHolder;
+    [SerializeField] private float swayAmount;
+    [SerializeField] private float smoothing;
+    [SerializeField] private float swayCapX = 0.15f;
+    [SerializeField] private float swayCapY = 0.15f;
+
+    private Vector3 weaponHolderStartPos;
+
     public Vector3 OffsetFromPlayer => offsetFromPlayer;
     private Vector3 offsetFromPlayer;
 
@@ -43,7 +53,17 @@ public class PlayerCamera : MonoBehaviour
     private float camRotationY;
 
     private bool initialized;
-    
+
+    /// <summary>
+    /// Input.Axis(Mouse X) * xSensitivity
+    /// </summary>
+    public float MouseInputX => xInput;
+
+
+    /// <summary>
+    /// Input.Axis(Mouse Y) * ySensitivity
+    /// </summary>
+    public float MouseInputY => yInput;
     private float xInput;
     private float yInput;
     private float delta;
@@ -65,6 +85,7 @@ public class PlayerCamera : MonoBehaviour
         zoomCameraGameObject.SetActive(false);
         
         cameraT = transform;
+        weaponHolderStartPos = weaponHolder.localPosition;
 
         LoadSensitivityValues();
 
@@ -110,10 +131,35 @@ public class PlayerCamera : MonoBehaviour
         delta = Time.deltaTime;
 
         AdjustCameraToCurrentZoom(delta);
+
+        xInput = Input.GetAxis("Mouse X") * mouseSensitivity_X;
+        yInput = Input.GetAxis("Mouse Y") * mouseSensitivity_Y;
+
+        if (useSway) WeaponSway(delta);
+
         LookRotation(delta);
         
         // If moving, head bob.
         HeadBob(delta);
+    }
+
+    private void WeaponSway(float delta)
+    {
+        var x = -MouseInputX * swayAmount;
+        var y = -MouseInputY * swayAmount;
+
+        if (x < 0 && x < -swayCapX)
+            x = -swayCapX;
+        else if (x > 0 && x > swayCapX)
+            x = swayCapX;
+
+        if (y < 0 && y < -swayCapY)
+            y = -swayCapY;
+        else if (y > 0 && y > swayCapY)
+            y = swayCapY;
+
+        var finalPos = new Vector3(x, y, 0);
+        weaponHolder.localPosition = Vector3.Lerp(weaponHolder.localPosition, finalPos + weaponHolderStartPos, delta * smoothing);
     }
     
     private void HeadBob(float delta)
@@ -125,9 +171,6 @@ public class PlayerCamera : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
-        xInput = Input.GetAxis("Mouse X") * mouseSensitivity_X;
-        yInput = Input.GetAxis("Mouse Y") * mouseSensitivity_Y;
 
         RotatePlayer(xInput, yInput, delta);
     }

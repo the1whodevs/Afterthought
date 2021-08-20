@@ -116,92 +116,12 @@ MonoBehaviour:
   cameraMaxY: 75
   zoomSpeed: 25
   zoomCamera: {fileID: 7419696752421820827}
-  xBobSpeed: 1
-  yBobSpeed: 1
-  xBobMovement:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.5
-      outSlope: 0.5
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0.5
-      inSlope: -0.25
-      outSlope: -0.25
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 2
-      value: -0.5
-      inSlope: -0.25
-      outSlope: -0.25
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 3
-      value: 0
-      inSlope: 0.5
-      outSlope: 0.5
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 0
-    m_PostInfinity: 0
-    m_RotationOrder: 4
-  yBobMovement:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.5
-      outSlope: 0.5
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0.5
-      inSlope: -0.25
-      outSlope: -0.25
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 2
-      value: -0.5
-      inSlope: -0.25
-      outSlope: -0.25
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 3
-      value: 0
-      inSlope: 1.5273272
-      outSlope: 0.5
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0.25223017
-      outWeight: 0.33333334
-    m_PreInfinity: 0
-    m_PostInfinity: 0
-    m_RotationOrder: 4
+  useSway: 1
+  weaponHolder: {fileID: 5598451745193294800}
+  swayAmount: 0.1
+  smoothing: 3
+  swayCapX: 0.03
+  swayCapY: 0.03
 --- !u!114 &305737996245361438
 MonoBehaviour:
   m_ObjectHideFlags: 0
